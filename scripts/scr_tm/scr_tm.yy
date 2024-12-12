@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_tm",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_tm",
+  "parent":{
+    "name":"Move",
+    "path":"folders/Scripts/Piece/Move.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_can_attack_enemy",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_can_attack_enemy",
+  "parent":{
+    "name":"Piece",
+    "path":"folders/Scripts/Piece.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

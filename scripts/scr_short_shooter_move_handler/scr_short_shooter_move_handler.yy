@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_short_shooter_move_handler",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_short_shooter_move_handler",
+  "parent":{
+    "name":"Specific",
+    "path":"folders/Scripts/Piece/Specific.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

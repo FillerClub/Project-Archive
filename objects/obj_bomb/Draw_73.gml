@@ -1,0 +1,1 @@
+draw_sprite_ext(spr_grid_warning,0,x,y,1,1,0,c_red,(cos(timer*14) +1)/2);

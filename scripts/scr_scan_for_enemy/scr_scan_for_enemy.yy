@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_scan_for_enemy",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_scan_for_enemy",
+  "parent":{
+    "name":"Piece",
+    "path":"folders/Scripts/Piece.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

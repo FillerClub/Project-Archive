@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_send_MOVEaction_to_server",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_send_MOVEaction_to_server",
+  "parent":{
+    "name":"NEW",
+    "path":"folders/Scripts/Server/NEW.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

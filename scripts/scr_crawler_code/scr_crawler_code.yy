@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_crawler_code",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_crawler_code",
+  "parent":{
+    "name":"Specific",
+    "path":"folders/Scripts/Piece/Specific.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

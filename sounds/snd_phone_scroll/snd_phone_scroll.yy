@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"snd_phone_scroll",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":0.096776,
+  "name":"snd_phone_scroll",
+  "parent":{
+    "name":"Phone",
+    "path":"folders/Sounds/Phone.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_phone_scroll.ogg",
+  "type":0,
+  "volume":0.85,
+}

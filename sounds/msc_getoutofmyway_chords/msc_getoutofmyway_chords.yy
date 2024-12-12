@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"msc_getoutofmyway_chords",
+  "audioGroupId":{
+    "name":"track3",
+    "path":"audiogroups/track3",
+  },
+  "bitDepth":1,
+  "bitRate":512,
+  "compression":2,
+  "conversionMode":0,
+  "duration":133.0693,
+  "name":"msc_getoutofmyway_chords",
+  "parent":{
+    "name":"Get Out of My Way",
+    "path":"folders/Sounds/OST/Get Out of My Way.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":48000,
+  "soundFile":"msc_getoutofmyway_chords.ogg",
+  "type":1,
+  "volume":1.0,
+}

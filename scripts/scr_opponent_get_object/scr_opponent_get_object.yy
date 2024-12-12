@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_opponent_get_object",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_opponent_get_object",
+  "parent":{
+    "name":"NEW",
+    "path":"folders/Scripts/Server/NEW.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

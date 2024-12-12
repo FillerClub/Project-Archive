@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"snd_unpause",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":0.48387,
+  "name":"snd_unpause",
+  "parent":{
+    "name":"Phone",
+    "path":"folders/Sounds/Phone.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_unpause.ogg",
+  "type":0,
+  "volume":1.0,
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_piece_highlight_draw",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_piece_highlight_draw",
+  "parent":{
+    "name":"SCRAP",
+    "path":"folders/Scripts/Draw/SCRAP.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

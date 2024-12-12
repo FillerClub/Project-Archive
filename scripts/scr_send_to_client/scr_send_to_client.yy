@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_send_to_client",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_send_to_client",
+  "parent":{
+    "name":"SCRAP",
+    "path":"folders/Scripts/Server/SCRAP.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_client_handle_message",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_client_handle_message",
+  "parent":{
+    "name":"NEW",
+    "path":"folders/Scripts/Server/NEW.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

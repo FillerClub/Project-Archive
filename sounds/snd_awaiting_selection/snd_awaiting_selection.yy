@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"snd_awaiting_selection",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":512,
+  "compression":0,
+  "conversionMode":0,
+  "duration":133.0693,
+  "name":"snd_awaiting_selection",
+  "parent":{
+    "name":"Sounds",
+    "path":"folders/Sounds.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":48000,
+  "soundFile":"snd_awaiting_selection.ogg",
+  "type":1,
+  "volume":1.0,
+}

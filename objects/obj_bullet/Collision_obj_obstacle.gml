@@ -1,0 +1,1 @@
+scr_pellet_destroy();
