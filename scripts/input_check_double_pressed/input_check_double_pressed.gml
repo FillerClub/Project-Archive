@@ -1,6 +1,6 @@
 // Feather disable all
 /// @desc    Returns a boolean indicating whether the given verb has been double-tapped this frame
-///          If an array of verbs is given then this function will return <true> if ANY verb has been doubled-tapped this frame
+///          If an array of verbs is given then this function will return <true> if PLACEABLEANY verb has been doubled-tapped this frame
 ///          If a buffer duration is specified then this function will return <true> if the verb has been double-tapped at any point within that timeframe
 /// @param   {any} verb/array
 /// @param   [playerIndex=0]

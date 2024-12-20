@@ -54,7 +54,7 @@ if placed {
 			} else { placeable = false; }
 		break;
 	
-		case NONE:
+		case PLACEABLENONE:
 			placeable = false; 
 		break; 
 		
@@ -82,13 +82,13 @@ if placed {
 			}
 		break;
 		
-		case ANY:
+		case PLACEABLEANY:
 			if position_meeting(gClampX,gClampY,obj_generic_piece) {
 				placeable = true;
 			}
 		break;
 	
-		case NONE:
+		case PLACEABLENONE:
 			if position_meeting(gClampX,gClampY,obj_generic_piece) {
 				placeable = false;	
 			}

@@ -3,7 +3,7 @@ var gD = global.grid_dimensions;
 
 if execute == "move" {
 	draw_set_color(c_black);
-	grid_highlight_draw(valid_moves[BOTH],ANY,DIFFERENT);
+	grid_highlight_draw(valid_moves[BOTH],PLACEABLEANY,DIFFERENT);
 	draw_set_color(c_white);
 } else {
 	draw_set_color(c_white);	

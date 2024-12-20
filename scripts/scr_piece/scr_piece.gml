@@ -9,6 +9,7 @@ if global.pause && !ignore_pause {
 	return false;
 }
 moved = false;
+depth = -bbox_bottom;
 if ai_controlled { auto_attack_timer(); }
 
 var 

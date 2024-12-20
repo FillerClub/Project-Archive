@@ -44,13 +44,13 @@ if execute == "move" || debugOn {
 		if valid_moves[list] != undefined && valid_moves[list] != 0 {
 			switch list {
 				case ONLY_MOVE:
-					highlight_draw(display_mode,valid_moves[ONLY_MOVE],c_aqua,debugOn,ANY,NONE,false,false,debugOn);
+					highlight_draw(display_mode,valid_moves[ONLY_MOVE],c_aqua,debugOn,PLACEABLEANY,PLACEABLENONE,false,false,debugOn);
 				break;
 				case ONLY_ATTACK:
-					highlight_draw(display_mode,valid_moves[ONLY_ATTACK],c_red,debugOn,NONE,DIFFERENT,false,false,debugOn)
+					highlight_draw(display_mode,valid_moves[ONLY_ATTACK],c_red,debugOn,PLACEABLENONE,DIFFERENT,false,false,debugOn)
 				break;
 				case BOTH:
-					highlight_draw(display_mode,valid_moves[BOTH],c_white,debugOn,ANY,DIFFERENT,false,false,debugOn)
+					highlight_draw(display_mode,valid_moves[BOTH],c_white,debugOn,PLACEABLEANY,DIFFERENT,false,false,debugOn)
 				break;
 			}
 		}	

@@ -1,7 +1,7 @@
 // Feather disable all
 /// @desc    Returns a boolean indicating whether the given verb has been active for a long time and then deactivated this frame
 ///          The long-hold threshold is defined by INPUT_LONG_DELAY
-///          If an array of verbs is given then this function will return <true> if ANY verb has been active for a long time and then deactivated
+///          If an array of verbs is given then this function will return <true> if PLACEABLEANY verb has been active for a long time and then deactivated
 ///          If a buffer duration is specified then this function will return <true> if the verb has been active for a long time and then deactivated at any point within that timeframe
 /// @param   {any} verb/array
 /// @param   [playerIndex=0]

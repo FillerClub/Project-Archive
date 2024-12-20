@@ -1,7 +1,7 @@
 // Feather disable all
 /// @desc    Returns a boolean indicating whether the given verb was newly activated this frame (a button was pressed etc.)
-///          If the keyword <all> is used then this function will return <true> if ANY verb whatsoever was newly activated
-///          If an array of verbs is given then this function will return <true> if ANY of the verbs in the array were newly activated
+///          If the keyword <all> is used then this function will return <true> if PLACEABLEANY verb whatsoever was newly activated
+///          If an array of verbs is given then this function will return <true> if PLACEABLEANY of the verbs in the array were newly activated
 ///          If a buffer duration is specified then this function will return <true> if the verb has been newly active at any point within that timeframe
 /// @param   {any} verb/array
 /// @param   [playerIndex=0]

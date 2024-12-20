@@ -2,12 +2,12 @@
 /// @function scr_moving_piece_highlight_draw(valid_moves)
 #macro SAME 0
 #macro NEUTRAL 1
-#macro ANY 2
-#macro NONE 3
+#macro PLACEABLEANY 2
+#macro PLACEABLENONE 3
 
 #macro DIFFERENT 1
 
-function grid_highlight_draw(valid_spots = [[0,0]], placeable_on_grid = ANY, placeable_on_piece = DIFFERENT, exclude_barriers = false, skip_grid_check = false, faux = false, show_lines = false){
+function grid_highlight_draw(valid_spots = [[0,0]], placeable_on_grid = PLACEABLEANY, placeable_on_piece = DIFFERENT, exclude_barriers = false, skip_grid_check = false, faux = false, show_lines = false){
 // Grab grid variables
 var gS = global.grid_spacing,
 gD = global.grid_dimensions,
@@ -62,7 +62,7 @@ for (var i = 0; i < ar_leng; ++i)	{
 					}
 				break;
 			
-				case NONE:
+				case PLACEABLENONE:
 					col = c_red;
 				break; 
 
@@ -96,13 +96,13 @@ for (var i = 0; i < ar_leng; ++i)	{
 						}
 					break;
 			
-					case ANY:
+					case PLACEABLEANY:
 						if position_meeting(xM,yM,obj_obstacle) {
 							col = c_white;	
 						}
 					break;
 			
-					case NONE:
+					case PLACEABLENONE:
 						if position_meeting(xM,yM,obj_obstacle) {
 							col = c_red;	
 						}

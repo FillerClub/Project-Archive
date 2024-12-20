@@ -1,7 +1,7 @@
 // Feather disable all
 /// @desc    Returns a boolean indicating whether the given verb has been double-tapped and held
 ///          The double tap threshold is defined by INPUT_DOUBLE_DELAY
-///          If an array of verbs is given then this function will return <true> if ANY verb has been doubled-tapped and held
+///          If an array of verbs is given then this function will return <true> if PLACEABLEANY verb has been doubled-tapped and held
 ///          If a buffer duration is specified then this function will return <true> if the verb has been double-tapped and held at any point within that timeframe
 /// @param   {any} verb/array
 /// @param   [playerIndex=0]

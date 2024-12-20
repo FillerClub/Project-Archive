@@ -3,7 +3,7 @@ var gD = global.grid_dimensions;
 
 if execute == "move" {
 	draw_set_color(c_black);
-	grid_highlight_draw(valid_attacks,ANY,ANY);
+	grid_highlight_draw(valid_attacks,PLACEABLEANY,PLACEABLEANY);
 	draw_set_color(c_white);
 } else {
 	draw_set_color(c_white);	

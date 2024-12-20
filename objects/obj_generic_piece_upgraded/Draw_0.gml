@@ -1,5 +1,5 @@
 if execute == "move" {
-	grid_highlight_draw(valid_moves[BOTH],ANY,ANY);
+	grid_highlight_draw(valid_moves[BOTH],PLACEABLEANY,PLACEABLEANY);
 } 
 
 piece_draw();

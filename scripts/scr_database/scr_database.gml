@@ -45,7 +45,7 @@ function refer_database(name, trait = -1) {
 							2,6,2,1,10,1,1,
 							[[["1", 1],["1", -1]], 
 							[["1", 0]]],
-							SAME,NONE,
+							SAME,PLACEABLENONE,
 							RANGECLASS,PIECE,
 							"Shoots at enemy pieces and their base.",
 							"I love this piece. My mom gave this piece to me when I first started playing Adler's Game. Placing them all makes me feel safe, like a queen defending her castle. I keep its card on my nightstand to remind me of those times."]
@@ -54,7 +54,7 @@ function refer_database(name, trait = -1) {
 				object = [	"short",obj_short_shooter,spr_short_shooter,spr_short_shooter_slot,
 							3,16,10,1,10,1,1,
 							[[[1, 1]]],
-							SAME,NONE,
+							SAME,PLACEABLENONE,
 							RANGECLASS,PIECE,
 							"Rapidly shoots at pieces in its area.",
 							"TBA"]
@@ -64,7 +64,7 @@ function refer_database(name, trait = -1) {
 							4,8,4,1,10,1,1,
 							[[["1", 1],["1", -1]], 
 							[["1", 0]]],
-							SAME,NONE,
+							SAME,PLACEABLENONE,
 							RANGECLASS,PIECE,
 							"Shoots two bullets at a time, prioritizing its surrounding lanes.",
 							"TBA"]
@@ -75,7 +75,7 @@ function refer_database(name, trait = -1) {
 							[[["-1", 1],["-1", -1]], 
 							undefined,
 							[["1",0]]],
-							SAME,NONE,
+							SAME,PLACEABLENONE,
 							RANGECLASS,PIECE,
 							"Shoots a piercing projectile throughout the row.",
 							"TBA"]
@@ -84,7 +84,7 @@ function refer_database(name, trait = -1) {
 				object = [	"shotgun",obj_shotgun,spr_shotgun,spr_shotgun_slot,
 							5,12,12,1,10,1,1,
 							[[["1", 0],["-1", 1],["-1", 0],["-1", -1]]],
-							SAME,NONE,
+							SAME,PLACEABLENONE,
 							RANGECLASS,PIECE,
 							"High damage to its closest targets.",
 							"TBA"]
@@ -93,7 +93,7 @@ function refer_database(name, trait = -1) {
 				object = [	"accelerator",obj_accelerator,spr_accelerator,spr_accelerator_slot,
 							1,4.5,6,1,10,0,1,
 							[[[0, 1],[0,-1]]],
-							SAME,NONE,
+							SAME,PLACEABLENONE,
 							SUPPORTCLASS,PIECE,
 							"Passively increases timer speed. Gives an additional point for each timer up.",
 							"I don't know what I would do without these things. They've single handedly turned games around for me in the past. Yeah they don't really do much on their own; they're quite fragile at that, but they are well worth the little time and resources it takes."]
@@ -104,7 +104,7 @@ function refer_database(name, trait = -1) {
 							[undefined,
 							undefined,
 							[[1,1]]],
-							SAME,NONE,
+							SAME,PLACEABLENONE,
 							DEFENSECLASS,PIECE,
 							"Able to be moved diagonally anywhere on the map.",
 							"TBA"]
@@ -113,7 +113,7 @@ function refer_database(name, trait = -1) {
 				object = [	"wall",obj_generic_piece,spr_wall,spr_wall_slot,
 							1,16,999,0,20,1,1,
 							[undefined],
-							SAME,NONE,
+							SAME,PLACEABLENONE,
 							DEFENSECLASS,PIECE,
 							"Static piece, has a lot of health and is useful for stalling.",
 							"TBA",]
@@ -122,7 +122,7 @@ function refer_database(name, trait = -1) {
 				object = [	"bomber",obj_bomber,spr_bomber,spr_bomber_slot,
 							3,16,21,2,10,1,1,
 							[undefined],
-							SAME,NONE,
+							SAME,PLACEABLENONE,
 							EXPLOSIVECLASS,PIECE,
 							"Instead of moving, launches an explosive to anywhere on the map.",
 							"TBA"]
@@ -132,7 +132,7 @@ function refer_database(name, trait = -1) {
 							1,30,1,0,5,0,1,
 							[undefined, 
 							[[1, 0],[-1, 0]]],
-							SAME,NONE,
+							SAME,PLACEABLENONE,
 							EXPLOSIVECLASS,PIECE,
 							"Able to take a piece easily, breaks upon use.",
 							"A stick is a weird choice to add to the game. You'd think they'd add something with a little more flair like a living trapdoor, or an explosive mine maybe. But no, it's just a stick. No personality, not very interactive, only brown. I'm sorry but this thing is really boring."]
@@ -142,7 +142,7 @@ function refer_database(name, trait = -1) {
 							1,1.5,3,0,10,12,1,
 							[undefined, 
 							[["1", 0]]],
-							SAME,NONE,
+							SAME,PLACEABLENONE,
 							WANDERCLASS,PIECE,
 							"Crawls all the way to the enemy's base.",
 							"Crawlers, despite their limited mobility, they always seem to get into the strangest places if when left by themselves. Plus, they always like herding into groups of other crawlers for whatever reason. They kinda freak me out for that but some people seem to really like crawlers, so I can't fault them for that."]
@@ -152,7 +152,7 @@ function refer_database(name, trait = -1) {
 							2,3,3,0,10,12,1,
 							[undefined, 
 							[["1", 0]]],
-							SAME,NONE,
+							SAME,PLACEABLENONE,
 							WANDERCLASS,PIECE,
 							"Crawler able to take pieces in its immediate column.",
 							"Because of this piece's ability to drop from high up the map to take a piece, this crawler has a very peculiar feature to show for that. Its snout! Anytime the drooper attacks an enemy from above (or below), it would use its snoot to droop on the enemy piece. That's why it's called the droop snoot, the snoot would droop."]
@@ -162,7 +162,7 @@ function refer_database(name, trait = -1) {
 							3,3,2.5,0,20,12,1,
 							[undefined, 
 							[["1", 0]]],
-							SAME,NONE,
+							SAME,PLACEABLENONE,
 							WANDERCLASS,PIECE,
 							"Able to take more damage than a normal crawler.",
 							//Change?
@@ -172,7 +172,7 @@ function refer_database(name, trait = -1) {
 				object = [	"barrel",obj_generic_piece,spr_barrel_SCRAPPLS,spr_generic_piece,
 							1,.5,1,1,10,1,1,
 							[undefined],
-							SAME,NONE,
+							SAME,PLACEABLENONE,
 							DEFENSECLASS,PIECE,
 							"Just a barrel.",
 							"Useless."]
@@ -183,7 +183,7 @@ function refer_database(name, trait = -1) {
 							[[[0,1],[0,-1]], 
 							[["-1",1],["-1",0],["-1",-1]], 
 							[["1",1],["1",0],["1",-1]]],
-							SAME,NONE,
+							SAME,PLACEABLENONE,
 							RANGECLASS,PIECE,
 							"What? Is this supposed to be here?",
 							"Seriously, I don't remember seeing anything like this before. My phone must be bugged or something. Extremely odd."]
