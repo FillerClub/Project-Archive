@@ -6,6 +6,7 @@ gS = global.grid_spacing;
 if execute = "move" || ai_controlled { 
 	short_shooter_move_handler();
 }
+
 // shoot
 if !global.pause {
 	var 
@@ -26,16 +27,18 @@ if !global.pause {
 				countPiece++;
 			}
 		}
+		
 		with obj_hero_wall {
 			if team == other.team && hp > 0 {
 				heroWallX = x;	
 			}
 		}
+
 		if countPiece > 0 {
 			var arrayLength = array_length(targets);
 			
 			repeat countPiece {
-				with collision_circle(x +gS/2,y +gS/2,gS*2,targets[countPiece -1],false,true) {
+				with collision_circle(x +gS/2,y +gS/2,gS*3,targets[countPiece -1],false,true) {
 					var offX = 0
 					if object_index == obj_hero_wall {
 						var tM0 = (team == "friendly")?1:-1,
@@ -56,7 +59,7 @@ if !global.pause {
 		}
 		
 		if decideShoot {
-			instance_create_layer(x +sprite_width/2 +random_range(-4,4),y +sprite_height/2 +random_range(-4,4),"Instances",obj_directional_bullet, {
+			instance_create_layer(x +sprite_width/2 +random_range(-4,4),y +sprite_height/2 +random_range(-4,4),"Instances",obj_bullet_parent, {
 			team: team,
 			x_vel: xV,
 			y_vel: yV

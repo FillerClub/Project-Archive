@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.383062,
+  "duration":0.771104,
   "name":"snd_place",
   "parent":{
     "name":"Sounds",
@@ -21,5 +21,5 @@
   "sampleRate":44100,
   "soundFile":"snd_place.ogg",
   "type":0,
-  "volume":0.3,
+  "volume":0.4,
 }

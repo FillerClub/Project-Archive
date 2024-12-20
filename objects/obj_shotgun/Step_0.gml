@@ -14,11 +14,23 @@ if !global.pause {
 		if repeat_shot > 1 {
 			timer = timer_end*.8;	
 		}
-		
+
+
+
+
 		if scan_for_enemy(4) {
+			var 
+			spread_reduce = .25,
+			rand = 0;
 			repeat 12 {
-				instance_create_layer(x +sprite_width/2 +random_range(-4,4),y +sprite_height/2 +random_range(-4,4),"Instances",obj_pellet, {
+				rand = random_range(-16,16);
+				instance_create_layer(x +sprite_width/2 +random_range(-4,4),y +sprite_height/2 +random_range(-4,4),"Instances",obj_bullet_parent, {
+				image_xscale: .5,
+				image_yscale: .5,
 				team: team,	
+				x_vel: ((team == "friendly")?1:-1)*(1 -abs(rand/16)*spread_reduce),
+				y_vel: spread_reduce*rand/16,
+				falloff_dist: 64*1.5,
 				});
 			}
 		}	

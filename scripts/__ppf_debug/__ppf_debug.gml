@@ -353,7 +353,7 @@ function __PPFX_DebugInspectorGenerator() constructor {
 							repeat(isize) {
 								_rec = i / isize; 
 								_effect = _effects[i];
-								_text = $"[{_effect.settings.enabled ? "x" : "  "}] ({  string_replace_all(string_format(_effect.stack_order, 3, 0), " ", "0")  }) {_effect.effect_name}" + "\n";
+								_text = $"[{_effect.settings.enabled ? "x" : "  "}] ({  string_replace_all(string_format(_effect.stack_order, 3, 0), " ", "0")}) {_effect.effect_name}" + "\n";
 								_text_height = string_height(_text);
 								
 								// get item
