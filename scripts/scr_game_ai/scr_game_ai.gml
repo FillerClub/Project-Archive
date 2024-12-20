@@ -1,4 +1,5 @@
 function game_ai(mode = CLOSESTTOHERO, spawn_pieces = false, cheat_variable = 0){
+#macro CLOSESTTOBASE 0
 var enemy_piece_present = false,
 friendly_piece_present = false,
 arrayLengthMovesList = 0,

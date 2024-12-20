@@ -1,5 +1,8 @@
 /// @description	Run generic piece code
 function piece() {
+if time_source_get_state(error_time) == time_source_state_stopped {
+	timer_color = c_black;
+}
 if global.pause && !ignore_pause {
 	// Delay alarms responsible for invincibilty
 	if alarm[0] > 0 {	alarm[0]++;	}
@@ -14,10 +17,13 @@ gD = global.grid_dimensions,
 gClampX = clamp(floor(x),gD[0],gD[1]),
 gClampY = clamp(floor(y),gD[2],gD[3]);
 
+var timerTickRate = delta_time*DELTA_TO_SECONDS*(1 +(spd/5)*speed_effect -(slw/5)*slow_effect)
 // Tick internal timer
 if !skip_timer { 
-	timer += delta_time*DELTA_TO_SECONDS*(1 +(spd/5)*speed_effect -(slw/5)*slow_effect);
+	timer += timerTickRate;
 }
+move_cooldown_timer = min(move_cooldown_timer +timerTickRate,move_cooldown);
+
 // Deal with slow
 if slw > 0 { 
 	slw -= delta_time*DELTA_TO_SECONDS/5; 

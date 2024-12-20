@@ -108,10 +108,10 @@ switch room {
 	
 	default:
 		if !global.pause {
-			timer[MAIN] += delta_time*DELTA_TO_SECONDS*global.timer_speed_mult;	
+			timer[MAIN] += delta_time*DELTA_TO_SECONDS;	
 			if timer[ALERT] > 0 { timer[ALERT] -= delta_time*DELTA_TO_SECONDS; }
 		}
-		if timer[MAIN] >= 30 || (global.debug && keyboard_check_pressed(vk_tab)) {
+		if timer[MAIN] >= 60 || (global.debug && keyboard_check_pressed(vk_tab)) {
 			global.max_turns += 1;
 			global.turns += 1;
 			global.enemy_turns += 1;

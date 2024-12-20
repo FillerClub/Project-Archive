@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scr_world_one_levels",
   "parent":{
-    "name":"Level Functions",
-    "path":"folders/Scripts/Level Functions.yy",
+    "name":"Level 1-x",
+    "path":"folders/Scripts/Level Functions/Level 1-x.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

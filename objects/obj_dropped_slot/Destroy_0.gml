@@ -18,5 +18,6 @@ if isNew {
 }
 
 with obj_world_one {
-	phase = FINAL;
+	phase = VICTORY;
+	timer = 0;
 }

@@ -10,6 +10,10 @@ with obj_turn_operator {
 		draw_mute_red_green = other.draw_mute_red_green;	
 	}
 }
+
+if time_source_get_state(error_time) == time_source_state_stopped {
+	draw_blue_green = 1;
+}
 	
 if global.pause {
 	if alarm[1] > 0 { alarm[1] += 1; } 

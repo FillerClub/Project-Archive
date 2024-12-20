@@ -10,17 +10,18 @@
 #macro SLOTSPRITE 3				// Spr Asset
 #macro PLACECOST 4				// Integer
 #macro SLOTCOOLDOWN 5				// Real
-#macro MOVECOST 6				// Integer
-#macro HP 7						// Real
-#macro SPDEFFECT 8				// Real
-#macro SLWEFFECT 9				// Real
-#macro MOVES 10					// Array, with subarrays: TYPE OF MOVELIST[ MOVELIST[ MOVE[x,y], [x +1,y -1], etc...]]
-#macro PLACEMENTONGRID 11		// Macro
-#macro PLACEMENTONPIECE 12		// Macro
-#macro CLASS 13					// Macro
-#macro TYPE 14					// Macro
-#macro BRIEFDESCRIPTION 15			// String
-#macro DESCRIPTION 16			// String
+#macro MOVECOOLDOWN 6				// Real
+#macro MOVECOST 7			// Integer
+#macro HP 8						// Real
+#macro SPDEFFECT 9				// Real
+#macro SLWEFFECT 10				// Real
+#macro MOVES 11					// Array, with subarrays: TYPE OF MOVELIST[ MOVELIST[ MOVE[x,y], [x +1,y -1], etc...]]
+#macro PLACEMENTONGRID 12		// Macro
+#macro PLACEMENTONPIECE 13		// Macro
+#macro CLASS 14					// Macro
+#macro TYPE 15					// Macro
+#macro BRIEFDESCRIPTION 16			// String
+#macro DESCRIPTION 17			// String
 		
 //Class info
 #macro RANGECLASS #51ff62
@@ -32,7 +33,7 @@
 function refer_database(name, trait = -1) {
 	with obj_game {
 		object = [	NAME,OBJECT,SPRITE,SLOTSPRITE,
-					PLACECOST,SLOTCOOLDOWN,MOVECOST,HP,SPDEFFECT,SLWEFFECT,
+					PLACECOST,SLOTCOOLDOWN,MOVECOOLDOWN,MOVECOST,HP,SPDEFFECT,SLWEFFECT,
 					MOVES, // first row ONLY_ATTACK; second row ONLY_MOVE; third row BOTH. Numbers in strings are affectd by team & toggling variables
 					PLACEMENTONGRID,PLACEMENTONPIECE,
 					CLASS,TYPE,
@@ -41,7 +42,7 @@ function refer_database(name, trait = -1) {
 		switch name {
 			case "shooter":
 				object = [	"shooter",obj_shooter,spr_shooter,spr_shooter_slot,
-							2,6,1,10,1,1,
+							2,6,2,1,10,1,1,
 							[[["1", 1],["1", -1]], 
 							[["1", 0]]],
 							SAME,NONE,
@@ -51,7 +52,7 @@ function refer_database(name, trait = -1) {
 			break;
 			case "short":
 				object = [	"short",obj_short_shooter,spr_short_shooter,spr_short_shooter_slot,
-							3,16,1,10,1,1,
+							3,16,10,1,10,1,1,
 							[[[1, 1]]],
 							SAME,NONE,
 							RANGECLASS,PIECE,
@@ -60,7 +61,7 @@ function refer_database(name, trait = -1) {
 			break;
 			case "splitter":
 				object = [	"splitter",obj_splitter,spr_piece_upgraded,spr_splitter_slot,
-							4,8,1,10,1,1,
+							4,8,4,1,10,1,1,
 							[[["1", 1],["1", -1]], 
 							[["1", 0]]],
 							SAME,NONE,
@@ -70,7 +71,7 @@ function refer_database(name, trait = -1) {
 			break;
 			case "piercer":
 				object = [	"piercer",obj_piercer,spr_piercer,spr_piercer_slot,
-							4,8,1,10,1,1,
+							4,8,4,1,10,1,1,
 							[[["-1", 1],["-1", -1]], 
 							undefined,
 							[["1",0]]],
@@ -81,7 +82,7 @@ function refer_database(name, trait = -1) {
 			break;
 			case "shotgun":
 				object = [	"shotgun",obj_shotgun,spr_shotgun,spr_shotgun_slot,
-							5,12,1,10,1,1,
+							5,12,12,1,10,1,1,
 							[[["1", 0],["-1", 1],["-1", 0],["-1", -1]]],
 							SAME,NONE,
 							RANGECLASS,PIECE,
@@ -90,7 +91,7 @@ function refer_database(name, trait = -1) {
 			break;
 			case "accelerator":
 				object = [	"accelerator",obj_accelerator,spr_accelerator,spr_accelerator_slot,
-							1,4.5,1,10,0,1,
+							1,4.5,6,1,10,0,1,
 							[[[0, 1],[0,-1]]],
 							SAME,NONE,
 							SUPPORTCLASS,PIECE,
@@ -99,7 +100,7 @@ function refer_database(name, trait = -1) {
 			break;
 			case "bishop":
 				object = [	"bishop",obj_bishop,spr_bishop,spr_bishop_slot,
-							3,10,1,10,1,1,
+							3,10,6,1,10,1,1,
 							[undefined,
 							undefined,
 							[[1,1]]],
@@ -110,7 +111,7 @@ function refer_database(name, trait = -1) {
 			break;
 			case "wall":
 				object = [	"wall",obj_generic_piece,spr_wall,spr_wall_slot,
-							1,16,0,20,1,1,
+							1,16,999,0,20,1,1,
 							[undefined],
 							SAME,NONE,
 							DEFENSECLASS,PIECE,
@@ -119,7 +120,7 @@ function refer_database(name, trait = -1) {
 			break;
 			case "bomber":
 				object = [	"bomber",obj_bomber,spr_bomber,spr_bomber_slot,
-							3,16,2,10,1,1,
+							3,16,21,2,10,1,1,
 							[undefined],
 							SAME,NONE,
 							EXPLOSIVECLASS,PIECE,
@@ -128,7 +129,7 @@ function refer_database(name, trait = -1) {
 			break;
 			case "stick":
 				object = [	"stick",obj_stick,spr_stick,spr_stick_slot,
-							1,30,0,5,0,1,
+							1,30,1,0,5,0,1,
 							[undefined, 
 							[[1, 0],[-1, 0]]],
 							SAME,NONE,
@@ -138,7 +139,7 @@ function refer_database(name, trait = -1) {
 			break;
 			case "crawler":
 				object = [	"crawler",obj_crawler,spr_crawler,spr_crawler_slot,
-							1,1.5,0,10,12,1,
+							1,1.5,3,0,10,12,1,
 							[undefined, 
 							[["1", 0]]],
 							SAME,NONE,
@@ -148,7 +149,7 @@ function refer_database(name, trait = -1) {
 			break;
 			case "drooper":
 				object = [	"drooper",obj_drooper,spr_drooper,spr_drooper_slot,
-							2,3,0,10,12,1,
+							2,3,3,0,10,12,1,
 							[undefined, 
 							[["1", 0]]],
 							SAME,NONE,
@@ -158,7 +159,7 @@ function refer_database(name, trait = -1) {
 			break;
 			case "tank_crawler":
 				object = [	"tank_crawler",obj_crawler,spr_tank_crawler,spr_tank_crawler_slot,
-							3,3,0,20,12,1,
+							3,3,2.5,0,20,12,1,
 							[undefined, 
 							[["1", 0]]],
 							SAME,NONE,
@@ -169,7 +170,7 @@ function refer_database(name, trait = -1) {
 			break;
 			case "barrel":
 				object = [	"barrel",obj_generic_piece,spr_barrel_SCRAPPLS,spr_generic_piece,
-							1,.5,1,10,1,1,
+							1,.5,1,1,10,1,1,
 							[undefined],
 							SAME,NONE,
 							DEFENSECLASS,PIECE,
@@ -178,7 +179,7 @@ function refer_database(name, trait = -1) {
 			break;
 			default:
 				object = [	"debug",obj_debug_piece,spr_generic_piece,spr_generic_slot,
-							0,.1,-1,10,1,1,
+							0,.1,1,-1,10,1,1,
 							[[[0,1],[0,-1]], 
 							[["-1",1],["-1",0],["-1",-1]], 
 							[["1",1],["1",0],["1",-1]]],

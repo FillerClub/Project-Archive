@@ -6,6 +6,10 @@ gY = obj_cursor.y,
 mosX = floor(gX/gS)*gS,
 mosY = floor(gY/gS)*gS;
 
+if time_source_get_state(error_time) == time_source_state_stopped {
+	draw_red_box = 0;
+}
+
 if global.pause || skip || global.mode == "delete" {
 	skip = false;
 	exit;	

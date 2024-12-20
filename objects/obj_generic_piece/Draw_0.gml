@@ -56,6 +56,8 @@ if execute == "move" || debugOn {
 		}	
 	}	
 }
+
+
 // Draw speed arrows
 if spd > 0 {
 	for (var i = 0; i < spd; ++i) {
@@ -87,6 +89,10 @@ sprite_set_offset(sprite_index,sprite_width/2,sprite_height/2);
 // Draw sprite
 draw_sprite_ext(sprite_index,image_index,x +sprite_width/2,y +sprite_height/2,xScale,yScale,0,col,.5 +intangible_tick/2);
 sprite_set_offset(sprite_index,0,0);
+
+// Draw cooldown timer
+scr_draw_circle_part(x +sprite_width/2, y +sprite_height/2,32,timer_color,false,180,true,move_cooldown_timer*(360/move_cooldown),360,.5);
+
 // Create HP effect and reset variables
 if hp_init != hp {
 	damaged = true;

@@ -1,7 +1,7 @@
 if global.debug {
 	if instance_exists(obj_world_one) {
 		with obj_world_one {
-			timer[MAIN] += 100;	
+			timer += 100;	
 		}
 	}
 	if instance_exists(obj_generic_piece) {

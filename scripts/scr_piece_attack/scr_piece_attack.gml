@@ -19,7 +19,14 @@ gY = obj_cursor.y;
 if global.mode == "move" && execute == "move" {
 	// Check for second mouse press
 	if input_check_pressed("action") {
-		var piececlick = instance_position(gX,gY,obj_obstacle)
+		var piececlick = instance_position(gX,gY,obj_obstacle);
+		
+		if (move_cooldown_timer < move_cooldown) && !position_meeting(gX,gY,self) {
+			scr_error();
+			audio_stop_sound(snd_critical_error);
+			audio_play_sound(snd_critical_error,0,0);
+			return false;	
+		}	
 		// Check if clicked on piece
 		if piececlick != -4 {
 			// Cancel if clicked on illegal spot
@@ -36,8 +43,11 @@ if global.mode == "move" && execute == "move" {
 			} else {
 				cost = 	ceil(piececlick.hp/10) -1;
 			}
-		} else if mode == ONLY_ATTACK {					
-			return false;		
+		} else {
+			if mode == ONLY_ATTACK {					
+				return false;		
+			}
+		
 		}
 		// Set up variables
 		var 
@@ -163,6 +173,8 @@ if global.mode == "move" && execute == "move" {
 		x = moveX;
 		y = moveY;
 	} 
-	
+	if re {
+		move_cooldown_timer = 0;	
+	}
 	return re;
 }
