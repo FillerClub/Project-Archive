@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__DynamoFileHash",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__DynamoFileHash",
+  "parent":{
+    "name":"(System)",
+    "path":"folders/Dynamo/(System).yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
