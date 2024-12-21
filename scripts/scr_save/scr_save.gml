@@ -6,7 +6,8 @@
 //	1) Set a global variable in initialize_globals() script within obj_game
 //	2) Within the obj_game create event, within the save struct set the new variable to read from
 //	3) Within this save() function, create the same variable to save to
-//	4) Delete the old save file on your system
+//	4) Within the menu functions script, edit the "Data" function to clear the global variable if needed
+//	5) Delete the old save file on your system
 function save(FILE) {
 	switch FILE {
 		case SAVEFILE:
@@ -15,6 +16,7 @@ function save(FILE) {
 				level: global.level,
 				tutorial_progress: global.tutorial_progress,
 				unlocked_pieces: global.unlocked_pieces,
+				discovered_pieces: global.discovered_pieces,
 				unlocked_heroes: global.unlocked_heroes,
 			}
 			array_push(progress,saveP);

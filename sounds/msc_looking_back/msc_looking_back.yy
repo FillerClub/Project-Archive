@@ -1,6 +1,6 @@
 {
   "$GMSound":"",
-  "%Name":"msc_battle_bob",
+  "%Name":"msc_looking_back",
   "audioGroupId":{
     "name":"standalone_soundtracks",
     "path":"audiogroups/standalone_soundtracks",
@@ -9,17 +9,17 @@
   "bitRate":512,
   "compression":0,
   "conversionMode":0,
-  "duration":108.936165,
-  "name":"msc_battle_bob",
+  "duration":19.278366,
+  "name":"msc_looking_back",
   "parent":{
-    "name":"Battle Bob",
-    "path":"folders/Sounds/OST/Battle Bob.yy",
+    "name":"OST",
+    "path":"folders/Sounds/OST.yy",
   },
   "preload":false,
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":48000,
-  "soundFile":"msc_battle_bob.ogg",
+  "soundFile":"msc_looking_back.mp3",
   "type":1,
-  "volume":0.35,
+  "volume":1.0,
 }

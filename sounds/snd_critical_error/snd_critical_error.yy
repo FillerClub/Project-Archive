@@ -9,7 +9,7 @@
   "bitRate":512,
   "compression":0,
   "conversionMode":0,
-  "duration":1.755208,
+  "duration":0.235917,
   "name":"snd_critical_error",
   "parent":{
     "name":"Sounds",
@@ -21,5 +21,5 @@
   "sampleRate":48000,
   "soundFile":"snd_critical_error.ogg",
   "type":1,
-  "volume":0.9,
+  "volume":0.75,
 }

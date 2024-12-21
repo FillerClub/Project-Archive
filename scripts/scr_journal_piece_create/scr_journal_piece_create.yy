@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_journal_piece_create",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_journal_piece_create",
+  "parent":{
+    "name":"Menu",
+    "path":"folders/Scripts/Menu.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

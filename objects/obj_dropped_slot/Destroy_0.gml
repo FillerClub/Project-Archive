@@ -3,19 +3,24 @@ instance_create_layer(x,y,"Instances",obj_spr_particle, {
 	sprite_index: spr_delete
 });
 var 
-isNew = true,
+isNewUnlocked = true,
+isNewDiscovered = true,
 arUnlocked = global.unlocked_pieces,
-arLength = array_length(arUnlocked);
+arDiscovered = global.discovered_pieces,
+arLengthUnlocked = array_length(arUnlocked),
+arLengthDiscovered = array_length(arDiscovered);
 
-for (var i = 0; i < arLength; i++) {
+for (var i = 0; i < arLengthUnlocked; i++) {
 	if identity == arUnlocked[i] {
-		isNew = false;	
+		isNewUnlocked = false;	
 	}
 }
 
-if isNew {
+if isNewUnlocked {
 	array_push(global.unlocked_pieces,identity);	
 }
+
+discover_piece(identity);
 
 with obj_world_one {
 	phase = VICTORY;

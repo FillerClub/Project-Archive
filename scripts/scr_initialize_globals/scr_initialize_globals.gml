@@ -9,6 +9,7 @@ function initialize_variables(isFresh = false){
 		global.fullscreen = false;
 		global.level = [1,1];
 		global.unlocked_pieces = ["shooter"];
+		global.discovered_pieces = ["shooter","crawler"];
 		global.unlocked_heroes = ["Warden"];	
 		global.debug = 0;
 		global.max_slots = 6;

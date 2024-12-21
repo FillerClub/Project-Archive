@@ -47,7 +47,7 @@ function refer_database(name, trait = -1) {
 							[["1", 0]]],
 							SAME,PLACEABLENONE,
 							RANGECLASS,PIECE,
-							"Shoots at enemy pieces and their base.",
+							"Shoots at enemy pieces and the enemy base.",
 							"I love this piece. My mom gave this piece to me when I first started playing Adler's Game. Placing them all makes me feel safe, like a queen defending her castle. I keep its card on my nightstand to remind me of those times."]
 			break;
 			case "short":
@@ -124,7 +124,7 @@ function refer_database(name, trait = -1) {
 							[undefined],
 							SAME,PLACEABLENONE,
 							EXPLOSIVECLASS,PIECE,
-							"Instead of moving, launches an explosive to anywhere on the map.",
+							"Instead of moving, launches an explosive anywhere on the map.",
 							"TBA"]
 			break;
 			case "stick":

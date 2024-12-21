@@ -10,7 +10,7 @@ if phase > 4 {
 		instance_create_layer(1024,384 +gS*(irandom_range(-1,1)),"Instances",obj_crawler, {
 			ai_controlled: true,	
 			team: "enemy",
-			identity: "walker"
+			identity: "crawler"
 		});
 	}
 }

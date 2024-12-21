@@ -20,11 +20,7 @@ if execute {
 				switch global.level[0] {
 						case 1:
 							switch global.level[1] {
-								case 1:
-								case 2:
-								case 3:
-								case 4:
-								case 5:
+								default:
 									room_goto(rm_world_one);
 								break;
 							}
@@ -38,6 +34,9 @@ if execute {
 		break;
 		case "Sandbox":
 				room_goto(rm_sandbox);
+		break;
+		case "Journal":
+				room_goto(rm_journal);
 		break;
 	}
 }

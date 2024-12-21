@@ -1,5 +1,5 @@
-function create_menu(menuCreate, menuContext, menuX = menu_x,menuY = menu_y, buttonSeperation = button_seperation,buttonWidth = button_width, buttonHeight = button_height,Font = font,fontHAlign = font_halign,fontVAlign = font_valign){
-	instance_create_layer(x,y,"GUI",obj_menu, {
+function create_menu(menuCreate, menuContext, menuX = menu_x,menuY = menu_y, buttonSeperation = button_seperation,buttonWidth = button_width, buttonHeight = button_height,Font = font,fontHAlign = font_halign,fontVAlign = font_valign, ignoreFirstFrameInput = true){
+	instance_create_depth(x,y,-1600,obj_menu, {
 		menu: [menuCreate],
 		context: menuContext,
 		menu_x: menuX,
@@ -10,5 +10,6 @@ function create_menu(menuCreate, menuContext, menuX = menu_x,menuY = menu_y, but
 		font: Font,
 		font_halign: fontHAlign,
 		font_valign: fontVAlign,
+		ignore_input: ignoreFirstFrameInput,
 	});
 }

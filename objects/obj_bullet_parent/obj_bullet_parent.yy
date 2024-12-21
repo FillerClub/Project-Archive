@@ -10,8 +10,8 @@
   "name":"obj_bullet_parent",
   "overriddenProperties":[],
   "parent":{
-    "name":"Misc",
-    "path":"folders/Objects/Pieces/Misc.yy",
+    "name":"Parent",
+    "path":"folders/Objects/Parent.yy",
   },
   "parentObjectId":null,
   "persistent":false,

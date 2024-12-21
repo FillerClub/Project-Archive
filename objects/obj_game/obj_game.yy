@@ -42,6 +42,7 @@
     {"$GMObjectProperty":"v1","%Name":"sync_group","filters":[],"listItems":[],"multiselect":false,"name":"sync_group","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"debug_count","filters":[],"listItems":[],"multiselect":false,"name":"debug_count","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"on_pause_menu","filters":[],"listItems":[],"multiselect":false,"name":"on_pause_menu","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
+    {"$GMObjectProperty":"v1","%Name":"journal_starting_entry","filters":[],"listItems":[],"multiselect":false,"name":"journal_starting_entry","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"","varType":5,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

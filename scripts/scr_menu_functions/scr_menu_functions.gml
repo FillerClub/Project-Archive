@@ -1,6 +1,8 @@
+// Contexts
 //#macro MAIN 0 (ALREADY ON LEVEL OBJECT)
 #macro PAUSE 1
 #macro JOURNAL 2
+#macro POSTLEVELJOURNAL 3
 // Main menu functions
 #macro FIRSTMENU ["Singleplayer","Settings","Journal","Exit Game"]
 #macro SINGLEPLAYERMENU ["Campaign","Sandbox","Back"]
@@ -11,7 +13,7 @@
 #macro FIRSTPAUSE ["Resume","Restart Level","Settings","Back to Title","Exit Game"]
 #macro SETTINGSPAUSE ["Music","Cursor","FPS","Display","Debug","Back"]
 // Journal menu functions
-#macro ONPIECEJOURNAL ["View Journal","Back to Title"]
+#macro ONPIECEJOURNAL ["Back to Title"]
 
 function menu_function(purpose = "Back",contextArg = context){
 	//Play sound 
@@ -24,12 +26,21 @@ function menu_function(purpose = "Back",contextArg = context){
 		break;	
 	}
 	
+	//Journal Base function
+	switch contextArg {
+		case JOURNAL:
+		case POSTLEVELJOURNAL:
+			journal_piece_create(purpose);
+		break;
+	}	
+	
 	switch purpose {
 		case "Singleplayer":
 			progress_menu(1,SINGLEPLAYERMENU);
 		break;
 		
 		case "Campaign":
+		case "Continue":
 			instance_create_layer(room_width - 80, room_height - 80, "GUI",obj_loading, {
 				run: "Lvl",
 				load: [track1,track2,track3,track4]
@@ -37,13 +48,16 @@ function menu_function(purpose = "Back",contextArg = context){
 		break;
 		
 		case "Journal":
-			room_goto(rm_journal)
+			instance_create_layer(room_width - 80, room_height - 80, "GUI",obj_loading, {
+				run: "Journal",
+				load: [standalone_soundtracks]
+			});
 		break;
 		
 		case "Sandbox":
 			instance_create_layer(room_width - 80, room_height - 80, "GUI",obj_loading, {
 				run: "Sandbox",
-				load: [track1,track2,track3,track4]
+				load: [standalone_soundtracks]
 			});
 		break;
 
@@ -113,6 +127,7 @@ function menu_function(purpose = "Back",contextArg = context){
 				global.level = [1,1];
 				global.tutorial_progress = 0;
 				global.unlocked_pieces = ["shooter"];
+				global.discovered_pieces = ["shooter","crawler"];
 				global.unlocked_heroes = ["Warden"];
 				audio_play_sound(snd_explosion,0,0);
 			}
@@ -186,13 +201,8 @@ function menu_function(purpose = "Back",contextArg = context){
 			global.pause = false;
 		break;
 		
-		// JOURNAL
-		case "Continue":
-			room_goto(rm_world_one);
-		break;
-		
 		case "View Journal":
-			room_goto(rm_journal);
+
 		break;
 	}
 }

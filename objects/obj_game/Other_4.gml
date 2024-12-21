@@ -1,4 +1,9 @@
-audio_stop_all();
+//audio_stop_all();
+audio_group_stop_all(track1);
+audio_group_stop_all(track2);
+audio_group_stop_all(track3);
+audio_group_stop_all(track4);
+audio_group_stop_all(standalone_soundtracks);
 initialize_variables();
 
 var gS = global.grid_spacing;
@@ -15,29 +20,32 @@ switch room {
 	break;
 	
 	case rm_setup:
-		audio_group_unload(track1);
-		audio_group_unload(track2);
-		audio_group_unload(track3);
-		audio_group_unload(track4);
 		create_menu(FIRSTMENU,MAIN,room_width/2,100,64,75,15.2,fnt_basic,fa_center,fa_middle)
 		enable_pausing = false;
 	break;
 	
 	case rm_journal:
-		/* 
-		var name = object[NAME],
-		obj = refer_database(name,OBJECT);
-		instance_create_layer(576,256,"Instances",obj, {
-			identity: name,
-			team: global.team,
-			place_sound: "nothing",
-			display_mode: true,
-			execute: "move"
-		});
-		*/
+		var cont = JOURNAL;
+		if typeof(journal_starting_entry) == "string" {
+			journal_piece_create(journal_starting_entry);
+			journal_starting_entry = noone;
+			cont = POSTLEVELJOURNAL
+		}	
+		soundtrack_play(LOOKINGBACK);
 		global.mode = "move";
-		create_menu(ONPIECEJOURNAL,PAUSE,192,128,32,20, 5,fnt_phone,fa_left,fa_middle);
-		enable_pausing = true;
+		var 
+		journalMenu = [],
+		discoveredArray = global.discovered_pieces,
+		discoveredArrayLength = array_length(discoveredArray);
+		array_copy(journalMenu,0,discoveredArray,0,discoveredArrayLength);
+		if cont == POSTLEVELJOURNAL {
+			array_push(journalMenu,"Continue");
+			discoveredArrayLength++;
+		}
+		array_copy(journalMenu,discoveredArrayLength,ONPIECEJOURNAL,0,array_length(ONPIECEJOURNAL));
+
+		create_menu(journalMenu,cont,992,288,32,20, 10,fnt_phone,fa_left,fa_middle,true);
+		enable_pausing = false;
 	break;
 	
 	default:

@@ -18,5 +18,9 @@ if pause_toggle && !instance_exists(obj_menu) {
 	create_menu(FIRSTPAUSE,PAUSE,x -120,y+264,32,20, 5,fnt_phone,fa_left,fa_middle);
 } 
 if !pause_toggle && instance_exists(obj_menu) && room != rm_setup {
-	instance_destroy(obj_menu);
+	with obj_menu {
+		if context == PAUSE {
+			instance_destroy();	
+		}
+	}
 }

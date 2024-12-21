@@ -78,8 +78,14 @@ switch phase {
 			enable_pausing = false;	
 		}
 		graphic_show = VICTORY;	
-		time_source_reconfigure(graphic_timer,6,time_source_units_seconds,function(){
-			room_goto(rm_journal);
+		time_source_reconfigure(graphic_timer,5,time_source_units_seconds,function(){
+			with obj_game {
+				journal_starting_entry = other.display_identity;	
+			}
+			instance_create_layer(room_width - 80, room_height - 80, "GUI",obj_loading, {
+				run: "Journal",
+				load: [standalone_soundtracks]
+			});			
 		});
 		time_source_start(graphic_timer);
 	break;

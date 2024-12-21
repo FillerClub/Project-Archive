@@ -17,7 +17,7 @@ error_time = time_source_create(time_source_global,.03,time_source_units_seconds
 	} else {
 		timer_color = c_black;
 	}			
-},[],10);
+},[],6);
 
 if asset_get_type(place_sound) == asset_sound {
 	audio_play_sound(place_sound,0,0);

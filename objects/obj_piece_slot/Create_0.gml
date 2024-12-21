@@ -4,7 +4,7 @@ error_time = time_source_create(time_source_global,.03,time_source_units_seconds
 	} else {
 		draw_red_box = 0;
 	}	
-},[],10);
+},[],6);
 
 info = refer_database(identity);
 

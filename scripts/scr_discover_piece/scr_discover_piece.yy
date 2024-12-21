@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_discover_piece",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_discover_piece",
+  "parent":{
+    "name":"Misc",
+    "path":"folders/Scripts/Misc.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

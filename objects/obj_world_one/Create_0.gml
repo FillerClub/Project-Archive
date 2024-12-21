@@ -13,4 +13,20 @@ graphic_timer = time_source_create(time_source_global,2.5,time_source_units_seco
 timer = 0;
 
 
+var piecePush = noone;
+// Push new pieces to discovered pieces array
+switch level[1] {
+	case 2:
+		piecePush = "drooper";
+	break;
+	case 3:
+		piecePush = "tank_crawler";
+	break;
+	case 4:
+	break;
+	case 5:
+	break;
+}
+
+discover_piece(piecePush);
 //phase = 3;
