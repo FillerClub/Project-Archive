@@ -7,7 +7,7 @@
   },
   "bitDepth":1,
   "bitRate":512,
-  "compression":0,
+  "compression":2,
   "conversionMode":0,
   "duration":19.278366,
   "name":"msc_looking_back",

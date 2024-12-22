@@ -49,9 +49,9 @@ if global.mode == "move" && execute == "move" {
 			}
 		
 		}
+		
 		// Set up variables
 		var 
-
 		gClampX = floor(gX/gS)*gS,
 		gClampY = floor(gY/gS)*gS,
 		clientPresent = instance_exists(obj_client),	
@@ -65,10 +65,10 @@ if global.mode == "move" && execute == "move" {
 			preValidY = valid_attacks[i][1];
 			// Check if affected by team & toggle
 			if is_string(preValidX) {
-				preValidX = tm_dp(real(preValidX),team,toggle);
+				preValidX = tm_dp(int64(preValidX),team,toggle);
 			}
 			if is_string(preValidY) {
-				preValidY = tm_dp(real(preValidY),team,toggle);
+				preValidY = tm_dp(int64(preValidY),team,toggle);
 			}
 			
 			var validX = preValidX*gS +x,

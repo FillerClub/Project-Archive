@@ -21,5 +21,5 @@
   "sampleRate":48000,
   "soundFile":"snd_critical_error.ogg",
   "type":1,
-  "volume":0.75,
+  "volume":0.55,
 }

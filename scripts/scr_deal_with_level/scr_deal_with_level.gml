@@ -19,7 +19,7 @@ function deal_with_level(level) {
 		case 1:
 			soundtrack_play(GETOUTOFMYWAY);
 			instance_create_layer(x,y,"AboveBoard",obj_world_one);
-			if level[1] != 5 {
+			if level[1] != 8 {
 				delete_team(global.enemy_team);
 			}
 			switch level[1] {
@@ -43,15 +43,7 @@ function deal_with_level(level) {
 					});
 				break;
 				
-				case 3:
-					scale_grid(7);
-				break;
-				
-				case 4:
-					scale_grid(7);
-				break;
-				
-				case 5:
+				default:
 					scale_grid(7);
 				break;
 			}

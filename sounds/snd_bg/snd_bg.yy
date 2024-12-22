@@ -21,5 +21,5 @@
   "sampleRate":48000,
   "soundFile":"snd_bg.wav",
   "type":1,
-  "volume":0.0,
+  "volume":0.2,
 }

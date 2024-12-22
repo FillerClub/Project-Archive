@@ -1,3 +1,4 @@
+
 if global.debug {
 	if instance_exists(obj_world_one) {
 		with obj_world_one {
@@ -15,3 +16,14 @@ if global.debug {
 		timer[MAIN] = 30;
 	}
 }
+/*
+var gD = global.grid_dimensions,
+gS = global.grid_spacing;
+var
+gClampX = clamp(floor(mouse_x/gS)*gS,gD[0],gD[1]),
+gClampY = clamp(floor(mouse_y/gS)*gS,gD[2],gD[3]);
+instance_create_layer(gClampX,gClampY,"Instances",obj_jumper,{
+	team: "enemy",
+	identity: "jumper",
+	ai_controlled: true
+})

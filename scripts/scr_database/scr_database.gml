@@ -159,7 +159,7 @@ function refer_database(name, trait = -1) {
 			break;
 			case "tank_crawler":
 				object = [	"tank_crawler",obj_crawler,spr_tank_crawler,spr_tank_crawler_slot,
-							3,3,2.5,0,20,12,1,
+							2,2.5,2.5,0,15,12,1,
 							[undefined, 
 							[["1", 0]]],
 							SAME,PLACEABLENONE,
@@ -167,6 +167,27 @@ function refer_database(name, trait = -1) {
 							"Able to take more damage than a normal crawler.",
 							//Change?
 							"People are always confused as to why this thing has twice the health of a regular crawler. Are the spikes supposed to give it tougher skin? Is it just twice as massive? This piece recieves a large amount of ridicule because of the wacky logic behind it. Yet, I think it's tougher in a different way. I respect tank crawlers inspite of all the flack they get, they just disregard whatever hateful thing is said about them and keep doing their job. You go little champ!"]
+			break;
+			case "super_tank_crawler":
+				object = [	"super_tank_crawler",obj_crawler,spr_super_tank_crawler,spr_super_tank_crawler_slot,
+							3,3.5,2.5,0,20,12,1,
+							[undefined, 
+							[["1", 0]]],
+							SAME,PLACEABLENONE,
+							WANDERCLASS,PIECE,
+							"Takes even more damage to kill.",
+							"Even more spikes."]
+			break;
+			case "jumper":
+				object = [	"jumper",obj_jumper,spr_jumper,spr_jumper_slot,
+							3,8,3,0,10,12,1,
+							[undefined, 
+							[["1",0]],
+							[["2",1],["2",-1]]],
+							SAME,PLACEABLENONE,
+							WANDERCLASS,PIECE,
+							"Can make a jump over pieces.",
+							"TBA"]
 			break;
 			case "barrel":
 				object = [	"barrel",obj_generic_piece,spr_barrel_SCRAPPLS,spr_generic_piece,

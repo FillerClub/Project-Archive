@@ -12,7 +12,8 @@ push = false,
 moveRequest = false,
 leastThreat = 0,
 heroX = 0,
-debugOn = global.debug;
+debugOn = global.debug,
+prevSeed = random_get_seed();
 
 for (var lanes = 0; lanes < (gD[3] -gD[2])/gS +1; lanes += 1) {
 	lane_threat[lanes] = 0;
@@ -102,6 +103,7 @@ with obj_generic_piece {
 }
 	
 var arrayLength = array_length(ai_pieces);
+var canTakePiece = false;
 // Grab all possible moves for pieces currently on board	
 for (var inst = 0; inst < arrayLength; inst++) {
 	// From each piece, grab the array of valid_moves
@@ -142,6 +144,7 @@ for (var inst = 0; inst < arrayLength; inst++) {
 								if push { 
 									array_push(other.ai_valid[PIECE],self);
 									array_push(other.ai_valid[MOVE],[validX,validY]);
+									canTakePiece = true;
 									push = false;
 								}
 							}
@@ -161,7 +164,9 @@ for (var inst = 0; inst < arrayLength; inst++) {
 								with instance_position(validX,validY,obj_obstacle) {
 									if team == other.team || intangible || hp <= 0 {    
 										push = false;
-									}	
+									} else {
+										canTakePiece = true;	
+									}
 								}
 							}
 							if push { 
@@ -176,31 +181,75 @@ for (var inst = 0; inst < arrayLength; inst++) {
 		}	
 	}
 }
-var arrayLengthValid = array_length(ai_valid[PIECE]),
-at = -1,
+var arrayLengthValid = array_length(ai_valid[PIECE]), // ai_valid[PIECE] and ai_valid[MOVE] arrays should be the same length
+at = [-1],
+atCount = 0,
 blockingMove = false;
 
 if arrayLengthValid <= 0 { 
 	exit;
 }
 
-switch mode {
-	default:
-	case CLOSESTTOBASE:
-		var 
-		closestX = 1088;
-		for (var cl = 0; cl < arrayLengthValid; cl++) {
-			var checkX = ai_valid[MOVE][cl][0];
-			if checkX - heroX < closestX - heroX {
-				closestX = checkX;
-				at = cl;	
-			}		
-		}
-	break;
+var 
+skipMove = false,
+clPiece = noone,
+clX = 0,
+clY = 0,
+closestX = 9999;
+// Decision making 
+for (var cl = 0; cl < arrayLengthValid; cl++) {
+	skipMove = false;
+	clPiece = ai_valid[PIECE][cl];
+	clX = ai_valid[MOVE][cl][0];
+	clY = ai_valid[MOVE][cl][1];
+	// Based on AI piece
+	switch clPiece.identity {
+		case "jumper":
+			with clPiece {
+				// Grab the attacking move immediately in front of it
+				var 
+				horseX = x + gS*tm_dp(int64(1),team,toggle),
+				horseY = y;
+				// May change, but invalidate move if isn't in front of another piece
+				if move_count <= 0 && !position_meeting(horseX,horseY,obj_obstacle) {
+					skipMove = true;
+				}
+			}
+		break;
+		default:
+			if canTakePiece {
+				if !position_meeting(clX,clY,obj_obstacle) {
+					skipMove = true;
+				}				
+			}
+		break;
+	}
+	if skipMove {
+		continue;	
+	}
+	// Final decision based on AI mode
+	switch mode {
+		default:
+		case CLOSESTTOBASE:			
+			// If the distance between the movement's x and the friendly base's x is less than the distance regarding the previously recorded x, record the new closest position
+			if clX - heroX <= closestX - heroX {
+				if clX == closestX {
+					atCount++;	
+				}
+				closestX = clX;
+				at[atCount] = cl;
+			}
+		break;
+	}	
 }
 
-if at == -1 {
+// If there are preferable moves, don't move
+if at[0] == -1 {
 	exit;	
+} else {
+// Else if there are multiple preferable moves, choose from a predetermined seed
+	var randRange = round((array_length(at) -1)*(ai_seed/100));
+	at = at[randRange];
 }
 
 // Further down we assume we found the only move we want to make	
@@ -283,13 +332,17 @@ with atInst {
 		timerMultiplier = ceil(obstacleHp/10)*max(moveCost,1);	
 		ai_timer += delta_time*DELTA_TO_SECONDS/timerMultiplier;
 		skip_timer = true;
+		var Sound = snd_move;
+		if obstacleInst != noone {
+			Sound = snd_enemy_taking;
+		}
 		var sound_params = {
-		sound: snd_enemy_taking,
+		sound: Sound,
 		pitch: 1 +(ai_timer/time_to_take)/2,
 		};		
-		if !audio_is_playing(snd_enemy_taking) && obstacleInst != noone {
-			audio_play_sound_ext(sound_params)	
-		}
+		if !audio_is_playing(Sound){
+			audio_play_sound_ext(sound_params);
+		} 
 	}
 	
 	if ai_timer >= time_to_take {
@@ -299,6 +352,9 @@ with atInst {
 }
 // Now commit to making the move
 if commitMove {
+	audio_play_sound(snd_critical_error,0,0);
+	// Change ai seed
+	ai_seed = random(100);
 	if obstacleInst != noone {
 		// Deal Damage/Destroy Victim Piece
 		with obstacleInst {
@@ -324,26 +380,11 @@ if commitMove {
 		} else {
 			x = atX;
 			y = atY;
+			moved = true;
+			move_count++;
 		}
 	}
+
 }
 
-/*	
-if moveRequest && timer[AI] >= 4 {
-	for (var mR = 0; mR < arrayLengthValid; mR++) {
-		if ai_valid[PIECE][mR] == enemy_hero {
-			var mYConvert = (ai_valid[MOVE][mR][1] -gD[2])/gS;
-			if lane_threat[mYConvert] <= leastThreat {
-				with ai_valid[PIECE][mR] {
-					global.enemy_turns -= 1;	
-					other.timer[AI] -= 4;
-					x = other.ai_valid[MOVE][mR][0];
-					y = other.ai_valid[MOVE][mR][1];
-				}
-				break;
-			} 
-		}
-	}
-}
-*/
 }

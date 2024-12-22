@@ -8,7 +8,7 @@
   "name":"obj_drooper",
   "overriddenProperties":[
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_obstacle","path":"objects/obj_obstacle/obj_obstacle.yy",},"propertyId":{"name":"hp","path":"objects/obj_obstacle/obj_obstacle.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"10",},
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_generic_piece","path":"objects/obj_generic_piece/obj_generic_piece.yy",},"propertyId":{"name":"timer_end","path":"objects/obj_generic_piece/obj_generic_piece.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"2.5",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_generic_piece","path":"objects/obj_generic_piece/obj_generic_piece.yy",},"propertyId":{"name":"timer_end","path":"objects/obj_generic_piece/obj_generic_piece.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"1.9",},
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_generic_piece","path":"objects/obj_generic_piece/obj_generic_piece.yy",},"propertyId":{"name":"identity","path":"objects/obj_generic_piece/obj_generic_piece.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"dropper",},
   ],
   "parent":{
@@ -38,7 +38,6 @@
     {"$GMObjectProperty":"v1","%Name":"fresh","filters":[],"listItems":[],"multiselect":false,"name":"fresh","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"True","varType":3,},
     {"$GMObjectProperty":"v1","%Name":"turn_cost","filters":[],"listItems":[],"multiselect":false,"name":"turn_cost","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"2","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"moveable","filters":[],"listItems":[],"multiselect":false,"name":"moveable","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"True","varType":3,},
-    {"$GMObjectProperty":"v1","%Name":"timer_end","filters":[],"listItems":[],"multiselect":false,"name":"timer_end","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"2.2","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"moving","filters":[],"listItems":[],"multiselect":false,"name":"moving","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"True","varType":3,},
   ],
   "resourceType":"GMObject",

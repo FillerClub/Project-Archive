@@ -61,6 +61,7 @@
     {"$GMObjectProperty":"v1","%Name":"move_cooldown","filters":[],"listItems":[],"multiselect":false,"name":"move_cooldown","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"alarm_time","filters":[],"listItems":[],"multiselect":false,"name":"alarm_time","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"timer_color","filters":[],"listItems":[],"multiselect":false,"name":"timer_color","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"c_black","varType":5,},
+    {"$GMObjectProperty":"v1","%Name":"move_count","filters":[],"listItems":[],"multiselect":false,"name":"move_count","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":1,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

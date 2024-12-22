@@ -9,8 +9,8 @@ if global.debug {
 	draw_text_transformed(128,256+32,string(ai_valid),1,1,0);
 }
 
-
-//draw_text(room_width/2,room_height/2,global.discovered_pieces);	
-//draw_text(room_width/2,room_height/2 +32,string(on_pause_menu));	
+//draw_text(room_width/2,room_height/2,ai_seed);	
+//draw_text(room_width/2,room_height/2 +64,random_get_seed());	
+//draw_text(room_width/2,room_height/2 +32,string(global.unlocked_pieces));	
 //draw_text(room_width/2,room_height/2 +64,string(enable_pausing));	
 //draw_text(room_width/2,room_height/2-64,string(lane_threat));	

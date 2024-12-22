@@ -120,11 +120,7 @@ switch level[1] {
 		enemy_spawn_sequence(9,["crawler"],5,3,0,random_y); 
 		pause_sequence(10,true,6);	
 		enemy_spawn_sequence(11,["crawler"],3,2,0,random_y); 
-		if pause_sequence(12,!enemyPiecePresent,3) {
-			graphic_show = FINALWAVE;
-			time_source_start(graphic_timer);
-			audio_group_set_gain(track3,1,4500);
-		}
+		initiate_final_wave(12,!enemyPiecePresent,track3);
 		enemy_spawn_sequence(13,["crawler"],1,8,0,random_y);
 		drop_slot(14,"accelerator",[1,2],!enemyPiecePresent,);
 	break;
@@ -139,11 +135,7 @@ switch level[1] {
 		pause_sequence(4,true,15);
 		enemy_spawn_sequence(5,["drooper"],.5,2,0,randomEdgeY);
 		enemy_spawn_sequence(6,["crawler"],8,2,0,random_y);
-		if pause_sequence(7,!enemyPiecePresent,3) {
-			graphic_show = FINALWAVE;
-			time_source_start(graphic_timer);
-			audio_group_set_gain(track3,1,4500);
-		}			
+		initiate_final_wave(7,!enemyPiecePresent,track3);		
 		enemy_spawn_sequence(8,["drooper","crawler"],1,10,0,random_y);	
 		drop_slot(9,"short",[1,3],!enemyPiecePresent);
 	break;
@@ -162,37 +154,70 @@ switch level[1] {
 		pause_sequence(7,true,15);
 		enemy_spawn_sequence(8,["tank_crawler"],6,1,0,random_y);
 		enemy_spawn_sequence(9,["crawler","drooper"],10,4,0,random_y);
-		if pause_sequence(10,!enemyPiecePresent,3) {
-			graphic_show = FINALWAVE;
-			time_source_start(graphic_timer);
-			audio_group_set_gain(track4,1,4500);
-		}
+		initiate_final_wave(10,!enemyPiecePresent);
 		enemy_spawn_sequence(11,["crawler","drooper"],1,9,0,random_y);
 		enemy_spawn_sequence(12,["tank_crawler"],2,3,0,random_y);
 		drop_slot(13,"stick",[1,4],!enemyPiecePresent);
 	break;
 	
 	case 4:
-		var randomEdgeY = irandom_range(0,1)?irandom_range(0,1):irandom_range(3,4);
+		drop_slot(1,"splitter",[1,5],!enemyPiecePresent);
+	break;
+	case 5:
 		enemy_spawn_sequence(1,["crawler"],INITIAL,1,0,random_y);
-		enemy_spawn_sequence(1,["crawler"],16,1,0,random_y);
-		pause_sequence(2,true,12);
-		enemy_spawn_sequence(3,["crawler"],10,2,0,random_y);
-		if enemy_spawn_sequence(4,["tank_crawler"],12,1,0,random_y) {
+		enemy_spawn_sequence(2,["crawler"],12,2,0,random_y);
+		pause_sequence(3,true,12);
+		enemy_spawn_sequence(4,["tank_crawler"],12,1,0,random_y);
+		enemy_spawn_sequence(5,["crawler"],10,2,0,random_y);
+		if pause_sequence(6,true,8) {
+			audio_group_set_gain(track3,1,4500);	
+		}
+		enemy_spawn_sequence(7,["jumper"],10,1,0,random_y);
+		enemy_spawn_sequence(8,["crawler"],10,2,0,random_y);
+		initiate_final_wave(9,!enemyPiecePresent);
+		enemy_spawn_sequence(10,["jumper"],1,1,0,random_y);
+		enemy_spawn_sequence(11,["crawler"],1,2,0,random_y);
+		enemy_spawn_sequence(12,["tank_crawler"],1.2,2,0,random_y);
+		enemy_spawn_sequence(13,["crawler"],1.2,4,0,random_y);
+		drop_slot(14,"crawler",[1,6],!enemyPiecePresent);
+	break;
+	case 6:
+		enemy_spawn_sequence(1,["crawler"],INITIAL,1,0,random_y);
+		enemy_spawn_sequence(2,["crawler"],12,2,0,random_y);
+		pause_sequence(3,true,12);
+		enemy_spawn_sequence(4,["tank_crawler"],12,1,0,random_y);
+		enemy_spawn_sequence(5,["crawler"],10,2,0,random_y);
+		if pause_sequence(6,true,8) {
 			audio_group_set_gain(track3,1,4500);
 		}
-		enemy_spawn_sequence(5,["crawler"],8,3,0,random_y); 
-		enemy_spawn_sequence(6,["drooper"],8,2,0,randomEdgeY); 
-		pause_sequence(7,true,15);
-		enemy_spawn_sequence(8,["tank_crawler"],6,1,0,random_y);
-		enemy_spawn_sequence(9,["crawler","drooper"],10,4,0,random_y);
-		if pause_sequence(10,!enemyPiecePresent,3) {
-			graphic_show = FINALWAVE;
-			time_source_start(graphic_timer);
-			audio_group_set_gain(track4,1,4500);
+		enemy_spawn_sequence(7,["jumper"],10,1,0,random_y);
+		enemy_spawn_sequence(8,["crawler"],10,2,0,random_y);
+		initiate_final_wave(9,!enemyPiecePresent);
+		enemy_spawn_sequence(10,["jumper"],1,1,0,random_y);
+		enemy_spawn_sequence(11,["crawler"],1,2,0,random_y);
+		enemy_spawn_sequence(12,["tank_crawler"],1.2,2,0,random_y);
+		enemy_spawn_sequence(13,["crawler"],1.2,4,0,random_y);
+		drop_slot(14,"tank_crawler",[1,7],!enemyPiecePresent);
+	break;
+	case 7:
+		enemy_spawn_sequence(1,["crawler"],INITIAL,1,0,random_y);
+		enemy_spawn_sequence(2,["crawler"],12,2,0,random_y);
+		pause_sequence(3,true,12);
+		enemy_spawn_sequence(4,["tank_crawler"],12,1,0,random_y);
+		enemy_spawn_sequence(5,["crawler"],10,2,0,random_y);
+		if pause_sequence(6,true,8) {
+			audio_group_set_gain(track3,1,4500);
 		}
-		enemy_spawn_sequence(11,["crawler","drooper"],1,9,0,random_y);
-		enemy_spawn_sequence(12,["tank_crawler"],2,3,0,random_y);
-		drop_slot(13,"bomber",[1,5],!enemyPiecePresent);
+		enemy_spawn_sequence(7,["jumper"],10,1,0,random_y);
+		enemy_spawn_sequence(8,["crawler"],10,2,0,random_y);
+		initiate_final_wave(9,!enemyPiecePresent);
+		enemy_spawn_sequence(10,["jumper"],1,1,0,random_y);
+		enemy_spawn_sequence(11,["crawler"],1,2,0,random_y);
+		enemy_spawn_sequence(12,["tank_crawler"],1.2,2,0,random_y);
+		enemy_spawn_sequence(13,["crawler"],1.2,4,0,random_y);
+		drop_slot(14,"super_tank_crawler",[1,8],!enemyPiecePresent);
+	break;
+	case 8:
+		drop_slot(1,"bomber",[1,1],!enemyPiecePresent);
 	break;
 }											

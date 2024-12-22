@@ -2,6 +2,11 @@ function handle_tutorials(tutorialProgress) {
 	var executed = false;
 	switch tutorialProgress {
 		case 1:
+			if !instance_exists(tutorial_piece) {
+				executed = true;
+				break;
+			}
+			
 			if global.turns < tutorial_piece.cost {
 				with obj_timer {
 					if (timer >= seconds_per_turn) {

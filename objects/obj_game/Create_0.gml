@@ -5,9 +5,8 @@
 #macro ALERT 1
 #macro AI 2
 randomize();
-
 initialize_variables(true);
-
+ai_seed = random(100);
 // Save Data
 if file_exists(PROFILE) {
 	var buff = buffer_load(PROFILE);

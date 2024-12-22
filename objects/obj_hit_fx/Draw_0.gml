@@ -18,5 +18,5 @@ if is_numeric(hp) {
 } else {
 	draw_text_transformed(x,y,string(hp),1,1,0);
 }
-draw_set_font(fnt_basic);
+draw_set_font(fnt_fancy);
 draw_set_color(c_white);	
