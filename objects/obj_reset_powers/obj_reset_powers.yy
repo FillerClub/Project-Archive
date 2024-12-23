@@ -8,8 +8,8 @@
   "name":"obj_reset_powers",
   "overriddenProperties":[],
   "parent":{
-    "name":"Game Bits",
-    "path":"folders/Objects/Game Bits.yy",
+    "name":"Buttons",
+    "path":"folders/Objects/Buttons.yy",
   },
   "parentObjectId":null,
   "persistent":false,

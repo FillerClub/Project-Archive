@@ -11,8 +11,8 @@
   "name":"obj_timer",
   "overriddenProperties":[],
   "parent":{
-    "name":"Game Bits",
-    "path":"folders/Objects/Game Bits.yy",
+    "name":"Heros",
+    "path":"folders/Objects/Heros.yy",
   },
   "parentObjectId":null,
   "persistent":false,

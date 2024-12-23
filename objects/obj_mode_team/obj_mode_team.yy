@@ -12,8 +12,8 @@
   "name":"obj_mode_team",
   "overriddenProperties":[],
   "parent":{
-    "name":"Game Bits",
-    "path":"folders/Objects/Game Bits.yy",
+    "name":"Buttons",
+    "path":"folders/Objects/Buttons.yy",
   },
   "parentObjectId":null,
   "persistent":false,

@@ -1,3 +1,4 @@
+var gS = global.grid_spacing;
 event_inherited();
 
 // shoot
@@ -7,7 +8,7 @@ if !global.pause {
 		timer_end = 1.6;
 		
 		if scan_for_enemy() {
-			instance_create_layer(x +sprite_width/2 +random_range(-4,4),y +sprite_height/2 +random_range(-4,4),"Instances",obj_bullet_parent, {
+			instance_create_depth(x +sprite_width/2 +random_range(-4,4),y +sprite_height/2 +random_range(-4,4),depth -gS/2,obj_bullet_parent, {
 			team: team,	
 			x_vel: ((team == "friendly")?1:-1),
 			});

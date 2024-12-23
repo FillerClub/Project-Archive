@@ -11,7 +11,7 @@
   ],
   "parent":{
     "name":"Pieces",
-    "path":"folders/Objects/Pieces.yy",
+    "path":"folders/Objects/Piece Stuff/Pieces.yy",
   },
   "parentObjectId":{
     "name":"obj_generic_piece",

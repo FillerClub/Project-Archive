@@ -7,7 +7,7 @@
   },
   "bitDepth":1,
   "bitRate":512,
-  "compression":2,
+  "compression":1,
   "conversionMode":0,
   "duration":133.0693,
   "name":"msc_getoutofmyway_chords",

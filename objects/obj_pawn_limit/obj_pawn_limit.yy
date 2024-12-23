@@ -10,8 +10,8 @@
   "name":"obj_pawn_limit",
   "overriddenProperties":[],
   "parent":{
-    "name":"Game Bits",
-    "path":"folders/Objects/Game Bits.yy",
+    "name":"Slots",
+    "path":"folders/Objects/Game Bits/Slots.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -37,5 +37,5 @@
   "solid":false,
   "spriteId":null,
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }

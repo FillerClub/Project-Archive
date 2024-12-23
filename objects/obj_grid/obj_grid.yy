@@ -10,8 +10,8 @@
   "name":"obj_grid",
   "overriddenProperties":[],
   "parent":{
-    "name":"Game Bits",
-    "path":"folders/Objects/Game Bits.yy",
+    "name":"Grid",
+    "path":"folders/Objects/Grid.yy",
   },
   "parentObjectId":null,
   "persistent":false,

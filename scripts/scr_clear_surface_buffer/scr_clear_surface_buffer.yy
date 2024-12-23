@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_clear_surface_buffer",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_clear_surface_buffer",
+  "parent":{
+    "name":"Misc",
+    "path":"folders/Scripts/Draw/Misc.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

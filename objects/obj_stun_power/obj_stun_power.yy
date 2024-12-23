@@ -10,7 +10,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Powers",
-    "path":"folders/Objects/Pieces/Powers.yy",
+    "path":"folders/Objects/Piece Stuff/Pieces/Powers.yy",
   },
   "parentObjectId":{
     "name":"obj_obstacle",

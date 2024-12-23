@@ -6,8 +6,8 @@
   "name":"obj_territory_friendly",
   "overriddenProperties":[],
   "parent":{
-    "name":"Game Bits",
-    "path":"folders/Objects/Game Bits.yy",
+    "name":"Grid",
+    "path":"folders/Objects/Grid.yy",
   },
   "parentObjectId":null,
   "persistent":false,

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_surface_create_safe",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_surface_create_safe",
+  "parent":{
+    "name":"Misc",
+    "path":"folders/Scripts/Draw/Misc.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

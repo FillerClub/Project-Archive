@@ -2,9 +2,9 @@
   "$GMSprite":"",
   "%Name":"spr_enemy_team",
   "bboxMode":0,
-  "bbox_bottom":63,
+  "bbox_bottom":31,
   "bbox_left":0,
-  "bbox_right":63,
+  "bbox_right":31,
   "bbox_top":0,
   "collisionKind":1,
   "collisionTolerance":0,
@@ -20,7 +20,7 @@
   ],
   "gridX":0,
   "gridY":0,
-  "height":64,
+  "height":32,
   "HTile":false,
   "layers":[
     {"$GMImageLayer":"","%Name":"cb0fff3f-518a-4afe-ba57-a264ab2520fd","blendMode":0,"displayName":"Layer 4","isLocked":false,"name":"cb0fff3f-518a-4afe-ba57-a264ab2520fd","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
@@ -106,5 +106,5 @@
   },
   "type":0,
   "VTile":false,
-  "width":64,
+  "width":32,
 }

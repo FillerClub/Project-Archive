@@ -152,6 +152,7 @@ switch room {
 switch room {
 	case rm_world_one:
 	#macro MOVE 1
+	#macro PIECE 2
 		ai_pieces = [];
 		friendly_pieces = [];
 		lane_threat = [];

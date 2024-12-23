@@ -16,8 +16,8 @@ if (input_check_released("action") || input_check_released("action")) && positio
 } else if (input_check_pressed("action")) && !position_meeting(mosX,mosY,obj_grid) {
 	if !placed { instance_destroy(); }
 	//dragging = true;
-	if position_meeting(gX,gY,obj_slot) {
-		with instance_position(gX,gY,obj_slot) {
+	if position_meeting(gX,gY,obj_piece_slot) {
+		with instance_position(gX,gY,obj_piece_slot) {
 			if identity == other.identity {
 				skip = true;
 				select_sound(snd_put_down);

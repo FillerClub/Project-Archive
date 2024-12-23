@@ -14,7 +14,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Online",
-    "path":"folders/Objects/Online.yy",
+    "path":"folders/Objects/Main/Online.yy",
   },
   "parentObjectId":null,
   "persistent":true,

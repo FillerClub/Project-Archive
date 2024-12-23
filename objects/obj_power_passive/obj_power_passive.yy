@@ -1,13 +1,13 @@
 {
   "$GMObject":"",
-  "%Name":"obj_slot",
+  "%Name":"obj_power_passive",
   "eventList":[],
   "managed":true,
-  "name":"obj_slot",
+  "name":"obj_power_passive",
   "overriddenProperties":[],
   "parent":{
-    "name":"Parent",
-    "path":"folders/Objects/Parent.yy",
+    "name":"Slots",
+    "path":"folders/Objects/Game Bits/Slots.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -27,7 +27,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"spr_earthshock_passive",
+    "path":"sprites/spr_earthshock_passive/spr_earthshock_passive.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

@@ -11,8 +11,8 @@
   "name":"obj_dropped_slot",
   "overriddenProperties":[],
   "parent":{
-    "name":"Game Bits",
-    "path":"folders/Objects/Game Bits.yy",
+    "name":"Slots",
+    "path":"folders/Objects/Game Bits/Slots.yy",
   },
   "parentObjectId":null,
   "persistent":false,

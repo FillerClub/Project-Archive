@@ -1,3 +1,4 @@
+var gS = global.grid_spacing;
 event_inherited();
 
 // shoot
@@ -24,7 +25,7 @@ if !global.pause {
 			rand = 0;
 			repeat 12 {
 				rand = random_range(-16,16);
-				instance_create_layer(x +sprite_width/2 +random_range(-4,4),y +sprite_height/2 +random_range(-4,4),"Instances",obj_bullet_parent, {
+				instance_create_depth(x +sprite_width/2 +random_range(-4,4),y +sprite_height/2 +random_range(-4,4),depth -gS/2,obj_bullet_parent, {
 				image_xscale: .5,
 				image_yscale: .5,
 				team: team,	

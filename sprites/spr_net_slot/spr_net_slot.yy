@@ -45,8 +45,8 @@
   },
   "origin":0,
   "parent":{
-    "name":"Pieces",
-    "path":"folders/Sprites/Slots/Pieces.yy",
+    "name":"Powers",
+    "path":"folders/Sprites/Slots/Powers.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

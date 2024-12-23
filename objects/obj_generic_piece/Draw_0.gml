@@ -21,7 +21,9 @@ switch team {
 }
 if execute != "move" && global.debug && ai_controlled { debugOn = true; } 
 
+
 // Draw highlighted squares on the grid.
+surface_set_target(global.grid_highlight_surface);
 if execute == "move" || debugOn {
 	// Draw own square
 	if debugOn {
@@ -56,7 +58,24 @@ if execute == "move" || debugOn {
 		}	
 	}	
 }
+surface_reset_target();
+surface_set_target(global.piece_surface);
 
+var
+xFlip = (1 -toggle*2)*tM,
+xScale = (1 +ai_timer/(timer_to_take*2))*xFlip,
+yScale = (1 +ai_timer/(timer_to_take*2));
+
+var hpMissing = (hp_start -hp)/hp_start;
+
+// Draw the sprite at a shifted origin to make flipping easier
+sprite_set_offset(sprite_index,sprite_width/2,sprite_height/2);
+// Draw sprite
+draw_sprite_ext(sprite_index,image_index,x +sprite_width/2,y +sprite_height/2,xScale,yScale,0,col,.5 +intangible_tick/2);
+sprite_set_offset(sprite_index,0,0);
+
+// Draw cooldown timer
+scr_draw_circle_part(x +sprite_width/2, y +sprite_height/2,32,timer_color,false,180,true,move_cooldown_timer*(360/move_cooldown),360,.5);
 
 // Draw speed arrows
 if spd > 0 {
@@ -70,28 +89,7 @@ if slw > 0 {
 		draw_sprite_ext(spr_slowed,0,x,y +i*7 +5,1,1,0,c_white,clamp(slw -i,0,1));		
 	}
 }
-
-var
-xFlip = (1 -toggle*2)*tM,
-xScale = (1 +ai_timer/(timer_to_take*2))*xFlip,
-yScale = (1 +ai_timer/(timer_to_take*2));
-
-var hpMissing = (hp_start -hp)/hp_start;
-/*
-obj_shader_handler.piece_fx_id.SetEffectParameter(FX_EFFECT.VHS,PP_VHS_SCAN_SPEED,5*hpMissing);
-obj_shader_handler.piece_fx_id.SetEffectParameter(FX_EFFECT.VHS,PP_VHS_SCAN_OFFSET,hpMissing);
-obj_shader_handler.piece_fx_id.SetEffectParameter(FX_EFFECT.VHS,PP_VHS_HSCAN_OFFSET,.05*hpMissing);
-obj_shader_handler.piece_fx_id.SetEffectParameter(FX_EFFECT.VHS,PP_VHS_WIGGLE_AMPLITUDE,.005*hpMissing);
-shader_set(__ppf_sh_render_vhs);*/
-
-// Draw the sprite at a shifted origin to make flipping easier
-sprite_set_offset(sprite_index,sprite_width/2,sprite_height/2);
-// Draw sprite
-draw_sprite_ext(sprite_index,image_index,x +sprite_width/2,y +sprite_height/2,xScale,yScale,0,col,.5 +intangible_tick/2);
-sprite_set_offset(sprite_index,0,0);
-
-// Draw cooldown timer
-scr_draw_circle_part(x +sprite_width/2, y +sprite_height/2,32,timer_color,false,180,true,move_cooldown_timer*(360/move_cooldown),360,.5);
+surface_reset_target();
 
 // Create HP effect and reset variables
 if hp_init != hp {
@@ -103,16 +101,3 @@ if hp_init != hp {
 hp_init = hp;
 spd = 0;
 image_speed = 1 +sprite_accel*9;
-
-//draw_rectangle(bbox_left,bbox_top,bbox_right,bbox_bottom,false);
-
-//draw_text(x,y+64,string(x) +" : " +string(y));
-//draw_text(x,y+80,ignore_pause);
-//draw_text(x,y+96,identity);
-// Old code for hero piece
-/*
- else {
-	col = c_white;
-	tM = 1;
-	draw_sprite_ext(sprite_index,image_index,x,y,(1 +ai_timer/(timer_to_take*2))*(1 -toggle*2)*tM,(1 +ai_timer/(timer_to_take*2)),0,col,.5 +intangible_tick/2);
-}

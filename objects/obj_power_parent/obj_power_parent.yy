@@ -6,8 +6,8 @@
   "name":"obj_power_parent",
   "overriddenProperties":[],
   "parent":{
-    "name":"Parent",
-    "path":"folders/Objects/Parent.yy",
+    "name":"Parents",
+    "path":"folders/Objects/Piece Stuff/Parents.yy",
   },
   "parentObjectId":null,
   "persistent":false,

@@ -10,7 +10,9 @@ function deal_with_level(level) {
 					identity: global.loadout[l]
 				});				
 			}
-	
+		}
+		with obj_pawn_limit {
+			visible = true;	
 		}
 	}
 	// Default level music
@@ -31,6 +33,8 @@ function deal_with_level(level) {
 						hp = 3;	
 					}
 					instance_destroy(obj_mode);
+					instance_destroy(obj_power_slot);	
+					instance_destroy(obj_power_passive);	
 				break;
 				
 				case 2:
@@ -43,14 +47,18 @@ function deal_with_level(level) {
 						identity: "barrel",	
 						place_sound: undefined,
 					});
+					instance_destroy(obj_power_slot);	
+					instance_destroy(obj_power_passive);	
+				break;
+				
+				case 3:
+					instance_destroy(obj_power_slot);	
+					instance_destroy(obj_power_passive);	
+					scale_grid(7);
 				break;
 				
 				case 4:	
 					soundtrackPlay = BATTLE;
-					with obj_pawn_limit {
-						visible = false;	
-					}
-					
 					scale_grid(7);
 				break;
 				

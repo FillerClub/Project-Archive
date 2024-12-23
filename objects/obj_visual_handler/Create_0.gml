@@ -1,12 +1,15 @@
 application_surface_draw_enable(false);
+gpu_set_alphatestenable(true);
+
+global.grid_highlight_surface = -1;
+global.piece_surface = -2;
+
 var vW = window_get_width();
 var vH = window_get_height();
-
-// Create ppfx system.
-ppfx_id = new PPFX_System();
+// Create main effects system.
+main_id = new PPFX_System();
 // Create profile with all effects.
-var effects = new PPFX_Profile("Main", [
+var Meffects = new PPFX_Profile("Main", [
 
 ]);
-// Load profile, so all effects will be used.
-ppfx_id.ProfileLoad(effects);
+main_id.ProfileLoad(Meffects);

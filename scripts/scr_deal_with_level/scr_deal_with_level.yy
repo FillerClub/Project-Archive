@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scr_deal_with_level",
   "parent":{
-    "name":"Scripts",
-    "path":"folders/Scripts.yy",
+    "name":"Level Functions",
+    "path":"folders/Scripts/Level Functions.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",
