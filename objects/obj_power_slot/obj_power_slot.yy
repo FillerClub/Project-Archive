@@ -15,8 +15,8 @@
     "path":"folders/Objects/Game Bits.yy",
   },
   "parentObjectId":{
-    "name":"obj_slot",
-    "path":"objects/obj_slot/obj_slot.yy",
+    "name":"obj_piece_slot",
+    "path":"objects/obj_piece_slot/obj_piece_slot.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

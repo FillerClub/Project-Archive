@@ -13,10 +13,7 @@
     "name":"Game Bits",
     "path":"folders/Objects/Game Bits.yy",
   },
-  "parentObjectId":{
-    "name":"obj_slot",
-    "path":"objects/obj_slot/obj_slot.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
