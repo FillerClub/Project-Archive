@@ -12,7 +12,10 @@ function screen_resize(dispWidth,dispHeight,save_to_file = 1){
 		width = aspect*height;
 	}
 	
-	surface_resize(application_surface,width,height)
+	surface_resize(application_surface,width,height);
+	surface_resize(global.grid_highlight_surface,width,height);
+	surface_resize(global.piece_surface,width,height);
+	surface_resize(global.gui_surface,width,height);
 	
 	if save_to_file {
 		save(PROFILE);	

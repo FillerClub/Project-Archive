@@ -4,11 +4,13 @@ function deal_with_level(level) {
 	var skip1_4 = !(level[0] == 1 && level[1] == 4); 
 	if level[0] != 0 && skip1_4 {
 		with obj_slot_bg {
-			var loadoutLength = array_length(global.loadout);
-			for (var l = 0; l < loadoutLength; l++) {
-				instance_create_layer(x +l*48,y,"Instances",obj_piece_slot,{
-					identity: global.loadout[l]
-				});				
+			if team == global.team {
+				var loadoutLength = array_length(global.loadout);
+				for (var l = 0; l < loadoutLength; l++) {
+					instance_create_layer(x +l*48,y,"Instances",obj_piece_slot,{
+						identity: global.loadout[l]
+					});				
+				}
 			}
 		}
 		with obj_pawn_limit {
@@ -33,8 +35,10 @@ function deal_with_level(level) {
 						hp = 3;	
 					}
 					instance_destroy(obj_mode);
-					instance_destroy(obj_power_slot);	
-					instance_destroy(obj_power_passive);	
+					instance_destroy(obj_power_slot);		
+					with obj_power_passive {
+						y = 464;	
+					}
 				break;
 				
 				case 2:
@@ -48,12 +52,16 @@ function deal_with_level(level) {
 						place_sound: undefined,
 					});
 					instance_destroy(obj_power_slot);	
-					instance_destroy(obj_power_passive);	
+					with obj_power_passive {
+						y = 464;	
+					}
 				break;
 				
 				case 3:
 					instance_destroy(obj_power_slot);	
-					instance_destroy(obj_power_passive);	
+					with obj_power_passive {
+						y = 464;	
+					}
 					scale_grid(7);
 				break;
 				

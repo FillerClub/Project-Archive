@@ -20,14 +20,6 @@ if cooldown < cooldown_length {
 	cooldown = cooldown_length;	
 }
 
-var i = 0;
-
-with obj_generic_piece {
-	if team == global.team && object_get_parent(object_index) != obj_generic_hero_OLD {
-		i++;	
-	}
-}
-
 // On Click
 if position_meeting(gX,gY,self) && input_check_pressed("action") {
 	if cooldown >= cooldown_length {
@@ -42,52 +34,7 @@ if position_meeting(gX,gY,self) && input_check_pressed("action") {
 	}
 }
 
-if create {
-	if i < global.max_pawns {
-		if ((global.team == "friendly")? (global.turns >= cost):(global.enemy_turns >= cost)) {
-			instance_create_layer(gX,gY,"AboveBoard",obj_dummy, {
-				obj_piece: info[OBJECT],	
-				sprite_index: info[SPRITE],
-				turn_cost: cost,
-				team: global.team,
-				on_grid: info[PLACEMENTONGRID],
-				on_piece: info[PLACEMENTONPIECE],
-				identity: identity, 
-				orig_x: x, 
-				orig_y: y,	
-				link: id,
-			});
-		}
-	}
-	// errors
-	if i >= global.max_pawns {
-		audio_stop_sound(snd_pick_up);
-		audio_stop_sound(snd_error);
-		audio_stop_sound(snd_critical_error);
-		audio_play_sound(snd_critical_error,0,0);
-		with obj_pawn_limit {
-			scr_error();
-		}	
-	}
-	
-	if ((global.team == "friendly")? (global.turns < cost):(global.enemy_turns < cost)) {
-		audio_stop_sound(snd_pick_up);
-		audio_stop_sound(snd_error);
-		audio_stop_sound(snd_critical_error);
-		audio_play_sound(snd_critical_error,0,0);	
-		with obj_timer {
-			if team == global.team {
-				scr_error();
-			}
-		}
-		with obj_turn_operator {
-			if team == global.team {
-				scr_error();
-			}
-		}		
-	}
-	
-}
+create_piece_from_slot(create);
 
 if highlight {
 	timer += delta_time*DELTA_TO_SECONDS*5;

@@ -52,13 +52,17 @@ if execute != "move" {
 	instance_destroy();
 }
 
-if piece_attack(other.valid_moves[ONLY_MOVE], ONLY_MOVE) {
+if piece_attack(other.valid_moves[ONLY_MOVE], ONLY_MOVE, 1, true) {
 	with piece_link {
+		repeat(45) {
+			part_particles_burst(global.part_sys,x,y,part_slap);		
+		}	
 		x = other.x;
 		y = other.y;
 	}
 	with link {
 		usable = false;	
 	}
+	audio_play_sound(snd_oip,0,0);
 	instance_destroy();		
 }

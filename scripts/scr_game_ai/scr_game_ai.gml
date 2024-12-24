@@ -67,7 +67,7 @@ if countFPiece > 0 {
 			break;
 				
 			case "Warden":
-			case "Monarch":
+			case "Empress":
 				lane_score[fY] += 2;
 			break;
 				

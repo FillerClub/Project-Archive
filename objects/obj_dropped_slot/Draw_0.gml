@@ -10,6 +10,6 @@ draw_set_halign(fa_center); draw_set_valign(fa_middle); draw_set_color(c_white) 
 draw_text_transformed(x +41,y +58 ,string(cost),1,1,0);
 draw_set_color(c_white) draw_set_font(fnt_fancy);
 
-//draw_text_transformed(x + sprite_width/2,y + sprite_height*1.2 +x,string(identity[NAME]),.25,.25,0);
+//draw_text_transformed(x + sprite_width/2,y + sprite_height*1.2 +x,string(identity[PIECEDATA.NAME]),.25,.25,0);
 
 if position_meeting(obj_cursor.x,obj_cursor.y,self) { draw_sprite(spr_slot_select,image_index,x,y);	}

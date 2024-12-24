@@ -11,7 +11,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Powers",
-    "path":"folders/Objects/Piece Stuff/Pieces/Powers.yy",
+    "path":"folders/Objects/Powers.yy",
   },
   "parentObjectId":null,
   "persistent":false,

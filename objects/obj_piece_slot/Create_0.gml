@@ -6,11 +6,11 @@ error_time = time_source_create(time_source_global,.03,time_source_units_seconds
 	}	
 },[],6);
 
-info = refer_database(identity);
+info = piece_database(identity);
 
-sprite_slot = info[SLOTSPRITE];
-cost = info[PLACECOST];
-class = info[CLASS];
-desc = info[BRIEFDESCRIPTION];
-cooldown_length = info[SLOTCOOLDOWN];
+sprite_slot = info[PIECEDATA.SLOTSPRITE];
+cost = info[PIECEDATA.PLACECOST];
+class = info[PIECEDATA.CLASS];
+desc = info[PIECEDATA.BRIEFDESCRIPTION];
+cooldown_length = info[PIECEDATA.SLOTCOOLDOWN];
 cooldown = cooldown_length;

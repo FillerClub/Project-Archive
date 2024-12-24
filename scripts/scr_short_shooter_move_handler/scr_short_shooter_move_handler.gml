@@ -1,5 +1,5 @@
 function short_shooter_move_handler(){
-	valid_moves = refer_database(identity,MOVES);
+	valid_moves = piece_database(identity,PIECEDATA.MOVES);
 	var gS = global.grid_spacing;
 	for (var ii = 0; ii < 4; ++ii) {
 		var 

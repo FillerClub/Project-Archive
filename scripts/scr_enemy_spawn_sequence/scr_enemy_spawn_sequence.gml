@@ -13,7 +13,7 @@ function enemy_spawn_sequence(start_phase,spawn_identity,time_per_spawn = 7, spa
 	}
 	var spawnArrayLength = array_length(spawn_identity) -1,
 	spawnActual = spawn_identity[irandom_range(0,spawnArrayLength)],
-	obj = refer_database(spawnActual,OBJECT);
+	obj = piece_database(spawnActual,PIECEDATA.OBJECT);
 	//Increment
 	phase = clamp(phase +1/spawn_amount,start_phase,start_phase+1);
 	timer -= time_per_spawn;

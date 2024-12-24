@@ -36,7 +36,7 @@ function __PPFX_DebugInspectorGenerator() constructor {
 		
 		// Class Selector
 		inspector_struct = new __PPF_UIInspector("ClassSelector")
-			.AddElement(new __ppf_ui_menu("CLASS SELECTOR | Post-Processing FX", true, 4))
+			.AddElement(new __ppf_ui_menu("PIECEDATA.CLASS SELECTOR | Post-Processing FX", true, 4))
 				.AddElement(new __ppf_ui_text_ext("Info", 0, function(element) {
 					var _width = element.parent.__panel_width-element.xx-element.parent.__element_xpadding;
 					element.width = _width;

@@ -2,7 +2,7 @@ function drooper_move_handler(){
 	var tM = (team == "friendly")?1:-1,
 	gS = global.grid_spacing;
 
-	valid_moves = refer_database(identity,MOVES);
+	valid_moves = piece_database(identity,PIECEDATA.MOVES);
 
 	
 	for (var iDown = 1; iDown < 99; ++iDown) {

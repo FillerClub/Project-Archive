@@ -21,4 +21,14 @@ with obj_hero_wall {
 		instance_destroy();	
 	}
 }	
+with obj_power_slot {
+	if team == target_team {
+		instance_destroy();	
+	}
+}	
+with obj_power_passive {
+	if team == target_team {
+		instance_destroy();	
+	}
+}
 }

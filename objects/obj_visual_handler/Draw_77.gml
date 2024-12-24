@@ -3,3 +3,4 @@
 main_id.DrawInFullscreen(application_surface);
 main_id.DrawInFullscreen(global.grid_highlight_surface);
 main_id.DrawInFullscreen(global.piece_surface);
+main_id.DrawInFullscreen(global.gui_surface);

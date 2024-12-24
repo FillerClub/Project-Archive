@@ -103,18 +103,25 @@ if placed && placeable {
 			cX[0] = other.gClampX;
 			cY[0] = other.gClampY;
 		}
-	} else {
-
-		
+	} else {		
 		if team == "friendly" { global.turns -= turn_cost; }
 	
 		if team == "enemy" { global.enemy_turns -= turn_cost; }
 		
 		if link != noone {
-			link.cooldown = 0;	
+			//Switch depending on what type the slot is
+			switch link.object_index {
+				case obj_piece_slot:
+					link.cooldown = 0;	
+				break;
+				case obj_power_slot:
+					link.usable = false;	
+				break;
+			}
+			
 		}
 		
-		instance_create_layer(gClampX,gClampY,"Instances",obj_piece, {
+		instance_create_layer(gClampX,gClampY,"Instances",object, {
 			team: team,
 			link: link,
 			identity: identity,

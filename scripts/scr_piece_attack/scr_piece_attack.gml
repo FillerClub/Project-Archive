@@ -1,4 +1,4 @@
-function piece_attack(valid_attacks = [0,0], mode = BOTH, cost = 1) {
+function piece_attack(valid_attacks = [0,0], mode = BOTH, cost = 1, bypass_cooldown = false) {
 var	
 re = false,
 gS = global.grid_spacing,
@@ -21,12 +21,14 @@ if global.mode == "move" && execute == "move" {
 	if input_check_pressed("action") {
 		var piececlick = instance_position(gX,gY,obj_obstacle);
 		
-		if (move_cooldown_timer < move_cooldown) && !position_meeting(gX,gY,self) {
-			scr_error();
-			audio_stop_sound(snd_critical_error);
-			audio_play_sound(snd_critical_error,0,0);
-			return false;	
-		}	
+		if !bypass_cooldown {
+			if (move_cooldown_timer < move_cooldown) && !position_meeting(gX,gY,self) {
+				scr_error();
+				audio_stop_sound(snd_critical_error);
+				audio_play_sound(snd_critical_error,0,0);
+				return false;	
+			}	
+		}
 		// Check if clicked on piece
 		if piececlick != -4 {
 			// Cancel if clicked on illegal spot
@@ -173,7 +175,7 @@ if global.mode == "move" && execute == "move" {
 		x = moveX;
 		y = moveY;
 	} 
-	if re {
+	if re && !bypass_cooldown {
 		move_cooldown_timer = 0;	
 	}
 	return re;

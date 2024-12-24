@@ -3,7 +3,7 @@ switch identity {
 		sprite_index = spr_warden;
 	break;
 	
-	case "Monarch":
+	case "Empress":
 		sprite_index = spr_monarch;
 	break;
 }

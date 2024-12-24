@@ -1,5 +1,5 @@
 if moved {
-	valid_moves = refer_database("crawler",MOVES);	
+	valid_moves = piece_database("crawler",PIECEDATA.MOVES);	
 }
 
 event_inherited();

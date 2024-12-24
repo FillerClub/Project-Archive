@@ -16,7 +16,7 @@ mosX = floor(obj_cursor.x/gS)*gS,
 mosY = floor(obj_cursor.y/gS)*gS;
 
 // Piece Handling
-if input_check_pressed("action") {
+if input_check_pressed("action") && !instance_exists(obj_dummy) {
 	// Upon clicking anything, reset execution for all pieces
 	if position_meeting(mosX,mosY,obj_generic_piece) {
 		with instance_position(mosX,mosY,obj_generic_piece) {
@@ -167,3 +167,25 @@ switch room {
 	break;
 }
 
+//Debug functions
+if global.debug {
+	if input_check_pressed("special") {
+		with instance_position(obj_cursor.x,obj_cursor.y,obj_piece_slot) {
+			switch object_index {
+				case obj_piece_slot:
+					cooldown = cooldown_length;
+				break;
+				case obj_power_slot:
+					usable = true;
+				break;
+			}
+		}
+		with instance_position(obj_cursor.x,obj_cursor.y,obj_generic_piece) {
+			switch identity {
+				default:
+					move_cooldown = move_cooldown_timer; 
+				break;
+			}
+		}
+	}
+}

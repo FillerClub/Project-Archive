@@ -1,8 +1,8 @@
-info = refer_database(identity);
+info = piece_database(identity);
 
-sprite_slot = info[SLOTSPRITE];
-cost = info[PLACECOST];
-class = info[CLASS];
+sprite_slot = info[PIECEDATA.SLOTSPRITE];
+cost = info[PIECEDATA.PLACECOST];
+class = info[PIECEDATA.CLASS];
 
 x_init = x;
 y_init = y;

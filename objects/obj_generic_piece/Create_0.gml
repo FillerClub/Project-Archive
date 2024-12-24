@@ -1,15 +1,15 @@
 /// @desc Grabs object info from database
 #macro HEALTHCOSTMULTIPLIER .6
-speed_effect = refer_database(identity,SPDEFFECT);
-slow_effect = refer_database(identity,SLWEFFECT);
-move_cooldown = refer_database(identity,MOVECOOLDOWN);
+speed_effect = piece_database(identity,PIECEDATA.SPDEFFECT);
+slow_effect = piece_database(identity,PIECEDATA.SLWEFFECT);
+move_cooldown = piece_database(identity,PIECEDATA.MOVECOOLDOWN);
 move_cooldown_timer = move_cooldown;
-hp = refer_database(identity,HP);
+hp = piece_database(identity,PIECEDATA.HP);
 hp_init = hp;
 hp_start = hp;
-valid_moves = refer_database(identity,MOVES);
-cost = refer_database(identity,MOVECOST);
-sprite_index = refer_database(identity,SPRITE);
+valid_moves = piece_database(identity,PIECEDATA.MOVES);
+cost = piece_database(identity,PIECEDATA.MOVECOST);
+sprite_index = piece_database(identity,PIECEDATA.SPRITE);
 time_to_take = 1.6 + HEALTHCOSTMULTIPLIER*cost;
 error_time = time_source_create(time_source_global,.03,time_source_units_seconds,function(){
 	if timer_color == c_black {

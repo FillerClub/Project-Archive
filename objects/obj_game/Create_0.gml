@@ -38,8 +38,3 @@ if file_exists(SAVEFILE) {
 	global.unlocked_heroes = load[0].unlocked_heroes;
 }
 
-// Set window
-screen_resize(global.screen_res[0],global.screen_res[1],0);
-window_set_fullscreen(global.fullscreen);
-//Set FPS
-game_set_speed(global.fps_target,gamespeed_fps);
