@@ -16,21 +16,20 @@ var ar_leng = array_length(aura);
 for (var i = 0; i < ar_leng; ++i)	{
 	var xM = aura[i][0]*gS +x;
 	var yM = aura[i][1]*gS +y;		
-	// If coords within move array are on the grid; 0 = x, 1 = y
-	if place_meeting(xM,yM,obj_grid) {
-		
-		// And if coords collide with obstacle/piece, draw RED. Else...
-		if place_meeting(xM,yM,obj_generic_piece) && !place_meeting(xM,yM,obj_accelerator) {
-			with instance_position(xM,yM,obj_generic_piece) {
-				if team == other.team {
-					intangible = true;
-					alarm[0] = game_get_speed(gamespeed_fps)*5.5;
-					alarm[1] = 1;
-				}
+	// And if coords collide with obstacle/piece, draw RED. Else...
+	if position_meeting(xM,yM,obj_generic_piece) {
+		with instance_position(xM,yM,obj_generic_piece) {
+			if team == other.team {
+				effect_give(EFFECT.SPEED,5.5,10);
+				effect_give(EFFECT.INTANGIBILITY,5.5,1);
 			}
 		} 	
 	}			
 }
 
-				
+time_source_lol = time_source_create(time_source_game,5.5,time_source_units_seconds,function() {
+	time_source_destroy(time_source_lol);
+	instance_destroy();	
+})	
+time_source_start(time_source_lol);
 audio_play_sound(snd_beam,0,0);

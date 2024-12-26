@@ -18,10 +18,10 @@ for (var i = 0; i < ar_leng; ++i)	{
 	if place_meeting(xM,yM,obj_grid) {
 		
 		// And if coords collide with obstacle/piece, draw RED. Else...
-		if place_meeting(xM,yM,obj_generic_piece) && !place_meeting(xM,yM,obj_accelerator) {
+		if position_meeting(xM,yM,obj_generic_piece) {
 			with instance_position(xM,yM,obj_generic_piece) {
-				if team != other.team {
-					slw += 3;
+				if team != other.team && !intangible {
+					effect_give(EFFECT.SLOW,30,3);
 					hp -= 3;
 				}
 			}

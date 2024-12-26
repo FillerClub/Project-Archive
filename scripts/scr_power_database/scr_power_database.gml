@@ -35,9 +35,9 @@ with obj_power_database {
 		break;
 		// Empress' Powers
 		case "Empress-passive":
-			object = [	"Aegis Bloom",obj_power_parent,0,spr_aegis_bloom_passive,
+			object = [	"Lust of Wrath",obj_lust_of_wrath_passive,0,spr_lust_of_wrath_passive,
 						PLACEABLEANY,PLACEABLEANY,
-						"When a wall breaks, it emits a powerful burst of energy that vaporizes any piece in its lane."];
+						"Breaking down walls gives your pieces a permanent speed boost."];
 		break;
 		case "Empress-a":
 			object = [	"Forceful Grasp",obj_net_power,0,spr_net_slot,

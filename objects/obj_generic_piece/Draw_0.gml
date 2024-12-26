@@ -5,7 +5,9 @@ gY = obj_cursor.y,
 colS = c_white,
 col = c_white,
 debugOn = false,
-drawSpr = spr_grid_highlight;
+drawSpr = spr_grid_highlight,
+sPD = effects_array[EFFECT.SPEED],
+sLW = effects_array[EFFECT.SLOW];
 
 
 switch team {
@@ -71,24 +73,38 @@ var hpMissing = (hp_start -hp)/hp_start;
 // Draw the sprite at a shifted origin to make flipping easier
 sprite_set_offset(sprite_index,sprite_width/2,sprite_height/2);
 // Draw sprite
-draw_sprite_ext(sprite_index,image_index,x +sprite_width/2,y +sprite_height/2,xScale,yScale,0,col,.5 +intangible_tick/2);
+draw_sprite_ext(sprite_index,image_index,x +sprite_width/2,y +sprite_height/2,xScale,yScale,0,col,intangible_tick);
 sprite_set_offset(sprite_index,0,0);
 
 // Draw cooldown timer
 scr_draw_circle_part(x +sprite_width/2, y +sprite_height/2,32,timer_color,false,180,true,move_cooldown_timer*(360/move_cooldown),360,.5);
 
+draw_set_font(fnt_bit);
+draw_set_halign(fa_right);
+draw_set_valign(fa_middle);
 // Draw speed arrows
-if spd > 0 {
-	for (var i = 0; i < spd; ++i) {
-		draw_sprite_ext(spr_boosted,0,x,y -i*7 +5,1,1,0,c_white,clamp(spd -i,0,1));		
+if sPD > 0 {
+	if sPD < 5 {
+		for (var i = 0; i < sPD; ++i) {
+			draw_sprite_ext(spr_boosted,0,x,y -i*7 +5,1,1,0,c_white,clamp(sPD -i,0,1));		
+		}
+	} else {
+		draw_sprite_ext(spr_boosted,0,x,y,1,1,0,c_white,1);
+		draw_text(x,y,string(floor(sPD/5) +1) + "x ");
 	}
 }
 // Draw slow arrows
-if slw > 0 {
-	for (var i = 0; i < slw; ++i) {
-		draw_sprite_ext(spr_slowed,0,x,y +i*7 +5,1,1,0,c_white,clamp(slw -i,0,1));		
+if sLW > 0 {
+	if sLW < 5 {
+		for (var i = 0; i < sLW; ++i) {
+			draw_sprite_ext(spr_slowed,0,x,y +i*7 +5,1,1,0,c_white,clamp(sLW -i,0,1));			
+		}
+	} else {
+		draw_sprite_ext(spr_slowed,0,x,y,1,1,0,c_white,1);
+		draw_text(x,y,string(floor(sLW/5) +1) + "x ");
 	}
 }
+
 surface_reset_target();
 
 // Create HP effect and reset variables
@@ -99,5 +115,7 @@ if hp_init != hp {
 	});
 }
 hp_init = hp;
-spd = 0;
 image_speed = 1 +sprite_accel*9;
+
+//draw_text(x,y,effects_management_array);
+//draw_text(x,y+64,effects_array);
