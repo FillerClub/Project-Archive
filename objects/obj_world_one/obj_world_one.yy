@@ -39,6 +39,7 @@
     {"$GMObjectProperty":"v1","%Name":"display_identity","filters":[],"listItems":[],"multiselect":false,"name":"display_identity","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"debug","varType":2,},
     {"$GMObjectProperty":"v1","%Name":"graphic_show","filters":[],"listItems":[],"multiselect":false,"name":"graphic_show","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":1,},
     {"$GMObjectProperty":"v1","%Name":"new_level","filters":[],"listItems":[],"multiselect":false,"name":"new_level","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"","varType":6,},
+    {"$GMObjectProperty":"v1","%Name":"timer_mod","filters":[],"listItems":[],"multiselect":false,"name":"timer_mod","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"1","varType":0,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

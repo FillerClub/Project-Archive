@@ -6,7 +6,7 @@ if !global.pause {
 	if (timer >= timer_end) {
 		repeat_shot -= 1;
 		timer = 0;
-		timer_end = 2.6*random_range(0.98,1.02);
+		timer_end = random_percent(2.6,10);
 		
 		if repeat_shot <= 0 {
 			repeat_shot = 2

@@ -50,7 +50,7 @@ do {
 	cycle_wall--;
 } until !reroll_y || cycle_wall <= 0
 var timerAccel = ((!enemyPiecePresent && phase >= 1))/1.5
-timer += delta_time*DELTA_TO_SECONDS*(1 +timerAccel);
+timer += delta_time*DELTA_TO_SECONDS*(1 +timerAccel)*timer_mod;
 #macro INITIAL 999
 // Initiate level
 if timer >= 7 && phase == 0 {
@@ -161,7 +161,20 @@ switch level[1] {
 	break;
 	
 	case 4:
-		drop_slot(1,"splitter",[1,5],!enemyPiecePresent);
+		var randomTipEdgeY = irandom_range(0,1)*6;
+		var randomCenterY = irandom_range(2,4);
+		enemy_spawn_sequence(1,["crawler"],INITIAL,1,0,randomCenterY);
+		enemy_spawn_sequence(2,["tank_crawler"],3,1,0,randomCenterY);
+		enemy_spawn_sequence(3,["crawler"],3,2,0,randomCenterY);
+		pause_sequence(4,true,10);
+		enemy_spawn_sequence(5,["crawler"],4,5,0,randomTipEdgeY);
+		pause_sequence(6,true,10);
+		enemy_spawn_sequence(7,["crawler","drooper"],3,6,0,random_y);
+		pause_sequence(8,true,8);
+		enemy_spawn_sequence(9,["crawler","tank_crawler"],2,6,0,random_y);
+		initiate_final_wave(10,!enemyPiecePresent);
+		enemy_spawn_sequence(11,["drooper"],.8,8,0,random_y);
+		drop_slot(12,"splitter",[1,5],!enemyPiecePresent);
 	break;
 	case 5:
 		enemy_spawn_sequence(1,["crawler"],INITIAL,1,0,random_y);

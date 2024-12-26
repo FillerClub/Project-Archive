@@ -19,14 +19,14 @@ with obj_power_database {
 						"When a wall breaks, it emits a powerful burst of energy that vaporizes any piece in its lane."];
 		break;
 		case "Warden-a":
-			object = [	"Shield",obj_shield_power,1,spr_generic_power_1,
-						PLACEABLENONE,PLACEABLEANY,
-						"Gives 5 additional health."];
+			object = [	"Meet your maker",obj_light_ray_power,1,spr_light_beam_slot,
+						PLACEABLEANY,DIFFERENT,
+						"Vanquish a weak piece."];
 		break;
 		case "Warden-b":
-			object = [	"Poison",obj_fizz_power,1,spr_fizz_slot,
-						PLACEABLEANY,PLACEABLEANY,
-						"Splashes enemies, slowing and poisoning them"];
+			object = [	"Refurbishment",obj_heal_power,1,spr_heal_power_slot,
+						PLACEABLEANY,SAME,
+						"Heal a piece, and gives a slight speed boost."];
 		break;
 		case "Warden-c":
 			object = [	"Super boost",obj_supercharge_power,1,spr_supercharge_slot,

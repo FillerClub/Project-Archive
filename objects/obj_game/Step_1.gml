@@ -97,6 +97,7 @@ if input_check_pressed("action") && !instance_exists(obj_dummy) {
 		}
 	}
 }
+#macro TIMERUPLENGTH 50
 // Battle Timer Function
 switch room {
 	case rm_setup:
@@ -111,7 +112,7 @@ switch room {
 			timer[MAIN] += delta_time*DELTA_TO_SECONDS;	
 			if timer[ALERT] > 0 { timer[ALERT] -= delta_time*DELTA_TO_SECONDS; }
 		}
-		if timer[MAIN] >= 60 || (global.debug && keyboard_check_pressed(vk_tab)) {
+		if timer[MAIN] >= TIMERUPLENGTH || (global.debug && keyboard_check_pressed(vk_tab)) {
 			global.max_turns += 1;
 			global.turns += 1;
 			global.enemy_turns += 1;
@@ -143,7 +144,31 @@ switch room {
 					alarm[1] = .6*game_get_speed(gamespeed_fps)/(1 +accelCountE/1.5);
 				}	
 			}
-	
+			// Refresh powers up to three times
+			if timer_phase < 4 {
+				timer_phase++;
+				if timer_phase > 0 {
+					with obj_power_slot {
+						if identity == "a" {
+							usable = true;
+						}
+					}		
+				}
+				if timer_phase > 1 {
+					with obj_power_slot {
+						if identity == "b" {
+							usable = true;
+						}
+					}		
+				}
+				if timer_phase > 2 {
+					with obj_power_slot {
+						if identity == "c" {
+							usable = true;
+						}
+					}		
+				}
+			}
 			timer[MAIN] = 0;
 		}
 	break;

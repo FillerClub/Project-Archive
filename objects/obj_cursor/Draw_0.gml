@@ -8,12 +8,11 @@ if !using_mk && !instance_exists(obj_menu) {
 
 draw_set_color(c_white);
 draw_set_font(fnt_bit);
-draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
+
 if global.mode = "delete" {
 	draw_sprite(spr_remove_x,image_index,x-sprite_width/2,y-sprite_height/2);
 }
-
 
 var 
 stringDraw = -1,
@@ -25,6 +24,12 @@ margin = 3;
 
 // Draw health as popups
 with instance_position(x,y,obj_generic_piece) {
+	stringDraw = "HP: " +string(hp);
+	descWidth = string_width(stringDraw);
+	descHeight = string_height(stringDraw);
+}
+// Draw health as popups
+with instance_position(x,y,obj_hero_wall) {
 	stringDraw = "HP: " +string(hp);
 	descWidth = string_width(stringDraw);
 	descHeight = string_height(stringDraw);
@@ -42,11 +47,18 @@ with instance_position(x,y,obj_power_passive) {
 	descHeight = string_height(stringDraw);
 }
 
+var flip = (x <= room_width/2)?1:-1;
+if flip {
+	draw_set_halign(fa_left);
+} else {
+	draw_set_halign(fa_right);
+}
+
 if stringDraw != -1 {
 	draw_set_alpha(0.8);
 	draw_set_color(c_black);
-	draw_rectangle(x,y,x +descWidth +margin*2,y -descHeight -margin,false);
+	draw_rectangle(x,y,x +(descWidth +margin*2)*flip,y -descHeight -margin,false);
 	draw_set_color(c_white);
-	draw_text(x +margin,y -margin -4,stringDraw);	
+	draw_text(x +margin*flip,y -margin -4,stringDraw);	
 }
 surface_reset_target();

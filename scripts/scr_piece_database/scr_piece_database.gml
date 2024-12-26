@@ -44,7 +44,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "short":
 				object = [	"short",obj_short_shooter,spr_short_shooter,spr_short_shooter_slot,
-							3,16,10,1,10,
+							3,10,10,1,10,
 							[[[1, 1]]],
 							SAME,PLACEABLENONE,
 							RANGECLASS,PIECE,

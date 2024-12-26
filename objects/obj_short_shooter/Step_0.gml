@@ -13,7 +13,7 @@ if !global.pause {
 	gS = global.grid_spacing;
 	if (timer >= timer_end) {
 		timer = 0;
-		timer_end = .8;
+		timer_end = random_percent(.9,4);
 		var decideShoot = false,
 		xV = 0,
 		yV = 0,

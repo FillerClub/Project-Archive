@@ -3,6 +3,7 @@ enum EFFECT {
 	SPEED = 0,
 	SLOW = 1,
 	INTANGIBILITY = 2,
+	POISON = 3,
 }
 function effect_add(effecttype, effectlength = -1, effectpotency = 1) constructor {
 	type = effecttype;

@@ -8,3 +8,4 @@ switch identity {
 	break;
 }
 hp = global.max_barriers;
+hp_init = hp;

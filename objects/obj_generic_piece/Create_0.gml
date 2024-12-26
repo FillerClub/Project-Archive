@@ -27,6 +27,7 @@ intan_blink_time = time_source_create(time_source_global,.03,time_source_units_s
 },[],-1);
 
 if asset_get_type(place_sound) == asset_sound {
+	audio_stop_sound(place_sound);
 	audio_play_sound(place_sound,0,0);
 }
 
@@ -34,3 +35,4 @@ effects_management_array[0] = new effect_add(EFFECT.NOTHING);
 effects_array[EFFECT.SPEED] = 0;
 effects_array[EFFECT.SLOW] = 0;
 effects_array[EFFECT.INTANGIBILITY] = 0;
+effects_array[EFFECT.POISON] = 0;

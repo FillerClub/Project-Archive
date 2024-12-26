@@ -10,7 +10,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Heros",
-    "path":"folders/Objects/Heros.yy",
+    "path":"folders/Objects/Piece Stuff/Heros.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -33,6 +33,7 @@
     {"$GMObjectProperty":"v1","%Name":"y_init","filters":[],"listItems":[],"multiselect":false,"name":"y_init","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"y","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"y_spd_max","filters":[],"listItems":[],"multiselect":false,"name":"y_spd_max","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"hp","filters":[],"listItems":[],"multiselect":false,"name":"hp","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"4","varType":0,},
+    {"$GMObjectProperty":"v1","%Name":"damage_phase","filters":[],"listItems":[],"multiselect":false,"name":"damage_phase","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":1,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

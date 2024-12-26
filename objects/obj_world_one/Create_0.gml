@@ -25,6 +25,7 @@ switch level[1] {
 	case 4:
 	break;
 	case 5:
+		piecePush = "jumper";
 	break;
 }
 

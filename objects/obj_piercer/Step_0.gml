@@ -7,7 +7,7 @@ if !global.pause {
 	tM = (team == "friendly")?1:-1;
 	if (timer >= timer_end) {
 		timer = 0;
-		timer_end = 3;
+		timer_end = random_percent(3,4);
 		
 		var decideShoot = scan_for_enemy();
 		

@@ -5,11 +5,12 @@ function crawler_code() {
 	
 		if position_meeting(x +tM*gS,y,obj_obstacle) {
 			with instance_position(x +tM*gS,y,obj_obstacle) {
-				if hp > 0 && team != other.team {
-					other.skip_timer = true;
+				if other.team != team || object_get_parent(object_index) != obj_generic_piece {
+					other.skip_timer = true;	
+				} else {
+					other.skip_timer = false;
 				}
 			}
-	
 		} else { skip_timer = false; }
 
 		if timer >= timer_end && moving {

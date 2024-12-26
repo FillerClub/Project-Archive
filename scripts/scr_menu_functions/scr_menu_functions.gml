@@ -43,7 +43,7 @@ function menu_function(purpose = "Back",contextArg = context){
 		case "Continue":
 			instance_create_layer(room_width - 80, room_height - 80, "GUI",obj_loading, {
 				run: "Lvl",
-				load: [track1,track2,track3,track4]
+				load: [track1,track2,track3,track4,standalone_soundtracks]
 			});
 		break;
 		

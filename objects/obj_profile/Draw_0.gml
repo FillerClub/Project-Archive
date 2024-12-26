@@ -18,8 +18,7 @@ if hlign == fa_right {
 draw_text(x +off,y,string(name));
 for (var i = 0; i < maxHp; i++) {
 	if i >= hp {
-		iDamaged = true;
-		
+		iDamaged = true;	
 	}
 	draw_sprite(spr_base_hp,iDamaged,x +(i*(64+8))*off2 -off,y +24);
 	if iDamaged {

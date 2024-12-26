@@ -8,7 +8,7 @@ function manage_menu_text(text){
 		case "Data":
 			if global.debug {
 				if obj_menu.savefile_exists || obj_menu.profile_exists {
-					textReturn = "Clear PIECEDATA.ALL Save Data"
+					textReturn = "Clear ALL Save Data"
 				} else {
 					textReturn = "No Save Data";
 				}
