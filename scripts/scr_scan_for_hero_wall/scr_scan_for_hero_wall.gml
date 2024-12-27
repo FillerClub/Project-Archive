@@ -1,4 +1,4 @@
-function scan_for_enemy(limit = 999,piece_x = x,piece_y = y){
+function scan_for_enemy(detect_walls = true, limit = 100, piece_x = x,piece_y = y){
 var 
 gS = global.grid_spacing,
 tm = (team == "friendly")?1:-1,
@@ -11,6 +11,9 @@ do {
 	countLimit++;
 	if position_meeting(x_scan,piece_y,obj_obstacle) {
 		with instance_position(x_scan,piece_y,obj_obstacle) {
+			if !detect_walls && object_index == obj_hero_wall {
+				break;
+			}
 			if team != other.team && !intangible && hp > 0 {
 				return true;
 			}

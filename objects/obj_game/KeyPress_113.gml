@@ -13,9 +13,11 @@ if global.debug {
 		}
 	}
 	if instance_exists(obj_timer) {
-		timer[MAIN] = 30;
+		timer[MAIN] += TIMERUPLENGTH;
 	}
 }
+
+
 /*
 var gD = global.grid_dimensions,
 gS = global.grid_spacing;

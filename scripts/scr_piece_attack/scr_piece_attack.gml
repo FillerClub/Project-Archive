@@ -40,11 +40,7 @@ if global.mode == "move" && execute == "move" {
 				return false;					
 			}
 			// Check how much it would cost to take piece
-			if cost != 0 {
-				cost = ceil(piececlick.hp/10)*cost;	
-			} else {
-				cost = 	ceil(piececlick.hp/10) -1;
-			}
+			cost = floor(piececlick.hp/10) +cost;	
 		} else {
 			if mode == ONLY_ATTACK {					
 				return false;		

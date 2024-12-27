@@ -3,10 +3,10 @@
 /// @description Saves to a file with everything the game needs to read (Read comments for further info)
 
 //	[NOTE] In order to add new data to the save file do the following four steps:
-//	1) Set a global variable in initialize_globals() script within obj_game
+//	1) Set a global variable in initialize_variables() script within obj_game
 //	2) Within the obj_game create event, within the save struct set the new variable to read from
 //	3) Within this save() function, create the same variable to save to
-//	4) Within the menu functions script, edit the "Data" function to clear the global variable if needed
+//	4) Within the menu_function() script, edit the "Data" function to clear the global variable if needed
 //	5) Delete the old save file on your system
 function save(FILE) {
 	switch FILE {
@@ -36,7 +36,7 @@ function save(FILE) {
 				fps_target: global.fps_target,
 				screen_res: global.screen_res,
 				fullscreen: global.fullscreen,
-				
+				difficulty: global.difficulty,
 			}
 			array_push(settings,saveS);
 			var strng = json_stringify(settings);

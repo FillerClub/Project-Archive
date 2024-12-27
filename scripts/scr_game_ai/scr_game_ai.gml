@@ -88,12 +88,13 @@ if !fresh && cheat_variable != 0 {
 }
 	
 if tickRequest {
-	timer[AI] += delta_time*DELTA_TO_SECONDS;	
+	timer += delta_time*DELTA_TO_SECONDS;	
 }
 
 if !enemy_piece_present {
 	exit;	
 }
+
 var countPiece = 0;
 with obj_generic_piece {
 	if team != global.team && ai_controlled {
@@ -352,7 +353,6 @@ with atInst {
 }
 // Now commit to making the move
 if commitMove {
-	audio_play_sound(snd_critical_error,0,0);
 	// Change ai seed
 	ai_seed = random(100);
 	if obstacleInst != noone {

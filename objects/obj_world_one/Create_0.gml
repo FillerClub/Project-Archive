@@ -1,6 +1,7 @@
 #macro MAIN 0
 #macro LEVELSTART 1
 #macro FINALWAVE 1000
+#macro HEROBATTLEEND 99
 #macro VICTORY 9999
 level = global.level;
 graphic_show = -1;

@@ -20,12 +20,12 @@ with obj_power_database {
 		break;
 		case "Warden-a":
 			object = [	"Meet your maker",obj_light_ray_power,1,spr_light_beam_slot,
-						PLACEABLEANY,DIFFERENT,
+						PLACEABLENONE,DIFFERENT,
 						"Vanquish a weak piece."];
 		break;
 		case "Warden-b":
 			object = [	"Refurbishment",obj_heal_power,1,spr_heal_power_slot,
-						PLACEABLEANY,SAME,
+						PLACEABLENONE,SAME,
 						"Heal a piece, and gives a slight speed boost."];
 		break;
 		case "Warden-c":
@@ -51,7 +51,7 @@ with obj_power_database {
 		break;
 		case "Empress-c":
 			object = [	"Horde Summon",obj_horde_power,1,spr_horde_slot,
-						SAME,PLACEABLENONE,
+						SAME,PLACEABLEANY,
 						"Summons a massivehorde of crawlers."];
 		break;
 		default:

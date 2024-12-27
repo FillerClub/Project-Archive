@@ -58,18 +58,29 @@ function piece_database(name, trait = -1) {
 							[["1", 0]]],
 							SAME,PLACEABLENONE,
 							RANGECLASS,PIECE,
-							"Shoots two bullets at a time, prioritizing its surrounding lanes.",
+							"Shoots two bullets at a time.",
+							"TBA"]
+			break;
+			case "big_shooter":
+				object = [	"big_shooter",obj_big_shooter,spr_big_shooter,spr_big_shooter_slot,
+							8,120,8,4,10,
+							[undefined,
+							undefined,
+							[[1,1]]],
+							SAME,PLACEABLENONE,
+							RANGECLASS,PIECE,
+							"Sacrifices all of your pieces to feed the ultimate war machine. The more pieces the better!",
 							"TBA"]
 			break;
 			case "piercer":
 				object = [	"piercer",obj_piercer,spr_piercer,spr_piercer_slot,
-							4,8,4,1,10,
+							3,8,4,1,10,
 							[[["-1", 1],["-1", -1]], 
 							undefined,
 							[["1",0]]],
 							SAME,PLACEABLENONE,
-							RANGECLASS,PIECE,
-							"Shoots a piercing projectile throughout the row.",
+							SUPPORTCLASS,PIECE,
+							"Shoots a piercing projectile, cannot attack walls.",
 							"TBA"]
 			break;
 			case "shotgun":
@@ -87,8 +98,17 @@ function piece_database(name, trait = -1) {
 							[[[0, 1],[0,-1]]],
 							SAME,PLACEABLENONE,
 							SUPPORTCLASS,PIECE,
-							"Passively increases timer speed. Gives an additional point for each timer up.",
+							"Passively increases timer speed. Gives an additional point for each timer upgrade.",
 							"I don't know what I would do without these things. They've single handedly turned games around for me in the past. Yeah they don't really do much on their own; they're quite fragile at that, but they are well worth the little time and resources it takes."]
+			break;
+			case "cross":
+				object = [	"cross",obj_cross,spr_cross,spr_cross_slot,
+							4,15,8,1,15,
+							[[[1, 0],[-1,0]]],
+							SAME,PLACEABLENONE,
+							SUPPORTCLASS,PIECE,
+							"Gives a buff to every piece behind it.",
+							"TBA"]
 			break;
 			case "bishop":
 				object = [	"bishop",obj_bishop,spr_bishop,spr_bishop_slot,
@@ -121,17 +141,27 @@ function piece_database(name, trait = -1) {
 			break;
 			case "stick":
 				object = [	"stick",obj_stick,spr_stick,spr_stick_slot,
-							1,30,1,0,5,
+							0,30,1,0,5,
 							[undefined, 
 							[[1, 0],[-1, 0]]],
 							SAME,PLACEABLENONE,
-							EXPLOSIVECLASS,PIECE,
-							"Able to take a piece easily, breaks upon use.",
+							SUPPORTCLASS,PIECE,
+							"Breaks upon taking a piece.",
 							"A stick is a weird choice to add to the game. You'd think they'd add something with a little more flair like a living trapdoor, or an explosive mine maybe. But no, it's just a stick. No personality, not very interactive, only brown. I'm sorry but this thing is really boring."]
+			break;
+			case "super_stick":
+				object = [	"super_stick",obj_super_stick,spr_super_stick,spr_super_stick_slot,
+							6,50,5,0,20,
+							[undefined, 
+							[[1,1]]],
+							SAME,PLACEABLENONE,
+							SUPPORTCLASS,PIECE,
+							"Doesn't break, and has a larger range. Overall more super.",
+							"... another stick?"]
 			break;
 			case "crawler":
 				object = [	"crawler",obj_crawler,spr_crawler,spr_crawler_slot,
-							1,1.5,3,0,10,
+							1,1.5,3.5,0,10,
 							[undefined, 
 							[["1", 0]]],
 							SAME,PLACEABLENONE,
@@ -141,7 +171,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "drooper":
 				object = [	"drooper",obj_drooper,spr_drooper,spr_drooper_slot,
-							2,3,3,0,10,
+							2,3,3.5,0,10,
 							[undefined, 
 							[["1", 0]]],
 							SAME,PLACEABLENONE,
@@ -151,7 +181,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "tank_crawler":
 				object = [	"tank_crawler",obj_crawler,spr_tank_crawler,spr_tank_crawler_slot,
-							2,2.5,2.5,0,15,
+							2,2.5,3.5,0,15,
 							[undefined, 
 							[["1", 0]]],
 							SAME,PLACEABLENONE,
@@ -162,7 +192,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "super_tank_crawler":
 				object = [	"super_tank_crawler",obj_crawler,spr_super_tank_crawler,spr_super_tank_crawler_slot,
-							3,3.5,2.5,0,20,
+							3,3.5,3.5,0,20,
 							[undefined, 
 							[["1", 0]]],
 							SAME,PLACEABLENONE,
@@ -172,7 +202,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "jumper":
 				object = [	"jumper",obj_jumper,spr_jumper,spr_jumper_slot,
-							3,8,3,0,10,
+							3,8,3.5,0,10,
 							[undefined, 
 							[["1",0]],
 							[["2",1],["2",-1]]],

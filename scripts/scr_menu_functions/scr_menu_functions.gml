@@ -132,6 +132,7 @@ function menu_function(purpose = "Back",contextArg = context){
 				audio_play_sound(snd_explosion,0,0);
 			}
 			if global.debug && file_exists(PROFILE) {
+				global.difficulty = 0;
 				file_delete(PROFILE);
 				initialize_variables(true);
 				audio_play_sound(snd_game_end,0,0);

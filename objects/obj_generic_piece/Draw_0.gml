@@ -70,14 +70,16 @@ yScale = (1 +ai_timer/(timer_to_take*2));
 
 var hpMissing = (hp_start -hp)/hp_start;
 
+var origXoffset = sprite_xoffset,
+origYoffset = sprite_yoffset;
 // Draw the sprite at a shifted origin to make flipping easier
-sprite_set_offset(sprite_index,sprite_width/2,sprite_height/2);
+sprite_set_offset(sprite_index,sprite_width/2 +sprite_xoffset,sprite_height/2 +sprite_yoffset);
 // Draw sprite
 draw_sprite_ext(sprite_index,image_index,x +sprite_width/2,y +sprite_height/2,xScale,yScale,0,col,intangible_tick);
-sprite_set_offset(sprite_index,0,0);
+sprite_set_offset(sprite_index,origXoffset,origYoffset);
 
 // Draw cooldown timer
-scr_draw_circle_part(x +sprite_width/2, y +sprite_height/2,32,timer_color,false,180,true,move_cooldown_timer*(360/move_cooldown),360,.5);
+scr_draw_circle_part(x +sprite_width/2 -origXoffset, y +sprite_height/2 -origYoffset,32,timer_color,false,180,true,move_cooldown_timer*(360/move_cooldown),360,.5);
 
 draw_set_font(fnt_bit);
 draw_set_halign(fa_right);

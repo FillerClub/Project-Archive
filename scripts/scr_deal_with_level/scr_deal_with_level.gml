@@ -61,6 +61,17 @@ function deal_with_level(level) {
 					instance_create_layer(640,576,"Instances",obj_short_shooter,varStruct);						
 				break;
 				
+				case 8:
+					soundtrackPlay = BATTLE;
+					with obj_territory_friendly {
+						image_xscale = 3;	
+					}
+					with obj_marker {
+						x -= gS*4	
+					}
+					scale_grid(7);
+				break;
+				
 				default:
 					scale_grid(7);
 				break;
@@ -71,7 +82,7 @@ function deal_with_level(level) {
 	if (level[0] == 1 && level[1] == 4) {
 		global.loadout = ["short"];	
 	}
-	if level[0] != 0{
+	if level[0] != 0 {
 		with obj_slot_bg {
 			if team == global.team {
 				var loadoutLength = array_length(global.loadout);

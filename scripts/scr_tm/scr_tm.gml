@@ -1,4 +1,4 @@
-function tm_dp(value, team = "friendly", flip = 0) {
+function tm_dp(value, team = "friendly", flip = false) {
 	var returnValue = 0;
 	if flip { flip = -1 } else { flip = 1 }
 	switch team {

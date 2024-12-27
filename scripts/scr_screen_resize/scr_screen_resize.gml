@@ -1,4 +1,4 @@
-function screen_resize(dispWidth,dispHeight,save_to_file = 1){
+function screen_resize(dispWidth,dispHeight,save_to_file = true){
 	global.screen_res[0] = dispWidth;
 	global.screen_res[1] = dispHeight;
 	display_set_gui_size(dispWidth,dispHeight);

@@ -10,8 +10,8 @@
   "name":"obj_turn_operator",
   "overriddenProperties":[],
   "parent":{
-    "name":"Heros",
-    "path":"folders/Objects/Piece Stuff/Heros.yy",
+    "name":"Game Bits",
+    "path":"folders/Objects/Game Bits.yy",
   },
   "parentObjectId":null,
   "persistent":false,

@@ -19,7 +19,7 @@ if !global.pause {
 
 
 
-		if scan_for_enemy(4) {
+		if scan_for_enemy(true,4) {
 			var 
 			spread_reduce = .25,
 			rand = 0;

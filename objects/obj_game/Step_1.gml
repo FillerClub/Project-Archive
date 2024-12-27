@@ -145,23 +145,23 @@ switch room {
 				}	
 			}
 			// Refresh powers up to three times
-			if timer_phase < 4 {
-				timer_phase++;
-				if timer_phase > 0 {
+			timer_phase++;
+			if timer_phase < 3 {
+				if timer_phase >= 0 {
 					with obj_power_slot {
 						if identity == "a" {
 							usable = true;
 						}
 					}		
 				}
-				if timer_phase > 1 {
+				if timer_phase >= 1 {
 					with obj_power_slot {
 						if identity == "b" {
 							usable = true;
 						}
 					}		
 				}
-				if timer_phase > 2 {
+				if timer_phase >= 2 {
 					with obj_power_slot {
 						if identity == "c" {
 							usable = true;
@@ -185,9 +185,6 @@ switch room {
 		ai_valid[PIECE] = [];
 		ai_valid[MOVE] = [];
 		var spawnPieces = false;
-		if global.level[1] == 4 {
-			spawnPieces = true;
-		}
 		game_ai(ai_mode,spawnPieces,.2);
 	break;
 }

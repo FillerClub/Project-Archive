@@ -22,6 +22,7 @@ if file_exists(PROFILE) {
 	global.fps_target = load[0].fps_target;
 	global.screen_res = load[0].screen_res;
 	global.fullscreen = load[0].fullscreen;
+	global.difficulty =load[0].difficulty;
 }
 if file_exists(SAVEFILE) {
 	var buff = buffer_load(SAVEFILE);

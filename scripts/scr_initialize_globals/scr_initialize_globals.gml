@@ -15,10 +15,13 @@ function initialize_variables(isFresh = false){
 		global.max_slots = 999;
 		global.max_pawns = 32;
 		global.timer_max_speed_mult = 3.3;
+		// Replace all global references to this macro eventually
+		#macro GRIDSPACE 64
 		global.grid_spacing = 64; 
 		global.cursor_sens = 3;
 		global.fps_target = 60;
 		global.tutorial_progress = 0;
+		global.difficulty = 0;
 	}
 	
 	
