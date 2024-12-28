@@ -2,7 +2,7 @@ function scr_can_attack_enemy() {
 // Set up variables
 
 var 
-gS = global.grid_spacing,
+gS = GRIDSPACE,
 arLeng = array_length(valid_attacks),
 index = 0;
 movelist[index] = pointer_null;

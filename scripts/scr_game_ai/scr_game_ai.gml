@@ -5,7 +5,7 @@ friendly_piece_present = false,
 arrayLengthMovesList = 0,
 arrayLengthMoves = 0,
 moveAvailable = false,
-gS = global.grid_spacing,
+gS = GRIDSPACE,
 gD = global.grid_dimensions,
 levelWorld = global.level[0],
 push = false,
@@ -15,15 +15,10 @@ heroX = 0,
 debugOn = global.debug,
 prevSeed = random_get_seed();
 
-for (var lanes = 0; lanes < (gD[3] -gD[2])/gS +1; lanes += 1) {
-	lane_threat[lanes] = 0;
-	lane_score[lanes] = 0;
-}
-
 with obj_generic_piece {
 	var enemyP = team == global.enemy_team,
 	notHeroWall = object_index != obj_hero_wall;
-	
+	 
 	if enemyP && notHeroWall {
 		enemy_piece_present = true;	
 	} 
@@ -33,62 +28,6 @@ with obj_generic_piece {
 	if !enemyP && !notHeroWall {
 		heroX = x;
 	}
-}
-
-var tickRequest = false,
-xRequest = x,
-yRequest = y;
-	
-//threat assessment
-var countFPiece = 0;
-with obj_obstacle {
-	if team == global.team && hp > 0 {
-		other.friendly_pieces[countFPiece] = id;
-		countFPiece++;
-	}
-}
-if countFPiece > 0 {
-	var arrayFLength = array_length(friendly_pieces);
-	for (var fPieces = 0; fPieces < arrayFLength; fPieces++) {
-		var finst = friendly_pieces[fPieces],
-		fY = (finst.y -gD[2])/gS;
-		switch finst.identity {
-			case "short":
-
-			break;
-				
-			case "shooter":
-				lane_threat[fY] += 1;
-				lane_score[fY] += 1;
-			break;
-				
-			case "stick":
-				lane_threat[fY] += 1;
-			break;
-				
-			case "Warden":
-			case "Empress":
-				lane_score[fY] += 2;
-			break;
-				
-			default:
-				lane_score[fY] += 1;
-			break;
-			
-		}
-	}
-}
-
-if !fresh && cheat_variable != 0 {
-	with obj_timer {
-		if team == global.enemy_team {
-			timer += delta_time*DELTA_TO_SECONDS*cheat_variable;
-		}
-	}
-}
-	
-if tickRequest {
-	timer += delta_time*DELTA_TO_SECONDS;	
 }
 
 if !enemy_piece_present {
@@ -329,22 +268,21 @@ if levelWorld != 0 && global.tutorial_progress <= 0 {
 // Build up timer to take piece
 with atInst {
 	moveCost = cost;
-	if global.enemy_turns >= moveCost {
-		timerMultiplier = ceil(obstacleHp/10)*max(moveCost,1);	
-		ai_timer += delta_time*DELTA_TO_SECONDS/timerMultiplier;
-		skip_timer = true;
-		var Sound = snd_move;
-		if obstacleInst != noone {
-			Sound = snd_enemy_taking;
-		}
-		var sound_params = {
-		sound: Sound,
-		pitch: 1 +(ai_timer/time_to_take)/2,
-		};		
-		if !audio_is_playing(Sound){
-			audio_play_sound_ext(sound_params);
-		} 
+	timerMultiplier = ceil(obstacleHp/10)*max(moveCost,1);	
+	ai_timer += delta_time*DELTA_TO_SECONDS/timerMultiplier;
+	skip_timer = true;
+	var Sound = snd_move;
+	if obstacleInst != noone {
+		Sound = snd_enemy_taking;
 	}
+	var sound_params = {
+	sound: Sound,
+	pitch: 1 +(ai_timer/time_to_take)/2,
+	};		
+	if !audio_is_playing(Sound){
+		audio_play_sound_ext(sound_params);
+	} 
+
 	
 	if ai_timer >= time_to_take {
 		commitMove = true;

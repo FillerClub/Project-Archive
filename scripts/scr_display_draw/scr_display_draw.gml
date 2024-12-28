@@ -1,6 +1,6 @@
 function display_draw(valid_spots = [[0,0]], draw_color, show_lines = false){
 // Grab grid variables
-var gS = global.grid_spacing,
+var gS = GRIDSPACE,
 gD = global.grid_dimensions,
 gOffsetX = gD[0] mod gS,
 gOffsetY = gD[2] mod gS,

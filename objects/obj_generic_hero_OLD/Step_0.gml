@@ -1,4 +1,4 @@
-var gS = global.grid_spacing;
+var gS = GRIDSPACE;
 
 with obj_timer {
 	if team == other.team {

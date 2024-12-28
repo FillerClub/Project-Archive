@@ -1,4 +1,4 @@
-var gS = global.grid_spacing;
+var gS = GRIDSPACE;
 event_inherited();
 
 // shoot

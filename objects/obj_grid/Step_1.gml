@@ -1,0 +1,1 @@
+global.grid_dimensions = [bbox_left,bbox_right -GRIDSPACE,bbox_top,bbox_bottom -GRIDSPACE];

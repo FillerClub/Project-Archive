@@ -8,7 +8,7 @@ aura =			[ [0, 1],
 				[-1, -1],
 				[0,0]];
 
-var gS = global.grid_spacing;
+var gS = GRIDSPACE;
 // Grab amount of valid moves
 var ar_leng = array_length(aura);
 

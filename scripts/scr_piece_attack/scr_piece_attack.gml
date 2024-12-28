@@ -1,7 +1,7 @@
 function piece_attack(valid_attacks = [0,0], mode = BOTH, cost = 1, bypass_cooldown = false) {
 var	
 re = false,
-gS = global.grid_spacing,
+gS = GRIDSPACE,
 gD = global.grid_dimensions,
 gOffsetX = gD[0] mod gS,
 gOffsetY = gD[2] mod gS,

@@ -1,4 +1,4 @@
-var gS = global.grid_spacing;
+var gS = GRIDSPACE;
 global.grid_dimensions = [bbox_left,bbox_right -gS,bbox_top,bbox_bottom -gS];
 
 // Wait for heroes to load

@@ -1,5 +1,5 @@
 function scale_grid(scale_factor){
-	var gS = global.grid_spacing;
+	var gS = GRIDSPACE;
 	with obj_grid {
 		var shiftAmt = (scale_factor -1)/2
 		image_yscale = image_yscale*scale_factor;

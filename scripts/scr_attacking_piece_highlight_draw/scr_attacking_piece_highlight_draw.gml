@@ -6,7 +6,7 @@ function scr_attacking_piece_highlight_draw(valid_attacks = [0,0]){
 
 
 // Grab grid variables
-var gS = global.grid_spacing,
+var gS = GRIDSPACE,
 gD = global.grid_dimensions,
 gX = obj_cursor.x,
 gY = obj_cursor.y;

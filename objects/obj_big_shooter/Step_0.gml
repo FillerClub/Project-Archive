@@ -6,7 +6,7 @@ if execute = "move" || ai_controlled {
 }
 
 if !global.pause {
-	var gS = global.grid_spacing;
+	var gS = GRIDSPACE;
 	if (timer >= timer_end) {
 		repeat_shot -= 1;
 		timer -= timer_end;

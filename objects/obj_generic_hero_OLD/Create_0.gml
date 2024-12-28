@@ -1,4 +1,4 @@
-var gS = global.grid_spacing;
+var gS = GRIDSPACE;
 
 grid_pos = [floor(x/gS),floor(y/gS)];
 

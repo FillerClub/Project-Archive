@@ -1,7 +1,7 @@
 event_inherited();
 
 var tM = (team == "friendly")?1:-1,
-gS = global.grid_spacing;
+gS = GRIDSPACE;
 
 if execute = "move" || ai_controlled { 
 	short_shooter_move_handler();
@@ -10,7 +10,7 @@ if execute = "move" || ai_controlled {
 // shoot
 if !global.pause {
 	var 
-	gS = global.grid_spacing;
+	gS = GRIDSPACE;
 	if (timer >= timer_end) {
 		timer = 0;
 		timer_end = random_percent(.9,4);

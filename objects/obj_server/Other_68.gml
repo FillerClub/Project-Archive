@@ -66,7 +66,7 @@ if server == event_id {
 				case MOVE:
 					var oXn = buffer_read(buff, buffer_s32);
 					var oYn = buffer_read(buff, buffer_s32);
-					var gS = global.grid_spacing;
+					var gS = GRIDSPACE;
 					with instance_nearest(oX,oY,obj_generic_piece) {
 							x = oXn;
 							y = oYn;

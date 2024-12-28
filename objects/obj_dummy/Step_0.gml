@@ -1,4 +1,4 @@
-var gS = global.grid_spacing,
+var gS = GRIDSPACE,
 gD = global.grid_dimensions,
 gX = obj_cursor.x,
 gY = obj_cursor.y,

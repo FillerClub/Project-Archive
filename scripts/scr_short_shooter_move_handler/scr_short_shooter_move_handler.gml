@@ -1,6 +1,6 @@
 function short_shooter_move_handler(){
 	valid_moves = piece_database(identity,PIECEDATA.MOVES);
-	var gS = global.grid_spacing;
+	var gS = GRIDSPACE;
 	for (var ii = 0; ii < 4; ++ii) {
 		var 
 		xFact = 1,

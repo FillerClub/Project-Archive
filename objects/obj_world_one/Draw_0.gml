@@ -1,4 +1,4 @@
-var gS = global.grid_spacing;
+var gS = GRIDSPACE;
 
 if graphic_show != -1 {
 	var timeRemaining = time_source_get_time_remaining(graphic_timer);
@@ -29,7 +29,8 @@ draw_set_color(c_white);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 
-//draw_text(room_width/2,room_height/2,timer);
+draw_text(room_width/2,room_height/2,row_value);
+draw_text(room_width/2,room_height/2+128,row_threat);
 //draw_text(room_width/2,room_height/2 +64,string(timer) +" : Phase " +string(phase));
 //draw_text(piece_focus[0] +96,piece_focus[1] +112,string(piece_target));
 //draw_text(piece_focus[0] +96,piece_focus[1] +176,string(piece_focus));

@@ -1,5 +1,5 @@
 var create = false,
-gS = global.grid_spacing,
+gS = GRIDSPACE,
 selectthis = true,
 gX = obj_cursor.x,
 gY = obj_cursor.y,

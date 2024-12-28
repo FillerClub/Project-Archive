@@ -8,7 +8,7 @@ aura =			[ [0,0],
 				[-1, 1],
 				[-1, -1]];
 
-var gS = global.grid_spacing;
+var gS = GRIDSPACE;
 var ar_leng = array_length(aura);
 
 for (var i = 0; i < ar_leng; ++i)	{

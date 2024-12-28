@@ -2,7 +2,7 @@
 /// @function scr_piece_highlight_draw();
 function piece_highlight_draw(){
 // Grab grid variables
-var gS = global.grid_spacing;
+var gS = GRIDSPACE;
 var gD = global.grid_dimensions;
 can_move = true;
 

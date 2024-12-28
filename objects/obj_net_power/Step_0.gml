@@ -1,7 +1,7 @@
 x = piece_link.x;
 y = piece_link.y;
 
-var gS = global.grid_spacing;
+var gS = GRIDSPACE;
 var tm = (team == "friendly")?1:-1;
 
 var setsOfMoves = array_length(valid_moves),

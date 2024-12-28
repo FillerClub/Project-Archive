@@ -25,7 +25,7 @@ with obj_generic_piece {
 }
 // Generate random numbers
 var
-gS = global.grid_spacing,
+gS = GRIDSPACE,
 gD = global.grid_dimensions,
 board_height = (gD[3] -gD[2])/gS,
 random_y = 0,
@@ -49,8 +49,10 @@ do {
 	}
 	cycle_wall--;
 } until !reroll_y || cycle_wall <= 0
-var timerAccel = ((!enemyPiecePresent && phase >= 1))/1.5
-timer += delta_time*DELTA_TO_SECONDS*(1 +timerAccel)*timer_mod;
+
+world_timer_tick();
+
+
 #macro INITIAL 999
 // Initiate level
 if timer >= 7 && phase == 0 {
@@ -224,27 +226,45 @@ switch level[1] {
 		drop_slot(11,"super_stick",[1,8],!enemyPiecePresent);
 	break;
 	case 8:
-	
+		var random_x = irandom(2) +1;
+		hero_ai();
 		switch hero_phase {
 			case 0:
-				var random_x = irandom(2) +1
-				enemy_spawn_sequence(1,["crawler"],INITIAL,1,random_x,random_y);
-				enemy_spawn_sequence(2,["crawler"],.6,1,random_x,random_y);
+				enemy_spawn_sequence(1,["crawler"],INITIAL,1,random_x,ai_lane_choose);
+				enemy_spawn_sequence(2,["crawler"],.6,1,random_x,ai_lane_choose);
 				pause_sequence(3,true,12);
-				enemy_spawn_sequence(4,["crawler"],.6,1,random_x,random_y);
-				if pause_sequence(5,true,12) {
-					phase = 4;
-					timer = INITIAL;
-				}				
+				enemy_spawn_sequence(4,["crawler"],.2,1,random_x,ai_lane_choose);
+				if pause_sequence(5,true,14) {
+					phase = 4;	
+				}
 			break;
-			
 			case 1:
-				
+				enemy_spawn_sequence(1,["drooper"],INITIAL,1,random_x,ai_lane_choose);
+				enemy_spawn_sequence(2,["drooper"],.6,2,random_x,ai_lane_choose);
+				pause_sequence(3,true,12);
+				enemy_spawn_sequence(4,["drooper"],.2,2,random_x,ai_lane_choose);
+				if pause_sequence(5,true,14) {
+					phase = 4;	
+				}
 			break;
-			
 			case 2:
-			default:	
-
+				enemy_spawn_sequence(1,["jumper"],INITIAL,1,random_x,ai_lane_choose);
+				enemy_spawn_sequence(2,["jumper"],.6,3,random_x,ai_lane_choose);
+				pause_sequence(3,true,12);
+				enemy_spawn_sequence(4,["jumper"],.2,3,random_x,ai_lane_choose);
+				if pause_sequence(5,true,14) {
+					phase = 4;	
+				}
+			break;
+			case 3:
+			default:
+				enemy_spawn_sequence(1,["tank_crawler"],INITIAL,1,random_x,ai_lane_choose);
+				enemy_spawn_sequence(2,["tank_crawler"],.6,4,random_x,ai_lane_choose);
+				pause_sequence(3,true,12);
+				enemy_spawn_sequence(4,["tank_crawler"],.2,4,random_x,ai_lane_choose);
+				if pause_sequence(5,true,14) {
+					phase = 4;	
+				}
 			break;
 		}
 		drop_slot(HEROBATTLEEND,"big_shooter",[1,1],!enemyPiecePresent);

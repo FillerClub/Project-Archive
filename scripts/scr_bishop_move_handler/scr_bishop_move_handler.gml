@@ -1,6 +1,6 @@
 function bishop_move_handler(){
 	var tM = (team == "friendly")?1:-1,
-	gS = global.grid_spacing;
+	gS = GRIDSPACE;
 
 	valid_moves = piece_database(identity,PIECEDATA.MOVES);
 

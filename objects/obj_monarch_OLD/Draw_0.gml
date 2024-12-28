@@ -1,4 +1,4 @@
-var gS = global.grid_spacing;
+var gS = GRIDSPACE;
 var gD = global.grid_dimensions;
 
 if execute == "move" {

@@ -1,4 +1,4 @@
-var gS = global.grid_spacing,
+var gS = GRIDSPACE,
 show = false;
 with obj_generic_piece {
 	if x >= other.x -gS && x <= other.x +gS && team != other.team {

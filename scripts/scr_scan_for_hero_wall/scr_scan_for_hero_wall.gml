@@ -1,6 +1,6 @@
 function scan_for_enemy(detect_walls = true, limit = 100, piece_x = x,piece_y = y){
 var 
-gS = global.grid_spacing,
+gS = GRIDSPACE,
 tm = (team == "friendly")?1:-1,
 ex = false,
 countLimit = 0,

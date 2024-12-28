@@ -4,7 +4,7 @@ audio_stop_sound(snd);
 
 
 
-var gS = global.grid_spacing;
+var gS = GRIDSPACE;
 var gD = global.grid_dimensions;
 
 var sound_params = {

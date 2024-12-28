@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"scr_game_ai",
+  "%Name":"scr_ai_spawn",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"scr_game_ai",
+  "name":"scr_ai_spawn",
   "parent":{
     "name":"AI",
     "path":"folders/Scripts/AI.yy",

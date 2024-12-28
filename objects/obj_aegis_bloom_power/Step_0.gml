@@ -5,7 +5,7 @@ if !global.pause {
 
 if timer >= .10 {
 	var tm = ((team == "friendly")?1:-1),
-	gS = global.grid_spacing;
+	gS = GRIDSPACE;
 	audio_stop_sound(snd_shock);
 	audio_play_sound(snd_shock,0,0);
 	timer = 0;

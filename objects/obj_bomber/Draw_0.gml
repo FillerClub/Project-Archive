@@ -1,5 +1,5 @@
 var
-gS = global.grid_spacing,
+gS = GRIDSPACE,
 gX = obj_cursor.x,
 gY = obj_cursor.y,
 gCX = floor(gX/gS)*gS,

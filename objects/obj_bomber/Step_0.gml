@@ -3,7 +3,7 @@ if piece() && !skip_move {
 		case "move":
 			if input_check_pressed("action") {
 				var
-				gS = global.grid_spacing,
+				gS = GRIDSPACE,
 				gX = obj_cursor.x,
 				gY = obj_cursor.y,
 				mX = floor(gX/gS)*gS,

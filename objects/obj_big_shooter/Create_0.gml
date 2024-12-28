@@ -16,11 +16,11 @@ hp_init = hp;
 hp_start = hp;
 
 // Increase fire rate and power
-damage += pieces_sacrificed/12;
-timer_end = max(.75, timer_end -pieces_sacrificed/2.5);
-repeat_shot_base += min(9, floor(pieces_sacrificed/6));
+damage += pieces_sacrificed/32;
+timer_end = max(.75, timer_end -pieces_sacrificed/6);
+repeat_shot_base += min(9, floor(pieces_sacrificed/12));
 
 // Decrease move cost and cooldown
-cost = max(1,cost -floor(pieces_sacrificed/3));
-move_cooldown = move_cooldown/(1 +pieces_sacrificed/1.5);
+cost = max(1,cost -floor(pieces_sacrificed/6));
+move_cooldown = move_cooldown/(1 +pieces_sacrificed/6);
 move_cooldown_timer = move_cooldown;

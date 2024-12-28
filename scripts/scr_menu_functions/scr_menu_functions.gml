@@ -103,7 +103,7 @@ function menu_function(purpose = "Back",contextArg = context){
 		break;
 		
 		case "FPS":
-			global.fps_target = clamp(int64(string_digits(get_string("Enter Desired FPS", ""))),0,999);
+			global.fps_target = clamp(int64(string_digits(get_integer_async("Enter Desired FPS", 60))),0,999);
 			if global.fps_target != "" {
 				game_set_speed(global.fps_target,gamespeed_fps);
 				save(PROFILE);
@@ -142,7 +142,7 @@ function menu_function(purpose = "Back",contextArg = context){
 		break;
 		
 		case "Music":
-			global.music_volume = clamp(int64(string_digits(get_string("Enter Volume", ""))),0,100)/100;
+			global.music_volume = clamp(int64(string_digits(get_integer_async("Enter Volume", 50))),0,100)/100;
 			if global.music_volume != "" {
 			// Save Profile Data
 				save(PROFILE);
@@ -150,7 +150,7 @@ function menu_function(purpose = "Back",contextArg = context){
 		break;
 		
 		case "Cursor":
-			global.cursor_sens = clamp(int64(string_digits(get_string("Enter Sensitivity", ""))),0.5,10);
+			global.cursor_sens = clamp(int64(string_digits(get_integer_async("Enter Sensitivity", 3))),0.5,10);
 
 			if global.cursor_sens != "" {
 			// Save Profile Data

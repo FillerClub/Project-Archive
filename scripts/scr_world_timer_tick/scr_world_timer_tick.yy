@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"scr_game_ai",
+  "%Name":"scr_world_timer_tick",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"scr_game_ai",
+  "name":"scr_world_timer_tick",
   "parent":{
-    "name":"AI",
-    "path":"folders/Scripts/AI.yy",
+    "name":"Misc",
+    "path":"folders/Scripts/Misc.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

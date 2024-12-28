@@ -6,7 +6,7 @@ audio_group_stop_all(track4);
 audio_group_stop_all(standalone_soundtracks);
 initialize_variables();
 
-var gS = global.grid_spacing;
+var gS = GRIDSPACE;
 
 switch room {
 	case rm_world_one:

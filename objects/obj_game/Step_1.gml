@@ -5,13 +5,12 @@ if tutorial_piece != noone {
 	handle_tutorials(global.tutorial_progress);
 }
 
-
 if global.pause {
 	exit;	
 }
 	
 var aL = false,
-gS = global.grid_spacing,
+gS = GRIDSPACE,
 mosX = floor(obj_cursor.x/gS)*gS,
 mosY = floor(obj_cursor.y/gS)*gS;
 

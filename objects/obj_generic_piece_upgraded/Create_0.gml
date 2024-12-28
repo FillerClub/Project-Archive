@@ -1,4 +1,4 @@
-var gS = global.grid_spacing;
+var gS = GRIDSPACE;
 var tm = (team == "friendly")?1:-1;
 
 valid_moves[BOTH] = [	[tm,1],

@@ -17,7 +17,6 @@ function initialize_variables(isFresh = false){
 		global.timer_max_speed_mult = 3.3;
 		// Replace all global references to this macro eventually
 		#macro GRIDSPACE 64
-		global.grid_spacing = 64; 
 		global.cursor_sens = 3;
 		global.fps_target = 60;
 		global.tutorial_progress = 0;
@@ -39,6 +38,7 @@ function initialize_variables(isFresh = false){
 	timer[MAIN] = 0;
 	timer[ALERT] = 0;
 	timer[AI] = 0;
+	timer_phase = 0;
 	ai_pieces = [];
 	friendly_pieces = [];
 	ai_valid[PIECE] = [];

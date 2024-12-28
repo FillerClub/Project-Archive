@@ -1,5 +1,5 @@
 function scr_target_draw(){
-var gS = global.grid_spacing;
+var gS = GRIDSPACE;
 var gD = global.grid_dimensions;
 
 var gClampX = clamp(floor(obj_cursor.x/gS),gD[0]/gS,gD[1]/gS)*gS;

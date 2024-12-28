@@ -1,7 +1,7 @@
 event_inherited();
 // Old accelerator code
 //var ar_leng = array_length(aura),
-//gS = global.grid_spacing;
+//gS = GRIDSPACE;
 // For each move available (i)
 /*
 for (var i = 0; i < ar_leng; ++i)	{

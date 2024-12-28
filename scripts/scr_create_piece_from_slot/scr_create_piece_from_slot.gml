@@ -5,7 +5,7 @@ if !create {
 
 var 
 i = 0,
-gS = global.grid_spacing,
+gS = GRIDSPACE,
 selectthis = true,
 gX = obj_cursor.x,
 gY = obj_cursor.y,

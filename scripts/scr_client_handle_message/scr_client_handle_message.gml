@@ -1,5 +1,5 @@
 function scr_client_handle_message(){
-	var gS = global.grid_spacing;
+	var gS = GRIDSPACE;
 	var buff = argument0;
 
 	while true {

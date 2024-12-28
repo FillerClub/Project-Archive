@@ -20,7 +20,7 @@ if ai_controlled { auto_attack_timer(); }
 
 
 var 
-gS = global.grid_spacing,
+gS = GRIDSPACE,
 gD = global.grid_dimensions,
 gClampX = clamp(floor(x),gD[0],gD[1]),
 gClampY = clamp(floor(y),gD[2],gD[3]),

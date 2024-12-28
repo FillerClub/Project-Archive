@@ -3,7 +3,7 @@ event_inherited();
 // shoot
 if !global.pause {
 	var 
-	gS = global.grid_spacing,
+	gS = GRIDSPACE,
 	tM = (team == "friendly")?1:-1;
 	if (timer >= timer_end) {
 		timer = 0;

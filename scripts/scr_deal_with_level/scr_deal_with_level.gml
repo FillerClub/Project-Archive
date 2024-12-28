@@ -1,5 +1,5 @@
 function deal_with_level(level) {
-	var gS = global.grid_spacing;
+	var gS = GRIDSPACE;
 
 	// Default level music
 	var soundtrackPlay = GETOUTOFMYWAY;
@@ -69,6 +69,12 @@ function deal_with_level(level) {
 					with obj_marker {
 						x -= gS*4	
 					}
+					with obj_timer {
+						if team == global.enemy_team {
+							//x += 6000;
+						}
+					}
+					instance_destroy(obj_territory_blockade);
 					scale_grid(7);
 				break;
 				

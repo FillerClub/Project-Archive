@@ -1,7 +1,7 @@
 function crawler_code() {
 	if !global.pause {
 		var tM = ((team == "friendly")?1:-1)*(1 -toggle*2),
-		gS = global.grid_spacing;
+		gS = GRIDSPACE;
 	
 		if position_meeting(x +tM*gS,y,obj_obstacle) {
 			with instance_position(x +tM*gS,y,obj_obstacle) {

@@ -1,5 +1,5 @@
 function piece_move(valid_moves = [0,0]){
-var gS = global.grid_spacing,
+var gS = GRIDSPACE,
 gX = obj_cursor.x,
 gY = obj_cursor.y;
 var gClampX = floor(gX/gS)*gS;
