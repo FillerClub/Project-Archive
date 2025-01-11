@@ -909,7 +909,6 @@
     {"id":{"name":"scr_piece_attack","path":"scripts/scr_piece_attack/scr_piece_attack.yy",},},
     {"id":{"name":"scr_piece_database","path":"scripts/scr_piece_database/scr_piece_database.yy",},},
     {"id":{"name":"scr_piece_highlight_draw","path":"scripts/scr_piece_highlight_draw/scr_piece_highlight_draw.yy",},},
-    {"id":{"name":"scr_piece_move","path":"scripts/scr_piece_move/scr_piece_move.yy",},},
     {"id":{"name":"scr_piece","path":"scripts/scr_piece/scr_piece.yy",},},
     {"id":{"name":"scr_power_database","path":"scripts/scr_power_database/scr_power_database.yy",},},
     {"id":{"name":"scr_progress_menu","path":"scripts/scr_progress_menu/scr_progress_menu.yy",},},
