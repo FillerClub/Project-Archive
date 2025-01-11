@@ -35,7 +35,10 @@ if file_exists(SAVEFILE) {
 	global.level = load[0].level;
 	global.tutorial_progress = load[0].tutorial_progress;
 	global.unlocked_pieces = load[0].unlocked_pieces;
-	global.discovered_pieces = load[0].discovered_pieces;
 	global.unlocked_heroes = load[0].unlocked_heroes;
+	global.loadout = load[0].loadout;
+	global.active_hero = load[0].active_hero;
+	global.discovered_pieces = load[0].discovered_pieces;
+	
 }
 

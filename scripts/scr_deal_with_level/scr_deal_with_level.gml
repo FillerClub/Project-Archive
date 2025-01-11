@@ -1,11 +1,12 @@
 function deal_with_level(level) {
 	var gS = GRIDSPACE;
-
+	var deployLoadout = global.loadout;
 	// Default level music
 	var soundtrackPlay = GETOUTOFMYWAY;
 	switch level[0] {
 		case 0:
 			soundtrackPlay = BATTLE;
+			deployLoadout = global.unlocked_pieces;
 		break;
 		case 1:
 			instance_create_layer(x,y,"AboveBoard",obj_world_one);
@@ -18,7 +19,6 @@ function deal_with_level(level) {
 					with obj_generic_hero {
 						hp = 3;	
 					}
-					instance_destroy(obj_mode);
 					instance_destroy(obj_power_slot);		
 					with obj_power_passive {
 						y = 464;	
@@ -58,20 +58,21 @@ function deal_with_level(level) {
 					soundtrackPlay = BATTLE;
 					scale_grid(7);			
 					instance_create_layer(640,192,"Instances",obj_short_shooter,varStruct);																			
-					instance_create_layer(640,576,"Instances",obj_short_shooter,varStruct);						
+					instance_create_layer(640,576,"Instances",obj_short_shooter,varStruct);	
+					deployLoadout = ["short"];	
 				break;
 				
 				case 8:
 					soundtrackPlay = BATTLE;
 					with obj_territory_friendly {
-						image_xscale = 3;	
+						image_xscale = 4;	
 					}
 					with obj_marker {
-						x -= gS*4	
+						x -= gS*3	
 					}
 					with obj_timer {
 						if team == global.enemy_team {
-							//x += 6000;
+							x += 6000;
 						}
 					}
 					instance_destroy(obj_territory_blockade);
@@ -84,24 +85,21 @@ function deal_with_level(level) {
 			}
 		break;
 	}
-	// Load loadout
-	if (level[0] == 1 && level[1] == 4) {
-		global.loadout = ["short"];	
-	}
-	if level[0] != 0 {
-		with obj_slot_bg {
-			if team == global.team {
-				var loadoutLength = array_length(global.loadout);
-				for (var l = 0; l < loadoutLength; l++) {
-					instance_create_layer(x +l*48,y,"Instances",obj_piece_slot,{
-						identity: global.loadout[l]
-					});				
-				}
+	
+
+	with obj_slot_bg {
+		if team == global.team {
+			var loadoutLength = array_length(deployLoadout);
+			for (var l = 0; l < loadoutLength; l++) {
+				instance_create_layer(x +l*48,y,"Instances",obj_piece_slot,{
+					identity: deployLoadout[l]
+				});				
 			}
 		}
-		with obj_pawn_limit {
-			visible = true;	
-		}
 	}
+	with obj_pawn_limit {
+		visible = true;	
+	}
+	
 	soundtrack_play(soundtrackPlay);
 }

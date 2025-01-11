@@ -38,5 +38,8 @@ if execute {
 		case "Journal":
 				room_goto(rm_journal);
 		break;
+		case "Loadout":
+				room_goto(rm_loadout_zone);
+		break;
 	}
 }

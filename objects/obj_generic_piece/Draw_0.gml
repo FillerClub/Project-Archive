@@ -1,11 +1,7 @@
 /// @desc Generic piece draw code
 var tM = (team == "enemy")?-1:1,
-gX = obj_cursor.x,
-gY = obj_cursor.y,
 colS = c_white,
 col = c_white,
-debugOn = false,
-drawSpr = spr_grid_highlight,
 sPD = effects_array[EFFECT.SPEED],
 sLW = effects_array[EFFECT.SLOW];
 
@@ -21,47 +17,6 @@ switch team {
 		col = c_white;	
 	break;
 }
-if execute != "move" && global.debug && ai_controlled { debugOn = true; } 
-
-
-// Draw highlighted squares on the grid.
-surface_set_target(global.grid_highlight_surface);
-if execute == "move" || debugOn {
-	// Draw own square
-	if debugOn {
-		drawSpr = spr_grid_dotted; 
-	}
-	
-	if position_meeting(gX,gY,self) && !debugOn {
-		colS = c_red;
-	}
-		
-	draw_sprite_ext(drawSpr,image_index,
-		x,
-		y,
-		1,1,0,colS,1);
-		
-	var arrayLengthMovesList = array_length(valid_moves);
-	// From each valid_moves array, grab each moves list (ONLY_ATTACK, ONLY_MOVE, BOTH)
-	for (var list = 0; list < arrayLengthMovesList; list++) {
-		// Filter out dead arrays
-		if valid_moves[list] != undefined && valid_moves[list] != 0 {
-			switch list {
-				case ONLY_MOVE:
-					highlight_draw(display_mode,valid_moves[ONLY_MOVE],c_aqua,debugOn,PLACEABLEANY,PLACEABLENONE,false,false,debugOn);
-				break;
-				case ONLY_ATTACK:
-					highlight_draw(display_mode,valid_moves[ONLY_ATTACK],c_red,debugOn,PLACEABLENONE,DIFFERENT,false,false,debugOn)
-				break;
-				case BOTH:
-					highlight_draw(display_mode,valid_moves[BOTH],c_white,debugOn,PLACEABLEANY,DIFFERENT,false,false,debugOn)
-				break;
-			}
-		}	
-	}	
-}
-surface_reset_target();
-surface_set_target(global.piece_surface);
 
 var
 xFlip = (1 -toggle*2)*tM,
@@ -107,8 +62,6 @@ if sLW > 0 {
 	}
 }
 
-surface_reset_target();
-
 // Create HP effect and reset variables
 if hp_init != hp {
 	damaged = true;
@@ -116,8 +69,11 @@ if hp_init != hp {
 		hp: hp -hp_init
 	});
 }
-hp_init = hp;
-image_speed = 1 +sprite_accel*9;
 
+image_speed = 1 +sprite_accel*9;
+if !global.pause {
+	moved = false;
+	hp_init = hp;
+}
 //draw_text(x,y,effects_management_array);
 //draw_text(x,y+64,effects_array);

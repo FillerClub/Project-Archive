@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"GMTactician_MctsTree_classes",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"GMTactician_MctsTree_classes",
+  "parent":{
+    "name":"GMTactician_MctsTree",
+    "path":"folders/AI/Libraries/GMTactician_MctsTree.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

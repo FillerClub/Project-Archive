@@ -9,8 +9,8 @@
   "name":"obj_aegis_bloom_passive",
   "overriddenProperties":[],
   "parent":{
-    "name":"Powers",
-    "path":"folders/Objects/Piece Stuff/Heros/Powers.yy",
+    "name":"Warden",
+    "path":"folders/Objects/Piece Stuff/Heros/Powers/Warden.yy",
   },
   "parentObjectId":null,
   "persistent":false,

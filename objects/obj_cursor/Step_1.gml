@@ -3,6 +3,13 @@ minCoord = 0 +cursorMargin,
 maxX = room_width -cursorMargin,
 maxY = room_height -cursorMargin;
 
+// With grid
+if instance_exists(obj_grid) {
+	var gD = global.grid_dimensions;
+	grid_pos[0] = floor((x -gD[0])/GRIDSPACE);
+	grid_pos[1] = floor((y -gD[2])/GRIDSPACE);
+}
+
 if input_mouse_moved() || input_source_using(INPUT_MOUSE) {
 	x = clamp(mouse_x,minCoord,maxX);
 	y = clamp(mouse_y,minCoord,maxY);

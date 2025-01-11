@@ -119,11 +119,11 @@ switch level[1] {
 		}
 		enemy_spawn_sequence(7,["crawler"],5,3,0,random_y); 
 		pause_sequence(8,true,10);	
-		enemy_spawn_sequence(9,["crawler"],5,3,0,random_y); 
+		enemy_spawn_sequence(9,["crawler"],4,3,0,random_y); 
 		pause_sequence(10,true,6);	
 		enemy_spawn_sequence(11,["crawler"],3,2,0,random_y); 
 		initiate_final_wave(12,!enemyPiecePresent,track3);
-		enemy_spawn_sequence(13,["crawler"],1,8,0,random_y);
+		enemy_spawn_sequence(13,["crawler"],.5,10,0,random_y);
 		drop_slot(14,"accelerator",[1,2],!enemyPiecePresent,);
 	break;
 	
@@ -136,9 +136,9 @@ switch level[1] {
 		enemy_spawn_sequence(3,["crawler"],9,3,0,random_y);
 		pause_sequence(4,true,15);
 		enemy_spawn_sequence(5,["drooper"],.5,2,0,randomEdgeY);
-		enemy_spawn_sequence(6,["crawler"],8,2,0,random_y);
+		enemy_spawn_sequence(6,["crawler"],7,2,0,random_y);
 		initiate_final_wave(7,!enemyPiecePresent,track3);		
-		enemy_spawn_sequence(8,["drooper","crawler"],1,10,0,random_y);	
+		enemy_spawn_sequence(8,["drooper","crawler"],.5,12,0,random_y);	
 		drop_slot(9,"stick",[1,3],!enemyPiecePresent);
 	break;
 	
@@ -157,8 +157,8 @@ switch level[1] {
 		enemy_spawn_sequence(8,["tank_crawler"],6,1,0,random_y);
 		enemy_spawn_sequence(9,["crawler","drooper"],10,4,0,random_y);
 		initiate_final_wave(10,!enemyPiecePresent);
-		enemy_spawn_sequence(11,["crawler","drooper"],1,9,0,random_y);
-		enemy_spawn_sequence(12,["tank_crawler"],2,3,0,random_y);
+		enemy_spawn_sequence(11,["crawler","drooper"],1,10,0,random_y);
+		enemy_spawn_sequence(12,["tank_crawler"],1,5,0,random_y);
 		drop_slot(13,"splitter",[1,4],!enemyPiecePresent);
 	break;
 	
@@ -166,32 +166,32 @@ switch level[1] {
 		var randomTipEdgeY = irandom_range(0,1)*6;
 		var randomCenterY = irandom_range(2,4);
 		enemy_spawn_sequence(1,["crawler"],INITIAL,1,0,randomCenterY);
-		enemy_spawn_sequence(2,["tank_crawler"],3,1,0,randomCenterY);
-		enemy_spawn_sequence(3,["crawler"],3,2,0,randomCenterY);
-		pause_sequence(4,true,10);
-		enemy_spawn_sequence(5,["crawler"],4,5,0,randomTipEdgeY);
-		pause_sequence(6,true,10);
-		enemy_spawn_sequence(7,["crawler","drooper"],3,6,0,random_y);
-		pause_sequence(8,true,8);
-		enemy_spawn_sequence(9,["crawler","tank_crawler"],2,6,0,random_y);
+		enemy_spawn_sequence(2,["tank_crawler"],2,1,0,randomCenterY);
+		enemy_spawn_sequence(3,["crawler"],2,2,0,randomCenterY);
+		pause_sequence(4,true,12);
+		enemy_spawn_sequence(5,["crawler"],2.5,4,0,randomTipEdgeY);
+		pause_sequence(6,true,12);
+		enemy_spawn_sequence(7,["crawler","drooper"],2.5,8,0,random_y);
+		pause_sequence(8,true,12);
+		enemy_spawn_sequence(9,["crawler","tank_crawler"],2.5,8,0,random_y);
 		initiate_final_wave(10,!enemyPiecePresent);
-		enemy_spawn_sequence(11,["drooper"],.8,8,0,random_y);
+		enemy_spawn_sequence(11,["drooper","tank_crawler","crawler"],1.5,12,0,random_y);
 		drop_slot(12,"short",[1,5],!enemyPiecePresent);
 	break;
 	case 5:
 		enemy_spawn_sequence(1,["crawler"],INITIAL,1,0,random_y);
 		enemy_spawn_sequence(2,["crawler"],12,2,0,random_y);
-		pause_sequence(3,true,12);
+		pause_sequence(3,true,7);
 		enemy_spawn_sequence(4,["tank_crawler"],12,1,0,random_y);
 		enemy_spawn_sequence(5,["crawler"],10,2,0,random_y);
-		pause_sequence(6,true,8);
+		pause_sequence(6,true,7);
 		enemy_spawn_sequence(7,["jumper"],0,1,0,random_y);
 		enemy_spawn_sequence(8,["crawler"],8,2,0,random_y);
 		initiate_final_wave(9,!enemyPiecePresent);
-		enemy_spawn_sequence(10,["jumper"],1,1,0,random_y);
-		enemy_spawn_sequence(11,["crawler"],1,2,0,random_y);
-		enemy_spawn_sequence(12,["tank_crawler"],1.2,2,0,random_y);
-		enemy_spawn_sequence(13,["crawler"],1.2,4,0,random_y);
+		enemy_spawn_sequence(10,["jumper"],.5,2,0,random_y);
+		enemy_spawn_sequence(11,["crawler"],.5,1,0,random_y);
+		enemy_spawn_sequence(12,["tank_crawler"],.5,4,0,random_y);
+		enemy_spawn_sequence(13,["crawler"],.5,6,0,random_y);
 		drop_slot(14,"piercer",[1,6],!enemyPiecePresent);
 	break;
 	case 6:
@@ -203,70 +203,57 @@ switch level[1] {
 		enemy_spawn_sequence(5,["jumper","drooper"],11,4,0,randomEdgeY);
 		enemy_spawn_sequence(6,["crawler"],2,2,0,random_y);
 		pause_sequence(7,true,7);
-		enemy_spawn_sequence(8,["jumper","drooper"],8,3,0,randomEdgeY);
+		enemy_spawn_sequence(8,["jumper","drooper"],6,4,0,randomEdgeY);
 		enemy_spawn_sequence(9,["crawler"],2,2,0,random_y);
 		initiate_final_wave(10,!enemyPiecePresent);
-		enemy_spawn_sequence(11,["jumper","drooper"],1,10,0,random_y);
-		drop_slot(12,"cross",[1,7],!enemyPiecePresent);
+		enemy_spawn_sequence(11,["jumper","drooper"],.5,16,0,random_y);
+		drop_slot(12,"cross",[1,7],!enemyPiecePresent,"Lonestar");
 	break;
 	case 7:
 		var randomCenterY = irandom_range(2,4);
 		enemy_spawn_sequence(1,["crawler"],INITIAL,1,0,random_y);
 		enemy_spawn_sequence(2,["crawler"],12,2,0,random_y);
-		enemy_spawn_sequence(3,["tank_crawler"],16,1,0,randomCenterY);
+		enemy_spawn_sequence(3,["tank_crawler"],12,1,0,randomCenterY);
 		if pause_sequence(4,true,7) {
 			audio_group_set_gain(track3,1,4500);	
 		}
-		enemy_spawn_sequence(5,["crawler"],11,2,0,random_y);
-		enemy_spawn_sequence(6,["tank_crawler"],14,2,0,randomCenterY);
+		enemy_spawn_sequence(5,["crawler"],8,2,0,random_y);
+		enemy_spawn_sequence(6,["super_tank_crawler"],12,2,0,randomCenterY);
 		pause_sequence(7,true,5);
-		enemy_spawn_sequence(8,["tank_crawler"],12,5,0,random_y);
+		enemy_spawn_sequence(8,["tank_crawler","super_tank_crawler"],10,6,0,random_y);
 		initiate_final_wave(9,!enemyPiecePresent);
-		enemy_spawn_sequence(10,["tank_crawler"],2,7,0,random_y);
+		enemy_spawn_sequence(10,["tank_crawler","super_tank_crawler"],.5,12,0,random_y);
 		drop_slot(11,"super_stick",[1,8],!enemyPiecePresent);
 	break;
 	case 8:
-		var random_x = irandom(2) +1;
-		hero_ai();
-		switch hero_phase {
-			case 0:
-				enemy_spawn_sequence(1,["crawler"],INITIAL,1,random_x,ai_lane_choose);
-				enemy_spawn_sequence(2,["crawler"],.6,1,random_x,ai_lane_choose);
-				pause_sequence(3,true,12);
-				enemy_spawn_sequence(4,["crawler"],.2,1,random_x,ai_lane_choose);
-				if pause_sequence(5,true,14) {
-					phase = 4;	
-				}
-			break;
-			case 1:
-				enemy_spawn_sequence(1,["drooper"],INITIAL,1,random_x,ai_lane_choose);
-				enemy_spawn_sequence(2,["drooper"],.6,2,random_x,ai_lane_choose);
-				pause_sequence(3,true,12);
-				enemy_spawn_sequence(4,["drooper"],.2,2,random_x,ai_lane_choose);
-				if pause_sequence(5,true,14) {
-					phase = 4;	
-				}
-			break;
-			case 2:
-				enemy_spawn_sequence(1,["jumper"],INITIAL,1,random_x,ai_lane_choose);
-				enemy_spawn_sequence(2,["jumper"],.6,3,random_x,ai_lane_choose);
-				pause_sequence(3,true,12);
-				enemy_spawn_sequence(4,["jumper"],.2,3,random_x,ai_lane_choose);
-				if pause_sequence(5,true,14) {
-					phase = 4;	
-				}
-			break;
-			case 3:
-			default:
-				enemy_spawn_sequence(1,["tank_crawler"],INITIAL,1,random_x,ai_lane_choose);
-				enemy_spawn_sequence(2,["tank_crawler"],.6,4,random_x,ai_lane_choose);
-				pause_sequence(3,true,12);
-				enemy_spawn_sequence(4,["tank_crawler"],.2,4,random_x,ai_lane_choose);
-				if pause_sequence(5,true,14) {
-					phase = 4;	
-				}
-			break;
+		var random_x = irandom(1) +2;
+		
+		if phase < HEROBATTLEEND {
+			hero_ai();
 		}
-		drop_slot(HEROBATTLEEND,"big_shooter",[1,1],!enemyPiecePresent);
+
+		if should_protect {
+			enemy_spawn_sequence(1,["crawler"],INITIAL,1,1,ai_lane_protect);
+			enemy_spawn_sequence(2,["crawler"],9,2,1,ai_lane_protect);
+			enemy_spawn_sequence(3,["tank_crawler"],9,1,1,ai_lane_protect);
+			pause_sequence(4,true,7);
+			enemy_spawn_sequence(5,["tank_crawler","super_tank_crawler"],11,2,1,ai_lane_protect);
+			enemy_spawn_sequence(6,["crawler"],7,2,1,ai_lane_protect);
+			pause_sequence(7,true,6);
+		} else {
+			enemy_spawn_sequence(1,["jumper"],INITIAL,1,1,ai_lane_choose);
+			enemy_spawn_sequence(2,["crawler"],9,1,1,ai_lane_choose);
+			enemy_spawn_sequence(3,["jumper","crawler"],9,3,1,ai_lane_choose);
+			pause_sequence(4,true,7);
+			enemy_spawn_sequence(5,["jumper","drooper"],9,4,1,ai_lane_choose);
+			enemy_spawn_sequence(6,["crawler"],9,2,1,ai_lane_protect);
+			pause_sequence(7,true,7);
+		}
+		if phase >= 7 && phase < HEROBATTLEEND {
+			phase = 5;
+			timer = 0;
+			hero_phase += 2;
+		}
+		drop_slot(HEROBATTLEEND,"big_shooter",[1,1],!enemyPiecePresent,"Empress");
 	break;
 }											

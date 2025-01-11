@@ -120,7 +120,7 @@ for (var inst = 0; inst < arrayLength; inst++) {
 			}
 		}	
 	}
-}
+} 
 var arrayLengthValid = array_length(ai_valid[PIECE]), // ai_valid[PIECE] and ai_valid[MOVE] arrays should be the same length
 at = [-1],
 atCount = 0,
@@ -149,18 +149,33 @@ for (var cl = 0; cl < arrayLengthValid; cl++) {
 				// Grab the attacking move immediately in front of it
 				var 
 				horseX = x + gS*tm_dp(int64(1),team,toggle),
-				horseY = y;
+				horseY = y,
+				horseLookingAt = instance_position(horseX,horseY,obj_obstacle),
+				shouldNotJump = true;
+				
+				if horseLookingAt != noone {
+					if horseLookingAt.team != team {
+						shouldNotJump = false;	
+					}
+				}
+				
 				// May change, but invalidate move if isn't in front of another piece
-				if move_count <= 0 && !position_meeting(horseX,horseY,obj_obstacle) {
+				if move_count <= 0 && shouldNotJump {
 					skipMove = true;
 				}
 			}
+		break;
+		case "wall":
+		case "the_goliath":
+			if !position_meeting(clX,clY,obj_obstacle) {
+				skipMove = true;
+			}			
 		break;
 		default:
 			if canTakePiece {
 				if !position_meeting(clX,clY,obj_obstacle) {
 					skipMove = true;
-				}				
+				}					
 			}
 		break;
 	}

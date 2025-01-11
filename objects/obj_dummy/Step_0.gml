@@ -115,7 +115,7 @@ if placed && placeable {
 					link.cooldown = 0;	
 				break;
 				case obj_power_slot:
-					link.usable = false;	
+					link.usable--;	
 				break;
 			}
 			

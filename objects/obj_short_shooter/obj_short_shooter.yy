@@ -39,6 +39,7 @@
     {"$GMObjectProperty":"v1","%Name":"timer_end","filters":[],"listItems":[],"multiselect":false,"name":"timer_end","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"1.2","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"angle","filters":[],"listItems":[],"multiselect":false,"name":"angle","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"targets","filters":[],"listItems":[],"multiselect":false,"name":"targets","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"","varType":6,},
+    {"$GMObjectProperty":"v1","%Name":"decide_shoot","filters":[],"listItems":[],"multiselect":false,"name":"decide_shoot","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

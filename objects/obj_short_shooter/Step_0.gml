@@ -13,9 +13,9 @@ if !global.pause {
 	gS = GRIDSPACE;
 	if (timer >= timer_end) {
 		timer = 0;
-		timer_end = random_percent(.9,4);
-		var decideShoot = false,
-		xV = 0,
+		timer_end = random_percent(.7,4);
+		decide_shoot = false;
+		var xV = 0,
 		yV = 0,
 		heroWallX = 0,
 		leastX = 99999;
@@ -46,7 +46,7 @@ if !global.pause {
 					}
 					if distance_to_point(heroWallX,y) < leastX {
 						leastX = distance_to_point(heroWallX,y);
-						decideShoot = true;	
+						other.decide_shoot = true;	
 						var b = x - other.x +offX,
 						a = y - other.y,
 						angle = abs(arctan(a/b));
@@ -58,7 +58,7 @@ if !global.pause {
 			}
 		}
 		
-		if decideShoot {
+		if decide_shoot {
 			instance_create_depth(x +sprite_width/2 +random_range(-4,4),y +sprite_height/2 +random_range(-4,4),depth -gS/2,obj_bullet_parent, {
 			team: team,
 			x_vel: xV,

@@ -14,7 +14,6 @@ if global.pause && !ignore_pause {
 
 deal_with_effects();
 
-moved = false;
 depth = -bbox_bottom;
 if ai_controlled { auto_attack_timer(); }
 

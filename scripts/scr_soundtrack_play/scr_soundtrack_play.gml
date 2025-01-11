@@ -19,7 +19,7 @@ function soundtrack_play(track) {
 				audio_group_set_gain(track2,1,10000);		
 			break;
 			case LOOKINGBACK:
-				audio_play_sound_on(main_emitter,msc_looking_back,1,1,1);
+				audio_play_sound_on(main_emitter,msc_beauty_in_recollection,1,1,1);
 			break;
 		}
 	}

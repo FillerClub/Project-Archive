@@ -4,7 +4,7 @@
 #macro JOURNAL 2
 #macro POSTLEVELJOURNAL 3
 // Main menu functions
-#macro FIRSTMENU ["Singleplayer","Settings","Journal","Exit Game"]
+#macro FIRSTMENU ["Singleplayer","Settings","Journal","Edit Loadout","Exit Game"]
 #macro SINGLEPLAYERMENU ["Campaign","Sandbox","Back"]
 #macro MULTIPLAYERMENU ["Join Lobby","Create Lobby","Back"]
 #macro SETTINGSMENU ["Data","Music","Cursor","FPS","Display","Debug","Back"]
@@ -50,6 +50,13 @@ function menu_function(purpose = "Back",contextArg = context){
 		case "Journal":
 			instance_create_layer(room_width - 80, room_height - 80, "GUI",obj_loading, {
 				run: "Journal",
+				load: [standalone_soundtracks]
+			});
+		break;
+		
+		case "Edit Loadout":
+			instance_create_layer(room_width - 80, room_height - 80, "GUI",obj_loading, {
+				run: "Loadout",
 				load: [standalone_soundtracks]
 			});
 		break;
@@ -103,7 +110,7 @@ function menu_function(purpose = "Back",contextArg = context){
 		break;
 		
 		case "FPS":
-			global.fps_target = clamp(int64(string_digits(get_integer_async("Enter Desired FPS", 60))),0,999);
+			global.fps_target = clamp(int64(string_digits(get_integer("Enter Desired FPS", 60))),0,999);
 			if global.fps_target != "" {
 				game_set_speed(global.fps_target,gamespeed_fps);
 				save(PROFILE);
@@ -126,9 +133,11 @@ function menu_function(purpose = "Back",contextArg = context){
 				file_delete(SAVEFILE);
 				global.level = [1,1];
 				global.tutorial_progress = 0;
-				global.unlocked_pieces = ["shooter"];
+				global.unlocked_pieces = ["shooter","wall","bishop","crawler","drooper","jumper","tank_crawler","super_tank_crawler","the_goliath","bomber"];
 				global.discovered_pieces = ["shooter","crawler"];
+				global.loadout = ["shooter"];
 				global.unlocked_heroes = ["Warden"];
+				global.active_hero = "Warden";
 				audio_play_sound(snd_explosion,0,0);
 			}
 			if global.debug && file_exists(PROFILE) {
@@ -142,7 +151,7 @@ function menu_function(purpose = "Back",contextArg = context){
 		break;
 		
 		case "Music":
-			global.music_volume = clamp(int64(string_digits(get_integer_async("Enter Volume", 50))),0,100)/100;
+			global.music_volume = clamp(int64(string_digits(get_integer("Enter Volume", 50))),0,100)/100;
 			if global.music_volume != "" {
 			// Save Profile Data
 				save(PROFILE);
@@ -150,7 +159,7 @@ function menu_function(purpose = "Back",contextArg = context){
 		break;
 		
 		case "Cursor":
-			global.cursor_sens = clamp(int64(string_digits(get_integer_async("Enter Sensitivity", 3))),0.5,10);
+			global.cursor_sens = clamp(int64(string_digits(get_integer("Enter Sensitivity", 3))),0.5,10);
 
 			if global.cursor_sens != "" {
 			// Save Profile Data

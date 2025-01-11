@@ -1,6 +1,6 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function timer_tick(){
+function timer_tick(tick_amt = global.turn_increment){
 	var onPlayersSide = team == global.team;
 	
 	if team == "friendly" {
@@ -11,7 +11,7 @@ function timer_tick(){
 					y_spd_max = -2;
 				}
 			}
-			global.turns += 1;
+			global.turns = min(global.turns +tick_amt,global.max_turns);
 			draw_mute_red_green = 1;
 			if onPlayersSide {
 				audio_play_sound(snd_timer_cycle,0,0);
@@ -25,7 +25,7 @@ function timer_tick(){
 					y_spd_max = -2;
 				}
 			}
-			global.enemy_turns += 1;
+			global.enemy_turns =  min(global.enemy_turns +tick_amt,global.max_turns);
 			draw_mute_red_green = 1;
 			if onPlayersSide {
 				audio_play_sound(snd_timer_cycle,0,0);

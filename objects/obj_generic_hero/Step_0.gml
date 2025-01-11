@@ -19,7 +19,7 @@ if hp < hp_init {
 		}		
 	} else {
 		with obj_world_one {
-			hero_phase++;	
+			hero_phase += 4;
 		}
 	}
 }

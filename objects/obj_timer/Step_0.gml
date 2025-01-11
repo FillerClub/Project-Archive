@@ -35,7 +35,26 @@ if timer >= click_time {
 if (timer >= seconds_per_turn) {
 	timer -= seconds_per_turn;	
 	total_ticks += 1;
-	click_time = seconds_per_turn / 16
+	click_time = seconds_per_turn / 16;
+	var
+	xSpawn = x,
+	ySpawn = y -sprite_height;
+	var amtIncrease = 0
+	if team == "friendly" {
+		amtIncrease = min(global.turn_increment,global.max_turns -global.turns);
+	}
+	if team == "enemy" {
+		amtIncrease = min(global.turn_increment,global.max_turns -global.enemy_turns);
+	}
+	
+	instance_create_layer(xSpawn,ySpawn,"GUI",obj_hit_fx, {
+		hp: amtIncrease,
+		x_target: xSpawn,
+		y_target: ySpawn -16,
+		diff_factor: 64,
+		image_xscale: 2,
+		image_yscale: 2
+	});
 	timer_tick();
 }
 

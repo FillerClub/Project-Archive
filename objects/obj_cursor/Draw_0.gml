@@ -1,4 +1,3 @@
-surface_set_target(global.gui_surface);
 if !using_mk && !instance_exists(obj_menu) {
 	window_set_cursor(cr_none);
 	draw_self();	
@@ -18,24 +17,99 @@ var
 stringDraw = -1,
 descWidth = 0,
 descHeight = 0,
+gS = GRIDSPACE,
 //shift = 10,
-margin = 3;
+margin = 3,
+movingSomething = noone;
 
+with obj_generic_piece {
+	if execute == "move" && team == global.team {
+		movingSomething = id;	
+	}
+}
 
 // Draw health as popups
 with instance_position(x,y,obj_generic_piece) {
-	stringDraw = "HP: " +string(hp);
+	stringDraw = string(hp) +" HP";
 	descWidth = string_width(stringDraw);
 	descHeight = string_height(stringDraw);
 }
 // Draw health as popups
 with instance_position(x,y,obj_hero_wall) {
-	stringDraw = "HP: " +string(hp);
+	stringDraw = string(hp) +" HP";
 	descWidth = string_width(stringDraw);
 	descHeight = string_height(stringDraw);
 }
+
+if !position_meeting(x,y,movingSomething) {
+	with movingSomething {
+		var 
+		setsOfMoves = array_length(valid_moves),
+		mouseOn = false,
+		mosX = floor(other.x/gS)*gS,
+		mosY = floor(other.y/gS)*gS,
+		gcX = floor(x/gS)*gS,
+		gcY = floor(y/gS)*gS;
+				
+		for (var set = 0; set < setsOfMoves; ++set)	{	
+			var arLeng = array_length(valid_moves[set]);
+			// For each move available (i)
+			for (var i = 0; i < arLeng; ++i)	{
+				var preValidX = valid_moves[set][i][0],
+				preValidY = valid_moves[set][i][1];
+				// Check if affected by team & toggle
+				if is_string(preValidX) {
+					preValidX = tm_dp(real(preValidX),team,toggle);
+				}
+				if is_string(preValidY) {
+					preValidY = tm_dp(real(preValidY),team,toggle);
+				}
+				var xM = preValidX*gS +gcX;
+				var yM = preValidY*gS +gcY;		
+				if (mosX == xM) && (mosY == yM) && (valid_moves[set][i][0] != 0 || valid_moves[set][i][1] != 0) {
+					mouseOn = true;
+				} 	
+			}
+		}
+		
+		if mouseOn {
+			var HPcheck = 0,
+			invalid = false;
+			if position_meeting(other.x,other.y,obj_generic_piece) || position_meeting(other.x,other.y,obj_hero_wall) {
+				var check = instance_position(other.x,other.y,obj_obstacle);
+				if check.team == team {
+					invalid = true;	
+				} else {
+					HPcheck = check.hp;	
+				}
+			}
+			if invalid {
+				stringDraw = "CANNOT TAKE YOUR OWN PIECE";	
+			} else {
+				var totalCost = move_cost_formula(HPcheck,cost);
+				stringDraw = string(totalCost) +" COST";				
+			}
+
+			descWidth = string_width(stringDraw);
+			descHeight = string_height(stringDraw);
+		}
+	}
+}
+
+
+
 // Draw pop up descriptions from slots
 with instance_position(x,y,obj_piece_slot) {
+	stringDraw = desc;
+	descWidth = string_width(stringDraw);
+	descHeight = string_height(stringDraw);
+}
+with instance_position(x,y,obj_loadout_slot) {
+	stringDraw = desc;
+	descWidth = string_width(stringDraw);
+	descHeight = string_height(stringDraw);
+}
+with instance_position(x,y,obj_unlocked_slot) {
 	stringDraw = desc;
 	descWidth = string_width(stringDraw);
 	descHeight = string_height(stringDraw);
@@ -58,7 +132,7 @@ if stringDraw != -1 {
 	draw_set_alpha(0.8);
 	draw_set_color(c_black);
 	draw_rectangle(x,y,x +(descWidth +margin*2)*flip,y -descHeight -margin,false);
+	draw_set_alpha(1);
 	draw_set_color(c_white);
 	draw_text(x +margin*flip,y -margin -4,stringDraw);	
 }
-surface_reset_target();

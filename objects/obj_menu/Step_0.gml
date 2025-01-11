@@ -35,6 +35,8 @@ if current_index != prev_index {
 	prev_index = current_index;
 	switch context {
 		case PAUSE:
+		case JOURNAL:
+		case POSTLEVELJOURNAL:
 			audio_stop_sound(snd_phone_scroll);
 			audio_play_sound(snd_phone_scroll,0,0);
 		break;

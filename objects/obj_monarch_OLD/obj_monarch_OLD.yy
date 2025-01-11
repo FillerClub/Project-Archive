@@ -42,8 +42,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_monarch",
-    "path":"sprites/spr_monarch/spr_monarch.yy",
+    "name":"spr_empress",
+    "path":"sprites/spr_empress/spr_empress.yy",
   },
   "spriteMaskId":null,
   "visible":true,

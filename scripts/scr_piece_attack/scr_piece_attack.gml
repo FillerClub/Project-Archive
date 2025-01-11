@@ -40,7 +40,7 @@ if global.mode == "move" && execute == "move" {
 				return false;					
 			}
 			// Check how much it would cost to take piece
-			cost = floor(piececlick.hp/10) +cost;	
+			cost = move_cost_formula(piececlick.hp,cost);
 		} else {
 			if mode == ONLY_ATTACK {					
 				return false;		

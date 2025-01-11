@@ -96,13 +96,14 @@ if input_check_pressed("action") && !instance_exists(obj_dummy) {
 		}
 	}
 }
-#macro TIMERUPLENGTH 50
+#macro TIMERUPLENGTH 60
 // Battle Timer Function
 switch room {
 	case rm_setup:
 	break;
 	
 	case rm_journal:
+	case rm_loadout_zone:
 		global.turns = 9999;
 	break;
 	
@@ -112,9 +113,10 @@ switch room {
 			if timer[ALERT] > 0 { timer[ALERT] -= delta_time*DELTA_TO_SECONDS; }
 		}
 		if timer[MAIN] >= TIMERUPLENGTH || (global.debug && keyboard_check_pressed(vk_tab)) {
-			global.max_turns += 1;
-			global.turns += 1;
-			global.enemy_turns += 1;
+			global.max_turns++;
+			global.turns++;
+			global.enemy_turns++;
+			global.turn_increment++;
 			timer[ALERT] = 2.3;	
 			audio_play_sound(snd_shield_up,0,0);
 			var 
@@ -122,17 +124,19 @@ switch room {
 			accelCountE = 0;
 			with obj_accelerator {
 				sprite_accel = 1;
+				
 				if team == "friendly" {
 					accelCountF++;
 				}
 				if team == "enemy" {
 					accelCountE++;
 				}
+				
 			}
 			with obj_timer {
 				draw_mute_red_green = 1;
 				if accel <= global.timer_max_speed_mult {
-					accel = min(accel +0.3,global.timer_max_speed_mult)
+					accel = min(accel +0.075,global.timer_max_speed_mult)
 				} 
 				if team == "friendly" {
 					timer_count_queue = accelCountF;
@@ -146,26 +150,16 @@ switch room {
 			// Refresh powers up to three times
 			timer_phase++;
 			if timer_phase < 3 {
-				if timer_phase >= 0 {
-					with obj_power_slot {
-						if identity == "a" {
-							usable = true;
-						}
-					}		
-				}
-				if timer_phase >= 1 {
-					with obj_power_slot {
-						if identity == "b" {
-							usable = true;
-						}
-					}		
-				}
-				if timer_phase >= 2 {
-					with obj_power_slot {
-						if identity == "c" {
-							usable = true;
-						}
-					}		
+				with obj_power_slot {
+					if other.timer_phase >= 0 && identity == "a" {
+						usable++;
+					}
+					if other.timer_phase >= 1 && identity == "b" {
+						usable++;
+					}
+					if other.timer_phase >= 2 && identity == "c" {
+						usable++;
+					}
 				}
 			}
 			timer[MAIN] = 0;
@@ -197,7 +191,7 @@ if global.debug {
 					cooldown = cooldown_length;
 				break;
 				case obj_power_slot:
-					usable = true;
+					usable++;
 				break;
 			}
 		}

@@ -28,6 +28,14 @@ switch level[1] {
 	case 5:
 		piecePush = "jumper";
 	break;
+	case 7:
+		piecePush = "super_tank_crawler";
+	break;
+	case 8:
+		piecePush = "wall";
+		discover_piece(piecePush);
+		piecePush = "the_goliath";
+	break;
 }
 
 discover_piece(piecePush);

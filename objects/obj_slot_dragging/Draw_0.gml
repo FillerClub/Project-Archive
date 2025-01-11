@@ -1,0 +1,1 @@
+draw_slot(slot_index,frame_color,c_white,cost);

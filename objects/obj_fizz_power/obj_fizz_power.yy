@@ -8,8 +8,8 @@
   "name":"obj_fizz_power",
   "overriddenProperties":[],
   "parent":{
-    "name":"Powers",
-    "path":"folders/Objects/Piece Stuff/Heros/Powers.yy",
+    "name":"Empress",
+    "path":"folders/Objects/Piece Stuff/Heros/Powers/Empress.yy",
   },
   "parentObjectId":null,
   "persistent":false,

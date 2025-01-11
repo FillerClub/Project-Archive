@@ -12,21 +12,20 @@ DESCRIPTION = 6,			// String
 function power_database(name, trait = -1){
 with obj_power_database {
 	switch name {
-		// Warden's Powers
 		case "Warden-passive":
 			object = [	"Aegis Bloom",obj_aegis_bloom_passive,0,spr_aegis_bloom_passive,
 						PLACEABLEANY,PLACEABLEANY,
 						"When a wall breaks, it emits a powerful burst of energy that vaporizes any piece in its lane."];
 		break;
 		case "Warden-a":
-			object = [	"Meet your maker",obj_light_ray_power,1,spr_light_beam_slot,
-						PLACEABLENONE,DIFFERENT,
-						"Vanquish a weak piece."];
-		break;
-		case "Warden-b":
 			object = [	"Refurbishment",obj_heal_power,1,spr_heal_power_slot,
 						PLACEABLENONE,SAME,
 						"Heal a piece, and gives a slight speed boost."];
+		break;
+		case "Warden-b":
+			object = [	"Meet your maker",obj_light_ray_power,1,spr_light_beam_slot,
+						PLACEABLENONE,DIFFERENT,
+						"Deal 10 damage."];
 		break;
 		case "Warden-c":
 			object = [	"Super boost",obj_supercharge_power,1,spr_supercharge_slot,
@@ -35,12 +34,12 @@ with obj_power_database {
 		break;
 		// Empress' Powers
 		case "Empress-passive":
-			object = [	"Lust of Wrath",obj_lust_of_wrath_passive,0,spr_lust_of_wrath_passive,
+			object = [	"Lust of Wrath",obj_lust_of_wrath_passive,1,spr_lust_of_wrath_passive,
 						PLACEABLEANY,PLACEABLEANY,
 						"Breaking down walls gives your pieces a permanent speed boost."];
 		break;
 		case "Empress-a":
-			object = [	"Forceful Grasp",obj_net_power,0,spr_net_slot,
+			object = [	"Forceful Grasp",obj_net_power,1,spr_net_slot,
 						PLACEABLENONE,PLACEABLEANY,
 						"Displace any piece."];
 		break;
@@ -50,9 +49,30 @@ with obj_power_database {
 						"Splashes enemies, slowing and poisoning them"];
 		break;
 		case "Empress-c":
-			object = [	"Horde Summon",obj_horde_power,1,spr_horde_slot,
+			object = [	"Big guy call",obj_horde_power,1,spr_horde_slot,
 						SAME,PLACEABLEANY,
-						"Summons a massivehorde of crawlers."];
+						"Summons two big guys. For fun."];
+		break;
+		// Lonestars' Powers
+		case "Lonestar-passive":
+			object = [	"3x Timer Speed",obj_lonestar_passive,1,spr_lust_of_wrath_passive,
+						PLACEABLEANY,PLACEABLEANY,
+						"For fun."];
+		break;
+		case "Lonestar-a":
+			object = [	"Big guy call",obj_horde_power,1,spr_horde_slot,
+						SAME,PLACEABLEANY,
+						"For fun."];
+		break;
+		case "Lonestar-b":
+			object = [	"Big guy call",obj_horde_power,1,spr_horde_slot,
+						SAME,PLACEABLEANY,
+						"For fun."];
+		break;
+		case "Lonestar-c":
+			object = [	"Big guy call",obj_horde_power,1,spr_horde_slot,
+						SAME,PLACEABLEANY,
+						"For fun."];
 		break;
 		default:
 			object = [	"debug_power",obj_debug_piece,1,spr_generic_slot,

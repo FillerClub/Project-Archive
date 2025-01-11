@@ -1,4 +1,3 @@
-surface_set_target(global.piece_surface);
 var tm = (team == "friendly")?1:-1,
 imgIndex = clamp(ceil((hp/10)*3),0,3);	
 
@@ -6,7 +5,6 @@ sprite_set_offset(sprite_index,sprite_width/2,sprite_height/2);
 draw_sprite_ext(spr_generic_wall,imgIndex,x +sprite_width/2,y +sprite_height/2,tm,1,0,c_white,1);
 sprite_set_offset(sprite_index,0,0);	
 
-surface_reset_target();
 
 if hp_init != hp {
 	instance_create_layer(x +sprite_width/2 +(random_range(-sprite_width/2,sprite_width/2)),y +sprite_height/2 +(random_range(-sprite_height/2,sprite_height/2)),"AboveBoard",obj_hit_fx,{

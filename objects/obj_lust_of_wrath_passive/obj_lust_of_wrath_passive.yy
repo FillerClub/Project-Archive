@@ -10,8 +10,8 @@
   "name":"obj_lust_of_wrath_passive",
   "overriddenProperties":[],
   "parent":{
-    "name":"Powers",
-    "path":"folders/Objects/Piece Stuff/Heros/Powers.yy",
+    "name":"Empress",
+    "path":"folders/Objects/Piece Stuff/Heros/Powers/Empress.yy",
   },
   "parentObjectId":null,
   "persistent":false,

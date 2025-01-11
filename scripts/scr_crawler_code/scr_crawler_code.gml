@@ -47,7 +47,6 @@ function crawler_code() {
 				if !still {
 					x += tM*gS;	
 					timer = 0;
-				
 				}
 			} else {
 				toggle = (toggle)?false:true;

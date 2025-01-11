@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_hero_database",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_hero_database",
+  "parent":{
+    "name":"Databases",
+    "path":"folders/Scripts/Databases.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

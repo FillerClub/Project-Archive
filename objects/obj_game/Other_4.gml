@@ -43,8 +43,11 @@ switch room {
 			discoveredArrayLength++;
 		}
 		array_copy(journalMenu,discoveredArrayLength,ONPIECEJOURNAL,0,array_length(ONPIECEJOURNAL));
-
-		create_menu(journalMenu,cont,992,288,32,20, 10,fnt_phone,fa_left,fa_middle,true);
+		create_menu(journalMenu,cont,992,138,32,20, 10,fnt_phone,fa_left,fa_middle,true);
+		enable_pausing = false;
+	break;
+	case rm_loadout_zone:
+		soundtrack_play(LOOKINGBACK);
 		enable_pausing = false;
 	break;
 	

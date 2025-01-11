@@ -1,11 +1,7 @@
-switch identity {
-	case "Warden":
-		sprite_index = spr_warden;
-	break;
-	
-	case "Empress":
-		sprite_index = spr_monarch;
-	break;
+if team == global.team {
+	identity = global.active_hero;
 }
+sprite_index = hero_database(identity,HERODATA.SPRITE);
+
 hp = global.max_barriers;
 hp_init = hp;

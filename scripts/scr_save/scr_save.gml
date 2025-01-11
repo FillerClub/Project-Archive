@@ -18,6 +18,8 @@ function save(FILE) {
 				unlocked_pieces: global.unlocked_pieces,
 				discovered_pieces: global.discovered_pieces,
 				unlocked_heroes: global.unlocked_heroes,
+				active_hero: global.active_hero,
+				loadout: global.loadout,
 			}
 			array_push(progress,saveP);
 			var strng = json_stringify(progress);

@@ -10,8 +10,8 @@
   "name":"obj_net_power",
   "overriddenProperties":[],
   "parent":{
-    "name":"Powers",
-    "path":"folders/Objects/Piece Stuff/Heros/Powers.yy",
+    "name":"Empress",
+    "path":"folders/Objects/Piece Stuff/Heros/Powers/Empress.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -33,6 +33,7 @@
     {"$GMObjectProperty":"v1","%Name":"in_x","filters":[],"listItems":[],"multiselect":false,"name":"in_x","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"x","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"in_y","filters":[],"listItems":[],"multiselect":false,"name":"in_y","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"y","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"link","filters":[],"listItems":[],"multiselect":false,"name":"link","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"","varType":5,},
+    {"$GMObjectProperty":"v1","%Name":"fake","filters":[],"listItems":[],"multiselect":false,"name":"fake","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

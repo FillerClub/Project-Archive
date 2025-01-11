@@ -63,7 +63,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "big_shooter":
 				object = [	"big_shooter",obj_big_shooter,spr_big_shooter,spr_big_shooter_slot,
-							8,120,8,4,10,
+							9,120,8,4,10,
 							[undefined,
 							undefined,
 							[[1,1]]],
@@ -80,7 +80,7 @@ function piece_database(name, trait = -1) {
 							[["1",0]]],
 							SAME,PLACEABLENONE,
 							SUPPORTCLASS,PIECE,
-							"Shoots a piercing projectile, cannot attack walls.",
+							"Shoots a piercing projectile, cannot attack walls but slows down pieces.",
 							"TBA"]
 			break;
 			case "shotgun":
@@ -103,8 +103,8 @@ function piece_database(name, trait = -1) {
 			break;
 			case "cross":
 				object = [	"cross",obj_cross,spr_cross,spr_cross_slot,
-							4,15,8,1,15,
-							[[[1, 0],[-1,0]]],
+							3,15,2.5,1,10,
+							[[[1, 0],[2, 0],[-1,0],[-2,0],[0,1],[0,2],[0,-1],[0,-2]]],
 							SAME,PLACEABLENONE,
 							SUPPORTCLASS,PIECE,
 							"Gives a buff to every piece behind it.",
@@ -112,7 +112,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "bishop":
 				object = [	"bishop",obj_bishop,spr_bishop,spr_bishop_slot,
-							3,10,6,1,10,
+							3,10,2,1,10,
 							[undefined,
 							undefined,
 							[[1,1]]],
@@ -122,9 +122,10 @@ function piece_database(name, trait = -1) {
 							"TBA"]
 			break;
 			case "wall":
-				object = [	"wall",obj_generic_piece,spr_wall,spr_wall_slot,
-							1,16,999,0,20,
-							[undefined],
+				object = [	"wall",obj_wall,spr_wall,spr_wall_slot,
+							1,16,2,1,20,
+							[[["1", 0],["2",0]], 
+							[["1", 1],["1", -1]]],
 							SAME,PLACEABLENONE,
 							DEFENSECLASS,PIECE,
 							"Static piece, has a lot of health and is useful for stalling.",
@@ -141,7 +142,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "stick":
 				object = [	"stick",obj_stick,spr_stick,spr_stick_slot,
-							0,25,1,0,5,
+							0,30,1,0,5,
 							[undefined, 
 							[[1, 0],[-1, 0]]],
 							SAME,PLACEABLENONE,
@@ -199,6 +200,17 @@ function piece_database(name, trait = -1) {
 							WANDERCLASS,PIECE,
 							"Takes even more damage to kill.",
 							"Even more spikes."]
+			break;
+			case "the_goliath":
+				object = [	"the_goliath",obj_goliath,spr_goliath,spr_goliath_slot,
+							7,30,10,2,40,
+							[undefined,
+							undefined,
+							[[0,1],[0,-1]]],
+							SAME,PLACEABLENONE,
+							WANDERCLASS,PIECE,
+							"Big guy.",
+							"TBA",]
 			break;
 			case "jumper":
 				object = [	"jumper",obj_jumper,spr_jumper,spr_jumper_slot,

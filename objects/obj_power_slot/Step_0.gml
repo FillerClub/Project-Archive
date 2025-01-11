@@ -13,7 +13,7 @@ if global.pause || skip || global.mode == "delete" || global.team != team {
 
 // On Click
 if position_meeting(gX,gY,self) && input_check_pressed("action") {
-	if usable && !instance_exists(obj_dummy) {
+	if usable > 0 && !instance_exists(obj_dummy) {
 		select_sound(snd_pick_up);
 		create = true;
 	} 
