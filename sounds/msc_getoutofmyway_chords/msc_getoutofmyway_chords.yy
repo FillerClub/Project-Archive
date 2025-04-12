@@ -9,7 +9,7 @@
   "bitRate":512,
   "compression":1,
   "conversionMode":0,
-  "duration":133.0693,
+  "duration":133.06932,
   "name":"msc_getoutofmyway_chords",
   "parent":{
     "name":"Get Out of My Way",
@@ -21,5 +21,5 @@
   "sampleRate":48000,
   "soundFile":"msc_getoutofmyway_chords.ogg",
   "type":1,
-  "volume":1.0,
+  "volume":0.75,
 }

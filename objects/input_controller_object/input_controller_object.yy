@@ -11,7 +11,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"(System)",
-    "path":"folders/Input/(System).yy",
+    "path":"folders/_addons/Input/(System).yy",
   },
   "parentObjectId":null,
   "persistent":true,

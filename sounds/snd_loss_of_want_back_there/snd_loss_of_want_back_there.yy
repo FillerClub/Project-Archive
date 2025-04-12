@@ -2,8 +2,8 @@
   "$GMSound":"",
   "%Name":"snd_loss_of_want_back_there",
   "audioGroupId":{
-    "name":"audiogroup_default",
-    "path":"audiogroups/audiogroup_default",
+    "name":"standalone_soundtracks",
+    "path":"audiogroups/standalone_soundtracks",
   },
   "bitDepth":1,
   "bitRate":512,

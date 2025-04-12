@@ -5,7 +5,7 @@ if execute = "move" || ai_controlled {
 	queen_move_handler(BOTH);
 }
 
-if !global.pause {
+if global.game_state != PAUSED{
 	var gS = GRIDSPACE;
 	if (timer >= timer_end) {
 		repeat_shot -= 1;

@@ -6,3 +6,5 @@ if obj_game.on_pause_menu {
 soundtrack_bus.effects[0].cutoff = music_pause_fade;
 
 soundtrack_bus.gain = global.music_volume;
+audio_group_set_gain(sound_effects,global.sfx_volume,0);
+audio_master_gain(global.master_volume);

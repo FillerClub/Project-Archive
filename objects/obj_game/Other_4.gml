@@ -19,8 +19,9 @@ switch room {
 		enable_pausing = true;
 	break;
 	
-	case rm_setup:
-		create_menu(FIRSTMENU,MAIN,room_width/2,100,64,75,15.2,fnt_basic,fa_center,fa_middle)
+	case rm_main_menu:
+		soundtrack_play(MENUMUSIC);
+		create_menu(FIRSTMENU,MAIN,room_width/2,100,80,75,15.2,fnt_basic,fa_center,fa_middle)
 		enable_pausing = false;
 	break;
 	
@@ -46,6 +47,7 @@ switch room {
 		create_menu(journalMenu,cont,992,138,32,20, 10,fnt_phone,fa_left,fa_middle,true);
 		enable_pausing = false;
 	break;
+	
 	case rm_loadout_zone:
 		soundtrack_play(LOOKINGBACK);
 		enable_pausing = false;

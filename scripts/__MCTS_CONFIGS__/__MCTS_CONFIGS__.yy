@@ -6,7 +6,7 @@
   "name":"__MCTS_CONFIGS__",
   "parent":{
     "name":"GMTactician_MctsTree",
-    "path":"folders/AI/Libraries_config/GMTactician_MctsTree.yy",
+    "path":"folders/_addons/AI/Libraries_config/GMTactician_MctsTree.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

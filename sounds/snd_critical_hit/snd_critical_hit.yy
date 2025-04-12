@@ -2,8 +2,8 @@
   "$GMSound":"",
   "%Name":"snd_critical_hit",
   "audioGroupId":{
-    "name":"audiogroup_default",
-    "path":"audiogroups/audiogroup_default",
+    "name":"sound_effects",
+    "path":"audiogroups/sound_effects",
   },
   "bitDepth":1,
   "bitRate":256,
@@ -21,5 +21,5 @@
   "sampleRate":48000,
   "soundFile":"snd_critical_hit.ogg",
   "type":1,
-  "volume":0.59,
+  "volume":0.5,
 }

@@ -15,7 +15,7 @@ if time_source_get_state(error_time) == time_source_state_stopped {
 	draw_blue_green = 1;
 }
 	
-if global.pause {
+if global.game_state == PAUSED {
 	if alarm[1] > 0 { alarm[1] += 1; } 
 	exit;	
 }

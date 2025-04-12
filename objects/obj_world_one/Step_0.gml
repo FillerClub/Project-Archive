@@ -9,9 +9,7 @@ if level[1] == 1 && phase < 6 && time_source_get_time_remaining(timer) > 0 {
 	}
 }
 
-if global.pause {
-	exit;
-}
+if global.game_state == PAUSED exit;
 
 // Grab last piece's position
 var enemyPiecePresent = false;
@@ -71,7 +69,7 @@ switch phase {
 	break;
 	case VICTORY:
 		phase++;
-		graphic_show = VICTORY
+		graphic_show = VICTORY;
 		time_source_start(graphic_timer);
 		global.level = new_level;
 		audio_play_sound(snd_happy_wheels_victory,0,0);
@@ -84,10 +82,13 @@ switch phase {
 			with obj_game {
 				journal_starting_entry = other.display_identity;	
 			}
-			instance_create_layer(room_width - 80, room_height - 80, "GUI",obj_loading, {
+			var lD = {
 				run: "Journal",
+				rm: rm_journal,
 				load: [standalone_soundtracks]
-			});			
+			}
+			start_transition(sq_fade_out,sq_fade_in,lD);
+			save(PROFILE);		
 		});
 		time_source_start(graphic_timer);
 	break;
@@ -95,6 +96,16 @@ switch phase {
 
 switch level[1] {
 	case 1:
+		if tutorial_text_create("Tutorial1",0) {
+			queue_text_timer = time_source_create(time_source_game,8.5,time_source_units_seconds,function() {
+				tutorial_text_create("Tutorial1",1);
+			},[],1,time_source_expire_after);
+			time_source_start(queue_text_timer);
+		}
+		if instance_exists(obj_text_box) && text_phase <= 1 {
+			obj_game.timer[MAIN] = 0;
+			timer = 0;
+		}
 		enemy_spawn_sequence(1,["crawler"],INITIAL,1);
 		enemy_spawn_sequence(1,["crawler"],18,1);
 		pause_sequence(2,true,14); 
@@ -116,6 +127,7 @@ switch level[1] {
 					team: team,
 				})	
 			}
+			tutorial_text_create("Tutorial1",2);
 		}
 		enemy_spawn_sequence(7,["crawler"],5,3,0,random_y); 
 		pause_sequence(8,true,10);	
@@ -130,7 +142,7 @@ switch level[1] {
 	case 2:
 		var randomTipEdgeY = irandom_range(0,1)*4;
 		var randomEdgeY = irandom_range(0,1)?irandom_range(0,1):irandom_range(3,4);
-		
+		tutorial_text_create("Tutorial2",0);
 		enemy_spawn_sequence(1,["drooper"],INITIAL,1,0,randomTipEdgeY);	
 		enemy_spawn_sequence(2,["crawler"],20,1,0,random_y);
 		enemy_spawn_sequence(3,["crawler"],9,3,0,random_y);
@@ -165,6 +177,12 @@ switch level[1] {
 	case 4:
 		var randomTipEdgeY = irandom_range(0,1)*6;
 		var randomCenterY = irandom_range(2,4);
+		if tutorial_text_create("Tutorial4",0) {
+			queue_text_timer = time_source_create(time_source_game,TIMERUPLENGTH,time_source_units_seconds,function() {
+				tutorial_text_create("Tutorial4",1);
+			},[],1,time_source_expire_after);
+			time_source_start(queue_text_timer);
+		}
 		enemy_spawn_sequence(1,["crawler"],INITIAL,1,0,randomCenterY);
 		enemy_spawn_sequence(2,["tank_crawler"],2,1,0,randomCenterY);
 		enemy_spawn_sequence(3,["crawler"],2,2,0,randomCenterY);
@@ -227,7 +245,7 @@ switch level[1] {
 	break;
 	case 8:
 		var random_x = irandom(1) +2;
-		
+		tutorial_text_create("Tutorial8",0)
 		if phase < HEROBATTLEEND {
 			hero_ai();
 		}

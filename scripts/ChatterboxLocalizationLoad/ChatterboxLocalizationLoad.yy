@@ -6,7 +6,7 @@
   "name":"ChatterboxLocalizationLoad",
   "parent":{
     "name":"Localisation",
-    "path":"folders/Chatterbox/Localisation.yy",
+    "path":"folders/_addons/Chatterbox/Localisation.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

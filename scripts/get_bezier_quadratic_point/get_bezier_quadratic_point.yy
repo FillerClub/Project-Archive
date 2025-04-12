@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"get_bezier_quadratic_point",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"get_bezier_quadratic_point",
+  "parent":{
+    "name":"Curves",
+    "path":"folders/Scripts/Curves.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -2,14 +2,14 @@
   "$GMSound":"",
   "%Name":"snd_explosion",
   "audioGroupId":{
-    "name":"audiogroup_default",
-    "path":"audiogroups/audiogroup_default",
+    "name":"sound_effects",
+    "path":"audiogroups/sound_effects",
   },
   "bitDepth":1,
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":3.096771,
+  "duration":3.09678,
   "name":"snd_explosion",
   "parent":{
     "name":"Sounds",

@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scr_screen_resize",
   "parent":{
-    "name":"Scripts",
-    "path":"folders/Scripts.yy",
+    "name":"Screen",
+    "path":"folders/Scripts/Screen.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

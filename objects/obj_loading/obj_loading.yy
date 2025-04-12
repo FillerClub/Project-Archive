@@ -32,6 +32,7 @@
     {"$GMObjectProperty":"v1","%Name":"run","filters":[],"listItems":[],"multiselect":false,"name":"run","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"completion","filters":[],"listItems":[],"multiselect":false,"name":"completion","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"execute","filters":[],"listItems":[],"multiselect":false,"name":"execute","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
+    {"$GMObjectProperty":"v1","%Name":"rm","filters":[],"listItems":[],"multiselect":false,"name":"rm","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resource":{"name":"rm_main_menu","path":"rooms/rm_main_menu/rm_main_menu.yy",},"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"rm_main_menu","varType":5,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

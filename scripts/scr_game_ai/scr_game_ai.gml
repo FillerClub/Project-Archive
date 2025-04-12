@@ -263,6 +263,13 @@ if levelWorld != 0 && global.tutorial_progress <= 0 {
 					if tutorialTakePiece.execute != "move" {
 						audio_play_sound(snd_pick_up,0,0);
 					}	
+					
+					instance_destroy(obj_text_box)	
+					instance_create_layer(room_width/2,TEXTYDEFAULT,"GUI",obj_text_box, {
+						text: ["Your piece is in danger! However, remember you can use points to move your piece or to defeat the enemy piece."],
+						bubble_color: $FF000000,
+						text_color: $FFFFFFFF
+					});
 					with obj_generic_piece {
 						execute = "nothing";	
 					}
@@ -272,7 +279,7 @@ if levelWorld != 0 && global.tutorial_progress <= 0 {
 					tutorialTakePiece.execute = "move";
 					tutorial_piece = tutorialTakePiece;
 					global.mode = "move";
-					global.pause = true;
+					global.game_state = PAUSED;
 					exit;
 				}		
 			}	

@@ -21,13 +21,18 @@ function manage_menu_text(text){
 			}
 		break;
 		
+		case "Master":
+			textReturn = "Master Volume: " +string(round(global.master_volume*100));
+		break;
+		case "SFX":
+			textReturn = "SFX Volume: " +string(round(global.sfx_volume*100));
+		break;
 		case "Music":
-			textReturn = "Music Volume: " +string(global.music_volume*100);
+			textReturn = "Music Volume: " +string(round(global.music_volume*100));
 		break;
 		case "Cursor":
 			textReturn = "Cursor Sensitivity: " +string(global.cursor_sens);
 		break;
-		
 		case "Debug":
 			textReturn = "Debug: " +string(global.debug?"ON":"OFF");
 		break;

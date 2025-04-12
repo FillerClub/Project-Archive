@@ -1,4 +1,4 @@
-if !global.pause {
+if global.game_state != PAUSED{
 	timer += delta_time*DELTA_TO_SECONDS;
 }
 

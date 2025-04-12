@@ -6,7 +6,7 @@
   "name":"ChatterboxGetOptionCount",
   "parent":{
     "name":"Option Getters",
-    "path":"folders/Chatterbox/Option Getters.yy",
+    "path":"folders/_addons/Chatterbox/Option Getters.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

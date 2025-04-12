@@ -21,5 +21,5 @@
   "sampleRate":22050,
   "soundFile":"msc_battle_bob.ogg",
   "type":1,
-  "volume":0.6,
+  "volume":0.4,
 }

@@ -29,12 +29,12 @@ draw_set_color(c_white);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 
-//draw_text(room_width/2,room_height/2,instance_exists(obj_dropped_slot));
-//draw_text(room_width/2,room_height/2 +32,powersAvailable);
-//draw_text(room_width/2,room_height/2+128,row_threat);
-//draw_text(room_width/2,room_height/2 +64,string(timer) +" : Phase " +string(phase));
-//draw_text(piece_focus[0] +96,piece_focus[1] +112,string(piece_target));
-//draw_text(piece_focus[0] +96,piece_focus[1] +176,string(piece_focus));
+//draw_text_scribble(room_width/2,room_height/2,instance_exists(obj_dropped_slot));
+//draw_text_scribble(room_width/2,room_height/2 +32,powersAvailable);
+//draw_text_scribble(room_width/2,room_height/2+128,row_threat);
+//draw_text_scribble(room_width/2,room_height/2 +64,string(timer) +" : Phase " +string(phase));
+//draw_text_scribble(piece_focus[0] +96,piece_focus[1] +112,string(piece_target));
+//draw_text_scribble(piece_focus[0] +96,piece_focus[1] +176,string(piece_focus));
 
 var tickRequest = false,
 xRequest = x,
@@ -59,4 +59,4 @@ with obj_power_slot {
 		}
 	}
 }
-//draw_text(room_width/2,room_height/2 +64,should_protect);
+//draw_text_scribble(room_width/2,room_height/2 +64,should_protect);

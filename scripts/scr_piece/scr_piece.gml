@@ -6,7 +6,7 @@ if time_source_get_state(error_time) == time_source_state_stopped {
 if time_source_get_state(intan_blink_time) == time_source_state_stopped {
 	intangible_tick = 1;
 }
-if global.pause && !ignore_pause {
+if global.game_state == PAUSED && !ignore_pause {
 	// Delay alarms responsible for invincibilty
 	if alarm[0] > 0 {	alarm[0]++;	}
 	return false;

@@ -9,11 +9,11 @@ if execute == "move" {
 	draw_set_color(c_white);	
 }
 /*
-draw_text(x,y+64,string(floor(x/gS)*gS));
-draw_text(x+64,y+64,string(floor(y/gS)*gS));
+draw_text_scribble(x,y+64,string(floor(x/gS)*gS));
+draw_text_scribble(x+64,y+64,string(floor(y/gS)*gS));
 
-draw_text(x,y+96,valid_moves[1][0]);
-draw_text(x+64,y+96,valid_moves[2][1]);
+draw_text_scribble(x,y+96,valid_moves[1][0]);
+draw_text_scribble(x+64,y+96,valid_moves[2][1]);
 */
 
 
@@ -31,7 +31,7 @@ if team == global.team {
 
 	}
 }
-//draw_text(x,y+64,string(slw));
+//draw_text_scribble(x,y+64,string(slw));
 piece_draw(true);
 /*
 if team == "enemy" {

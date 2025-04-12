@@ -1,10 +1,10 @@
 // Feather disable all
-/// Emulation of draw_text(), but using Scribble for rendering
+/// Emulation of draw_text_scribble(), but using Scribble for rendering
 /// 
 /// **Please do not use this function in conjunction with string_copy()**
 /// 
 /// It is common practice in GameMaker to draw typewriter text like so:
-///     draw_text(x, y, string_copy(typewriter_text, 1, count));
+///     draw_text_scribble(x, y, string_copy(typewriter_text, 1, count));
 /// 
 /// Instead, when using draw_text_scribble(), please write your code like so:
 ///     draw_text_scribble(x, y, typewriter_text, count);

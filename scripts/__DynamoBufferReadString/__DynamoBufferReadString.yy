@@ -6,7 +6,7 @@
   "name":"__DynamoBufferReadString",
   "parent":{
     "name":"(System)",
-    "path":"folders/Dynamo/(System).yy",
+    "path":"folders/_addons/Dynamo/(System).yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

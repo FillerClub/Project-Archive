@@ -6,7 +6,7 @@
   "name":"__DynamoClassScript",
   "parent":{
     "name":"Classes",
-    "path":"folders/Dynamo/(System)/Classes.yy",
+    "path":"folders/_addons/Dynamo/(System)/Classes.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

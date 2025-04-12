@@ -7,11 +7,12 @@
 #macro FIRSTMENU ["Singleplayer","Settings","Journal","Edit Loadout","Exit Game"]
 #macro SINGLEPLAYERMENU ["Campaign","Sandbox","Back"]
 #macro MULTIPLAYERMENU ["Join Lobby","Create Lobby","Back"]
-#macro SETTINGSMENU ["Data","Music","Cursor","FPS","Display","Debug","Back"]
+#macro SETTINGSMENU ["Audio Settings","Data","Cursor","FPS","Display","Debug","Back"]
+#macro AUDIOSETTINGSMENU ["Master","SFX","Music","Back"]
 #macro DISPLAYMENU ["3840x2160","2560x1440","1920x1080","1280x720","640x360","Fullscreen","Back"]
 // Pause menu functions
 #macro FIRSTPAUSE ["Resume","Restart Level","Settings","Back to Title","Exit Game"]
-#macro SETTINGSPAUSE ["Music","Cursor","FPS","Display","Debug","Back"]
+#macro SETTINGSPAUSE ["Audio Settings","Cursor","FPS","Display","Debug","Back"]
 // Journal menu functions
 #macro ONPIECEJOURNAL ["Back to Title"]
 
@@ -21,8 +22,11 @@ function menu_function(purpose = "Back",contextArg = context){
 		case PAUSE:
 			audio_play_sound(snd_phone_select,0,0);	
 		break;
+		case MAIN:	
+			audio_stop_sound(snd_main_selected);
+			audio_play_sound(snd_main_selected,0,0);
+		break;
 		default:
-			audio_play_sound(snd_error,0,0);
 		break;	
 	}
 	
@@ -35,37 +39,52 @@ function menu_function(purpose = "Back",contextArg = context){
 	}	
 	
 	switch purpose {
+		default:
+			save(PROFILE);
+			//Reset FPS Target
+			game_set_speed(max(global.fps_target,30),gamespeed_fps);
+			progress_menu(-1);
+		break;
+		
 		case "Singleplayer":
 			progress_menu(1,SINGLEPLAYERMENU);
 		break;
 		
 		case "Campaign":
 		case "Continue":
-			instance_create_layer(room_width - 80, room_height - 80, "GUI",obj_loading, {
+			var lD = {
 				run: "Lvl",
+				rm: rm_world_one,
 				load: [track1,track2,track3,track4,standalone_soundtracks]
-			});
+			};
+			start_transition(sq_circle_out,sq_circle_in,lD);
 		break;
 		
 		case "Journal":
-			instance_create_layer(room_width - 80, room_height - 80, "GUI",obj_loading, {
+			var lD = {
 				run: "Journal",
+				rm: rm_journal,
 				load: [standalone_soundtracks]
-			});
+			};
+			start_transition(sq_circle_out,sq_circle_in,lD);
 		break;
 		
 		case "Edit Loadout":
-			instance_create_layer(room_width - 80, room_height - 80, "GUI",obj_loading, {
+			var lD = {
 				run: "Loadout",
-				load: [standalone_soundtracks]
-			});
+				rm: rm_loadout_zone,
+				load: [standalone_soundtracks]	
+			}
+			start_transition(sq_circle_out,sq_circle_in,lD);
 		break;
 		
 		case "Sandbox":
-			instance_create_layer(room_width - 80, room_height - 80, "GUI",obj_loading, {
+			var lD = {
 				run: "Sandbox",
-				load: [standalone_soundtracks]
-			});
+				rm: rm_sandbox,
+				load: [standalone_soundtracks]	
+			}
+			start_transition(sq_circle_out,sq_circle_in,lD);
 		break;
 
 		case "Multiplayer":
@@ -109,6 +128,7 @@ function menu_function(purpose = "Back",contextArg = context){
 			global.debug = global.debug?false:true;
 		break;
 		
+		/*
 		case "FPS":
 			global.fps_target = clamp(int64(string_digits(get_integer("Enter Desired FPS", 60))),0,999);
 			if global.fps_target != "" {
@@ -116,7 +136,7 @@ function menu_function(purpose = "Back",contextArg = context){
 				save(PROFILE);
 			}			
 		break;
-		
+		*/
 		case "Fullscreen":
 			if window_get_fullscreen() == true {
 				global.fullscreen = false;
@@ -150,15 +170,16 @@ function menu_function(purpose = "Back",contextArg = context){
 			obj_menu.profile_exists = file_exists(PROFILE);
 		break;
 		
-		case "Music":
-			global.music_volume = clamp(int64(string_digits(get_integer("Enter Volume", 50))),0,100)/100;
-			if global.music_volume != "" {
-			// Save Profile Data
-				save(PROFILE);
-			}
+		case "Audio Settings":
+			progress_menu(1,AUDIOSETTINGSMENU);
 		break;
 		
+		SLIDERS
+
+		break;
+		/*
 		case "Cursor":
+			
 			global.cursor_sens = clamp(int64(string_digits(get_integer("Enter Sensitivity", 3))),0.5,10);
 
 			if global.cursor_sens != "" {
@@ -166,6 +187,7 @@ function menu_function(purpose = "Back",contextArg = context){
 				save(PROFILE);
 			}
 		break;
+		*/
 		
 		case "Display":
 			progress_menu(1,DISPLAYMENU);			
@@ -190,9 +212,7 @@ function menu_function(purpose = "Back",contextArg = context){
 			screen_resize(256,144);
 		break;
 		
-		default:
-			progress_menu(-1);
-		break;
+
 		
 		// PAUSE
 		case "Resume":
@@ -203,12 +223,21 @@ function menu_function(purpose = "Back",contextArg = context){
 		break;
 		
 		case "Back to Title":
-			room_goto(rm_setup);
+			var lD = {
+				run: "MainMenu",
+				rm: rm_main_menu,
+				load: [standalone_soundtracks]
+			}
+			start_transition(sq_circle_out,sq_circle_in,lD);
 		break;
 		
 		case "Restart Level":
-			room_restart();
-			global.pause = false;
+			var lD = {
+				run: "Lvl",
+				rm: rm_world_one,
+				load: [track1,track2,track3,track4,standalone_soundtracks,sound_effects]
+			};
+			start_transition(sq_circle_out,sq_circle_in,lD);
 		break;
 		
 		case "View Journal":

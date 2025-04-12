@@ -1,3 +1,4 @@
+/*
 var
 rgbMax = 255,
 col = make_color_rgb(rgbMax,draw_blue_green*rgbMax,draw_blue_green*rgbMax);

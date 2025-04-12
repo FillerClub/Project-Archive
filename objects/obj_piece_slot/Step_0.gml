@@ -10,7 +10,7 @@ if time_source_get_state(error_time) == time_source_state_stopped {
 	draw_red_box = 0;
 }
 
-if global.pause || skip || global.mode == "delete" {
+if global.game_state == PAUSED || skip || global.mode == "delete" {
 	skip = false;
 	exit;	
 }

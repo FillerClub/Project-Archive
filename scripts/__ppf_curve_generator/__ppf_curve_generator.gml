@@ -699,7 +699,7 @@ function PPFX_Curve(size=512, mirror_x=false) constructor {
 									// draw point position on mouse
 									draw_set_halign(_halign);
 									draw_set_valign(fa_middle);
-									draw_text(_xx, _yy+_yoffset, _str);
+									draw_text_scribble(_xx, _yy+_yoffset, _str);
 									draw_set_valign(fa_top);
 									draw_set_halign(fa_left);
 								}
@@ -729,7 +729,7 @@ function PPFX_Curve(size=512, mirror_x=false) constructor {
 						draw_set_color(c_white);
 						draw_set_halign(fa_center);
 						draw_set_valign(fa_bottom);
-						draw_text(_width/2, _height-16, "UI editing not available\nin HTML5");
+						draw_text_scribble(_width/2, _height-16, "UI editing not available\nin HTML5");
 						draw_set_halign(fa_left);
 						draw_set_valign(fa_top);
 					}
@@ -760,16 +760,16 @@ function PPFX_Curve(size=512, mirror_x=false) constructor {
 			draw_set_color(c_white);
 			draw_set_halign(fa_center);
 			draw_set_valign(fa_middle);
-			draw_text(x1+8, y1+8, upper_range);
-			draw_text(x2-8, y1+8, upper_range);
-			draw_text(x1+8, y2-8, lower_range);
-			draw_text(x2-8, y2-8, 1);
+			draw_text_scribble(x1+8, y1+8, upper_range);
+			draw_text_scribble(x2-8, y1+8, upper_range);
+			draw_text_scribble(x1+8, y2-8, lower_range);
+			draw_text_scribble(x2-8, y2-8, 1);
 			draw_set_valign(fa_top);
 			
 			// current editing channel
 			draw_set_halign(fa_center);
 			draw_set_color(__debug_curve_list[__debug_curve_to_edit][1]);
-			draw_text(x1+_width/2, y2+16, $"Channel: {__debug_curve_list[__debug_curve_to_edit][0]}");
+			draw_text_scribble(x1+_width/2, y2+16, $"Channel: {__debug_curve_list[__debug_curve_to_edit][0]}");
 			draw_set_color(c_white);
 			draw_set_halign(fa_left);
 			
@@ -786,7 +786,7 @@ function PPFX_Curve(size=512, mirror_x=false) constructor {
 			draw_set_color(c_white);
 			draw_set_halign(fa_center);
 			draw_set_valign(fa_top);
-				draw_text(_icon_x, _icon_y+_spr_height/4, "Graph unavailable.\nNo AnimCurve found.");
+				draw_text_scribble(_icon_x, _icon_y+_spr_height/4, "Graph unavailable.\nNo AnimCurve found.");
 			draw_set_halign(fa_left);
 		}
 		

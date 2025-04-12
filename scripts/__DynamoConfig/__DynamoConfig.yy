@@ -6,7 +6,7 @@
   "name":"__DynamoConfig",
   "parent":{
     "name":"Dynamo",
-    "path":"folders/Dynamo.yy",
+    "path":"folders/_addons/Dynamo.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

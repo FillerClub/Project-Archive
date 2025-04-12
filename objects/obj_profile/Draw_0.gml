@@ -15,7 +15,7 @@ if hlign == fa_right {
 	off2 = -1;
 }
 
-draw_text(x +off,y,string(name));
+draw_text_scribble(x +off,y,string(name));
 for (var i = 0; i < maxHp; i++) {
 	if i >= hp {
 		iDamaged = true;	

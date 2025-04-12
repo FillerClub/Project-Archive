@@ -76,7 +76,7 @@ function __PPFX_DebugInspectorGenerator() constructor {
 						}
 						
 						// draw item
-						draw_text(_xx, _yy, $"{_item.variable_name} ({_item.type}) | {_item.instof}");
+						draw_text_scribble(_xx, _yy, $"{_item.variable_name} ({_item.type}) | {_item.instof}");
 						
 						_yy += _text_height + 4;
 						_height += _text_height + 4;
@@ -389,7 +389,7 @@ function __PPFX_DebugInspectorGenerator() constructor {
 										draw_set_color(c_yellow);
 										
 										if (_ml) {
-											var _drag_y_diff = (_yy+_text_height/2) - _my; // get text center difference draw_text(_xx+150, _yy, _drag_y_diff);
+											var _drag_y_diff = (_yy+_text_height/2) - _my; // get text center difference draw_text_scribble(_xx+150, _yy, _drag_y_diff);
 											if (_drag_y_diff > 0) {
 												// up
 												draw_line(_xx, _yy, _xx+300, _yy);
@@ -405,13 +405,13 @@ function __PPFX_DebugInspectorGenerator() constructor {
 								}
 								
 								// draw item
-								draw_text(_xx, _yy, _text);
+								draw_text_scribble(_xx, _yy, _text);
 									
 								_yy += _text_height + 2;
 								_height += _text_height + 2;
 								--i;
 							}
-							//draw_text(_mx, _my, _effects[current_item].effect_name);
+							//draw_text_scribble(_mx, _my, _effects[current_item].effect_name);
 							
 							var _swap_mode = true;
 							
@@ -558,7 +558,7 @@ function __PPFX_DebugInspectorGenerator() constructor {
 							draw_surface_stretched(preview_stack_surface, _x1, _y1, _width, preview_stack_surface_height);
 							gpu_push_state();
 							gpu_set_blendmode(bm_max);
-							draw_text(_x1, _y1, $"{preview_stack_name} | ratio: {string_format(preview_stack_surface_aspect, 2, 3)}");
+							draw_text_scribble(_x1, _y1, $"{preview_stack_name} | ratio: {string_format(preview_stack_surface_aspect, 2, 3)}");
 							gpu_pop_state();
 						} else {
 							preview_stack_surface_aspect = 0;
@@ -609,7 +609,7 @@ function __PPFX_DebugInspectorGenerator() constructor {
 										
 								draw_set_color(c_white);
 								gpu_set_blendmode(bm_max);
-								draw_text(_x, _y, _stack_txt);
+								draw_text_scribble(_x, _y, _stack_txt);
 								gpu_set_blendmode(bm_normal);
 							}
 							i++;
@@ -898,7 +898,7 @@ function __PPFX_DebugInspectorGenerator() constructor {
 						return _graph.height;
 					} else {
 						draw_set_halign(fa_center);
-						draw_text(_x1+_width/2, _y1, "< Curve not found>\nSet one via parameter.");
+						draw_text_scribble(_x1+_width/2, _y1, "< Curve not found>\nSet one via parameter.");
 						draw_set_halign(fa_left);
 						return 48;
 					}
@@ -1553,7 +1553,7 @@ function __PPFX_DebugInspectorGenerator() constructor {
 							_text_height = string_height(_text);
 							
 							// draw item
-							draw_text(_xx, _yy, _text);
+							draw_text_scribble(_xx, _yy, _text);
 							
 							_yy += _text_height + 4;
 							_height += _text_height + 4;

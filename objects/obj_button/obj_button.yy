@@ -1,7 +1,9 @@
 {
   "$GMObject":"",
   "%Name":"obj_button",
-  "eventList":[],
+  "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+  ],
   "managed":true,
   "name":"obj_button",
   "overriddenProperties":[],
@@ -34,5 +36,5 @@
     "path":"sprites/spr_button/spr_button.yy",
   },
   "spriteMaskId":null,
-  "visible":false,
+  "visible":true,
 }

@@ -1,4 +1,7 @@
 Slavfox = Battle Music
 Mickey = Concept Artist
+
+Input Library = Juju Adams, Alynne Keith, and friends
+
 Foxy of Jungle = Shaders I bought
 Discksonlaw583 = MCTS Framework

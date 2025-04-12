@@ -47,7 +47,7 @@ if sPD > 0 {
 		}
 	} else {
 		draw_sprite_ext(spr_boosted,0,x,y,1,1,0,c_white,1);
-		draw_text(x,y,string(floor(sPD/5) +1) + "x ");
+		draw_text_scribble(x,y,string(floor(sPD/5) +1) + "x ");
 	}
 }
 // Draw slow arrows
@@ -58,7 +58,7 @@ if sLW > 0 {
 		}
 	} else {
 		draw_sprite_ext(spr_slowed,0,x,y,1,1,0,c_white,1);
-		draw_text(x,y,string(floor(sLW/5) +1) + "x ");
+		draw_text_scribble(x,y,string(floor(sLW/5) +1) + "x ");
 	}
 }
 
@@ -71,9 +71,9 @@ if hp_init != hp {
 }
 
 image_speed = 1 +sprite_accel*9;
-if !global.pause {
+if global.game_state != PAUSED{
 	moved = false;
 	hp_init = hp;
 }
-//draw_text(x,y,effects_management_array);
-//draw_text(x,y+64,effects_array);
+//draw_text_scribble(x,y,effects_management_array);
+//draw_text_scribble(x,y+64,effects_array);

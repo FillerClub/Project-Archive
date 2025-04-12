@@ -18,7 +18,7 @@ var textCol = (usable > 0)?c_white:c_red;
 draw_set_halign(fa_center); draw_set_valign(fa_middle); draw_set_color(textCol) draw_set_font(fnt_bit);
 draw_text_transformed(x +39,y +58, "x" +string(usable),1,1,0);
 draw_set_color(c_white) draw_set_font(fnt_fancy);
-//draw_text(x,y,info);
+//draw_text_scribble(x,y,info);
 
 //blackout if unusable
 if usable <= 0 {

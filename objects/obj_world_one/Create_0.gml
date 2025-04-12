@@ -12,7 +12,7 @@ graphic_timer = time_source_create(time_source_global,2.5,time_source_units_seco
 },[],1,time_source_expire_after);
 
 timer = 0;
-
+queue_text_timer = 0;
 
 var piecePush = noone;
 // Push new pieces to discovered pieces array
@@ -39,4 +39,7 @@ switch level[1] {
 }
 
 discover_piece(piecePush);
+
+ChatterboxLoadFromFile("tutorialtext.yarn");
+chatterbox = ChatterboxCreate("tutorialtext.yarn");
 //phase = 3;

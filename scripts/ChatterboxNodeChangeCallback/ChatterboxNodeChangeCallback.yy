@@ -6,7 +6,7 @@
   "name":"ChatterboxNodeChangeCallback",
   "parent":{
     "name":"Setup",
-    "path":"folders/Chatterbox/Setup.yy",
+    "path":"folders/_addons/Chatterbox/Setup.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

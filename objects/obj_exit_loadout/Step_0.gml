@@ -8,6 +8,11 @@ if position_meeting(obj_cursor.x,obj_cursor.y,self) && input_check_pressed("acti
 		array[index] = identity;
 	}
 	global.loadout = array;
-	room_goto(rm_setup);
 	save(SAVEFILE);
+	var lD = {
+		run: "MainMenu",
+		rm: rm_main_menu,
+		load: [standalone_soundtracks]
+	}
+	start_transition(sq_circle_out,sq_circle_in,lD);	
 }

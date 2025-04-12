@@ -59,6 +59,7 @@
     {"$GMObjectProperty":"v1","%Name":"timer_color","filters":[],"listItems":[],"multiselect":false,"name":"timer_color","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"c_black","varType":5,},
     {"$GMObjectProperty":"v1","%Name":"move_count","filters":[],"listItems":[],"multiselect":false,"name":"move_count","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":1,},
     {"$GMObjectProperty":"v1","%Name":"poison_tick","filters":[],"listItems":[],"multiselect":false,"name":"poison_tick","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
+    {"$GMObjectProperty":"v1","%Name":"destroy_sound","filters":[],"listItems":[],"multiselect":false,"name":"destroy_sound","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resource":{"name":"snd_delete","path":"sounds/snd_delete/snd_delete.yy",},"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"snd_delete","varType":5,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

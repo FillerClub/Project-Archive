@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_draw_menu_button_text",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_draw_menu_button_text",
+  "parent":{
+    "name":"Misc",
+    "path":"folders/Scripts/Draw/Misc.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

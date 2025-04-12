@@ -2,14 +2,14 @@
   "$GMSound":"",
   "%Name":"snd_place",
   "audioGroupId":{
-    "name":"audiogroup_default",
-    "path":"audiogroups/audiogroup_default",
+    "name":"sound_effects",
+    "path":"audiogroups/sound_effects",
   },
   "bitDepth":1,
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.771104,
+  "duration":0.77111113,
   "name":"snd_place",
   "parent":{
     "name":"Sounds",
@@ -21,5 +21,5 @@
   "sampleRate":44100,
   "soundFile":"snd_place.ogg",
   "type":0,
-  "volume":0.5,
+  "volume":0.3,
 }

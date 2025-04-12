@@ -5,6 +5,8 @@ yDiff = y_target -y;
 x += xDiff/diff_factor;	
 y += yDiff/diff_factor;
 draw_set_font(fnt_tiny);
+draw_set_halign(fa_center);
+draw_set_valign(fa_middle);
 if is_numeric(hp) {
 	if sign(hp) < 0 {
 		draw_set_color(c_red);
@@ -18,5 +20,3 @@ if is_numeric(hp) {
 } else {
 	draw_text_transformed(x,y,string(hp),image_xscale,image_yscale,0);
 }
-draw_set_font(fnt_fancy);
-draw_set_color(c_white);	

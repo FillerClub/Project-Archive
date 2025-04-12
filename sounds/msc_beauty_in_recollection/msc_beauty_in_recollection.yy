@@ -9,7 +9,7 @@
   "bitRate":512,
   "compression":1,
   "conversionMode":0,
-  "duration":75.13044,
+  "duration":75.130455,
   "name":"msc_beauty_in_recollection",
   "parent":{
     "name":"OST",

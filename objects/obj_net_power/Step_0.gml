@@ -13,7 +13,7 @@ mosY = floor(gY/gS)*gS,
 gcX = floor(x/gS)*gS,
 gcY = floor(y/gS)*gS;
 
-if global.pause {
+if global.game_state == PAUSED {
 	exit;	
 }
 

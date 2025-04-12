@@ -10,7 +10,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"GMTactician_MctsTree",
-    "path":"folders/AI/Libraries/GMTactician_MctsTree.yy",
+    "path":"folders/_addons/AI/Libraries/GMTactician_MctsTree.yy",
   },
   "parentObjectId":null,
   "persistent":false,

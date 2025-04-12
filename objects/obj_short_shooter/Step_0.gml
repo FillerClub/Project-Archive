@@ -8,7 +8,7 @@ if execute = "move" || ai_controlled {
 }
 
 // shoot
-if !global.pause {
+if global.game_state != PAUSED{
 	var 
 	gS = GRIDSPACE;
 	if (timer >= timer_end) {

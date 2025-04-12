@@ -6,7 +6,7 @@ gY = obj_cursor.y,
 mosX = floor(gX/gS)*gS,
 mosY = floor(gY/gS)*gS;
 
-if global.pause || skip || global.mode == "delete" || global.team != team {
+if global.game_state == PAUSED || skip || global.mode == "delete" || global.team != team {
 	skip = false;
 	exit;	
 }

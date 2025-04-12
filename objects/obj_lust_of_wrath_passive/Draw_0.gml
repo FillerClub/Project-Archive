@@ -1,1 +1,1 @@
-//draw_text(x,y,passive_buff);
+//draw_text_scribble(x,y,passive_buff);

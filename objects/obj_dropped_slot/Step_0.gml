@@ -1,6 +1,4 @@
-if global.pause {
-	exit;	
-}
+if global.game_state == PAUSED exit;
 if input_check_pressed("action") && position_meeting(obj_cursor.x,obj_cursor.y,self) {
 	instance_destroy();	
 }

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"math_factorial",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"math_factorial",
+  "parent":{
+    "name":"Curves",
+    "path":"folders/Scripts/Curves.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

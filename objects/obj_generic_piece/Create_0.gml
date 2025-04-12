@@ -31,6 +31,8 @@ if asset_get_type(place_sound) == asset_sound {
 	audio_play_sound(place_sound,0,0);
 }
 
+
+
 effects_management_array[0] = new effect_add(EFFECT.NOTHING);
 effects_array[EFFECT.SPEED] = 0;
 effects_array[EFFECT.SLOW] = 0;

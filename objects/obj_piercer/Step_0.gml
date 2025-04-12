@@ -1,7 +1,7 @@
 event_inherited();
 
 // shoot
-if !global.pause {
+if global.game_state != PAUSED{
 	var 
 	gS = GRIDSPACE,
 	tM = (team == "friendly")?1:-1;

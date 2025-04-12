@@ -6,7 +6,7 @@
   "name":"ChatterboxGetPrevious",
   "parent":{
     "name":"Chatterboxes",
-    "path":"folders/Chatterbox/Chatterboxes.yy",
+    "path":"folders/_addons/Chatterbox/Chatterboxes.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

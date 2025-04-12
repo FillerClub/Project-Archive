@@ -9,7 +9,7 @@
   "bitRate":112,
   "compression":1,
   "conversionMode":0,
-  "duration":133.0693,
+  "duration":133.06932,
   "name":"msc_getoutofmyway_bass",
   "parent":{
     "name":"Get Out of My Way",
@@ -21,5 +21,5 @@
   "sampleRate":22050,
   "soundFile":"msc_getoutofmyway_bass.ogg",
   "type":1,
-  "volume":1.0,
+  "volume":0.5,
 }

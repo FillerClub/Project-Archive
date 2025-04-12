@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"draw_bezier_n_improved",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"draw_bezier_n_improved",
+  "parent":{
+    "name":"Curves",
+    "path":"folders/Scripts/Curves.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

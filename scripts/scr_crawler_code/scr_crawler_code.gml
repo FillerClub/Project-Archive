@@ -1,5 +1,5 @@
 function crawler_code() {
-	if !global.pause {
+	if global.game_state != PAUSED{
 		var tM = ((team == "friendly")?1:-1)*(1 -toggle*2),
 		gS = GRIDSPACE;
 	

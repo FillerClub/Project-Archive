@@ -46,7 +46,7 @@
   "packageId":"com.gargansa.timer",
   "parent":{
     "name":"Extensions",
-    "path":"folders/Extensions.yy",
+    "path":"folders/_addons/Extensions.yy",
   },
   "productId":"",
   "resourceType":"GMExtension",

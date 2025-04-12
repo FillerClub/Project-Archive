@@ -4,7 +4,7 @@
 
 //	[NOTE] In order to add new data to the save file do the following four steps:
 //	1) Set a global variable in initialize_variables() script within obj_game
-//	2) Within the obj_game create event, within the save struct set the new variable to read from
+//	2) Within the rm_setup create event, within the save struct set the new variable to read from
 //	3) Within this save() function, create the same variable to save to
 //	4) Within the menu_function() script, edit the "Data" function to clear the global variable if needed
 //	5) Delete the old save file on your system
@@ -33,12 +33,15 @@ function save(FILE) {
 			var settings = array_create(0);
 			var saveS = {
 				name: global.name, 
+				master_volume: global.master_volume,
+				sfx_volume: global.sfx_volume,
 				music_volume: global.music_volume,
 				cursor_sens: global.cursor_sens,
 				fps_target: global.fps_target,
 				screen_res: global.screen_res,
 				fullscreen: global.fullscreen,
 				difficulty: global.difficulty,
+				first_boot: global.first_boot,
 			}
 			array_push(settings,saveS);
 			var strng = json_stringify(settings);

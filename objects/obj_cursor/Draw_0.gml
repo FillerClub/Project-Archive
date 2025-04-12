@@ -128,11 +128,11 @@ if flip {
 	draw_set_halign(fa_right);
 }
 
-if stringDraw != -1 {
+if stringDraw != -1 && global.game_state != PAUSED {
 	draw_set_alpha(0.8);
 	draw_set_color(c_black);
 	draw_rectangle(x,y,x +(descWidth +margin*2)*flip,y -descHeight -margin,false);
 	draw_set_alpha(1);
 	draw_set_color(c_white);
-	draw_text(x +margin*flip,y -margin -4,stringDraw);	
+	draw_text_scribble(x +margin*flip,y -margin -4,stringDraw);	
 }

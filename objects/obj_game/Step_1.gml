@@ -5,7 +5,7 @@ if tutorial_piece != noone {
 	handle_tutorials(global.tutorial_progress);
 }
 
-if global.pause {
+if global.game_state == PAUSED {
 	exit;	
 }
 	
@@ -99,7 +99,7 @@ if input_check_pressed("action") && !instance_exists(obj_dummy) {
 #macro TIMERUPLENGTH 60
 // Battle Timer Function
 switch room {
-	case rm_setup:
+	case rm_main_menu:
 	break;
 	
 	case rm_journal:
@@ -108,7 +108,7 @@ switch room {
 	break;
 	
 	default:
-		if !global.pause {
+		if global.game_state != PAUSED{
 			timer[MAIN] += delta_time*DELTA_TO_SECONDS;	
 			if timer[ALERT] > 0 { timer[ALERT] -= delta_time*DELTA_TO_SECONDS; }
 		}

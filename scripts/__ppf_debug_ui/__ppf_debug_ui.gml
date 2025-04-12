@@ -310,7 +310,7 @@ function __PPF_UIInspector(name) constructor {
 		if (__input_m_right_released && __in_focus) {
 			__bake();
 		}
-		//draw_text(x2 + 16, __panel_y1, __ui_element_in_focus);
+		//draw_text_scribble(x2 + 16, __panel_y1, __ui_element_in_focus);
 		
 		#region Scrollbar
 		__scroll_area = __ui_height;
@@ -408,9 +408,9 @@ function __ppf_ui_category(_title, _opened, _amount_opened=1) : __ppf_ui_element
 		draw_set_color(_color);
 		draw_sprite_stretched_ext(__spr_ppf_pixel, 0, xx+10, yy+text_height/2, (_width/2-text_width/2)-20, 1, _color, alpha);
 		draw_sprite_stretched_ext(__spr_ppf_pixel, 0, (xx+_width/2+text_width/2)+10, yy+text_height/2, (_width/2-text_width/2)-20, 1, _color, alpha);
-		draw_text(xx+_width/2, yy, text);
-		draw_text(xx+16, yy+1, opened ? "v" : ">");
-		draw_text(xx+_width-16, yy+1, opened ? "v" : "<");
+		draw_text_scribble(xx+_width/2, yy, text);
+		draw_text_scribble(xx+16, yy+1, opened ? "v" : ">");
+		draw_text_scribble(xx+_width-16, yy+1, opened ? "v" : "<");
 		draw_set_alpha(1);
 		draw_set_halign(fa_left);
 		draw_set_color(c_white);
@@ -444,7 +444,7 @@ function __ppf_ui_menu(_title, _opened=true, _amount_opened=1) : __ppf_ui_elemen
 		draw_set_valign(fa_middle);
 		draw_set_color(opened ? c_orange : c_lime);
 		draw_set_alpha(alpha);
-		draw_text(xx+parent.__element_xpadding, yy+(height/2)-3, text);
+		draw_text_scribble(xx+parent.__element_xpadding, yy+(height/2)-3, text);
 		draw_set_valign(fa_top);
 		draw_set_alpha(1);
 	}
@@ -477,7 +477,7 @@ function __ppf_ui_folder(_title, _opened, _amount_opened=1) : __ppf_ui_element()
 		draw_set_valign(fa_middle);
 		draw_set_color(c_orange);
 		draw_set_alpha(alpha);
-		draw_text(xx+parent.__element_xpadding, yy+(height/2)-2, (opened ? "v" : ">") + "   " + text);
+		draw_text_scribble(xx+parent.__element_xpadding, yy+(height/2)-2, (opened ? "v" : ">") + "   " + text);
 		draw_set_valign(fa_top);
 		draw_set_alpha(1);
 	}
@@ -498,7 +498,7 @@ function __ppf_ui_text(_title, _column=0, _callback=undefined) : __ppf_ui_elemen
 		
 		draw_set_color(c_white);
 		draw_set_alpha(alpha);
-		draw_text(xx, yy, text);
+		draw_text_scribble(xx, yy, text);
 		draw_set_alpha(1);
 	}
 }
@@ -575,7 +575,7 @@ function __ppf_ui_checkbox(_title, _column=0, _checked=false, _callback=undefine
 		draw_set_color(c_white);
 		draw_set_alpha(alpha);
 		draw_sprite(sprite, checked ?? 0, xx, yy); // only set index if checked is not undefined
-		draw_text(xx+sprite_w+8, yy, text);
+		draw_text_scribble(xx+sprite_w+8, yy, text);
 		draw_set_alpha(1);
 	}
 }
@@ -608,7 +608,7 @@ function __ppf_ui_button(_title, _callback=undefined) : __ppf_ui_element() const
 		draw_set_color(c_white);
 		draw_set_alpha(alpha);
 		draw_sprite(sprite, 0, xx, yy);
-		draw_text(xx+sprite_w+8, yy, text);
+		draw_text_scribble(xx+sprite_w+8, yy, text);
 		draw_set_alpha(1);
 	}
 }
@@ -680,8 +680,8 @@ function __ppf_ui_slider(_title, _subdivisions=0, _auto_update=false, _default_v
 		draw_set_alpha(alpha);
 		draw_sprite_stretched(__spr_ppf_pixel, 0, xx, yy+24, width, 1);
 		draw_sprite(__ppf_spr_ui_control, 0, xx+width*value, yy+24);
-		draw_text(xx, yy, text);
-		draw_text(xx+string_width(text)+10, yy, "("+string(range_nmin)+"/"+string(range_nmax) + ") | " + string(output));
+		draw_text_scribble(xx, yy, text);
+		draw_text_scribble(xx+string_width(text)+10, yy, "("+string(range_nmin)+"/"+string(range_nmax) + ") | " + string(output));
 	}
 }
 

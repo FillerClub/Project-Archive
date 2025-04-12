@@ -2,8 +2,8 @@
   "$GMSound":"",
   "%Name":"snd_pick_up",
   "audioGroupId":{
-    "name":"audiogroup_default",
-    "path":"audiogroups/audiogroup_default",
+    "name":"sound_effects",
+    "path":"audiogroups/sound_effects",
   },
   "bitDepth":0,
   "bitRate":80,

@@ -6,7 +6,7 @@
   "name":"ChatterboxGetAllContentString",
   "parent":{
     "name":"Content Getters",
-    "path":"folders/Chatterbox/Content Getters.yy",
+    "path":"folders/_addons/Chatterbox/Content Getters.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

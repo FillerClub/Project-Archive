@@ -2,7 +2,7 @@ event_inherited();
 
 
 
-if !global.pause {
+if global.game_state != PAUSED{
 	var tM = ((team == "friendly")?1:-1)*(1 -toggle*2),
 	gS = GRIDSPACE;
 	if position_meeting(x +tM*gS,y,obj_obstacle) {

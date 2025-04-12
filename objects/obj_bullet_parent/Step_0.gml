@@ -1,6 +1,5 @@
-if global.pause {
-	exit;	
-}
+if global.game_state == PAUSED exit;	
+
 var brk = false;
 //Convert velocity to something useable
 var baseBulletSpd = 3000,

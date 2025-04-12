@@ -8,19 +8,19 @@ function pause_game(unpause = false) {
 	}
 	
 	if unpause {
-		if global.pause && gameInst.on_pause_menu {
+		if global.game_state == PAUSED && gameInst.on_pause_menu {
 			audio_stop_sound(snd_pause);
 			audio_play_sound(snd_unpause,0,0);	
 			time_source_resume(time_source_game);
-			global.pause = false;	
+			global.game_state = RUNNING;
 			gameInst.on_pause_menu = false;
 		}
 	} else {
-		if !global.pause && !gameInst.on_pause_menu {
+		if global.game_state == RUNNING && !gameInst.on_pause_menu {
 			audio_stop_sound(snd_unpause);
 			audio_play_sound(snd_pause,0,0);	
 			time_source_pause(time_source_game);
-			global.pause = true;	
+			global.game_state = PAUSED;	
 			gameInst.on_pause_menu = true;
 		}
 	}

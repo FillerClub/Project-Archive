@@ -2,8 +2,8 @@
   "$GMSound":"",
   "%Name":"snd_giant_step",
   "audioGroupId":{
-    "name":"audiogroup_default",
-    "path":"audiogroups/audiogroup_default",
+    "name":"sound_effects",
+    "path":"audiogroups/sound_effects",
   },
   "bitDepth":1,
   "bitRate":128,
@@ -21,5 +21,5 @@
   "sampleRate":44100,
   "soundFile":"snd_giant_step.ogg",
   "type":0,
-  "volume":1.0,
+  "volume":0.5,
 }

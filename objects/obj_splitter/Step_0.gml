@@ -1,7 +1,7 @@
 event_inherited();
 
 // shoot
-if !global.pause {
+if global.game_state != PAUSED{
 	var gS = GRIDSPACE;
 	if (timer >= timer_end) {
 		repeat_shot -= 1;
