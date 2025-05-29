@@ -9,16 +9,16 @@ function hero_database(name, trait = -1) {
 	var obj = [	HERODATA.NAME,HERODATA.SPRITE,HERODATA.CLASSES];
 	switch name {
 		case "Warden":
-			obj = [	"Warden",spr_warden,[RANGECLASS,SUPPORTCLASS]];
+			obj = [	"Warden",spr_warden,[DEFENSECLASS,SUPPORTCLASS]];
 		break;
 		case "Empress":
-			obj = [	"Empress",spr_empress,[WANDERCLASS,DEFENSECLASS]];
+			obj = [	"Empress",spr_empress,[OFFENSECLASS,SUPPORTCLASS]];
 		break;
 		case "Lonestar":
-			obj = [	"Lonestar",spr_arthur_morgan,[RANGECLASS,EXPLOSIVECLASS]];
+			obj = [	"Lonestar",spr_arthur_morgan,[CONTROLCLASS,DEFENSECLASS]];
 		break;
 		default:
-			obj = [	"debug",spr_generic_hero,[SUPPORTCLASS,DEFENSECLASS]];
+			obj = [	"debug",spr_generic_hero,[SUPPORTCLASS,DEFENSECLASS,OFFENSECLASS,CONTROLCLASS]];
 		break;
 	}
 	if trait >= 0 { return obj[trait]; } else { return obj; }

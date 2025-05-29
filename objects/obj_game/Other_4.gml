@@ -15,6 +15,7 @@ switch room {
 	break;
 	
 	case rm_sandbox:
+	case rm_debug_room:
 		deal_with_level([0,0]);
 		enable_pausing = true;
 	break;

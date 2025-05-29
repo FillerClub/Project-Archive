@@ -31,6 +31,7 @@
     {"$GMObjectProperty":"v1","%Name":"using_mk","filters":[],"listItems":[],"multiselect":false,"name":"using_mk","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"true","varType":3,},
     {"$GMObjectProperty":"v1","%Name":"last_x","filters":[],"listItems":[],"multiselect":false,"name":"last_x","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"room_width/2","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"last_y","filters":[],"listItems":[],"multiselect":false,"name":"last_y","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"room_height/2","varType":0,},
+    {"$GMObjectProperty":"v1","%Name":"menu_mode","filters":[],"listItems":[],"multiselect":false,"name":"menu_mode","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

@@ -13,7 +13,7 @@ if global.debug {
 		}
 	}
 	if instance_exists(obj_timer) {
-		timer[MAIN] += TIMERUPLENGTH;
+		timer[MAIN] += global.timeruplength;
 	}
 }
 

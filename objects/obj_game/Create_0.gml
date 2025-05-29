@@ -5,6 +5,8 @@
 #macro ALERT 1
 #macro AI 2
 #macro GUI_MARGIN 16
+#macro HEALTHCHUNK 5
 
 
 ai_seed = random(100);
+

@@ -14,11 +14,18 @@ function initialize_variables(isFresh = false){
 		global.loadout = ["shooter"];
 		global.discovered_pieces = ["shooter","crawler"];
 		global.unlocked_heroes = ["Warden"];	
-		global.active_hero = "Warden";	
+		global.active_hero = "Warden";
+		global.tooltips_enabled = true;
+		enum HEALTHBARCONFIG {
+			HIDEALL = 0,
+			ONHIT = 1,
+			SHOWALL = 2,
+		}
+		global.healthbar_config = HEALTHBARCONFIG.ONHIT
 		global.debug = 0;
 		global.max_slots = 5;
 		global.max_pawns = infinity;
-		global.timer_max_speed_mult = 3.3;
+		global.timer_max_speed_mult = 3;
 		#macro GRIDSPACE 64
 		global.cursor_sens = 3;
 		global.fps_target = 60;
@@ -28,7 +35,8 @@ function initialize_variables(isFresh = false){
 	}
 	
 	
-	global.max_turns = 5;
+	global.max_turns = 3;
+	global.timeruplength = 30;
 	global.max_barriers = 4;
 	global.turns = 2;
 	global.enemy_turns = 2;

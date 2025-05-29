@@ -1,10 +1,10 @@
 /// @desc Grabs object info from database
 #macro HEALTHCOSTMULTIPLIER .6
+move_cooldown_timer = 0;
 move_cooldown = piece_database(identity,PIECEDATA.MOVECOOLDOWN);
-move_cooldown_timer = move_cooldown;
 hp = piece_database(identity,PIECEDATA.HP);
 hp_init = hp;
-hp_start = hp;
+hp_max = hp;
 valid_moves = piece_database(identity,PIECEDATA.MOVES);
 cost = piece_database(identity,PIECEDATA.MOVECOST);
 sprite_index = piece_database(identity,PIECEDATA.SPRITE);

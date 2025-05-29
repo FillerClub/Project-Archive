@@ -42,6 +42,8 @@ function save(FILE) {
 				fullscreen: global.fullscreen,
 				difficulty: global.difficulty,
 				first_boot: global.first_boot,
+				tooltips_enabled: global.tooltips_enabled,
+				healthbar_config: global.healthbar_config,
 			}
 			array_push(settings,saveS);
 			var strng = json_stringify(settings);

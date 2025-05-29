@@ -22,7 +22,7 @@ if global.mode == "move" && execute == "move" {
 		var piececlick = instance_position(gX,gY,obj_obstacle);
 		
 		if !bypass_cooldown {
-			if (move_cooldown_timer < move_cooldown) && !position_meeting(gX,gY,self) {
+			if (move_cooldown_timer > 0) && !position_meeting(gX,gY,self) {
 				scr_error();
 				audio_stop_sound(snd_critical_error);
 				audio_play_sound(snd_critical_error,0,0);
@@ -172,7 +172,7 @@ if global.mode == "move" && execute == "move" {
 		y = moveY;
 	} 
 	if re && !bypass_cooldown {
-		move_cooldown_timer = 0;	
+		move_cooldown_timer = move_cooldown;	
 	}
 	return re;
 }

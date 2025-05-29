@@ -40,6 +40,7 @@ if dragging {
 }
 
 if placed {
+	var gridOn = position_meeting(gClampX,gClampY,obj_grid);
 	// Check how script respects grid territories
 	switch on_grid {
 		case SAME:
@@ -104,18 +105,29 @@ if placed && placeable {
 			cY[0] = other.gClampY;
 		}
 	} else {		
-		if team == "friendly" { global.turns -= turn_cost; }
-	
-		if team == "enemy" { global.enemy_turns -= turn_cost; }
+		var ignoreCost = false;
+		// Don't immediately incur cost if necessary
+		switch object {
+			case obj_net_power:
+				// Do nothing
+			break;
+			
+			default:
+				if team == "friendly" { global.turns -= turn_cost; }
+				if team == "enemy" { global.enemy_turns -= turn_cost; }				
+			break;
+		}
+		
+
 		
 		if link != noone {
 			//Switch depending on what type the slot is
 			switch link.object_index {
 				case obj_piece_slot:
-					link.cooldown = 0;	
+					link.cooldown = link.cooldown_length;	
 				break;
 				case obj_power_slot:
-					link.usable--;	
+					link.cooldown = link.cooldown_length;	
 				break;
 			}
 			

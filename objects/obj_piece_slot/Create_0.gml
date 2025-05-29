@@ -13,4 +13,4 @@ cost = info[PIECEDATA.PLACECOST];
 class = info[PIECEDATA.CLASS];
 desc = info[PIECEDATA.BRIEFDESCRIPTION];
 cooldown_length = info[PIECEDATA.SLOTCOOLDOWN];
-cooldown = cooldown_length;
+cooldown = 0;

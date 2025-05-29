@@ -39,6 +39,7 @@
     {"$GMObjectProperty":"v1","%Name":"draw_red_box","filters":[],"listItems":[],"multiselect":false,"name":"draw_red_box","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
     {"$GMObjectProperty":"v1","%Name":"alarm_repeat","filters":[],"listItems":[],"multiselect":false,"name":"alarm_repeat","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"","varType":6,},
     {"$GMObjectProperty":"v1","%Name":"team","filters":[],"listItems":[],"multiselect":false,"name":"team","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"friendly","varType":2,},
+    {"$GMObjectProperty":"v1","%Name":"usable","filters":[],"listItems":[],"multiselect":false,"name":"usable","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"true","varType":3,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

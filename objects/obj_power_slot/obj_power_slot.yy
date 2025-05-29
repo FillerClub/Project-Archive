@@ -34,14 +34,14 @@
   "physicsShapePoints":[],
   "physicsStartAwake":true,
   "properties":[
-    {"$GMObjectProperty":"v1","%Name":"usable","filters":[],"listItems":[],"multiselect":false,"name":"usable","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"1","varType":1,},
+    {"$GMObjectProperty":"v1","%Name":"name","filters":[],"listItems":[],"multiselect":false,"name":"name","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"\"\"","varType":2,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_generic_power_1",
-    "path":"sprites/spr_generic_power_1/spr_generic_power_1.yy",
+    "name":"spr_slot_frame",
+    "path":"sprites/spr_slot_frame/spr_slot_frame.yy",
   },
   "spriteMaskId":null,
   "visible":true,

@@ -1,5 +1,6 @@
-initialize_variables(true);
 randomize();
+initialize_variables(true);
+
 
 // Save Data
 if file_exists(PROFILE) {
@@ -20,6 +21,8 @@ if file_exists(PROFILE) {
 	global.fullscreen = load[0].fullscreen;
 	global.difficulty = load[0].difficulty;
 	global.first_boot = load[0].first_boot;
+	global.tooltips_enabled = load[0].tooltips_enabled;
+	global.healthbar_config = load[0].healthbar_config;
 }
 if file_exists(SAVEFILE) {
 	var buff = buffer_load(SAVEFILE);

@@ -1,10 +1,4 @@
 event_inherited();
+time_to_produce = random_percent(12,2);
 
-aura =			[ [0, 1],
-				[0, -1],
-				[1, 0],
-				[1, 1],
-				[1, -1],
-				[-1, 0],
-				[-1, 1],
-				[-1, -1]];
+sprite_index = spr_accelerator_active;

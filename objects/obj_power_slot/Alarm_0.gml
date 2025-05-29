@@ -1,11 +1,19 @@
-var heroString = "";
+var heroString = "",
+out = true;
 with obj_generic_hero {
 	if team == other.team {
 		heroString = identity + "-" +other.identity;
+		out = false;
 	}
 }
 
-info = power_database(heroString);
+if out { alarm[0] = 1; exit; }
+var info = power_database(heroString);
 cost = info[POWERDATA.COST];
+cooldown_length = info[POWERDATA.SLOTCOOLDOWN];
 sprite_slot = info[POWERDATA.SLOTSPRITE];
 desc = info[POWERDATA.DESCRIPTION];
+name = heroString;
+if identity != "a" {
+	cooldown = cooldown_length;
+}

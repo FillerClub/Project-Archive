@@ -34,13 +34,15 @@
   "physicsStartAwake":true,
   "properties":[
     {"$GMObjectProperty":"v1","%Name":"seconds_per_rotation","filters":[],"listItems":[],"multiselect":false,"name":"seconds_per_rotation","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"96","varType":0,},
+    {"$GMObjectProperty":"v1","%Name":"resource_timer","filters":[],"listItems":[],"multiselect":false,"name":"resource_timer","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
+    {"$GMObjectProperty":"v1","%Name":"time_to_produce","filters":[],"listItems":[],"multiselect":false,"name":"time_to_produce","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_accelerator",
-    "path":"sprites/spr_accelerator/spr_accelerator.yy",
+    "name":"spr_accelerator_active",
+    "path":"sprites/spr_accelerator_active/spr_accelerator_active.yy",
   },
   "spriteMaskId":null,
   "visible":true,

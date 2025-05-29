@@ -33,7 +33,7 @@ var timerTickRate = delta_time*DELTA_TO_SECONDS*((1 +sPD/5)/(1 +sLW/5));
 if !skip_timer { 
 	timer += timerTickRate;
 }
-move_cooldown_timer = min(move_cooldown_timer +timerTickRate,move_cooldown);
+move_cooldown_timer = max(move_cooldown_timer -timerTickRate,0);
 
 // If intangible, intiate flashing timer
 if effects_array[EFFECT.INTANGIBILITY] > 0 {
@@ -66,6 +66,11 @@ if !place_meeting(x,y,obj_grid) || place_meeting(gClampX,gClampY,obj_obstacle) {
 if hp <= 0 {
 	instance_destroy();	
 }
+if hp > hp_max {
+	hp = hp_max;
+	hp_init = hp_max;
+}
+
 // If it is enemy piece, exit any execution mode
 if team != global.team {
 	execute = "nothing";

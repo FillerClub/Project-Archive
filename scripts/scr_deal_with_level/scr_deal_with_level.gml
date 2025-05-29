@@ -5,7 +5,14 @@ function deal_with_level(level) {
 	var soundtrackPlay = GETOUTOFMYWAY;
 	switch level[0] {
 		case 0:
-			soundtrackPlay = BATTLE;
+			switch room {
+				default:
+					soundtrackPlay = BATTLE;
+				break;
+				case rm_debug_room:
+					soundtrackPlay = noone;
+				break;
+			}
 			deployLoadout = global.unlocked_pieces;
 		break;
 		case 1:

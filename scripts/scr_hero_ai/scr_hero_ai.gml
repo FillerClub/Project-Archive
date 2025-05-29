@@ -32,15 +32,15 @@ with obj_power_slot {
 	if team == "enemy" {
 		switch identity {
 			case "a":
-				powersAvailable[0] = usable;
+				powersAvailable[0] = (cooldown <= 0 && usable)?true:false;
 			break;
 			
 			case "b":
-				powersAvailable[1] = usable;
+				powersAvailable[1] = (cooldown <= 0 && usable)?true:false;
 			break;
 			
 			case "c":
-				powersAvailable[2] = usable;
+				powersAvailable[2] = (cooldown <= 0 && usable)?true:false;
 			break;
 		}
 	}
@@ -57,7 +57,7 @@ if timer_power >= timer_power_end {
 	// Power manager
 	switch hero {
 		case "Empress":
-			if powersAvailable[0] > 0 {
+			if powersAvailable[0] == true {
 				var doesBreak = false;
 				for (var fNet = 0; fNet < arrayFLength; fNet++) {
 					var inst = friendly_pieces[fNet],
@@ -118,7 +118,7 @@ if timer_power >= timer_power_end {
 					if doesBreak { 
 						with obj_power_slot {
 							if team == "enemy" && identity == "a" {
-								usable--;	
+								cooldown = cooldown_length;	
 							}
 						}
 						break; 
@@ -127,7 +127,7 @@ if timer_power >= timer_power_end {
 				if doesBreak { break; }
 			}
 			
-			if powersAvailable[1] > 0 {
+			if powersAvailable[1] == true {
 				var doesBreak = false;
 				for (var fSplash = 0; fSplash < arrayFLength; fSplash++) {
 					var inst = friendly_pieces[fSplash],
@@ -150,13 +150,13 @@ if timer_power >= timer_power_end {
 								break;
 								case "short":
 									if decide_shoot && effects_array[EFFECT.SLOW] < 3 {
-										worthScore++;	
+										worthScore += 2;	
 									}
 								break;
 								
 								default:
 									if effects_array[EFFECT.SLOW] < 3  {
-										worthScore++;	
+										worthScore += 1;	
 									}
 								break;
 							}
@@ -164,14 +164,14 @@ if timer_power >= timer_power_end {
 						countPiece--;
 					}
 
-					if worthScore > 1 {
+					if worthScore >= 2 {
 						instance_create_layer(instX,instY,"Instances",obj_fizz_power,{
 							team: "enemy",
 							ai_controlled: true
 						});	
 						with obj_power_slot {
 							if team == "enemy" && identity == "b" {
-								usable--;	
+								cooldown = cooldown_length;	
 							}
 						}
 						global.enemy_turns--;
@@ -181,7 +181,7 @@ if timer_power >= timer_power_end {
 				}
 				if doesBreak { break; }
 			}
-			if powersAvailable[2] > 0 {
+			if powersAvailable[2] == true {
 				if !position_meeting(960,320,obj_obstacle) && !position_meeting(960,448,obj_obstacle) {
 					instance_create_layer(0,384,"Instances",obj_horde_power,{
 						team: "enemy",
@@ -189,7 +189,7 @@ if timer_power >= timer_power_end {
 					});	
 					with obj_power_slot {
 						if team == "enemy" && identity == "c" {
-							usable--;	
+							cooldown = cooldown_length;		
 						}
 					}
 					global.enemy_turns--;

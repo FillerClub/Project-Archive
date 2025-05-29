@@ -36,5 +36,5 @@
     "path":"sprites/spr_piece_database/spr_piece_database.yy",
   },
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }

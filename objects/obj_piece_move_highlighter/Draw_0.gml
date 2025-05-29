@@ -1,4 +1,5 @@
 with obj_generic_piece	{
+	// Draw movement options
 	if execute != "move" && global.debug && ai_controlled { debugOn = true; } else
 	if execute != "move" {
 		continue;

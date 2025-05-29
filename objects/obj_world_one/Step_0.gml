@@ -177,12 +177,7 @@ switch level[1] {
 	case 4:
 		var randomTipEdgeY = irandom_range(0,1)*6;
 		var randomCenterY = irandom_range(2,4);
-		if tutorial_text_create("Tutorial4",0) {
-			queue_text_timer = time_source_create(time_source_game,TIMERUPLENGTH,time_source_units_seconds,function() {
-				tutorial_text_create("Tutorial4",1);
-			},[],1,time_source_expire_after);
-			time_source_start(queue_text_timer);
-		}
+		tutorial_text_create("Tutorial4",0);
 		enemy_spawn_sequence(1,["crawler"],INITIAL,1,0,randomCenterY);
 		enemy_spawn_sequence(2,["tank_crawler"],2,1,0,randomCenterY);
 		enemy_spawn_sequence(3,["crawler"],2,2,0,randomCenterY);

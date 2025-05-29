@@ -1,9 +1,3 @@
-with obj_accelerator {
-	if team == other.team {
-		other.spd += 1;
-	}
-}
-
 draw_mute_red_green = clamp(draw_mute_red_green -.02,0,1);
 with obj_turn_operator {
 	if team == other.team {
@@ -22,7 +16,7 @@ if global.game_state == PAUSED {
 
 if !instance_exists(obj_server) {
 	timer += delta_time*DELTA_TO_SECONDS*global.timer_speed_mult*(1 +spd/16 -slw/16)*(accel);
-	accel += delta_time*DELTA_TO_SECONDS/1000;
+	//accel += delta_time*DELTA_TO_SECONDS/1000;
 }
 
 if timer >= click_time {
@@ -36,25 +30,6 @@ if (timer >= seconds_per_turn) {
 	timer -= seconds_per_turn;	
 	total_ticks += 1;
 	click_time = seconds_per_turn / 16;
-	var
-	xSpawn = x,
-	ySpawn = y -sprite_height;
-	var amtIncrease = 0
-	if team == "friendly" {
-		amtIncrease = min(global.turn_increment,global.max_turns -global.turns);
-	}
-	if team == "enemy" {
-		amtIncrease = min(global.turn_increment,global.max_turns -global.enemy_turns);
-	}
-	
-	instance_create_layer(xSpawn,ySpawn,"GUI",obj_hit_fx, {
-		hp: amtIncrease,
-		x_target: xSpawn,
-		y_target: ySpawn -16,
-		diff_factor: 64,
-		image_xscale: 2,
-		image_yscale: 2
-	});
 	timer_tick();
 }
 

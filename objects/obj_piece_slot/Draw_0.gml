@@ -11,7 +11,7 @@ if global.team == "friendly" {
 	}
 }
 
-if cooldown < cooldown_length {
+if cooldown > 0 {
 	textcol = c_red;
 }
 
@@ -21,7 +21,7 @@ draw_slot(sprite_slot,col,textcol,cost);
 //draw cooldown shader
 draw_set_alpha(0.5);
 draw_set_color(boxcol);
-var fillRect = lerp(bbox_bottom,bbox_top,1 -cooldown/cooldown_length)
+var fillRect = lerp(bbox_bottom,bbox_top,cooldown/cooldown_length)
 if fillRect > 0 {
 	draw_rectangle(bbox_left,fillRect,bbox_right,bbox_bottom,0);
 }

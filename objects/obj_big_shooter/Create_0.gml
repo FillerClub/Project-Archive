@@ -13,7 +13,7 @@ with obj_generic_piece {
 // Increase hp
 hp += floor(pieces_sacrificed/2)*5;
 hp_init = hp;
-hp_start = hp;
+hp_max = hp;
 
 // Increase fire rate and power
 damage += pieces_sacrificed/32;
@@ -23,4 +23,4 @@ repeat_shot_base += min(9, floor(pieces_sacrificed/12));
 // Decrease move cost and cooldown
 cost = max(1,cost -floor(pieces_sacrificed/6));
 move_cooldown = move_cooldown/(1 +pieces_sacrificed/6);
-move_cooldown_timer = move_cooldown;
+move_cooldown_timer = 0;

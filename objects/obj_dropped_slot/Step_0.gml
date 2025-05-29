@@ -4,10 +4,10 @@ if input_check_pressed("action") && position_meeting(obj_cursor.x,obj_cursor.y,s
 }
 
 
-x += x_inc;	
+x += x_inc*delta_time*DELTA_TO_FRAMES;	
 y_init += y_inc;
 	
-y += y_spd;
+y += y_spd*delta_time*DELTA_TO_FRAMES;
 
 if y > y_init {
 	y_spd_max = y_spd_max/degrade;
@@ -16,7 +16,7 @@ if y > y_init {
 	if bounces > 3 {
 		degrade += .25;
 	}
-} else { y_spd += .05; }
+} else { y_spd += .05*delta_time*DELTA_TO_FRAMES; }
 
 if bounces > 3 {
 	x_inc = x_inc/1.25;

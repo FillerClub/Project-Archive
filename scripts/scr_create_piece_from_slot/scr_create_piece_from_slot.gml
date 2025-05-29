@@ -22,6 +22,7 @@ if i < global.max_pawns {
 	if ((global.team == "friendly")? (global.turns >= cost):(global.enemy_turns >= cost)) {
 		switch object_index {
 			case obj_piece_slot:
+				var info = piece_database(identity);
 				instance_create_layer(gX,gY,"AboveBoard",obj_dummy, {
 					object: info[PIECEDATA.OBJECT],	
 					sprite_index: info[PIECEDATA.SPRITE],
@@ -36,6 +37,7 @@ if i < global.max_pawns {
 				});
 			break;
 			case obj_power_slot:
+			var info = power_database(name);
 				instance_create_layer(gX,gY,"AboveBoard",obj_dummy, {
 					object: info[POWERDATA.OBJECT],
 					sprite_index: info[POWERDATA.SLOTSPRITE],

@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.198875,
+  "duration":0.18285714,
   "name":"snd_dialogue_tick",
   "parent":{
     "name":"Sounds",

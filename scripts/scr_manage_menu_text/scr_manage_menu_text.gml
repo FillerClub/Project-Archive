@@ -40,6 +40,22 @@ function manage_menu_text(text){
 		case "FPS":
 			textReturn = "FPS: " +string(global.fps_target);
 		break;
+		case "Tooltips":
+			textReturn = "Tooltips " +string(global.tooltips_enabled?"Enabled":"Disabled");
+		break;
+		case "Healthbars":
+			switch global.healthbar_config {
+				case HEALTHBARCONFIG.HIDEALL:
+					textReturn = "Healthbars: Hide";
+				break;
+				case HEALTHBARCONFIG.ONHIT:
+					textReturn = "Healthbars: On hit";
+				break;
+				case HEALTHBARCONFIG.SHOWALL:
+					textReturn = "Healthbars: Show";
+				break;
+			}
+		break;
 		
 		default:
 			textReturn = text;	

@@ -7,13 +7,13 @@
   "inheritLayers":false,
   "instanceCreationOrder":[
     {"name":"inst_3E49619A","path":"rooms/rm_main_menu/rm_main_menu.yy",},
-    {"name":"inst_72EFDF0C","path":"rooms/rm_main_menu/rm_main_menu.yy",},
     {"name":"inst_5127CF5A","path":"rooms/rm_main_menu/rm_main_menu.yy",},
     {"name":"inst_59CD587C","path":"rooms/rm_main_menu/rm_main_menu.yy",},
     {"name":"inst_21C4B317","path":"rooms/rm_main_menu/rm_main_menu.yy",},
     {"name":"inst_6E466EDD","path":"rooms/rm_main_menu/rm_main_menu.yy",},
     {"name":"inst_294B9D11","path":"rooms/rm_main_menu/rm_main_menu.yy",},
     {"name":"inst_4F70E8FF","path":"rooms/rm_main_menu/rm_main_menu.yy",},
+    {"name":"inst_72EFDF0C","path":"rooms/rm_main_menu/rm_main_menu.yy",},
   ],
   "isDnd":false,
   "layers":[

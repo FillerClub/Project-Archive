@@ -6,7 +6,7 @@ x += xDiff/diff_factor;
 y += yDiff/diff_factor;
 draw_set_font(fnt_tiny);
 draw_set_halign(fa_center);
-draw_set_valign(fa_middle);
+draw_set_valign(fa_bottom);
 if is_numeric(hp) {
 	if sign(hp) < 0 {
 		draw_set_color(c_red);

@@ -4,15 +4,16 @@
 #macro JOURNAL 2
 #macro POSTLEVELJOURNAL 3
 // Main menu functions
-#macro FIRSTMENU ["Singleplayer","Settings","Journal","Edit Loadout","Exit Game"]
+#macro FIRSTMENU ["DEBUG ROOM","Singleplayer","Settings","Journal","Edit Loadout","Exit Game"]
 #macro SINGLEPLAYERMENU ["Campaign","Sandbox","Back"]
 #macro MULTIPLAYERMENU ["Join Lobby","Create Lobby","Back"]
-#macro SETTINGSMENU ["Audio Settings","Data","Cursor","FPS","Display","Debug","Back"]
+#macro SETTINGSMENU ["Audio","Display","HUD","Cursor","Data","Debug","Back"]
+#macro HUDSETTINGSMENU ["Tooltips","Healthbars","Back"]
 #macro AUDIOSETTINGSMENU ["Master","SFX","Music","Back"]
-#macro DISPLAYMENU ["3840x2160","2560x1440","1920x1080","1280x720","640x360","Fullscreen","Back"]
+#macro DISPLAYMENU ["3840x2160","2560x1440","1920x1080","1280x720","640x360","FPS","Fullscreen","Back"]
 // Pause menu functions
 #macro FIRSTPAUSE ["Resume","Restart Level","Settings","Back to Title","Exit Game"]
-#macro SETTINGSPAUSE ["Audio Settings","Cursor","FPS","Display","Debug","Back"]
+#macro SETTINGSPAUSE ["Audio","Display","HUD","Cursor","Debug","Back"]
 // Journal menu functions
 #macro ONPIECEJOURNAL ["Back to Title"]
 
@@ -170,12 +171,23 @@ function menu_function(purpose = "Back",contextArg = context){
 			obj_menu.profile_exists = file_exists(PROFILE);
 		break;
 		
-		case "Audio Settings":
+		case "Audio":
 			progress_menu(1,AUDIOSETTINGSMENU);
+		break;
+		case "HUD":
+			progress_menu(1,HUDSETTINGSMENU);
+		break;
+		case "Tooltips":
+			global.tooltips_enabled = global.tooltips_enabled?false:true;
+		break;
+		case "Healthbars":
+			global.healthbar_config++;
+			if global.healthbar_config > HEALTHBARCONFIG.SHOWALL {
+				global.healthbar_config = HEALTHBARCONFIG.HIDEALL;
+			}
 		break;
 		
 		SLIDERS
-
 		break;
 		/*
 		case "Cursor":
@@ -232,9 +244,10 @@ function menu_function(purpose = "Back",contextArg = context){
 		break;
 		
 		case "Restart Level":
+			
 			var lD = {
-				run: "Lvl",
-				rm: rm_world_one,
+				run: "default",
+				rm: room,
 				load: [track1,track2,track3,track4,standalone_soundtracks,sound_effects]
 			};
 			start_transition(sq_circle_out,sq_circle_in,lD);
@@ -242,6 +255,15 @@ function menu_function(purpose = "Back",contextArg = context){
 		
 		case "View Journal":
 
+		break;
+		
+		case "DEBUG ROOM":
+			var lD = {
+				run: "default",
+				rm: rm_debug_room,
+				load: [track1,track2,track3,track4,standalone_soundtracks,sound_effects]
+			};
+			start_transition(sq_circle_out,sq_circle_in,lD);
 		break;
 	}
 }

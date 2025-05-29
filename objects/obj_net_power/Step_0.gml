@@ -11,7 +11,8 @@ gY = obj_cursor.y,
 mosX = floor(gX/gS)*gS,
 mosY = floor(gY/gS)*gS,
 gcX = floor(x/gS)*gS,
-gcY = floor(y/gS)*gS;
+gcY = floor(y/gS)*gS,
+hasCommitted = -1;
 
 if global.game_state == PAUSED {
 	exit;	
@@ -31,7 +32,7 @@ if execute != "nothing" && input_check_pressed("action") {
 						clickedOn = true;
 					} 
 				} else if (mosX == xM) && (mosY == yM) && (valid_moves[set][i][0] == 0 && valid_moves[set][i][1] == 0) {
-					instance_destroy();
+					hasCommitted = false;
 				}
 			}
 		}
@@ -49,20 +50,26 @@ if execute != "nothing" && input_check_pressed("action") {
 }
 
 if execute != "move" {
-	instance_destroy();
+	hasCommitted = false;
 }
 
-if piece_attack(other.valid_moves[ONLY_MOVE], ONLY_MOVE, 0, true) {
+if piece_attack(other.valid_moves[ONLY_MOVE], ONLY_MOVE, 1, true) {
 	with piece_link {
 		repeat(45) {
-			part_particles_burst(global.part_sys,x,y,part_slap);		
+			part_particles_burst(global.part_sys,x +GRIDSPACE/2,y +GRIDSPACE/2,part_slap);		
 		}	
 		x = other.x;
 		y = other.y;
 	}
-	with link {
-		usable = false;	
-	}
 	audio_play_sound(snd_oip,0,0);
-	instance_destroy();		
+	hasCommitted = true;	
+}
+
+if hasCommitted != -1 {
+	if !hasCommitted {
+		with link {
+			usable++;	
+		}
+	} 
+	instance_destroy();
 }

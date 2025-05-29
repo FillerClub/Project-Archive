@@ -5,3 +5,4 @@ if time_source_exists(queue_text_timer) {
 }
 
 ChatterboxStop(chatterbox);
+ChatterboxUnload(chatterbox);

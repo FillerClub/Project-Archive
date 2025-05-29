@@ -17,7 +17,7 @@ draw_text_transformed(x +strWidth/2,y +sprite_height/2 +strHeight*.75,"/" +strin
 //draw_text_transformed((team == "friendly")?x+20:x-20,y,string((team == "friendly")?global.turns:global.enemy_turns),1,1,0);
 //draw_text_scribble(x,y +64,temp_accel);
 // Game timer upgrade bar
-var barPerc = lerp(y +sprite_height/2,y -sprite_height/2,max(obj_game.timer[MAIN]/TIMERUPLENGTH,0));
+var barPerc = lerp(y +sprite_height/2,y -sprite_height/2,max(obj_game.timer[MAIN]/global.timeruplength,0));
 
 if team == "friendly" {
 	draw_set_color(c_black);

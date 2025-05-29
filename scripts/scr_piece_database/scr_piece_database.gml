@@ -23,11 +23,10 @@ BRIEFDESCRIPTION = 14,		// String
 DESCRIPTION = 15,			// String
 }
 //Class info
-#macro RANGECLASS #51ff62
-#macro SUPPORTCLASS #f3c43f
-#macro WANDERCLASS #c814ff
-#macro DEFENSECLASS #4c2e16
-#macro EXPLOSIVECLASS #ff1919
+#macro DEFENSECLASS #B26E47
+#macro SUPPORTCLASS #72FFB1
+#macro OFFENSECLASS #FF66AA
+#macro CONTROLCLASS #8895D8
 
 function piece_database(name, trait = -1) {
 	with obj_piece_database {
@@ -35,10 +34,10 @@ function piece_database(name, trait = -1) {
 			case "shooter":
 				object = [	"shooter",obj_shooter,spr_shooter,spr_shooter_slot,
 							2,6,2,1,10,
-							[[["1", 1],["1", -1]], 
+							[[[0, 1],[0, -1]], 
 							[["1", 0]]],
 							SAME,PLACEABLENONE,
-							RANGECLASS,PIECE,
+							DEFENSECLASS,PIECE,
 							"Shoots at enemy pieces and the enemy base.",
 							"I love this piece. My mom gave this piece to me when I first started playing Adler's Game. Placing them all makes me feel safe, like a queen defending her castle. I keep its card on my nightstand to remind me of those times."]
 			break;
@@ -47,18 +46,18 @@ function piece_database(name, trait = -1) {
 							3,10,10,1,10,
 							[[[1, 1]]],
 							SAME,PLACEABLENONE,
-							RANGECLASS,PIECE,
+							DEFENSECLASS,PIECE,
 							"Rapidly shoots at pieces in its area.",
 							"TBA"]
 			break;
 			case "splitter":
 				object = [	"splitter",obj_splitter,spr_piece_upgraded,spr_splitter_slot,
-							4,8,4,1,10,
-							[[["1", 1],["1", -1]], 
+							4,8,4,1,15,
+							[[[0, 1],[0, -1],[0,2],[0,-2]], 
 							[["1", 0]]],
 							SAME,PLACEABLENONE,
-							RANGECLASS,PIECE,
-							"Shoots two bullets at a time.",
+							DEFENSECLASS,PIECE,
+							"Shoots two bullets at a time. Has more HP.",
 							"TBA"]
 			break;
 			case "big_shooter":
@@ -68,13 +67,13 @@ function piece_database(name, trait = -1) {
 							undefined,
 							[[1,1]]],
 							SAME,PLACEABLENONE,
-							RANGECLASS,PIECE,
+							DEFENSECLASS,PIECE,
 							"Sacrifices all of your pieces to feed the ultimate war machine. The more pieces the better!",
 							"TBA"]
 			break;
 			case "piercer":
 				object = [	"piercer",obj_piercer,spr_piercer,spr_piercer_slot,
-							3,8,4,1,10,
+							2,6,4,1,10,
 							[[["-1", 1],["-1", -1]], 
 							undefined,
 							[["1",0]]],
@@ -88,17 +87,17 @@ function piece_database(name, trait = -1) {
 							5,12,12,1,10,
 							[[["1", 0],["-1", 1],["-1", 0],["-1", -1]]],
 							SAME,PLACEABLENONE,
-							RANGECLASS,PIECE,
+							DEFENSECLASS,PIECE,
 							"High damage at a short distance.",
 							"TBA"]
 			break;
 			case "accelerator":
 				object = [	"accelerator",obj_accelerator,spr_accelerator,spr_accelerator_slot,
-							1,4.5,6,1,10,
-							[[[0, 1],[0,-1]]],
+							1,20,6,1,10,
+							[[[1, 1],[1,-1],[-1,1],[-1,-1]]],
 							SAME,PLACEABLENONE,
 							SUPPORTCLASS,PIECE,
-							"Passively increases timer speed. Gives an additional point for each timer upgrade.",
+							"Produces points over a period of time. A worthwhile investment!",
 							"I don't know what I would do without these things. They've single handedly turned games around for me in the past. Yeah they don't really do much on their own; they're quite fragile at that, but they are well worth the little time and resources it takes."]
 			break;
 			case "cross":
@@ -107,17 +106,17 @@ function piece_database(name, trait = -1) {
 							[[[1, 0],[2, 0],[-1,0],[-2,0],[0,1],[0,2],[0,-1],[0,-2]]],
 							SAME,PLACEABLENONE,
 							SUPPORTCLASS,PIECE,
-							"Gives a buff to every piece behind it.",
+							"Gives a buff to pieces surrounding it.",
 							"TBA"]
 			break;
 			case "bishop":
 				object = [	"bishop",obj_bishop,spr_bishop,spr_bishop_slot,
-							3,10,2,1,10,
+							3,10,2,1,15,
 							[undefined,
 							undefined,
 							[[1,1]]],
 							SAME,PLACEABLENONE,
-							DEFENSECLASS,PIECE,
+							CONTROLCLASS,PIECE,
 							"Able to be moved diagonally anywhere on the map.",
 							"TBA"]
 			break;
@@ -127,7 +126,7 @@ function piece_database(name, trait = -1) {
 							[[["1", 0],["2",0]], 
 							[["1", 1],["1", -1]]],
 							SAME,PLACEABLENONE,
-							DEFENSECLASS,PIECE,
+							CONTROLCLASS,PIECE,
 							"Static piece, has a lot of health and is useful for stalling.",
 							"TBA",]
 			break;
@@ -136,7 +135,7 @@ function piece_database(name, trait = -1) {
 							3,16,21,2,10,
 							[undefined],
 							SAME,PLACEABLENONE,
-							EXPLOSIVECLASS,PIECE,
+							CONTROLCLASS,PIECE,
 							"Instead of moving, launches an explosive anywhere on the map.",
 							"TBA"]
 			break;
@@ -166,7 +165,7 @@ function piece_database(name, trait = -1) {
 							[undefined, 
 							[["1", 0]]],
 							SAME,PLACEABLENONE,
-							WANDERCLASS,PIECE,
+							OFFENSECLASS,PIECE,
 							"Crawls all the way to the enemy's base.",
 							"Crawlers, despite their limited mobility, they always seem to get into the strangest places if when left by themselves. Plus, they always like herding into groups of other crawlers for whatever reason. They kinda freak me out for that but some people seem to really like crawlers, so I can't fault them for that."]
 			break;
@@ -176,7 +175,7 @@ function piece_database(name, trait = -1) {
 							[undefined, 
 							[["1", 0]]],
 							SAME,PLACEABLENONE,
-							WANDERCLASS,PIECE,
+							OFFENSECLASS,PIECE,
 							"Crawler able to take pieces in its immediate column.",
 							"Because of this piece's ability to drop from high up the map to take a piece, this crawler has a very peculiar feature to show for that. Its snout! Anytime the drooper attacks an enemy from above (or below), it would use its snoot to droop on the enemy piece. That's why it's called the droop snoot, the snoot would droop."]
 			break;
@@ -186,7 +185,7 @@ function piece_database(name, trait = -1) {
 							[undefined, 
 							[["1", 0]]],
 							SAME,PLACEABLENONE,
-							WANDERCLASS,PIECE,
+							OFFENSECLASS,PIECE,
 							"Able to take more damage than a normal crawler.",
 							//Change?
 							"People are always confused as to why this thing has twice the health of a regular crawler. Are the spikes supposed to give it tougher skin? Is it just twice as massive? This piece recieves a large amount of ridicule because of the wacky logic behind it. Yet, I think it's tougher in a different way. I respect tank crawlers inspite of all the flack they get, they just disregard whatever hateful thing is said about them and keep doing their job. You go little champ!"]
@@ -197,7 +196,7 @@ function piece_database(name, trait = -1) {
 							[undefined, 
 							[["1", 0]]],
 							SAME,PLACEABLENONE,
-							WANDERCLASS,PIECE,
+							OFFENSECLASS,PIECE,
 							"Takes even more damage to kill.",
 							"Even more spikes."]
 			break;
@@ -208,7 +207,7 @@ function piece_database(name, trait = -1) {
 							undefined,
 							[[0,1],[0,-1]]],
 							SAME,PLACEABLENONE,
-							WANDERCLASS,PIECE,
+							OFFENSECLASS,PIECE,
 							"Big guy.",
 							"TBA",]
 			break;
@@ -219,7 +218,7 @@ function piece_database(name, trait = -1) {
 							[["1",0]],
 							[["2",1],["2",-1]]],
 							SAME,PLACEABLENONE,
-							WANDERCLASS,PIECE,
+							OFFENSECLASS,PIECE,
 							"Can make a jump over pieces.",
 							"TBA"]
 			break;
@@ -239,7 +238,7 @@ function piece_database(name, trait = -1) {
 							[["-1",1],["-1",0],["-1",-1]], 
 							[["1",1],["1",0],["1",-1]]],
 							SAME,PLACEABLENONE,
-							RANGECLASS,PIECE,
+							DEFENSECLASS,PIECE,
 							"What? Is this supposed to be here?",
 							"Seriously, I don't remember seeing anything like this before. My phone must be bugged or something. Extremely odd."]
 			break;

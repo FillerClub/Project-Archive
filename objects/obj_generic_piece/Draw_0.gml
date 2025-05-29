@@ -23,7 +23,7 @@ xFlip = (1 -toggle*2)*tM,
 xScale = (1 +ai_timer/(timer_to_take*2))*xFlip,
 yScale = (1 +ai_timer/(timer_to_take*2));
 
-var hpMissing = (hp_start -hp)/hp_start;
+var hpMissing = (hp_max -hp)/hp_max;
 
 var origXoffset = sprite_xoffset,
 origYoffset = sprite_yoffset;
@@ -31,10 +31,12 @@ origYoffset = sprite_yoffset;
 sprite_set_offset(sprite_index,sprite_width/2 +sprite_xoffset,sprite_height/2 +sprite_yoffset);
 // Draw sprite
 draw_sprite_ext(sprite_index,image_index,x +sprite_width/2,y +sprite_height/2,xScale,yScale,0,col,intangible_tick);
-sprite_set_offset(sprite_index,origXoffset,origYoffset);
-
 // Draw cooldown timer
-scr_draw_circle_part(x +sprite_width/2 -origXoffset, y +sprite_height/2 -origYoffset,32,timer_color,false,180,true,move_cooldown_timer*(360/move_cooldown),360,.5);
+if move_cooldown_timer > 0 {
+	scr_draw_circle_part(x +sprite_width/2 -origXoffset, y +sprite_height/2 -origYoffset,32,timer_color,false,180,false,0,(360*move_cooldown_timer)/move_cooldown,.5);
+}
+// Draw health
+sprite_set_offset(sprite_index,origXoffset,origYoffset);
 
 draw_set_font(fnt_bit);
 draw_set_halign(fa_right);
@@ -65,15 +67,25 @@ if sLW > 0 {
 // Create HP effect and reset variables
 if hp_init != hp {
 	damaged = true;
+	last_damaged = 0;
 	instance_create_layer(x +sprite_width/2 +(random_range(-sprite_width/2,sprite_width/2)),y +sprite_height/2 +(random_range(-sprite_height/2,sprite_height/2)),"AboveBoard",obj_hit_fx,{
 		hp: hp -hp_init
 	});
 }
 
 image_speed = 1 +sprite_accel*9;
-if global.game_state != PAUSED{
+
+if global.game_state != PAUSED {
+	if damaged {
+		if hp < hp_max {
+			last_damaged += delta_time*DELTA_TO_SECONDS;	
+		} else {
+			last_damaged = 0;
+			damaged = false;
+		}	
+	}
 	moved = false;
 	hp_init = hp;
 }
-//draw_text_scribble(x,y,effects_management_array);
+//draw_text_scribble(x,y,last_damaged);
 //draw_text_scribble(x,y+64,effects_array);

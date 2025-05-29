@@ -96,7 +96,6 @@ if input_check_pressed("action") && !instance_exists(obj_dummy) {
 		}
 	}
 }
-#macro TIMERUPLENGTH 60
 // Battle Timer Function
 switch room {
 	case rm_main_menu:
@@ -108,59 +107,24 @@ switch room {
 	break;
 	
 	default:
-		if global.game_state != PAUSED{
+		if global.game_state != PAUSED {
 			timer[MAIN] += delta_time*DELTA_TO_SECONDS;	
 			if timer[ALERT] > 0 { timer[ALERT] -= delta_time*DELTA_TO_SECONDS; }
 		}
-		if timer[MAIN] >= TIMERUPLENGTH || (global.debug && keyboard_check_pressed(vk_tab)) {
+		if timer[MAIN] >= global.timeruplength || (global.debug && keyboard_check_pressed(vk_tab)) {
 			global.max_turns++;
 			global.turns++;
 			global.enemy_turns++;
-			global.turn_increment++;
 			timer[ALERT] = 2.3;	
 			audio_play_sound(snd_shield_up,0,0);
 			var 
 			accelCountF = 0,
 			accelCountE = 0;
-			with obj_accelerator {
-				sprite_accel = 1;
-				
-				if team == "friendly" {
-					accelCountF++;
-				}
-				if team == "enemy" {
-					accelCountE++;
-				}
-				
-			}
 			with obj_timer {
 				draw_mute_red_green = 1;
 				if accel <= global.timer_max_speed_mult {
-					accel = min(accel +0.075,global.timer_max_speed_mult)
+					accel = min(accel +0.1,global.timer_max_speed_mult)
 				} 
-				if team == "friendly" {
-					timer_count_queue = accelCountF;
-					alarm[1] = .6*game_get_speed(gamespeed_fps)/(1 +accelCountF/1.5);
-				}
-				if team == "enemy" {
-					timer_count_queue = accelCountE;
-					alarm[1] = .6*game_get_speed(gamespeed_fps)/(1 +accelCountE/1.5);
-				}	
-			}
-			// Refresh powers up to three times
-			timer_phase++;
-			if timer_phase < 3 {
-				with obj_power_slot {
-					if other.timer_phase >= 0 && identity == "a" {
-						usable++;
-					}
-					if other.timer_phase >= 1 && identity == "b" {
-						usable++;
-					}
-					if other.timer_phase >= 2 && identity == "c" {
-						usable++;
-					}
-				}
 			}
 			timer[MAIN] = 0;
 		}
@@ -188,17 +152,17 @@ if global.debug {
 		with instance_position(obj_cursor.x,obj_cursor.y,obj_piece_slot) {
 			switch object_index {
 				case obj_piece_slot:
-					cooldown = cooldown_length;
+					cooldown = 0;
 				break;
 				case obj_power_slot:
-					usable++;
+					cooldown = 0;
 				break;
 			}
 		}
 		with instance_position(obj_cursor.x,obj_cursor.y,obj_generic_piece) {
 			switch identity {
 				default:
-					move_cooldown = move_cooldown_timer; 
+					move_cooldown_timer = 0; 
 				break;
 			}
 		}
