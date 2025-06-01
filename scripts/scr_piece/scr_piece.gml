@@ -12,6 +12,15 @@ if global.game_state == PAUSED && !ignore_pause {
 	return false;
 }
 
+if piece_on_grid != noone {
+	if instance_exists(piece_on_grid) {
+		x = grid_pos[0]*GRIDSPACE +piece_on_grid.bbox_left;
+		y = grid_pos[1]*GRIDSPACE +piece_on_grid.bbox_top;
+	} else {
+		//on_grid = noone;	
+	}
+}
+
 deal_with_effects();
 
 depth = -bbox_bottom;
@@ -19,10 +28,6 @@ if ai_controlled { auto_attack_timer(); }
 
 
 var 
-gS = GRIDSPACE,
-gD = global.grid_dimensions,
-gClampX = clamp(floor(x),gD[0],gD[1]),
-gClampY = clamp(floor(y),gD[2],gD[3]),
 sPD = effects_array[EFFECT.SPEED],
 sLW = effects_array[EFFECT.SLOW],
 pOIS = effects_array[EFFECT.POISON];
@@ -58,10 +63,7 @@ if pOIS > 0 {
 } else {
 	poison_tick = 0; 	
 }
-// if it is in an illegal area, destroy
-if !place_meeting(x,y,obj_grid) || place_meeting(gClampX,gClampY,obj_obstacle) { 
-	instance_destroy();
-}
+
 // If it has no hp, destroy
 if hp <= 0 {
 	instance_destroy();	
@@ -75,7 +77,5 @@ if hp > hp_max {
 if team != global.team {
 	execute = "nothing";
 }	
-x = gClampX
-y = gClampY;
 return true;
 }

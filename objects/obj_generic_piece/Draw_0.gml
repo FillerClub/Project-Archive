@@ -87,5 +87,6 @@ if global.game_state != PAUSED {
 	moved = false;
 	hp_init = hp;
 }
-//draw_text_scribble(x,y,last_damaged);
+draw_text_scribble(x,y -8,grid_pos);
+draw_text_scribble(x,y -16,piece_on_grid);
 //draw_text_scribble(x,y+64,effects_array);

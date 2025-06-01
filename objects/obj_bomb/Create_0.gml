@@ -1,15 +1,12 @@
-var gS = GRIDSPACE;
-var gD = global.grid_dimensions;
-
 valid_moves = [	[x,y],
-				[x +gS,y +gS],
-				[x -gS,y +gS],
-				[x +gS,y -gS],
-				[x -gS,y -gS],
-				[x,y +gS],
-				[x,y -gS],
-				[x +gS,y],
-				[x -gS,y],];
+				[x +GRIDSPACE,y +GRIDSPACE],
+				[x -GRIDSPACE,y +GRIDSPACE],
+				[x +GRIDSPACE,y -GRIDSPACE],
+				[x -GRIDSPACE,y -GRIDSPACE],
+				[x,y +GRIDSPACE],
+				[x,y -GRIDSPACE],
+				[x +GRIDSPACE,y],
+				[x -GRIDSPACE,y],];
 
 var sound_params = {
 	sound: snd_warning,

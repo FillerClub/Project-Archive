@@ -1,14 +1,12 @@
 function piece_attack(valid_attacks = [0,0], mode = BOTH, cost = 1, bypass_cooldown = false) {
 var	
 re = false,
-gS = GRIDSPACE,
-gD = global.grid_dimensions,
-gOffsetX = gD[0] mod gS,
-gOffsetY = gD[2] mod gS,
 moveX = x,
 moveY = y,
-gX = obj_cursor.x,
-gY = obj_cursor.y;
+cursorInstance = obj_cursor,
+gX = cursorInstance.x,
+gY = cursorInstance.y,
+onGrid = cursorInstance.on_grid;
 
 #macro ONLY_MOVE 0
 #macro ONLY_ATTACK 1 
@@ -40,7 +38,7 @@ if global.mode == "move" && execute == "move" {
 				return false;					
 			}
 			// Check how much it would cost to take piece
-			cost = move_cost_formula(piececlick.hp,cost);
+			//cost = move_cost_formula(piececlick.hp,cost);
 		} else {
 			if mode == ONLY_ATTACK {					
 				return false;		
@@ -50,8 +48,6 @@ if global.mode == "move" && execute == "move" {
 		
 		// Set up variables
 		var 
-		gClampX = floor(gX/gS)*gS,
-		gClampY = floor(gY/gS)*gS,
 		clientPresent = instance_exists(obj_client),	
 		ar_leng = array_length(valid_attacks),
 		moving = false;
@@ -69,12 +65,23 @@ if global.mode == "move" && execute == "move" {
 				preValidY = tm_dp(int64(preValidY),team,toggle);
 			}
 			
-			var validX = preValidX*gS +x,
-			validY = preValidY*gS +y,
+			var validX = preValidX*GRIDSPACE +x +GRIDSPACE/2,
+			validY = preValidY*GRIDSPACE +y +GRIDSPACE/2,
 			blockingValid = false;
 			
-			if (gClampX == validX)
-			&& (gClampY == validY)
+			//Snap to grid
+			if position_meeting(validX,validY,obj_grid) {
+				var 
+				movetoGrid = instance_position(validX,validY,obj_grid),
+				gClampX = floor((validX -movetoGrid.bbox_left)/GRIDSPACE)*GRIDSPACE +bbox_left,
+				gClampY = floor((validY -movetoGrid.bbox_top)/GRIDSPACE)*GRIDSPACE +bbox_top,
+				cClampX = floor((gX -movetoGrid.bbox_left)/GRIDSPACE)*GRIDSPACE +bbox_left,
+				cClampY = floor((gY -movetoGrid.bbox_top)/GRIDSPACE)*GRIDSPACE +bbox_top;
+			} else {
+				return false;
+			}		
+			if (gClampX == cClampX)
+			&& (gClampY == cClampY)
 			&& (position_meeting(gClampX,gClampY,obj_grid)) {
 				
 				// Slap
@@ -99,12 +106,12 @@ if global.mode == "move" && execute == "move" {
 				
 				// Set move
 				moving = true;
-				moveX = validX;
-				moveY = validY;
+				moveX = gClampX;
+				moveY = gClampY;
 			}
 		}
 		if !moving {
-			return false;	
+			return false;
 		}
 		// If it costs too much to move, exit
 		switch team {

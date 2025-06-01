@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.096776,
+  "duration":0.09678005,
   "name":"snd_phone_scroll",
   "parent":{
     "name":"Phone",

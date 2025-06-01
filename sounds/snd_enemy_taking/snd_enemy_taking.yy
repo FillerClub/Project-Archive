@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.290323,
+  "duration":0.29034013,
   "name":"snd_enemy_taking",
   "parent":{
     "name":"Sounds",

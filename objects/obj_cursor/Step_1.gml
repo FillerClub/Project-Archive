@@ -4,10 +4,14 @@ maxX = room_width -cursorMargin,
 maxY = room_height -cursorMargin;
 
 // With grid
-if instance_exists(obj_grid) {
-	var gD = global.grid_dimensions;
-	grid_pos[0] = floor((x -gD[0])/GRIDSPACE);
-	grid_pos[1] = floor((y -gD[2])/GRIDSPACE);
+if position_meeting(x,y,obj_grid) {
+	on_grid = instance_position(x,y,obj_grid);
+	with on_grid {
+		other.grid_pos[0] = floor((other.x -bbox_left)/GRIDSPACE);
+		other.grid_pos[1] = floor((other.y -bbox_top)/GRIDSPACE);
+	}
+} else {
+	on_grid = noone;	
 }
 
 if input_mouse_moved() || input_source_using(INPUT_MOUSE) {

@@ -1,23 +1,19 @@
-var gS = GRIDSPACE,
-gD = global.grid_dimensions,
-gX = obj_cursor.x,
-gY = obj_cursor.y,
-gOffsetX = gD[0] mod gS,
-gOffsetY = gD[2] mod gS,
-mosX = floor(gX/gS)*gS +gOffsetX,
-mosY = floor(gY/gS)*gS +gOffsetY,
+var cursorInstance = obj_cursor,
+mosX = cursorInstance.x,
+mosY = cursorInstance.y,
 placed = false,
 placeable = true;
+cursor_on_grid = obj_cursor.on_grid;
 
 
-if (input_check_released("action") || input_check_released("action")) && position_meeting(mosX,mosY,obj_grid) {
+if input_check_released("action") && cursor_on_grid != noone {
 	dragging = false;
 	placed = true;
-} else if (input_check_pressed("action")) && !position_meeting(mosX,mosY,obj_grid) {
+} else if input_check_pressed("action") && cursor_on_grid == noone {
 	if !placed { instance_destroy(); }
 	//dragging = true;
-	if position_meeting(gX,gY,obj_piece_slot) {
-		with instance_position(gX,gY,obj_piece_slot) {
+	if position_meeting(mosX,mosY,obj_piece_slot) {
+		with instance_position(mosX,mosY,obj_piece_slot) {
 			if identity == other.identity {
 				skip = true;
 				select_sound(snd_put_down);
@@ -30,28 +26,29 @@ if (input_check_released("action") || input_check_released("action")) && positio
 
 
 if dragging {
-	x = gX;
-	y = gY;
-	gClampX = clamp(floor(x/gS),gD[0]/gS,gD[1]/gS)*gS;
-	gClampY = clamp(floor(y/gS),gD[2]/gS,gD[3]/gS)*gS;
+	x = mosX;
+	y = mosY;
+	if cursor_on_grid != noone {
+		gClampX = cursorInstance.grid_pos[0]*GRIDSPACE +cursor_on_grid.x;
+		gClampY = cursorInstance.grid_pos[1]*GRIDSPACE +cursor_on_grid.y;		
+	}
 } else {
 	x = gClampX;
 	y = gClampY; 
 }
 
 if placed {
-	var gridOn = position_meeting(gClampX,gClampY,obj_grid);
 	// Check how script respects grid territories
 	switch on_grid {
 		case SAME:
-			if (position_meeting(gClampX,gClampY,obj_territory_friendly) && team == "friendly") || (position_meeting(gClampX,gClampY,obj_territory_enemy) && team == "enemy") {
-				placeable = true;
+			if cursor_on_grid.team == team {
+				placeable = true;	
 			} else { placeable = false; }
 		break;
 	
 		case NEUTRAL:
-			if !(position_meeting(gClampX,gClampY,obj_territory_enemy) && team == "friendly") && !(position_meeting(gClampX,gClampY,obj_territory_friendly) && team == "enemy") {
-				placeable = true;
+			if cursor_on_grid.team == team || cursor_on_grid.team == "neutral" {
+				placeable = true;	
 			} else { placeable = false; }
 		break;
 	
@@ -132,13 +129,17 @@ if placed && placeable {
 			}
 			
 		}
-		
+		var gX = cursorInstance.grid_pos[0];
+		var gY = cursorInstance.grid_pos[1];
 		instance_create_layer(gClampX,gClampY,"Instances",object, {
 			team: team,
 			link: link,
 			identity: identity,
-			skip_move: true
+			skip_move: true,
+			grid_pos: [gX,gY],
+			piece_on_grid: cursor_on_grid
 		});		
+	
 	}
 	instance_destroy();	 
 } else if placed && place_immediately { 

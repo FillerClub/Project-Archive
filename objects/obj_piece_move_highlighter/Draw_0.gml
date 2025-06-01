@@ -1,6 +1,7 @@
 with obj_generic_piece	{
+	var globalDebugMode = global.debug;
 	// Draw movement options
-	if execute != "move" && global.debug && ai_controlled { debugOn = true; } else
+	if execute != "move" && globalDebugMode && ai_controlled { debugOn = true; } else
 	if execute != "move" {
 		continue;
 	}
@@ -31,13 +32,13 @@ with obj_generic_piece	{
 		if valid_moves[list] != undefined && valid_moves[list] != 0 {
 			switch list {
 				case ONLY_MOVE:
-					highlight_draw(display_mode,valid_moves[ONLY_MOVE],c_aqua,debugOn,PLACEABLEANY,PLACEABLENONE,false,false,debugOn);
+					highlight_draw(display_mode,valid_moves[ONLY_MOVE],c_aqua,globalDebugMode,PLACEABLEANY,PLACEABLENONE,false,false,debugOn);
 				break;
 				case ONLY_ATTACK:
-					highlight_draw(display_mode,valid_moves[ONLY_ATTACK],c_red,debugOn,PLACEABLENONE,DIFFERENT,false,false,debugOn)
+					highlight_draw(display_mode,valid_moves[ONLY_ATTACK],c_red,globalDebugMode,PLACEABLENONE,DIFFERENT,false,false,debugOn)
 				break;
 				case BOTH:
-					highlight_draw(display_mode,valid_moves[BOTH],c_white,debugOn,PLACEABLEANY,DIFFERENT,false,false,debugOn)
+					highlight_draw(display_mode,valid_moves[BOTH],c_white,globalDebugMode,PLACEABLEANY,DIFFERENT,false,false,debugOn)
 				break;
 			}
 		}	

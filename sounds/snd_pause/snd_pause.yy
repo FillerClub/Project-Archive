@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.387099,
+  "duration":0.3870975,
   "name":"snd_pause",
   "parent":{
     "name":"Phone",

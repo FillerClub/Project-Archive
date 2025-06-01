@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":8.663193,
+  "duration":8.6631975,
   "name":"snd_beam",
   "parent":{
     "name":"Sounds",
