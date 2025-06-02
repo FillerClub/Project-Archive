@@ -1,4 +1,4 @@
-if team == global.team {
+if team == global.player_team {
 	identity = global.active_hero;
 }
 sprite_index = hero_database(identity,HERODATA.SPRITE);

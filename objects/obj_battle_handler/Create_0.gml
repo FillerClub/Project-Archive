@@ -1,0 +1,11 @@
+timer[MAIN] = 0;
+timer[ALERT] = 0;
+timer[AI] = 0;
+timer_phase = 0;
+ai_pieces = [];
+friendly_pieces = [];
+ai_valid[PIECE] = [];
+ai_valid[MOVE] = [];
+lane_threat = [];
+lane_score = [];
+ai_seed = random(100);

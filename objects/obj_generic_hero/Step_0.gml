@@ -32,7 +32,7 @@ if hp <= 0 {
 		room_goto(rm_gameover);
 	} else {
 		with obj_generic_piece {
-			if team == global.enemy_team {
+			if team == global.opponent_team {
 				instance_destroy();	
 			}
 		}

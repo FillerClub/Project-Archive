@@ -13,7 +13,7 @@ for (var lanes = 0; lanes < (gD[3] -gD[2])/gS +1; lanes += 1) {
 //Grab all pieces on the board
 var countFPiece = 0;
 with obj_obstacle {
-	if team == global.team && hp > 0 {
+	if team == global.player_team && hp > 0 {
 		other.friendly_pieces[countFPiece] = id;
 		other.piece_value[countFPiece] = 0;
 		countFPiece++;
@@ -174,7 +174,7 @@ if timer_power >= timer_power_end {
 								cooldown = cooldown_length;	
 							}
 						}
-						global.enemy_turns--;
+						global.opponent_turns--;
 						doesBreak = true;
 						break;
 					}
@@ -192,7 +192,7 @@ if timer_power >= timer_power_end {
 							cooldown = cooldown_length;		
 						}
 					}
-					global.enemy_turns--;
+					global.opponent_turns--;
 					break;
 				}
 			}

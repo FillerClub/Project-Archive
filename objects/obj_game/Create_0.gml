@@ -8,5 +8,6 @@
 #macro HEALTHCHUNK 5
 
 
-ai_seed = random(100);
 
+
+ai_seed = random(100);

@@ -15,7 +15,7 @@ if global.game_state == PAUSED exit;
 var enemyPiecePresent = false;
 
 with obj_generic_piece {
-	if team == global.enemy_team {
+	if team == global.opponent_team {
 		other.last_piece_x = x;
 		other.last_piece_y = y;
 		enemyPiecePresent = true;
@@ -31,7 +31,7 @@ reroll_y = true,
 cycle_wall = 0;
 //Count amount of walls
 with obj_hero_wall {
-	if team == global.team {
+	if team == global.player_team {
 		cycle_wall++;
 	} 
 }
@@ -41,7 +41,7 @@ do {
 	// Cycle through player's walls
 	with obj_hero_wall {
 		// If it is in position, has hp, and is player's, settle on this y
-		if position_meeting(x,random_y*gS +gD[2],self) && hp > 0 && team == global.team {
+		if position_meeting(x,random_y*gS +gD[2],self) && hp > 0 && team == global.player_team {
 			reroll_y = false
 		}
 	}

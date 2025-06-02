@@ -21,7 +21,7 @@ if !instance_exists(obj_server) {
 
 if timer >= click_time {
 	click_time += (seconds_per_turn / 16);
-	if team == global.team {
+	if team == global.player_team {
 		audio_play_sound(snd_timer_click,0,0);
 	}
 }

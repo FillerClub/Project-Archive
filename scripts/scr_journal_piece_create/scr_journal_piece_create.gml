@@ -6,7 +6,7 @@ function journal_piece_create(name){
 		instance_destroy(obj_generic_piece);
 		instance_create_layer(384,192,"Instances",obj, {
 		identity: name,
-		team: global.team,
+		team: global.player_team,
 		place_sound: "nothing",
 		destroy_sound: "nothing",
 		display_mode: true,

@@ -1,12 +1,12 @@
 var col = class,
 textcol = c_white,
 boxcol = draw_red_box?c_red:c_black;
-if global.team == "friendly" {
-	if global.turns < cost {
+if global.player_team == "friendly" {
+	if global.player_turns < cost {
 		textcol = c_red;	
 	}
 } else {
-	if global.enemy_turns < cost {
+	if global.opponent_turns < cost {
 		textcol = c_red;
 	}
 }

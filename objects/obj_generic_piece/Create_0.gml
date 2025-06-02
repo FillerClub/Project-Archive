@@ -3,6 +3,7 @@
 move_cooldown_timer = 0;
 move_cooldown = piece_database(identity,PIECEDATA.MOVECOOLDOWN);
 hp = piece_database(identity,PIECEDATA.HP);
+attack_power = piece_database(identity,PIECEDATA.ATTACKPOWER);
 hp_init = hp;
 hp_max = hp;
 valid_moves = piece_database(identity,PIECEDATA.MOVES);

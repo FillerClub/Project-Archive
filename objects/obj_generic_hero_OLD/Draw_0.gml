@@ -17,7 +17,7 @@ draw_text_scribble(x+64,y+96,valid_moves[2][1]);
 */
 
 
-if team == global.team {
+if team == global.player_team {
 	with obj_dummy {
 		var 
 		gClampX = floor(x/gS)*gS +gS/2,

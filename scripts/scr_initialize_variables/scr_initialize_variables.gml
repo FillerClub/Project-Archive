@@ -38,8 +38,8 @@ function initialize_variables(isFresh = false){
 	global.max_turns = 3;
 	global.timeruplength = 30;
 	global.max_barriers = 4;
-	global.turns = 2;
-	global.enemy_turns = 2;
+	global.player_turns = 2;
+	global.opponent_turns = 2;
 	global.turn_increment = 1;
 	global.mode = "move";
 	global.game_state = LOADING;
@@ -53,23 +53,12 @@ function initialize_variables(isFresh = false){
 	#macro PAUSED 1
 	#macro TRANSITIONING 2
 	#macro LOADING 3
-	global.team = "friendly";
-	global.enemy_team = "enemy";
+	global.player_team = "friendly";
+	global.opponent_team = "enemy";
 	if array_length(global.unlocked_pieces) <= global.max_slots {
 		global.loadout = global.unlocked_pieces;
 	}
-	timer[MAIN] = 0;
-	timer[ALERT] = 0;
-	timer[AI] = 0;
-	timer_phase = 0;
-	ai_pieces = [];
-	friendly_pieces = [];
-	ai_valid[PIECE] = [];
-	ai_valid[MOVE] = [];
-	lane_threat = [];
-	lane_score = [];
 	fresh = true;
 	on_menu = false;
 	on_pause_menu = false;
-	tutorial_piece = noone;
 }

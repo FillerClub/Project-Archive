@@ -26,7 +26,7 @@ if socket == event_id {
 			switch c {
 				case CMD_ROOM:
 					room_goto(buffer_read(buff, buffer_u16));
-					global.team = "enemy";
+					global.player_team = "enemy";
 				break;
 			}	
 			
@@ -100,7 +100,7 @@ if socket == event_id {
 					dragging: false,
 					fresh: false,
 					moveable: false,		
-					team: (global.team == "friendly")?"enemy":"friendly",					
+					team: (global.player_team == "friendly")?"enemy":"friendly",					
 					});
 				break;
 				

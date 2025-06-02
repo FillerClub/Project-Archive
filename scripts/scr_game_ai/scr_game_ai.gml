@@ -1,4 +1,4 @@
-function game_ai(mode = CLOSESTTOHERO, spawn_pieces = false, cheat_variable = 0){
+function game_ai(mode = CLOSESTTOBASE, spawn_pieces = false, cheat_variable = 0){
 #macro CLOSESTTOBASE 0
 var enemy_piece_present = false,
 friendly_piece_present = false,
@@ -16,7 +16,7 @@ debugOn = global.debug,
 prevSeed = random_get_seed();
 
 with obj_generic_piece {
-	var enemyP = team == global.enemy_team,
+	var enemyP = team == global.opponent_team,
 	notHeroWall = object_index != obj_hero_wall;
 	 
 	if enemyP && notHeroWall {
@@ -36,7 +36,7 @@ if !enemy_piece_present {
 
 var countPiece = 0;
 with obj_generic_piece {
-	if team != global.team && ai_controlled {
+	if team != global.player_team && ai_controlled {
 		other.ai_pieces[countPiece] = id;
 		countPiece++;
 	}
@@ -319,9 +319,9 @@ if commitMove {
 		// Deal Damage/Destroy Victim Piece
 		with obstacleInst {
 			if moveCost != 0 {
-				global.enemy_turns -= ceil(hp/10)*moveCost;	
+				global.opponent_turns -= ceil(hp/10)*moveCost;	
 			} else {
-				global.enemy_turns -= ceil(hp/10) -1;							
+				global.opponent_turns -= ceil(hp/10) -1;							
 			}
 			if object_index != obj_hero_wall {	
 				hp = 0;

@@ -3,6 +3,7 @@
   "%Name":"obj_hero_wall",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
   "name":"obj_hero_wall",
@@ -34,6 +35,8 @@
   "properties":[
     {"$GMObjectProperty":"v1","%Name":"hp_init","filters":[],"listItems":[],"multiselect":false,"name":"hp_init","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"10","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"identity","filters":[],"listItems":[],"multiselect":false,"name":"identity","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"hero_wall","varType":2,},
+    {"$GMObjectProperty":"v1","%Name":"piece_on_grid","filters":[],"listItems":[],"multiselect":false,"name":"piece_on_grid","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"noone","varType":4,},
+    {"$GMObjectProperty":"v1","%Name":"grid_pos","filters":[],"listItems":[],"multiselect":false,"name":"grid_pos","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"[0,0]","varType":4,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

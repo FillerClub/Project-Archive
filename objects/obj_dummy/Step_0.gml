@@ -93,7 +93,7 @@ if placed {
 		break;		
 	}
 }
-
+if global.debug { placeable = true; }
 if placed && placeable { 
 	if instance_exists(obj_client) {	
 		with obj_client {
@@ -110,8 +110,8 @@ if placed && placeable {
 			break;
 			
 			default:
-				if team == "friendly" { global.turns -= turn_cost; }
-				if team == "enemy" { global.enemy_turns -= turn_cost; }				
+				if team == "friendly" { global.player_turns -= turn_cost; }
+				if team == "enemy" { global.opponent_turns -= turn_cost; }				
 			break;
 		}
 		
@@ -146,7 +146,7 @@ if placed && placeable {
 	var avoidPlaying = false;
 	if input_check_pressed("action") { 
 		with instance_position(gClampX,gClampY,obj_generic_piece) {
-			if team == global.team && hp > 0 {
+			if team == global.player_team && hp > 0 {
 				avoidPlaying = true;
 			}
 		}

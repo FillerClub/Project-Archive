@@ -9,5 +9,5 @@ instance_create_layer(gD[1] -abs(spawn_x_offset*gS),gD[2] +spawn_y_offset*gS,"In
 	team: "enemy",
 	ai_controlled: true
 });
-global.enemy_turns -= cost;
+global.opponent_turns -= cost;
 }

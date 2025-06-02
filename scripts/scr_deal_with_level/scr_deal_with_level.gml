@@ -18,7 +18,7 @@ function deal_with_level(level) {
 		case 1:
 			instance_create_layer(x,y,"AboveBoard",obj_world_one);
 			if level[1] != 8 {
-				delete_team(global.enemy_team);
+				delete_team(global.opponent_team);
 			}
 			switch level[1] {
 				case 1:
@@ -78,7 +78,7 @@ function deal_with_level(level) {
 						x -= gS*3	
 					}
 					with obj_timer {
-						if team == global.enemy_team {
+						if team == global.opponent_team {
 							x += 6000;
 						}
 					}
@@ -95,7 +95,7 @@ function deal_with_level(level) {
 	
 
 	with obj_slot_bg {
-		if team == global.team {
+		if team == global.player_team {
 			var loadoutLength = array_length(deployLoadout);
 			for (var l = 0; l < loadoutLength; l++) {
 				instance_create_layer(x +l*48,y,"Instances",obj_piece_slot,{

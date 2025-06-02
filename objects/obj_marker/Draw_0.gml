@@ -1,8 +1,8 @@
-if global.team == "friendly" && !place_meeting(x,y,obj_territory_friendly) {
+if global.player_team == "friendly" && !place_meeting(x,y,obj_territory_friendly) {
 	exit;	
 }
 
-if global.team == "enemy" && !place_meeting(x,y,obj_territory_enemy) {
+if global.player_team == "enemy" && !place_meeting(x,y,obj_territory_enemy) {
 	exit;	
 }
 var spr_y = y;

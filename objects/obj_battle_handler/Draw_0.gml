@@ -1,0 +1,1 @@
+if timer[ALERT] > 0 { draw_text_transformed(room_width/2,room_height -64,"Timer Up!",1,1,0); }

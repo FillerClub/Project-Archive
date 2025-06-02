@@ -6,7 +6,7 @@ if global.game_state == PAUSED {
 
 if resource_timer >= time_to_produce {
 	image_index = min(image_index +1, 3);
-	var checkNoExcess = ((team == "friendly")? (global.turns < global.max_turns):(global.enemy_turns < global.max_turns));
+	var checkNoExcess = ((team == "friendly")? (global.player_turns < global.max_turns):(global.opponent_turns < global.max_turns));
 	if input_check_pressed("action") && position_meeting(obj_cursor.x,obj_cursor.y,self) && checkNoExcess {
 		execute = "nothing";
 		audio_stop_sound(snd_pick_up);

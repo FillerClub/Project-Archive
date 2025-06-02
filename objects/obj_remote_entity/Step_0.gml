@@ -3,7 +3,7 @@ if create != noone && room == rm_test {
 		dragging: false,
 		fresh: false,
 		moveable: false,		
-		team: (global.team == "friendly")?"enemy":"friendly",		
+		team: (global.player_team == "friendly")?"enemy":"friendly",		
 	});
 }
 instance_destroy();

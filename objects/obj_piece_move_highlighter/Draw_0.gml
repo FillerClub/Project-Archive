@@ -1,16 +1,17 @@
 with obj_generic_piece	{
-	var globalDebugMode = global.debug;
+	var globalDebugMode = global.debug,
+	debugOn = false,
+	gX = obj_cursor.x,
+	gY = obj_cursor.y,
+	colS = c_white,
+	drawSpr = spr_grid_highlight;
+	
 	// Draw movement options
 	if execute != "move" && globalDebugMode && ai_controlled { debugOn = true; } else
 	if execute != "move" {
 		continue;
 	}
-	var gX = obj_cursor.x,
-	gY = obj_cursor.y,
-	debugOn = false,
-	colS = c_white,
-	drawSpr = spr_grid_highlight;
-	
+
 	// Draw own square
 	if debugOn {
 		drawSpr = spr_grid_dotted; 

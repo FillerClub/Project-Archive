@@ -7,7 +7,7 @@ if global.debug {
 	}
 	if instance_exists(obj_generic_piece) {
 		with obj_generic_piece {
-			if team != global.team && object_get_parent(object_index) != obj_generic_hero_OLD {
+			if team != global.player_team && object_get_parent(object_index) != obj_generic_hero_OLD {
 				instance_destroy();	
 			}
 		}

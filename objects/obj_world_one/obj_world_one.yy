@@ -11,8 +11,8 @@
   "name":"obj_world_one",
   "overriddenProperties":[],
   "parent":{
-    "name":"Main",
-    "path":"folders/Objects/Main.yy",
+    "name":"Level",
+    "path":"folders/Objects/Main/Level.yy",
   },
   "parentObjectId":null,
   "persistent":false,

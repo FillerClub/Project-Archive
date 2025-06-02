@@ -2,13 +2,13 @@
 function world_timer_tick(reverse = false){
 	var enemyPiecePresent = false;
 	with obj_generic_piece {
-		if team == global.enemy_team {
+		if team == global.opponent_team {
 			enemyPiecePresent = true;
 		} 
 	}
 	var countFPiece = 0;
 	with obj_generic_piece {
-		if team == global.team {
+		if team == global.player_team {
 			countFPiece++;
 		}
 	}

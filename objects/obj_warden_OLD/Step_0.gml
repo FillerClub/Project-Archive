@@ -30,7 +30,7 @@ if hp <= 20 && damage_phase <= 0 {
 	intangible = true;
 	alarm[0] = game_get_speed(gamespeed_fps)*3.5;
 	with obj_power_slot {
-		if !usable && identity == 2 && global.team == tM {
+		if !usable && identity == 2 && global.player_team == tM {
 			usable = true;
 		}
 	}
@@ -48,7 +48,7 @@ if hp <= 10 && damage_phase <= 1 {
 	intangible = true;
 	alarm[0] = game_get_speed(gamespeed_fps)*3.5;
 	with obj_power_slot {
-		if !usable && identity == 3 && global.team == tM {
+		if !usable && identity == 3 && global.player_team == tM {
 			usable = true;
 		}
 	}

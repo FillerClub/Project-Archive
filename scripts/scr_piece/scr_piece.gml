@@ -74,7 +74,7 @@ if hp > hp_max {
 }
 
 // If it is enemy piece, exit any execution mode
-if team != global.team {
+if team != global.player_team {
 	execute = "nothing";
 }	
 return true;

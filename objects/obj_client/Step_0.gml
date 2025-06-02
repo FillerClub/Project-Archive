@@ -1,6 +1,6 @@
 for (var i = 0; i < array_length(action); ++i) {
 	if action[i] != noone {
-		var isFriendly = (global.team == "friendly")?true:false;
+		var isFriendly = (global.player_team == "friendly")?true:false;
 		
 		switch i {
 			case CREATE:

@@ -22,8 +22,8 @@ function scr_client_handle_message(){
 				var isPlayerFriendly = buffer_read(buff, buffer_bool);
 				
 				if !isPlayerFriendly {
-					global.team = "enemy";
-				} else { global.team = "friendly"; }
+					global.player_team = "enemy";
+				} else { global.player_team = "friendly"; }
 			
 				buffer_seek(send_buffer, buffer_seek_start, 0);
 				buffer_write(send_buffer, buffer_u8, MESSAGE_SEND_PROFILE);
@@ -69,9 +69,9 @@ function scr_client_handle_message(){
 							grid_pos = [xCnew/gS,yCnew/gS];	
 						}
 						if isFriendly {
-							global.turns -= 1;
+							global.player_turns -= 1;
 						} else {
-							global.enemy_turns -= 1;					
+							global.opponent_turns -= 1;					
 						}	
 
 						

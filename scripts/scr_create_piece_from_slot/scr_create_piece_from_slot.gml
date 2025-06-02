@@ -13,13 +13,13 @@ mosX = floor(gX/gS)*gS,
 mosY = floor(gY/gS)*gS;
 
 with obj_generic_piece {
-	if team == global.team && object_get_parent(object_index) != obj_generic_hero_OLD {
+	if team == global.player_team && object_get_parent(object_index) != obj_generic_hero_OLD {
 		i++;	
 	}
 }
 
 if i < global.max_pawns {
-	if ((global.team == "friendly")? (global.turns >= cost):(global.enemy_turns >= cost)) {
+	if ((global.player_team == "friendly")? (global.player_turns >= cost):(global.opponent_turns >= cost)) {
 		switch object_index {
 			case obj_piece_slot:
 				var info = piece_database(identity);
@@ -27,7 +27,7 @@ if i < global.max_pawns {
 					object: info[PIECEDATA.OBJECT],	
 					sprite_index: info[PIECEDATA.SPRITE],
 					turn_cost: cost,
-					team: global.team,
+					team: global.player_team,
 					on_grid: info[PIECEDATA.PLACEMENTONGRID],
 					on_piece: info[PIECEDATA.PLACEMENTONPIECE],
 					identity: identity, 
@@ -42,7 +42,7 @@ if i < global.max_pawns {
 					object: info[POWERDATA.OBJECT],
 					sprite_index: info[POWERDATA.SLOTSPRITE],
 					turn_cost: cost,
-					team: global.team,
+					team: global.player_team,
 					on_grid: info[POWERDATA.PLACEMENTONGRID],
 					on_piece: info[POWERDATA.PLACEMENTONPIECE],
 					identity: identity, 
@@ -67,18 +67,18 @@ if i >= global.max_pawns {
 	}	
 }
 	
-if ((global.team == "friendly")? (global.turns < cost):(global.enemy_turns < cost)) {
+if ((global.player_team == "friendly")? (global.player_turns < cost):(global.opponent_turns < cost)) {
 	audio_stop_sound(snd_pick_up);
 	audio_stop_sound(snd_error);
 	audio_stop_sound(snd_critical_error);
 	audio_play_sound(snd_critical_error,0,0);	
 	with obj_timer {
-		if team == global.team {
+		if team == global.player_team {
 			scr_error();
 		}
 	}
 	with obj_turn_operator {
-		if team == global.team {
+		if team == global.player_team {
 			scr_error();
 		}
 	}	

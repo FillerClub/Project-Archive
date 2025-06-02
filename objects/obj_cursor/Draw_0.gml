@@ -23,7 +23,7 @@ margin = 3,
 movingSomething = noone;
 
 with obj_generic_piece {
-	if execute == "move" && team == global.team {
+	if execute == "move" && team == global.player_team {
 		movingSomething = id;	
 	}
 }
@@ -137,5 +137,5 @@ if stringDraw != -1 && global.game_state != PAUSED && global.tooltips_enabled {
 	draw_text_scribble(x +margin*flip,y -margin -4,stringDraw);	
 }
 
-draw_text(x,y,grid_pos);
-draw_text(x,y +16,on_grid);
+//draw_text(x,y,grid_pos);
+//draw_text(x,y +16,on_grid);

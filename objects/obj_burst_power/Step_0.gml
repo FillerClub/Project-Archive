@@ -9,7 +9,7 @@ var sound_params = {
 
 audio_play_sound_ext(sound_params);
 with obj_generic_hero_OLD {
-	if team == global.team {
+	if team == global.player_team {
 		var hX = x,
 		hY = y;
 	}
@@ -25,7 +25,7 @@ var breakIf = false;
 for (var i = 0; i < length; ++i) {
 	if position_meeting(hX -i*lengthX/length +sprite_width/2, hY -i*lengthY/length +sprite_height/2, obj_obstacle) {
 		with instance_position(hX -i*lengthX/length +sprite_width/2,hY -i*lengthY/length +sprite_height/2,obj_obstacle) {
-			if team != global.team {
+			if team != global.player_team {
 				part_particles_burst(global.part_sys,hX -i*lengthX/length +sprite_width/2,hY -i*lengthY/length +sprite_height/2,part_explode);	
 				if !intangible {
 					hp -= 10;

@@ -10,7 +10,7 @@ draw_set_alpha(image_alpha);
 var i = 0;
 
 with obj_generic_piece {
-	if team == global.team && object_get_parent(object_index) != obj_generic_hero_OLD {
+	if team == global.player_team && object_get_parent(object_index) != obj_generic_hero_OLD {
 		i++;	
 	}
 }
