@@ -1,10 +1,11 @@
-function draw_piece_hp(){
+function draw_piece_hp(subtract_health = 0){
 	// Draw Health
 	// Divide health into chunks
 	var 
 	// Grab current health
-	healthCount = floor(hp/HEALTHCHUNK),
-	healthPart = hp/HEALTHCHUNK -healthCount,
+	healthTempVar = max(hp -subtract_health,0),
+	healthCount = floor(healthTempVar/HEALTHCHUNK),
+	healthPart = healthTempVar/HEALTHCHUNK -healthCount,
 	// Grab max health
 	totalHealthCount = floor(hp_max/HEALTHCHUNK),
 	totalHealthPart = hp_max/HEALTHCHUNK -totalHealthCount,
@@ -21,12 +22,19 @@ function draw_piece_hp(){
 	wid = sprite_get_width(sPrE),
 	hei = sprite_get_height(sPrE),
 	totalWid = wid*scale*(totalHealthPart +totalHealthCount),
-	centerX = (x +64/2),
-	centerY = (y +64),
-	startX = centerX -totalWid/2;
+	centerX = (x +GRIDSPACE/2),
+	centerY = (y +GRIDSPACE),
+	startX = centerX -totalWid/2,
+	col = c_white,
+	arrayLengthIDFK = array_length(other.piece_attacking_array),
+	preHealthCount = floor(hp/HEALTHCHUNK),
+	preHealthPart = hp/HEALTHCHUNK -preHealthCount;
 	
 	// Draw total health
 	draw_bar(sPrE,sPrEp,wid,hei,totalHealthCount,totalHealthPart,startX,centerY,scale);
-	// Draw current health
+	if subtract_health > 0 {
+		draw_bar(sPrF,sPrFp,wid,hei,preHealthCount,preHealthPart,startX,centerY,scale,c_red);		
+	}
+	// Draw current
 	draw_bar(sPrF,sPrFp,wid,hei,healthCount,healthPart,startX,centerY,scale);
 }

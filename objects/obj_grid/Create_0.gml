@@ -3,7 +3,7 @@ enum GROUNDTYPE {
 	WATER = 1,
 }
 
-if team != "friendly" && team != "enemy" {
+if (team != "friendly" && team != "enemy") || !generate_walls {
 	exit;	
 }
 var tM = (team == "friendly")?bbox_left:bbox_right -GRIDSPACE,

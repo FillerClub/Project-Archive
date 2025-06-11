@@ -49,6 +49,7 @@
     {"$GMObjectProperty":"v1","%Name":"timer_power","filters":[],"listItems":[],"multiselect":false,"name":"timer_power","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"timer_power_end","filters":[],"listItems":[],"multiselect":false,"name":"timer_power_end","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"3.5","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"text_phase","filters":[],"listItems":[],"multiselect":false,"name":"text_phase","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":1,},
+    {"$GMObjectProperty":"v1","%Name":"debug_variable","filters":[],"listItems":[],"multiselect":false,"name":"debug_variable","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"true","varType":3,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

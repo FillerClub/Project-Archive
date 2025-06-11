@@ -6,3 +6,4 @@ if piece_on_grid != noone {
 		//on_grid = noone;	
 	}
 }
+

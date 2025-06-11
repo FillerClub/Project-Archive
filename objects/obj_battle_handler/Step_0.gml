@@ -167,7 +167,6 @@ switch room {
 		lane_score = [];
 		ai_valid[PIECE] = [];
 		ai_valid[MOVE] = [];
-		var spawnPieces = false;
-		game_ai(ai_mode,spawnPieces,.2);
+		game_ai(ai_mode);
 	break;
 }

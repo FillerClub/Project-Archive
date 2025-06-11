@@ -1,12 +1,10 @@
 {
   "$GMObject":"",
-  "%Name":"obj_grid_friendly",
+  "%Name":"obj_TEST_grid_center",
   "eventList":[],
   "managed":true,
-  "name":"obj_grid_friendly",
-  "overriddenProperties":[
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_grid","path":"objects/obj_grid/obj_grid.yy",},"propertyId":{"name":"team","path":"objects/obj_grid/obj_grid.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"friendly",},
-  ],
+  "name":"obj_TEST_grid_center",
+  "overriddenProperties":[],
   "parent":{
     "name":"Grid",
     "path":"folders/Objects/Grid.yy",
@@ -36,8 +34,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_grid_highlight_1",
-    "path":"sprites/spr_grid_highlight_1/spr_grid_highlight_1.yy",
+    "name":"spr_grid_highlight",
+    "path":"sprites/spr_grid_highlight/spr_grid_highlight.yy",
   },
   "spriteMaskId":null,
   "visible":true,

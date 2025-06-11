@@ -10,13 +10,8 @@ var gS = GRIDSPACE;
 
 switch room {
 	case rm_world_one:
-		deal_with_level(global.level);	
-		enable_pausing = true;
-	break;
-	
 	case rm_sandbox:
 	case rm_debug_room:
-		deal_with_level([0,0]);
 		enable_pausing = true;
 	break;
 	
@@ -51,6 +46,10 @@ switch room {
 	
 	case rm_loadout_zone:
 		soundtrack_play(LOOKINGBACK);
+		enable_pausing = false;
+	break;
+	case rm_gameover: 
+		audio_play_sound(snd_game_end,0,0);
 		enable_pausing = false;
 	break;
 	

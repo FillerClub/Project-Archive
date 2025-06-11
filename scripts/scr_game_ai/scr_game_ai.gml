@@ -1,12 +1,13 @@
-function game_ai(mode = CLOSESTTOBASE, spawn_pieces = false, cheat_variable = 0){
+function game_ai(mode = CLOSESTTOBASE) {
+		
+}
+/*
 #macro CLOSESTTOBASE 0
 var enemy_piece_present = false,
 friendly_piece_present = false,
 arrayLengthMovesList = 0,
 arrayLengthMoves = 0,
 moveAvailable = false,
-gS = GRIDSPACE,
-gD = global.grid_dimensions,
 levelWorld = global.level[0],
 push = false,
 moveRequest = false,
@@ -68,8 +69,8 @@ for (var inst = 0; inst < arrayLength; inst++) {
 					preValidY = tm_dp(real(preValidY),team,toggle);
 				}
 			
-				var validX = preValidX*gS +x,
-				validY = preValidY*gS +y;			
+				var validX = preValidX*GRIDSPACE +x,
+				validY = preValidY*GRIDSPACE +y;			
 				// Filter bad moves
 				if position_meeting(validX,validY,obj_grid) && (preValidX != 0 || preValidY != 0) {
 					// Depending on the type of moves list determine if it is able to move
@@ -148,7 +149,7 @@ for (var cl = 0; cl < arrayLengthValid; cl++) {
 			with clPiece {
 				// Grab the attacking move immediately in front of it
 				var 
-				horseX = x + gS*tm_dp(int64(1),team,toggle),
+				horseX = x + GRIDSPACE*tm_dp(int64(1),team,toggle),
 				horseY = y,
 				horseLookingAt = instance_position(horseX,horseY,obj_obstacle),
 				shouldNotJump = true;
@@ -256,8 +257,8 @@ if levelWorld != 0 && global.tutorial_progress <= 0 {
 					TpreValidY = tm_dp(real(TpreValidY),tutorialTakePiece.team,tutorialTakePiece.toggle);
 				}
 			
-				var TvalidX = TpreValidX*gS +tutorialTakePiece.x,
-				TvalidY = TpreValidY*gS +tutorialTakePiece.y;		
+				var TvalidX = TpreValidX*GRIDSPACE +tutorialTakePiece.x,
+				TvalidY = TpreValidY*GRIDSPACE +tutorialTakePiece.y;		
 				
 				if position_meeting(TvalidX,TvalidY,atInst) {
 					if tutorialTakePiece.execute != "move" {

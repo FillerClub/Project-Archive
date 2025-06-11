@@ -6,6 +6,8 @@ ai_pieces = [];
 friendly_pieces = [];
 ai_valid[PIECE] = [];
 ai_valid[MOVE] = [];
+ai_mode = CLOSESTTOBASE;
 lane_threat = [];
 lane_score = [];
 ai_seed = random(100);
+

@@ -25,18 +25,19 @@ function initialize_variables(isFresh = false){
 		global.debug = 0;
 		global.max_slots = 5;
 		global.max_pawns = infinity;
-		global.timer_max_speed_mult = 3;
 		#macro GRIDSPACE 64
 		global.cursor_sens = 3;
 		global.fps_target = 60;
 		global.tutorial_progress = 0;
 		global.difficulty = 0;
 		global.first_boot = true;
+		global.max_ai_moving_pieces = infinity;
 	}
 	
 	
 	global.max_turns = 3;
 	global.timeruplength = 30;
+	global.timer_max_speed_mult = 4;
 	global.max_barriers = 4;
 	global.player_turns = 2;
 	global.opponent_turns = 2;

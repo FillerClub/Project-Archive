@@ -34,7 +34,7 @@ function piece_database(name, trait = -1) {
 		switch name {
 			case "shooter":
 				object = [	"shooter",obj_shooter,spr_shooter,spr_shooter_slot,
-							2,6,2,1,10,5,
+							2,6,9,0,10,5,
 							[[[0, 1],[0, -1]], 
 							[["1", 0]]],
 							SAME,PLACEABLENONE,
@@ -44,7 +44,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "short":
 				object = [	"short",obj_short_shooter,spr_short_shooter,spr_short_shooter_slot,
-							3,10,10,1,10,10,
+							3,10,16,0,10,10,
 							[[[1, 1]]],
 							SAME,PLACEABLENONE,
 							DEFENSECLASS,PIECE,
@@ -53,7 +53,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "splitter":
 				object = [	"splitter",obj_splitter,spr_piece_upgraded,spr_splitter_slot,
-							4,8,4,1,15,10,
+							4,8,7,0,15,10,
 							[[[0, 1],[0, -1],[0,2],[0,-2]], 
 							[["1", 0]]],
 							SAME,PLACEABLENONE,
@@ -74,7 +74,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "piercer":
 				object = [	"piercer",obj_piercer,spr_piercer,spr_piercer_slot,
-							2,6,4,1,10,20,
+							2,6,20,0,10,20,
 							[[["-1", 1],["-1", -1]], 
 							undefined,
 							[["1",0]]],
@@ -85,7 +85,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "shotgun":
 				object = [	"shotgun",obj_shotgun,spr_shotgun,spr_shotgun_slot,
-							5,12,12,1,10,5,
+							5,12,12,0,10,5,
 							[[["1", 0],["-1", 1],["-1", 0],["-1", -1]]],
 							SAME,PLACEABLENONE,
 							DEFENSECLASS,PIECE,
@@ -94,7 +94,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "accelerator":
 				object = [	"accelerator",obj_accelerator,spr_accelerator,spr_accelerator_slot,
-							1,20,6,1,10,1,
+							1,20,30,0,10,1,
 							[[[1, 1],[1,-1],[-1,1],[-1,-1]]],
 							SAME,PLACEABLENONE,
 							SUPPORTCLASS,PIECE,
@@ -103,7 +103,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "cross":
 				object = [	"cross",obj_cross,spr_cross,spr_cross_slot,
-							3,15,2.5,1,10,5,
+							3,15,6,0,10,5,
 							[[[1, 0],[2, 0],[-1,0],[-2,0],[0,1],[0,2],[0,-1],[0,-2]]],
 							SAME,PLACEABLENONE,
 							SUPPORTCLASS,PIECE,
@@ -112,7 +112,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "bishop":
 				object = [	"bishop",obj_bishop,spr_bishop,spr_bishop_slot,
-							3,10,2,1,15,20,
+							3,10,9,0,15,20,
 							[undefined,
 							undefined,
 							[[1,1]]],
@@ -123,7 +123,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "wall":
 				object = [	"wall",obj_wall,spr_wall,spr_wall_slot,
-							1,16,2,1,20,20,
+							1,16,9,0,20,5,
 							[[["1", 0],["2",0]], 
 							[["1", 1],["1", -1]]],
 							SAME,PLACEABLENONE,
@@ -133,7 +133,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "bomber":
 				object = [	"bomber",obj_bomber,spr_bomber,spr_bomber_slot,
-							3,16,21,2,10,10,
+							3,16,21,0,10,10,
 							[undefined],
 							SAME,PLACEABLENONE,
 							CONTROLCLASS,PIECE,
@@ -142,7 +142,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "stick":
 				object = [	"stick",obj_stick,spr_stick,spr_stick_slot,
-							0,30,1,0,5,10,
+							1,30,1,0,5,10,
 							[undefined, 
 							[[1, 0],[-1, 0]]],
 							SAME,PLACEABLENONE,
@@ -152,7 +152,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "super_stick":
 				object = [	"super_stick",obj_super_stick,spr_super_stick,spr_super_stick_slot,
-							6,50,5,0,20,20,
+							5,50,6,0,20,20,
 							[undefined, 
 							[[1,1]]],
 							SAME,PLACEABLENONE,
@@ -162,7 +162,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "crawler":
 				object = [	"crawler",obj_crawler,spr_crawler,spr_crawler_slot,
-							1,1.5,3.5,0,10,10,
+							1,1.5,4,0,10,10,
 							[undefined, 
 							[["1", 0]]],
 							SAME,PLACEABLENONE,
@@ -172,7 +172,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "drooper":
 				object = [	"drooper",obj_drooper,spr_drooper,spr_drooper_slot,
-							2,3,3.5,0,10,10,
+							2,3,4,0,10,10,
 							[undefined, 
 							[["1", 0]]],
 							SAME,PLACEABLENONE,
@@ -182,7 +182,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "tank_crawler":
 				object = [	"tank_crawler",obj_crawler,spr_tank_crawler,spr_tank_crawler_slot,
-							2,2.5,3.5,0,15,10,
+							2,2.5,4,0,15,10,
 							[undefined, 
 							[["1", 0]]],
 							SAME,PLACEABLENONE,
@@ -193,7 +193,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "super_tank_crawler":
 				object = [	"super_tank_crawler",obj_crawler,spr_super_tank_crawler,spr_super_tank_crawler_slot,
-							3,3.5,3.5,0,20,10,
+							3,3.5,4,0,20,10,
 							[undefined, 
 							[["1", 0]]],
 							SAME,PLACEABLENONE,
@@ -203,7 +203,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "the_goliath":
 				object = [	"the_goliath",obj_goliath,spr_goliath,spr_goliath_slot,
-							7,30,10,2,40,20,
+							7,30,12,0,40,20,
 							[undefined,
 							undefined,
 							[[0,1],[0,-1]]],
@@ -214,7 +214,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "jumper":
 				object = [	"jumper",obj_jumper,spr_jumper,spr_jumper_slot,
-							3,8,3.5,0,10,10,
+							3,8,3,0,10,10,
 							[undefined, 
 							[["1",0]],
 							[["2",1],["2",-1]]],

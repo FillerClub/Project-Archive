@@ -20,7 +20,8 @@ drawToY = y,
 color = c_white,
 selectColor = c_white,
 checkPieceObject = object_index != obj_dummy,
-drawnSquareIsMeeting = noone;
+drawnSquareIsMeeting = noone,
+healthDrawIteration = 0;
 // Check if cursor is on a grid
 if position_meeting(obj_cursor.x,obj_cursor.y,obj_grid) {
 	cursorOnGrid = instance_position(obj_cursor.x,obj_cursor.y,obj_grid);
@@ -101,10 +102,18 @@ for (var moves = 0; moves < ar_leng; moves++) {
 							if drawnSquareIsMeeting.team != team {
 								color = selectColor;
 								if variable_instance_exists(self,"attack_power") {
-									if attack_power < drawnSquareIsMeeting.hp && selectColor != c_aqua {
+									var atk = attack_power;
+									if atk < drawnSquareIsMeeting.hp && selectColor != c_aqua {
 										color = c_yellow;	
 									} 
+									
+									with obj_piece_ui_manager {
+										piece_attacking_array[healthDrawIteration] = drawnSquareIsMeeting;
+										attack_power_array[healthDrawIteration] = atk;
+									}
+									healthDrawIteration++;
 								}
+
 							} else {
 								color = c_red;	
 							}

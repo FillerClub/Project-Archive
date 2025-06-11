@@ -84,9 +84,9 @@ if !position_meeting(x,y,movingSomething) {
 				}
 			}
 			if invalid {
-				stringDraw = "CANNOT TAKE YOUR OWN PIECE";	
+				stringDraw = "ILLEGAL";	
 			} else {
-				var totalCost = move_cost_formula(HPcheck,cost);
+				var totalCost = cost;
 				stringDraw = string(totalCost) +" COST";				
 			}
 

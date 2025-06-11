@@ -1,7 +1,12 @@
 function enemy_spawn_sequence(start_phase,spawn_identity,time_per_spawn = 7, spawn_amount = 1,spawn_x_offset = 0,spawn_y_offset = 0){
-	var 
-	gD = global.grid_dimensions,
-	gS = GRIDSPACE,
+	var
+	gridRef = noone;
+	with obj_grid {
+		if team == "enemy" {
+			gridRef = self;
+		}
+	}
+	var
 	spawnArrayLength = array_length(spawn_identity) -1,
 	spawnActual = spawn_identity[irandom_range(0,spawnArrayLength)];
 	
@@ -9,7 +14,7 @@ function enemy_spawn_sequence(start_phase,spawn_identity,time_per_spawn = 7, spa
 		exit;	
 	}
 	//Check if piece can be spawned
-	if (position_meeting(gD[1] -abs(spawn_x_offset*gS),gD[2] +spawn_y_offset*gS,obj_obstacle)) {
+	if (position_meeting(gridRef.bbox_right -abs(spawn_x_offset*GRIDSPACE) -GRIDSPACE,gridRef.bbox_top +spawn_y_offset*GRIDSPACE,obj_obstacle)) {
 		// Delay so "AI" can try spawning a piece again
 		timer = time_per_spawn -.1;
 		exit;

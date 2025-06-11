@@ -1,12 +1,12 @@
 {
   "$GMObject":"",
-  "%Name":"obj_grid_friendly",
-  "eventList":[],
-  "managed":true,
-  "name":"obj_grid_friendly",
-  "overriddenProperties":[
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_grid","path":"objects/obj_grid/obj_grid.yy",},"propertyId":{"name":"team","path":"objects/obj_grid/obj_grid.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"friendly",},
+  "%Name":"obj_TEST_grid_rotating",
+  "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":1,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
+  "managed":true,
+  "name":"obj_TEST_grid_rotating",
+  "overriddenProperties":[],
   "parent":{
     "name":"Grid",
     "path":"folders/Objects/Grid.yy",
@@ -31,13 +31,15 @@
   "properties":[
     {"$GMObjectProperty":"v1","%Name":"visible","filters":[],"listItems":[],"multiselect":false,"name":"visible","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"true","varType":3,},
     {"$GMObjectProperty":"v1","%Name":"type","filters":[],"listItems":[],"multiselect":false,"name":"type","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":1,},
+    {"$GMObjectProperty":"v1","%Name":"shift_timer","filters":[],"listItems":[],"multiselect":false,"name":"shift_timer","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
+    {"$GMObjectProperty":"v1","%Name":"timer_step","filters":[],"listItems":[],"multiselect":false,"name":"timer_step","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"pi/2","varType":0,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_grid_highlight_1",
-    "path":"sprites/spr_grid_highlight_1/spr_grid_highlight_1.yy",
+    "name":"spr_grid_dotted",
+    "path":"sprites/spr_grid_dotted/spr_grid_dotted.yy",
   },
   "spriteMaskId":null,
   "visible":true,

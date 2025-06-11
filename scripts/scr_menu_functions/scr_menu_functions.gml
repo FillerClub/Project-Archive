@@ -4,7 +4,7 @@
 #macro JOURNAL 2
 #macro POSTLEVELJOURNAL 3
 // Main menu functions
-#macro FIRSTMENU ["DEBUG ROOM","Singleplayer","Settings","Journal","Edit Loadout","Exit Game"]
+#macro FIRSTMENU ["Singleplayer","Settings","Journal","Edit Loadout","Exit Game"]
 #macro SINGLEPLAYERMENU ["Campaign","Sandbox","Back"]
 #macro MULTIPLAYERMENU ["Join Lobby","Create Lobby","Back"]
 #macro SETTINGSMENU ["Audio","Display","HUD","Cursor","Data","Debug","Back"]

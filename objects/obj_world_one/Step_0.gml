@@ -23,9 +23,14 @@ with obj_generic_piece {
 }
 // Generate random numbers
 var
-gS = GRIDSPACE,
-gD = global.grid_dimensions,
-board_height = (gD[3] -gD[2])/gS,
+gridRef = noone;
+with obj_grid {
+	if team == "enemy" {
+		gridRef = self;
+	}
+}
+var
+board_height = floor((gridRef.bbox_bottom -gridRef.bbox_top -1)/GRIDSPACE),
 random_y = 0,
 reroll_y = true,
 cycle_wall = 0;
@@ -41,7 +46,7 @@ do {
 	// Cycle through player's walls
 	with obj_hero_wall {
 		// If it is in position, has hp, and is player's, settle on this y
-		if position_meeting(x,random_y*gS +gD[2],self) && hp > 0 && team == global.player_team {
+		if position_meeting(x,random_y*GRIDSPACE +gridRef.bbox_top,self) && hp > 0 && team == global.player_team {
 			reroll_y = false
 		}
 	}
@@ -118,11 +123,11 @@ switch level[1] {
 			global.mode = "move";
 			random_time_add = random_range(0,1);
 			with obj_hero_wall {
-				instance_create_layer(x,y+gS,"Instances",obj_hero_wall,{
+				instance_create_layer(x,y+GRIDSPACE,"Instances",obj_hero_wall,{
 					identity: identity,
 					team: team,
 				})	
-				instance_create_layer(x,y-gS,"Instances",obj_hero_wall,{
+				instance_create_layer(x,y-GRIDSPACE,"Instances",obj_hero_wall,{
 					identity: identity,
 					team: team,
 				})	
@@ -134,7 +139,7 @@ switch level[1] {
 		enemy_spawn_sequence(9,["crawler"],4,3,0,random_y); 
 		pause_sequence(10,true,6);	
 		enemy_spawn_sequence(11,["crawler"],3,2,0,random_y); 
-		initiate_final_wave(12,!enemyPiecePresent,track3);
+		initiate_final_wave(12,!enemyPiecePresent,track3); 
 		enemy_spawn_sequence(13,["crawler"],.5,10,0,random_y);
 		drop_slot(14,"accelerator",[1,2],!enemyPiecePresent,);
 	break;

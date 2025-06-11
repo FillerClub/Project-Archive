@@ -25,21 +25,35 @@ if hp < hp_init {
 }
 
 if hp <= 0 {
-	if !ai_controlled {
-		instance_create_layer(x,y,"Instances",obj_death_hero,{
-			sprite_index: sprite_index
-		})
-		room_goto(rm_gameover);
-	} else {
-		with obj_generic_piece {
-			if team == global.opponent_team {
-				instance_destroy();	
+	switch room {
+		case rm_debug_room:
+		case rm_sandbox:
+			hp = global.max_barriers;
+			with obj_hero_wall {
+				if team == other.team && hp <= 0 {
+					hp = 10;
+					intangible = false;
+				}
 			}
-		}
-		with obj_world_one {
-			if phase < HEROBATTLEEND {
-				phase = HEROBATTLEEND;
+		break;
+		default:
+			if !ai_controlled {
+				instance_create_layer(x,y,"Instances",obj_death_hero,{
+					sprite_index: sprite_index
+				})
+				room_goto(rm_gameover);
+			} else {
+				with obj_generic_piece {
+					if team == global.opponent_team {
+						instance_destroy();	
+					}
+				}
+				with obj_world_one {
+					if phase < HEROBATTLEEND {
+						phase = HEROBATTLEEND;
+					}
+				}
 			}
-		}
+		break;
 	}
 }

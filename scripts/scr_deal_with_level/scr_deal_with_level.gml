@@ -1,5 +1,4 @@
 function deal_with_level(level) {
-	var gS = GRIDSPACE;
 	var deployLoadout = global.loadout;
 	// Default level music
 	var soundtrackPlay = GETOUTOFMYWAY;
@@ -10,7 +9,7 @@ function deal_with_level(level) {
 					soundtrackPlay = BATTLE;
 				break;
 				case rm_debug_room:
-					soundtrackPlay = noone;
+					soundtrackPlay = GETOUTOFMYWAY;
 				break;
 			}
 			deployLoadout = global.unlocked_pieces;
@@ -75,7 +74,7 @@ function deal_with_level(level) {
 						image_xscale = 4;	
 					}
 					with obj_marker {
-						x -= gS*3	
+						x -= GRIDSPACE*3	
 					}
 					with obj_timer {
 						if team == global.opponent_team {
@@ -107,6 +106,6 @@ function deal_with_level(level) {
 	with obj_pawn_limit {
 		visible = true;	
 	}
-	
+
 	soundtrack_play(soundtrackPlay);
 }

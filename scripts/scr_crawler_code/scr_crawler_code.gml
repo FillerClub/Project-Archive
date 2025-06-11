@@ -9,12 +9,13 @@ function crawler_code() {
 	targetGrid = noone,
 	obstacleInWay = noone,
 	canMove = true,
-	still = false;
-	
-	if position_meeting(targetX,targetY,obj_obstacle) {
+	still = false,
+	// Debug setting
+	bounce = false;
+	if position_meeting(targetX,targetY,obj_obstacle) && !bounce {
 		obstacleInWay = instance_position(targetX,targetY,obj_obstacle);
 		with obstacleInWay {
-			if hp > 0 || team == other.team {
+			if (hp > 0 ) && object_index != obj_hero_wall {
 				other.skip_timer = true;	
 			} else {
 				// Destroy if at an already destroyed hero wall
@@ -41,7 +42,7 @@ function crawler_code() {
 			canMove = false;	
 		} else {
 			targetGrid = instance_position(targetX,targetY,obj_grid);
-			if position_meeting(targetX,targetY,obj_obstacle) {
+			if position_meeting(targetX,targetY,obj_obstacle) && !bounce {
 				obstacleInWay = instance_position(targetX,targetY,obj_obstacle);
 				if obstacleInWay.team == team {
 					canMove = false;
@@ -51,7 +52,13 @@ function crawler_code() {
 				}
 			}
 		}
-	
+		if bounce {
+			skip_timer = false;
+			if still {
+				toggle = (toggle)?false:true;
+			}
+			still = false;
+		}
 		if canMove {
 			if !still {
 				piece_on_grid = targetGrid;

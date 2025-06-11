@@ -1,5 +1,13 @@
 /// @desc Grabs object info from database
 #macro HEALTHCOSTMULTIPLIER .6
+// Set on grid if pos nor grid not set for piece
+if piece_on_grid == noone && position_meeting(x,y,obj_grid) {
+	piece_on_grid = instance_position(x,y,obj_grid);
+}
+if grid_pos[0] == -1 && grid_pos[1] == -1 && piece_on_grid != noone {
+	grid_pos[0] = floor((x -piece_on_grid.bbox_left)/GRIDSPACE);
+	grid_pos[1] = floor((y -piece_on_grid.bbox_top)/GRIDSPACE); 
+}
 move_cooldown_timer = 0;
 move_cooldown = piece_database(identity,PIECEDATA.MOVECOOLDOWN);
 hp = piece_database(identity,PIECEDATA.HP);
