@@ -1,5 +1,5 @@
 /// @desc Grabs object info from database
-#macro HEALTHCOSTMULTIPLIER .6
+
 // Set on grid if pos nor grid not set for piece
 if piece_on_grid == noone && position_meeting(x,y,obj_grid) {
 	piece_on_grid = instance_position(x,y,obj_grid);
@@ -17,7 +17,6 @@ hp_max = hp;
 valid_moves = piece_database(identity,PIECEDATA.MOVES);
 cost = piece_database(identity,PIECEDATA.MOVECOST);
 sprite_index = piece_database(identity,PIECEDATA.SPRITE);
-time_to_take = 1.6 + HEALTHCOSTMULTIPLIER*cost;
 
 error_time = time_source_create(time_source_global,.03,time_source_units_seconds,function(){
 	if timer_color == c_black {

@@ -12,11 +12,10 @@ switch execute {
 			if valid_moves[list] == undefined || valid_moves[list] == 0 {
 				continue;	
 			}
-			if piece_attack(valid_moves[list],list,cost) {
+			if piece_attack(valid_moves[list],list,cost,false,skip_click) {
 				moved = true;
 				move_count++;
 				audio_play_sound(snd_move,0,0);	
-				execute = "move";
 			} 	
 		}		
 	break;

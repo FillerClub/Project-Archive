@@ -19,7 +19,6 @@ if global.debug {
 
 
 /*
-var gD = global.grid_dimensions,
 gS = GRIDSPACE;
 var
 gClampX = clamp(floor(mouse_x/gS)*gS,gD[0],gD[1]),

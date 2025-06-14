@@ -17,7 +17,6 @@ var
 stringDraw = -1,
 descWidth = 0,
 descHeight = 0,
-gS = GRIDSPACE,
 //shift = 10,
 margin = 3,
 movingSomething = noone;
@@ -41,15 +40,16 @@ with instance_position(x,y,obj_hero_wall) {
 	descHeight = string_height(stringDraw);
 }
 
-if !position_meeting(x,y,movingSomething) {
+if !position_meeting(x,y,movingSomething) && on_grid != noone {
 	with movingSomething {
 		var 
 		setsOfMoves = array_length(valid_moves),
 		mouseOn = false,
-		mosX = floor(other.x/gS)*gS,
-		mosY = floor(other.y/gS)*gS,
-		gcX = floor(x/gS)*gS,
-		gcY = floor(y/gS)*gS;
+		mouseOnCantAttack = false,
+		mosX = other.grid_pos[0]*GRIDSPACE +other.on_grid.bbox_left,
+		mosY = other.grid_pos[1]*GRIDSPACE +other.on_grid.bbox_top,
+		gcX = grid_pos[0]*GRIDSPACE +piece_on_grid.bbox_left,
+		gcY = grid_pos[1]*GRIDSPACE +piece_on_grid.bbox_top;
 				
 		for (var set = 0; set < setsOfMoves; ++set)	{	
 			var arLeng = array_length(valid_moves[set]);
@@ -64,32 +64,34 @@ if !position_meeting(x,y,movingSomething) {
 				if is_string(preValidY) {
 					preValidY = tm_dp(real(preValidY),team,toggle);
 				}
-				var xM = preValidX*gS +gcX;
-				var yM = preValidY*gS +gcY;		
+				var xM = preValidX*GRIDSPACE +gcX;
+				var yM = preValidY*GRIDSPACE +gcY;		
 				if (mosX == xM) && (mosY == yM) && (valid_moves[set][i][0] != 0 || valid_moves[set][i][1] != 0) {
 					mouseOn = true;
+					if set != BOTH && set != ONLY_ATTACK {
+						mouseOnCantAttack = true;	
+					}
 				} 	
 			}
 		}
 		
 		if mouseOn {
-			var HPcheck = 0,
-			invalid = false;
+			var invalid = false;
 			if position_meeting(other.x,other.y,obj_generic_piece) || position_meeting(other.x,other.y,obj_hero_wall) {
 				var check = instance_position(other.x,other.y,obj_obstacle);
 				if check.team == team {
 					invalid = true;	
-				} else {
-					HPcheck = check.hp;	
 				}
 			}
 			if invalid {
 				stringDraw = "ILLEGAL";	
 			} else {
-				var totalCost = cost;
-				stringDraw = string(totalCost) +" COST";				
+				if mouseOnCantAttack {
+					stringDraw = "MOVE";
+				} else {
+					stringDraw = string(attack_power) +" ATTACK";
+				}				
 			}
-
 			descWidth = string_width(stringDraw);
 			descHeight = string_height(stringDraw);
 		}

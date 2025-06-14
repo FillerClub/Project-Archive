@@ -20,8 +20,8 @@ switch team {
 
 var
 xFlip = (1 -toggle*2)*tM,
-xScale = (1 +ai_timer/(timer_to_take*2))*xFlip,
-yScale = (1 +ai_timer/(timer_to_take*2));
+xScale = (1 +ai_timer/(TIMETOTAKE*2))*xFlip,
+yScale = (1 +ai_timer/(TIMETOTAKE*2));
 
 var hpMissing = (hp_max -hp)/hp_max;
 
@@ -86,6 +86,7 @@ if global.game_state != PAUSED {
 	}
 	moved = false;
 	hp_init = hp;
+	skip_click = false;
 }
 //draw_text_scribble(x,y -8,grid_pos);
 //draw_text_scribble(x,y -16,piece_on_grid);

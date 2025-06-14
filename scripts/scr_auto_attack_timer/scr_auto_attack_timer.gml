@@ -1,6 +1,6 @@
 function auto_attack_timer() {
-if ai_timer >= time_to_take {
-	ai_timer = time_to_take;	
+if ai_timer >= TIMETOTAKE {
+	ai_timer = TIMETOTAKE;	
 }
 
 if skip_timer {

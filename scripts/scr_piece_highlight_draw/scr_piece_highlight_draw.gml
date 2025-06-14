@@ -2,16 +2,14 @@
 /// @function scr_piece_highlight_draw();
 function piece_highlight_draw(){
 // Grab grid variables
-var gS = GRIDSPACE;
-var gD = global.grid_dimensions;
 can_move = true;
 
 
 // If it's not placed
 if fresh {
 	// Convert object being dragged to simple grid coords
-	var gcX = floor(x/gS)*gS;
-	var gcY = floor(y/gS)*gS;
+	var gcX = floor(x/GRIDSPACE)*GRIDSPACE;
+	var gcY = floor(y/GRIDSPACE)*GRIDSPACE;
 	
 	// If position is on the grid
 	if position_meeting(gcX,gcY,obj_grid) {
@@ -21,8 +19,8 @@ if fresh {
 				spr_grid_highlight,0,
 				gcX,
 				gcY,
-		//		clamp(grid_pos[0]*gS,gD[0],gD[1]),
-		//		clamp(grid_pos[1]*gS,gD[2],gD[3]),
+		//		clamp(grid_pos[0]*GRIDSPACE,gD[0],gD[1]),
+		//		clamp(grid_pos[1]*GRIDSPACE,gD[2],gD[3]),
 				1,1,0,c_red,1
 				)
 				exit;
@@ -35,8 +33,8 @@ if fresh {
 			spr_grid_highlight,0,
 			gcX,
 			gcY,
-	//		clamp(grid_pos[0]*gS,gD[0],gD[1]),
-	//		clamp(grid_pos[1]*gS,gD[2],gD[3]),
+	//		clamp(grid_pos[0]*GRIDSPACE,gD[0],gD[1]),
+	//		clamp(grid_pos[1]*GRIDSPACE,gD[2],gD[3]),
 			1,1,0,c_aqua,1
 			)				
 		} else {
@@ -44,8 +42,8 @@ if fresh {
 			spr_grid_highlight,0,
 			gcX,
 			gcY,
-	//		clamp(grid_pos[0]*gS,gD[0],gD[1]),
-	//		clamp(grid_pos[1]*gS,gD[2],gD[3]),
+	//		clamp(grid_pos[0]*GRIDSPACE,gD[0],gD[1]),
+	//		clamp(grid_pos[1]*GRIDSPACE,gD[2],gD[3]),
 			1,1,0,c_red,1
 			)
 			}

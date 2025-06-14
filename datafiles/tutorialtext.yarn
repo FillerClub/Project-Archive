@@ -6,7 +6,7 @@ title: Tutorial1
 ---
 Select a piece and place it down on the grid to build your defense!
 Placing most pieces will cost you points. You gain points on a timer which gets faster overtime.
-Pieces can move around the board for points. Click on a piece to see how it can move.
+Pieces can move around the board, though they will be put on a cooldown. Click on a piece to see how it can move.
 ===
 __PrivCrochet_colorID: 0
 __PrivCrochet_position: 319,51

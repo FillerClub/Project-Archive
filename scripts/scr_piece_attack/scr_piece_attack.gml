@@ -1,10 +1,11 @@
-function piece_attack(valid_attacks = [0,0], mode = BOTH, cost = 1, bypass_cooldown = false) {
+function piece_attack(valid_attacks = [0,0], mode = BOTH, cost = 1, bypass_cooldown = false, skip_clicking = false) {
 #macro ONLY_MOVE 0
 #macro ONLY_ATTACK 1 
 #macro BOTH 2
 #macro FAUX 3
 var 
 re = false,
+checkPress = input_check_pressed("action") && !skip_clicking,
 cursorInstance = obj_cursor,
 cursorX = cursorInstance.x,
 cursorY = cursorInstance.y,
@@ -19,7 +20,7 @@ ar_leng = array_length(valid_attacks),
 moving = false;
 
 if global.mode == "move" && execute == "move" {
-	if input_check_pressed("action") && cursorOnGrid != noone {
+	if checkPress && cursorOnGrid != noone {
 		if !bypass_cooldown && move_cooldown_timer > 0 {
 			scr_error();
 			audio_stop_sound(snd_critical_error);
@@ -34,10 +35,6 @@ if global.mode == "move" && execute == "move" {
 			piececlick = instance_position(cursorX,cursorY,obj_obstacle);
 			// Cancel if clicked on illegal spot
 			if piececlick.team != global.opponent_team || piececlick.intangible == true || mode == ONLY_MOVE || piececlick.hp <= 0 {
-				// Exit move mode if it's team piece
-				if piececlick.team == global.player_team {
-					execute = "nothing";						
-				}
 				return false;					
 			}
 		// Else if move set is only attacking, exit
@@ -78,7 +75,7 @@ if global.mode == "move" && execute == "move" {
 			return false;	
 		}
 		// Deny moving into blockades
-		if position_meeting(cursorX,cursorY,obj_territory_blockade) {
+		if position_meeting(obj_cursor.x,obj_cursor.y,obj_territory_blockade) {
 			var sound_params = {
 					sound: snd_oip,
 					pitch: random_range(0.85,1.15),
@@ -146,6 +143,7 @@ if global.mode == "move" && execute == "move" {
 		re = true;
 		if re && !bypass_cooldown {
 			move_cooldown_timer = move_cooldown;	
+			skip_click = true;
 		}
 		// Move, while changing the grid position
 		x = gClampX -GRIDSPACE/2;
@@ -155,186 +153,4 @@ if global.mode == "move" && execute == "move" {
 		return re;	
 	}
 }
-/*
-var	
-re = false,
-moveX = x,
-moveY = y,
-cursorInstance = obj_cursor,
-gX = cursorInstance.x,
-gY = cursorInstance.y,
-onGrid = cursorInstance.on_grid;
-
-
-
-// Is mode on move and is the piece executing a move?
-if global.mode == "move" && execute == "move" {
-	// Check for second mouse press
-	if input_check_pressed("action") {
-		var piececlick = instance_position(gX,gY,obj_obstacle);
-		
-		if !bypass_cooldown {
-			if (move_cooldown_timer > 0) && !position_meeting(gX,gY,self) {
-				scr_error();
-				audio_stop_sound(snd_critical_error);
-				audio_play_sound(snd_critical_error,0,0);
-				return false;	
-			}	
-		}
-		// Check if clicked on piece
-		if piececlick != -4 {
-			// Cancel if clicked on illegal spot
-			if piececlick.team == global.player_team || piececlick.intangible == true || mode == ONLY_MOVE || piececlick.hp <= 0 {
-				// Exit move mode if it's team piece
-				if piececlick.team == global.player_team {
-					execute = "nothing";						
-				}
-				return false;					
-			}
-			// Check how much it would cost to take piece
-			//cost = move_cost_formula(piececlick.hp,cost);
-		} else {
-			if mode == ONLY_ATTACK {					
-				return false;		
-			}
-		
-		}
-		
-		// Set up variables
-		var 
-		clientPresent = instance_exists(obj_client),	
-		ar_leng = array_length(valid_attacks),
-		moving = false;
-
-		
-		// Check where to move
-		for (var i = 0; i < ar_leng; ++i) {
-			var preValidX = valid_attacks[i][0],
-			preValidY = valid_attacks[i][1];
-			// Check if affected by team & toggle
-			if is_string(preValidX) {
-				preValidX = tm_dp(int64(preValidX),team,toggle);
-			}
-			if is_string(preValidY) {
-				preValidY = tm_dp(int64(preValidY),team,toggle);
-			}
-			
-			var validX = preValidX*GRIDSPACE +x +GRIDSPACE/2,
-			validY = preValidY*GRIDSPACE +y +GRIDSPACE/2,
-			blockingValid = false;
-			
-			//Snap to grid
-			if position_meeting(validX,validY,obj_grid) {
-				var 
-				movetoGrid = instance_position(validX,validY,obj_grid),
-				gClampX = floor((validX -movetoGrid.bbox_left)/GRIDSPACE)*GRIDSPACE +bbox_left,
-				gClampY = floor((validY -movetoGrid.bbox_top)/GRIDSPACE)*GRIDSPACE +bbox_top,
-				cClampX = floor((gX -movetoGrid.bbox_left)/GRIDSPACE)*GRIDSPACE +bbox_left,
-				cClampY = floor((gY -movetoGrid.bbox_top)/GRIDSPACE)*GRIDSPACE +bbox_top;
-			} else {
-				return false;
-			}		
-			if (gClampX == cClampX)
-			&& (gClampY == cClampY)
-			&& (position_meeting(gClampX,gClampY,obj_grid)) {
-				
-				// Slap
-				if position_meeting(gClampX,gClampY,obj_territory_blockade) {
-					with instance_position(gClampX,gClampY,obj_territory_blockade) {
-						if team != other.team {
-							blockingValid = true;	
-						}
-					}
-				}
-				if blockingValid {
-					var sound_params = {
-							sound: snd_oip,
-							pitch: random_range(0.85,1.15),
-					};
-					repeat(45) {
-						part_particles_burst(global.part_sys,gX,gY,part_slap);		
-					}
-					audio_play_sound_ext(sound_params);	
-					return false;	
-				}
-				
-				// Set move
-				moving = true;
-				moveX = gClampX;
-				moveY = gClampY;
-			}
-		}
-		if !moving {
-			return false;
-		}
-		// If it costs too much to move, exit
-		switch team {
-			case "friendly":
-				if global.player_turns >= cost {
-					global.player_turns -= cost;
-					re = true;
-				} else {
-					audio_stop_sound(snd_critical_error);
-					audio_play_sound(snd_critical_error,0,0);
-					with obj_timer {
-						if team == global.player_team {
-							scr_error();
-						}
-					}
-					with obj_turn_operator {
-						if team == global.player_team {
-							scr_error();
-						}
-					}
-					return false;								
-				}
-			break;
-					
-			case "enemy":
-				if global.opponent_turns >= cost {
-					global.opponent_turns -= cost;
-					re = true;
-				} else {
-					audio_stop_sound(snd_critical_error);
-					audio_play_sound(snd_critical_error,0,0);
-					with obj_timer {
-						if team == global.player_team {
-							scr_error(); 
-						}
-					}
-					with obj_turn_operator {
-						if team == global.player_team {
-							scr_error(); 
-						}
-					}
-					return false;					
-				}
-			break;
-		}
-		
-		// What to do for each piece
-		if piececlick != -4 {
-				switch piececlick.object_index {
-					case obj_hero_wall:
-						piececlick.hp -= 10;
-						instance_destroy();				
-					break;
-				
-					default:
-						with instance_position(moveX,moveY,obj_obstacle) {
-							instance_destroy();	
-						}
-					break;
-				}			
-			}
-		}
-		//move
-		x = moveX;
-		y = moveY;
-	} 
-	if re && !bypass_cooldown {
-		move_cooldown_timer = move_cooldown;	
-	}
-	return re;
-*/	
 }

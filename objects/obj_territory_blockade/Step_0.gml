@@ -1,7 +1,7 @@
 var gS = GRIDSPACE,
 show = false;
 with obj_generic_piece {
-	if x >= other.x -gS && x <= other.x +gS && team != other.team {
+	if x >= other.x -gS && x <= other.x +gS && team == global.player_team {
 		show = true;
 	}
 }

@@ -3,8 +3,7 @@
 
 function scr_moving_piece_highlight_draw(valid_moves = [0,0]){
 // Grab grid variables
-var gS = GRIDSPACE,
-gD = global.grid_dimensions,
+var 
 gX = obj_cursor.x,
 gY = obj_cursor.y;
 can_move = true;
@@ -17,8 +16,8 @@ for (var i = 0; i < ar_leng; ++i)	{
 	if valid_moves[i][0] == 0 && valid_moves[i][1] == 0 {
 		continue;	
 	}
-	var xM = valid_moves[i][0]*gS +x;
-	var yM = valid_moves[i][1]*gS +y;		
+	var xM = valid_moves[i][0]*GRIDSPACE +x;
+	var yM = valid_moves[i][1]*GRIDSPACE +y;		
 	// If coords within move array are on the grid; 0 = x, 1 = y
 	if place_meeting(xM,yM,obj_grid) {
 		
@@ -28,8 +27,8 @@ for (var i = 0; i < ar_leng; ++i)	{
 		} else { 
 			
 			// Convert mouse into simple grid coords
-			var mosX = floor(gX/gS)*gS;
-			var mosY = floor(gY/gS)*gS;
+			var mosX = floor(gX/GRIDSPACE)*GRIDSPACE;
+			var mosY = floor(gY/GRIDSPACE)*GRIDSPACE;
 			
 			// If mouse happens to be on valid move, draw AQUA. Else WHITE
 			if (mosX == xM) && (mosY == yM) {

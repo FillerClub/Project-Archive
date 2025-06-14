@@ -21,6 +21,7 @@ function deal_with_level(level) {
 			}
 			switch level[1] {
 				case 1:
+					scale_grid(1/7);
 					global.max_barriers = 3;
 					with obj_generic_hero {
 						hp = 3;	
@@ -32,11 +33,11 @@ function deal_with_level(level) {
 				break;
 				
 				case 2:
+					scale_grid(5/7);
 					global.max_barriers = 3;
 					with obj_generic_hero {
 						hp = 3;	
 					}
-					scale_grid(5);
 					instance_create_layer(832,384,"Instances",obj_generic_piece, {
 						identity: "barrel",	
 						place_sound: undefined,
@@ -52,7 +53,6 @@ function deal_with_level(level) {
 					with obj_power_passive {
 						y = 464;	
 					}
-					scale_grid(7);
 				break;
 				
 				case 4:
@@ -61,8 +61,7 @@ function deal_with_level(level) {
 						team: "friendly",
 						place_sound: noone
 					}			
-					soundtrackPlay = BATTLE;
-					scale_grid(7);			
+					soundtrackPlay = BATTLE;		
 					instance_create_layer(640,192,"Instances",obj_short_shooter,varStruct);																			
 					instance_create_layer(640,576,"Instances",obj_short_shooter,varStruct);	
 					deployLoadout = ["short"];	
@@ -82,11 +81,9 @@ function deal_with_level(level) {
 						}
 					}
 					instance_destroy(obj_territory_blockade);
-					scale_grid(7);
 				break;
 				
 				default:
-					scale_grid(7);
 				break;
 			}
 		break;

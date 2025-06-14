@@ -888,6 +888,7 @@
     {"id":{"name":"input_xy","path":"scripts/input_xy/input_xy.yy",},},
     {"id":{"name":"input_y","path":"scripts/input_y/input_y.yy",},},
     {"id":{"name":"IsChatterbox","path":"scripts/IsChatterbox/IsChatterbox.yy",},},
+    {"id":{"name":"MACROS","path":"scripts/MACROS/MACROS.yy",},},
     {"id":{"name":"math_bernstain","path":"scripts/math_bernstain/math_bernstain.yy",},},
     {"id":{"name":"math_factorial","path":"scripts/math_factorial/math_factorial.yy",},},
     {"id":{"name":"scr_ai_spawn","path":"scripts/scr_ai_spawn/scr_ai_spawn.yy",},},

@@ -760,6 +760,7 @@
     {"name":"input_xy","order":4,"path":"scripts/input_xy/input_xy.yy",},
     {"name":"input_y","order":5,"path":"scripts/input_y/input_y.yy",},
     {"name":"IsChatterbox","order":6,"path":"scripts/IsChatterbox/IsChatterbox.yy",},
+    {"name":"MACROS","order":2,"path":"scripts/MACROS/MACROS.yy",},
     {"name":"math_bernstain","order":4,"path":"scripts/math_bernstain/math_bernstain.yy",},
     {"name":"math_factorial","order":5,"path":"scripts/math_factorial/math_factorial.yy",},
     {"name":"scr_ai_spawn","order":2,"path":"scripts/scr_ai_spawn/scr_ai_spawn.yy",},

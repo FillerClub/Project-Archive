@@ -1,11 +1,15 @@
-function hero_ai(){
+function hero_ai() {
 // Generate random numbers
+var gridRef = noone;
+with obj_grid {
+	if team == global.opponent_team {
+		gridRef = self;
+	}
+}
 var
-gS = GRIDSPACE,
-gD = global.grid_dimensions,
-board_height = (gD[3] -gD[2])/gS;
+board_height = (gridRef.bbox_bottom -gridRef.bbox_top)/GRIDSPACE;
 
-for (var lanes = 0; lanes < (gD[3] -gD[2])/gS +1; lanes += 1) {
+for (var lanes = 0; lanes < board_height +1; lanes += 1) {
 	row_value[lanes] = 0;
 	row_threat[lanes] = 0;
 }
@@ -90,7 +94,7 @@ if timer_power >= timer_power_end {
 							case "super_tank_crawler":
 							case "drooper":
 							case "the_goliath":
-								toX = x +tm_dp(1,team,toggle)*gS;
+								toX = x +tm_dp(1,team,toggle)*GRIDSPACE;
 								toY = y;
 								if position_meeting(toX,toY,obj_obstacle) || !position_meeting(toX,toY,obj_grid) {
 									toX = undefined;
@@ -207,8 +211,8 @@ if timer_power >= timer_power_end {
 if countFPiece > 0 {
 	for (var fPieces = 0; fPieces < arrayFLength; fPieces++) {
 		var finst = friendly_pieces[fPieces],
-		fX = (finst.x -gD[0] -gS)/(gD[1] -gD[0] -gS*2),
-		fY = (finst.y -gD[2])/gS;
+		fX = (finst.x -gridRef.bbox_left -GRIDSPACE)/(gridRef.bbox_right -gridRef.bbox_left -GRIDSPACE*2),
+		fY = (finst.y -gridRef.bbox_top)/GRIDSPACE;
 		switch finst.identity {
 			case "short":
 				if fY -2 >= 0 {
@@ -345,9 +349,6 @@ if atChooseFinal[0] = -1 {
 // Else if there are multiple preferable moves
 	var randRange = irandom(array_length(atChooseFinal) -1);
 	ai_lane_choose = atChooseFinal[randRange];
-
-	//part_particles_burst(global.part_sys,room_width/2,ai_lane_choose*GRIDSPACE +gD[2],part_explode);	
-	//part_particles_burst(global.part_sys,room_width/2,ai_lane_protect*GRIDSPACE +gD[2],part_slap);	
 }
 }
 /*

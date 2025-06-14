@@ -3,7 +3,7 @@ event_inherited();
 var tM = (team == "friendly")?1:-1,
 gS = GRIDSPACE;
 
-if execute = "move" || ai_controlled { 
+if execute == "move" || ai_controlled { 
 	short_shooter_move_handler();
 }
 

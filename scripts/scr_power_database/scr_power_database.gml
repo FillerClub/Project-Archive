@@ -19,17 +19,17 @@ with obj_power_database {
 						"When a wall breaks, it emits a powerful burst of energy that vaporizes any piece in its lane."];
 		break;
 		case "Warden-a":
-			object = [	"Refurbishment",obj_heal_power,1,12,spr_heal_power_slot,
+			object = [	"Refurbishment",obj_heal_power,5,12,spr_heal_power_slot,
 						PLACEABLENONE,SAME,
 						"Heal a piece, and gives a slight speed boost."];
 		break;
 		case "Warden-b":
-			object = [	"Meet your maker",obj_light_ray_power,1,45,spr_light_beam_slot,
+			object = [	"Meet your maker",obj_light_ray_power,10,45,spr_light_beam_slot,
 						PLACEABLENONE,DIFFERENT,
 						"Deal 10 damage."];
 		break;
 		case "Warden-c":
-			object = [	"Super boost",obj_supercharge_power,1,100,spr_supercharge_slot,
+			object = [	"Super boost",obj_supercharge_power,15,100,spr_supercharge_slot,
 						PLACEABLEANY,PLACEABLEANY,
 						"Supercharges your pieces in a 3x3 area."];
 		break;
@@ -40,17 +40,17 @@ with obj_power_database {
 						"Breaking down walls give your pieces a permanent speed boost."];
 		break;
 		case "Empress-a":
-			object = [	"Forceful Grasp",obj_net_power,1,32,spr_net_slot,
+			object = [	"Forceful Grasp",obj_net_power,5,32,spr_net_slot,
 						PLACEABLENONE,PLACEABLEANY,
 						"Displace any piece."];
 		break;
 		case "Empress-b":
-			object = [	"Poison",obj_fizz_power,1,55,spr_fizz_slot,
+			object = [	"Poison",obj_fizz_power,10,55,spr_fizz_slot,
 						PLACEABLEANY,PLACEABLEANY,
 						"Splashes enemies, slowing and poisoning them"];
 		break;
 		case "Empress-c":
-			object = [	"Big guy call",obj_horde_power,1,160,spr_horde_slot,
+			object = [	"Big guy call",obj_horde_power,15,160,spr_horde_slot,
 						SAME,PLACEABLEANY,
 						"Summons two big guys. For fun."];
 		break;
@@ -61,17 +61,17 @@ with obj_power_database {
 						"For fun."];
 		break;
 		case "Lonestar-a":
-			object = [	"Big guy call",obj_horde_power,1,30,spr_horde_slot,
+			object = [	"Big guy call",obj_horde_power,5,30,spr_horde_slot,
 						SAME,PLACEABLEANY,
 						"For fun."];
 		break;
 		case "Lonestar-b":
-			object = [	"Big guy call",obj_horde_power,1,30,spr_horde_slot,
+			object = [	"Big guy call",obj_horde_power,10,30,spr_horde_slot,
 						SAME,PLACEABLEANY,
 						"For fun."];
 		break;
 		case "Lonestar-c":
-			object = [	"Big guy call",obj_horde_power,1,30,spr_horde_slot,
+			object = [	"Big guy call",obj_horde_power,15,30,spr_horde_slot,
 						SAME,PLACEABLEANY,
 						"For fun."];
 		break;

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"MACROS",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"MACROS",
+  "parent":{
+    "name":"Important",
+    "path":"folders/Scripts/Important.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -21,8 +21,10 @@ function handle_tutorials(tutorialProgress) {
 			}
 
 			with tutorial_piece {
+				execute = "move";
 				if moved == true {
 					executed = true;
+					execute = "nothing";
 					ignore_pause = false;
 					skip_timer = false;
 				}

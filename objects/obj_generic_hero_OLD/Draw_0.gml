@@ -1,5 +1,4 @@
 var gS = GRIDSPACE;
-var gD = global.grid_dimensions;
 
 if execute == "move" {
 	draw_set_color(c_black);

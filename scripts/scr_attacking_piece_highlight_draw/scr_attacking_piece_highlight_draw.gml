@@ -6,8 +6,7 @@ function scr_attacking_piece_highlight_draw(valid_attacks = [0,0]){
 
 
 // Grab grid variables
-var gS = GRIDSPACE,
-gD = global.grid_dimensions,
+var 
 gX = obj_cursor.x,
 gY = obj_cursor.y;
 
@@ -22,8 +21,8 @@ for (var i = 0; i < ar_leng; ++i)	{
 		continue;	
 	}	
 	var alph = 1
-	var xA = valid_attacks[i][0]*gS +x;
-	var yA = valid_attacks[i][1]*gS +y;
+	var xA = valid_attacks[i][0]*GRIDSPACE +x;
+	var yA = valid_attacks[i][1]*GRIDSPACE +y;
 	
 	// If coords within move array are on the grid; 0 = x, 1 = y
 	if position_meeting(xA,yA,obj_grid) {
@@ -42,8 +41,8 @@ for (var i = 0; i < ar_leng; ++i)	{
 		} else { 
 			
 			// Convert mouse into simple grid coords
-			var mosX = floor(gX/gS)*gS;
-			var mosY = floor(gY/gS)*gS;
+			var mosX = floor(gX/GRIDSPACE)*GRIDSPACE;
+			var mosY = floor(gY/GRIDSPACE)*GRIDSPACE;
 			
 			// If mouse happens to be on valid move, draw AQUA. Else WHITE
 			if (mosX == xA) && (mosY == yA) {

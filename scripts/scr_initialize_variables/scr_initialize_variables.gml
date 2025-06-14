@@ -35,13 +35,13 @@ function initialize_variables(isFresh = false){
 	}
 	
 	
-	global.max_turns = 3;
+	global.max_turns = 30;
 	global.timeruplength = 30;
 	global.timer_max_speed_mult = 4;
 	global.max_barriers = 4;
-	global.player_turns = 2;
-	global.opponent_turns = 2;
-	global.turn_increment = 1;
+	global.player_turns = 20;
+	global.opponent_turns = 20;
+	global.turn_increment = 10;
 	global.mode = "move";
 	global.game_state = LOADING;
 	global.load = {

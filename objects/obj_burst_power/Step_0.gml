@@ -1,6 +1,3 @@
-var gS = GRIDSPACE;
-var gD = global.grid_dimensions;
-
 var sound_params = {
 	sound: snd_final_bullet,
 	pitch: random_range(0.9,1.1),

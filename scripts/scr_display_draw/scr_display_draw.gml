@@ -1,11 +1,8 @@
 function display_draw(valid_spots = [[0,0]], draw_color, show_lines = false){
 // Grab grid variables
-var gS = GRIDSPACE,
-gD = global.grid_dimensions,
-gOffsetX = gD[0] mod gS,
-gOffsetY = gD[2] mod gS,
-gcX = floor(x/gS)*gS,
-gcY = floor(y/gS)*gS,
+var
+gcX = floor(x/GRIDSPACE)*GRIDSPACE,
+gcY = floor(y/GRIDSPACE)*GRIDSPACE,
 meeting = noone,
 can_move = true;
 // Grab amount of valid moves
@@ -23,8 +20,8 @@ for (var i = 0; i < ar_leng; ++i)	{
 	if is_string(preValidY) {
 		preValidY = tm_dp(real(preValidY),team,toggle);
 	}
-	var xM = preValidX*gS +gcX;
-	var yM = preValidY*gS +gcY;		
+	var xM = preValidX*GRIDSPACE +gcX;
+	var yM = preValidY*GRIDSPACE +gcY;		
 	if !position_meeting(xM,yM,obj_grid) {
 		continue;	
 	}
