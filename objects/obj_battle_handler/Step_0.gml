@@ -25,8 +25,17 @@ if input_check_pressed("action") && !instance_exists(obj_dummy) {
 							execute = "nothing";
 						}
 					}
+					var ignoreClick = false;
 					switch clickedOn.identity {
+						case "accelerator":
+							if clickedOn.resource_timer >= clickedOn.time_to_produce {
+								ignoreClick = true;
+							}
 						default:
+							if ignoreClick {
+								clickedOn.skip_click = true;
+								break;	
+							}
 							if clickedOn.execute != "move" {
 								clickedOn.execute = "move";	
 								clickedOn.skip_click = true;

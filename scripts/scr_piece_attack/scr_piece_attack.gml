@@ -21,12 +21,6 @@ moving = false;
 
 if global.mode == "move" && execute == "move" {
 	if checkPress && cursorOnGrid != noone {
-		if !bypass_cooldown && move_cooldown_timer > 0 {
-			scr_error();
-			audio_stop_sound(snd_critical_error);
-			audio_play_sound(snd_critical_error,0,0);
-			return false;	
-		}
 		// Grab cursor position on board
 		cursorX = cursorGridPosition[0]*GRIDSPACE +cursorOnGrid.bbox_left +GRIDSPACE/2;
 		cursorY = cursorGridPosition[1]*GRIDSPACE +cursorOnGrid.bbox_top +GRIDSPACE/2;
@@ -41,6 +35,7 @@ if global.mode == "move" && execute == "move" {
 		} else if mode == ONLY_ATTACK {
 			return false;	
 		}
+
 		for (var moves = 0; moves < ar_leng; ++moves) {
 			precheckX = valid_attacks[moves][0];
 			precheckY = valid_attacks[moves][1];
@@ -66,6 +61,13 @@ if global.mode == "move" && execute == "move" {
 			// If cursor is hovering over the move position, determine that's the move we want to make
 			if (gClampX == cursorX) && (gClampY == cursorY) {
 				moving = true;
+				// Why in the fuck do I have to move this if statement here
+				if !bypass_cooldown && move_cooldown_timer > 0 {
+					scr_error();
+					audio_stop_sound(snd_critical_error);
+					audio_play_sound(snd_critical_error,0,0);
+					return false;	
+				}
 				break;
 			} 
 			
