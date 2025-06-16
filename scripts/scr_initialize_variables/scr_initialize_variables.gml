@@ -1,4 +1,4 @@
-function initialize_variables(isFresh = false){
+function initialize_variables(isFresh = false) {
 	if isFresh {
 		global.part_sys = part_system_create();
 		global.timer_speed_mult = .5;
@@ -12,6 +12,7 @@ function initialize_variables(isFresh = false){
 		global.level = [1,1];
 		global.unlocked_pieces = ["shooter","wall","bishop","crawler","drooper","jumper","tank_crawler","super_tank_crawler","the_goliath","bomber"];
 		global.loadout = ["shooter"];
+		global.opponent_loadout = ["shooter"];
 		global.discovered_pieces = ["shooter","crawler"];
 		global.unlocked_heroes = ["Warden"];	
 		global.active_hero = "Warden";
@@ -41,7 +42,7 @@ function initialize_variables(isFresh = false){
 	global.max_barriers = 4;
 	global.player_turns = 20;
 	global.opponent_turns = 20;
-	global.turn_increment = 10;
+	global.turn_increment = 10;								
 	global.mode = "move";
 	global.game_state = LOADING;
 	global.load = {

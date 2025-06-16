@@ -47,7 +47,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "short":
 				object = [	"short",obj_short_shooter,spr_short_shooter,spr_short_shooter_slot,
-							30,10,16,0,10,10,
+							40,10,19,0,10,10,
 							[[[1, 1]]],
 							SAME,PLACEABLENONE,
 							DEFENSECLASS,0,
@@ -166,7 +166,7 @@ function piece_database(name, trait = -1) {
 			// Crawlers
 			case "crawler":
 				object = [	"crawler",obj_crawler,spr_crawler,spr_crawler_slot,
-							5,1.5,4,0,10,10,
+							5,10,4,0,10,10,
 							[undefined, 
 							[["1", 0]]],
 							SAME,PLACEABLENONE,
@@ -176,7 +176,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "drooper":
 				object = [	"drooper",obj_drooper,spr_drooper,spr_drooper_slot,
-							10,3,4,0,10,10,
+							10,16,4,0,10,10,
 							[undefined, 
 							[["1", 0]]],
 							SAME,PLACEABLENONE,
@@ -186,7 +186,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "tank_crawler":
 				object = [	"tank_crawler",obj_crawler,spr_tank_crawler,spr_tank_crawler_slot,
-							10,2.5,4,0,15,10,
+							10,20,4,0,15,10,
 							[undefined, 
 							[["1", 0]]],
 							SAME,PLACEABLENONE,
@@ -197,7 +197,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "super_tank_crawler":
 				object = [	"super_tank_crawler",obj_crawler,spr_super_tank_crawler,spr_super_tank_crawler_slot,
-							15,3.5,4,0,20,10,
+							15,25,4,0,20,10,
 							[undefined, 
 							[["1", 0]]],
 							SAME,PLACEABLENONE,
@@ -207,7 +207,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "the_goliath":
 				object = [	"the_goliath",obj_goliath,spr_goliath,spr_goliath_slot,
-							100,30,12,0,40,20,
+							100,25,12,0,40,20,
 							[undefined,
 							undefined,
 							[[0,1],[0,-1]]],
@@ -218,7 +218,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "jumper":
 				object = [	"jumper",obj_jumper,spr_jumper,spr_jumper_slot,
-							10,8,3,0,10,10,
+							10,16,3,0,10,10,
 							[undefined, 
 							[["1",0]],
 							[["2",1],["2",-1]]],

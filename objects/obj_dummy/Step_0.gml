@@ -63,8 +63,8 @@ if placed {
 	
 	switch on_piece {
 		case SAME:
-			if position_meeting(gClampX,gClampY,obj_generic_piece) {
-				var instattack = instance_position(gClampX,gClampY,obj_generic_piece);
+			if position_meeting(gClampX,gClampY,obj_obstacle) {
+				var instattack = instance_position(gClampX,gClampY,obj_obstacle);
 				if instattack.team != team {
 					placeable = false;
 				} else { placeable = true; }
@@ -72,8 +72,8 @@ if placed {
 		break;
 		
 		case DIFFERENT:
-			if position_meeting(gClampX,gClampY,obj_generic_piece) {
-				var instattack = instance_position(gClampX,gClampY,obj_generic_piece);
+			if position_meeting(gClampX,gClampY,obj_obstacle) {
+				var instattack = instance_position(gClampX,gClampY,obj_obstacle);
 				if instattack.team == team {
 					placeable = false;	
 				} else { placeable = true; }
@@ -87,7 +87,7 @@ if placed {
 		break;
 	
 		case PLACEABLENONE:
-			if position_meeting(gClampX,gClampY,obj_generic_piece) {
+			if position_meeting(gClampX,gClampY,obj_obstacle) {
 				placeable = false;	
 			}
 		break;		
@@ -139,13 +139,14 @@ if placed && placeable {
 			grid_pos: [gX,gY],
 			piece_on_grid: cursor_on_grid
 		});		
-	
+		show_debug_message(on_grid);
+		show_debug_message(on_piece);
 	}
 	instance_destroy();	 
 } else if placed && place_immediately { 
 	var avoidPlaying = false;
 	if input_check_pressed("action") { 
-		with instance_position(gClampX,gClampY,obj_generic_piece) {
+		with instance_position(gClampX,gClampY,obj_obstacle) {
 			if team == global.player_team && hp > 0 {
 				avoidPlaying = true;
 			}

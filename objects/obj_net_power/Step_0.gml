@@ -1,17 +1,14 @@
 x = piece_link.x;
 y = piece_link.y;
 
-var gS = GRIDSPACE;
 var tm = (team == "friendly")?1:-1;
 
 var setsOfMoves = array_length(valid_moves),
 clickedOn = false,
-gX = obj_cursor.x,
-gY = obj_cursor.y,
-mosX = floor(gX/gS)*gS,
-mosY = floor(gY/gS)*gS,
-gcX = floor(x/gS)*gS,
-gcY = floor(y/gS)*gS,
+mosBX = obj_cursor.x,
+mosBY = obj_cursor.y,
+mosOnGrid = obj_cursor.on_grid,
+mosPos = obj_cursor.grid_pos,
 hasCommitted = -1;
 
 if global.game_state == PAUSED {
@@ -20,32 +17,36 @@ if global.game_state == PAUSED {
 
 // Deselect
 if execute != "nothing" && input_check_pressed("action") {
-	if execute = "move" {
+	if execute = "move" && mosOnGrid != noone {
+		var
+		mosX = floor((mosBX -mosOnGrid.bbox_left)/GRIDSPACE)*GRIDSPACE +mosOnGrid.bbox_left +GRIDSPACE/2,
+		mosY = floor((mosBY -mosOnGrid.bbox_top)/GRIDSPACE)*GRIDSPACE +mosOnGrid.bbox_top +GRIDSPACE/2;
 		for (var set = 0; set < setsOfMoves; ++set)	{	
 			var arLeng = array_length(valid_moves[set]);
 			// For each move available (i)
 			for (var i = 0; i < arLeng; ++i) {
-				var xM = valid_moves[set][i][0]*gS +gcX;
-				var yM = valid_moves[set][i][1]*gS +gcY;		
-				if !position_meeting(mosX,mosY,obj_obstacle) {
-					if (mosX == xM) && (mosY == yM) && (valid_moves[set][i][0] != 0 || valid_moves[set][i][1] != 0) {
-						clickedOn = true;
-					} 
+				var 
+				xM = valid_moves[set][i][0]*GRIDSPACE +piece_link.x +GRIDSPACE/2,
+				yM = valid_moves[set][i][1]*GRIDSPACE +piece_link.y +GRIDSPACE/2,		
+				moveOnGrid = instance_position(xM,yM,obj_grid);
+				if moveOnGrid == noone {
+					continue;
+				}
+				xM = floor((xM -moveOnGrid.bbox_left)/GRIDSPACE)*GRIDSPACE +moveOnGrid.bbox_left +GRIDSPACE/2;
+				yM = floor((yM -moveOnGrid.bbox_top)/GRIDSPACE)*GRIDSPACE +moveOnGrid.bbox_top +GRIDSPACE/2;
+				
+				if (mosX == xM) && (mosY == yM) && (valid_moves[set][i][0] != 0 || valid_moves[set][i][1] != 0) {
+					clickedOn = true;
 				} else if (mosX == xM) && (mosY == yM) && (valid_moves[set][i][0] == 0 && valid_moves[set][i][1] == 0) {
 					hasCommitted = false;
 				}
 			}
 		}
-	}
-	
-	if position_meeting(mosX,mosY,self) {
-			clickedOn = true;
-			audio_play_sound(snd_error,0,0);
-	}
-	
+	}	
 	if !clickedOn {
 		execute = "nothing";
-		audio_play_sound(snd_error,0,0);
+		audio_stop_sound(snd_pick_up);
+		audio_play_sound(snd_put_down,0,0);
 	}
 }
 
@@ -60,6 +61,8 @@ if piece_attack(other.valid_moves[ONLY_MOVE], ONLY_MOVE, 1, true) {
 		}	
 		x = other.x;
 		y = other.y;
+		piece_on_grid = other.piece_on_grid;
+		grid_pos = other.grid_pos;
 	}
 	audio_play_sound(snd_oip,0,0);
 	hasCommitted = true;	
@@ -68,8 +71,10 @@ if piece_attack(other.valid_moves[ONLY_MOVE], ONLY_MOVE, 1, true) {
 if hasCommitted != -1 {
 	if !hasCommitted {
 		with link {
-			usable++;	
+			usable++;
+			cooldown = 0;
 		}
 	} 
+	link.pause_cooldown = false;
 	instance_destroy();
 }

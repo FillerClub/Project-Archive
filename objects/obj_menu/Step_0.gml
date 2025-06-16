@@ -67,6 +67,6 @@ if input_check_released("action") && on_mouse && mouseOnButton && !inputed {
 	menu_function(grabbedPurpose,context);
 }
 
-if !inputed && input_check_released("cancel") {
+if !inputed && input_check_released("cancel_no_shift") {
 	menu_function()
 }

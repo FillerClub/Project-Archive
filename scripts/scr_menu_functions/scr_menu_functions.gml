@@ -4,13 +4,13 @@
 #macro JOURNAL 2
 #macro POSTLEVELJOURNAL 3
 // Main menu functions
-#macro FIRSTMENU ["Singleplayer","Settings","Journal","Edit Loadout","Exit Game"]
+#macro FIRSTMENU ["Singleplayer","Multiplayer","Settings","Journal","Edit Loadout","Exit Game"]
 #macro SINGLEPLAYERMENU ["Campaign","Sandbox","Back"]
-#macro MULTIPLAYERMENU ["Join Lobby","Create Lobby","Back"]
-#macro SETTINGSMENU ["Audio","Display","HUD","Cursor","Data","Debug","Back"]
+#macro MULTIPLAYERSETTINGSMENU ["Set Name","Back"]
+#macro SETTINGSMENU ["Multiplayer Settings","Audio","Display","Cursor","Data","Debug","Back"]
 #macro HUDSETTINGSMENU ["Tooltips","Healthbars","Back"]
 #macro AUDIOSETTINGSMENU ["Master","SFX","Music","Back"]
-#macro DISPLAYMENU ["3840x2160","2560x1440","1920x1080","1280x720","640x360","FPS","Fullscreen","Back"]
+#macro DISPLAYMENU ["3840x2160","2560x1440","1920x1080","1280x720","HUD","FPS","Fullscreen","Back"]
 // Pause menu functions
 #macro FIRSTPAUSE ["Resume","Restart Level","Settings","Back to Title","Exit Game"]
 #macro SETTINGSPAUSE ["Audio","Display","HUD","Cursor","Debug","Back"]
@@ -30,7 +30,6 @@ function menu_function(purpose = "Back",contextArg = context){
 		default:
 		break;	
 	}
-	
 	//Journal Base function
 	switch contextArg {
 		case JOURNAL:
@@ -38,77 +37,26 @@ function menu_function(purpose = "Back",contextArg = context){
 			journal_piece_create(purpose);
 		break;
 	}	
-	
 	switch purpose {
 		default:
 			save(PROFILE);
 			//Reset FPS Target
 			game_set_speed(max(global.fps_target,30),gamespeed_fps);
+			// Delete stray text entries
+			instance_destroy(obj_text_entry);
 			progress_menu(-1);
 		break;
-		
+		// Main menu
 		case "Singleplayer":
 			progress_menu(1,SINGLEPLAYERMENU);
 		break;
-		
-		case "Campaign":
-		case "Continue":
-			var lD = {
-				run: "Lvl",
-				rm: rm_world_one,
-				load: [track1,track2,track3,track4,standalone_soundtracks]
-			};
-			start_transition(sq_circle_out,sq_circle_in,lD);
-		break;
-		
-		case "Journal":
-			var lD = {
-				run: "Journal",
-				rm: rm_journal,
-				load: [standalone_soundtracks]
-			};
-			start_transition(sq_circle_out,sq_circle_in,lD);
-		break;
-		
-		case "Edit Loadout":
-			var lD = {
-				run: "Loadout",
-				rm: rm_loadout_zone,
-				load: [standalone_soundtracks]	
-			}
-			start_transition(sq_circle_out,sq_circle_in,lD);
-		break;
-		
-		case "Sandbox":
-			var lD = {
-				run: "Sandbox",
-				rm: rm_sandbox,
-				load: [standalone_soundtracks]	
-			}
-			start_transition(sq_circle_out,sq_circle_in,lD);
-		break;
-
 		case "Multiplayer":
 			if global.name != "" {
 				progress_menu(1,MULTIPLAYERMENU);					
+			} else {
+				create_system_message(["Create a name in the multiplayer settings first."]);	
 			}
 		break;
-
-		case "Exit Game":
-			game_end();
-		break;
-		
-		case "Join Lobby":
-			if instance_exists(obj_client) { instance_destroy(obj_client); }
-			instance_create_layer(0,672,"GUI",obj_client);
-		break;
-		
-		case "Create Lobby":
-			if instance_exists(obj_client) { instance_destroy(obj_client); }
-			instance_create_layer(0,672,"GUI",obj_client);
-
-		break;
-		
 		case "Settings":
 			switch contextArg {
 				case MAIN:
@@ -118,26 +66,99 @@ function menu_function(purpose = "Back",contextArg = context){
 					progress_menu(1,SETTINGSPAUSE);
 				break;
 			}
-
 		break;
-		
-		case "Manage Profile":
-			instance_create_layer(x,y,"GUI",obj_profile_manager);
+		case "Journal":
+			var lD = {
+				run: "Journal",
+				rm: rm_journal,
+				load: [standalone_soundtracks]
+			};
+			start_transition(sq_circle_out,sq_circle_in,lD);
 		break;
-		
+		case "Edit Loadout":
+			var lD = {
+				run: "Loadout",
+				rm: rm_loadout_zone,
+				load: [standalone_soundtracks]	
+			}
+			start_transition(sq_circle_out,sq_circle_in,lD);
+		break;
+		case "Exit Game":
+			game_end();
+		break;
+		// Singleplayer menu
+		case "Campaign":
+		case "Continue":
+			var lD = {
+				run: "Lvl",
+				rm: rm_world_one,
+				load: [track1,track2,track3,track4,standalone_soundtracks]
+			};
+			start_transition(sq_circle_out,sq_circle_in,lD);
+		break;	
+		case "Sandbox":
+			var lD = {
+				run: "Sandbox",
+				rm: rm_sandbox,
+				load: [standalone_soundtracks]	
+			}
+			start_transition(sq_circle_out,sq_circle_in,lD);
+		break;
+		// Multiplayer menu
+		#macro MULTIPLAYERMENU ["Function 1","Function 2","DEBUG ROOM 1","DEBUG ROOM 2","Back"]
+		// CREATE SWITCH CASES LIKE THIS TO ADD FUNCTIONS, SEE MACRO ABOVE TO CHANGE WHAT SHOWS IN THE MULTIPLAYER MENU
+		case "Function 1":
+			
+		break;
+		case "Function 2":
+			
+		break;
+		case "DEBUG ROOM 1":
+			var lD = {
+				run: "Multiplayer",
+				rm: rm_multiplayer,
+				load: [track1,track2,track3,track4]	
+			}
+			start_transition(sq_circle_out,sq_circle_in,lD);			
+		break;
+		case "DEBUG ROOM 2":
+			var lD = {
+				run: "Multiplayer",
+				rm: rm_debug_room,
+				load: [track1,track2,track3,track4]	
+			}
+			start_transition(sq_circle_out,sq_circle_in,lD);			
+		break;
+		// Main game prompts
+		case "Resume":
+			instance_destroy(obj_menu);
+			instance_destroy(obj_button);
+			audio_stop_sound(snd_phone_select);
+			pause_game(true);
+		break;
+		case "Back to Title":
+			var lD = {
+				run: "MainMenu",
+				rm: rm_main_menu,
+				load: [standalone_soundtracks]
+			}
+			start_transition(sq_circle_out,sq_circle_in,lD);
+		break;
+		case "Restart Level":
+			var lD = {
+				run: "default",
+				rm: room,
+				load: [track1,track2,track3,track4,standalone_soundtracks,sound_effects]
+			};
+			start_transition(sq_circle_out,sq_circle_in,lD);
+		break;		
+		// Settings
+		case "Multiplayer Settings":
+			progress_menu(1,MULTIPLAYERSETTINGSMENU);					
+		break;
 		case "Debug":
 			global.debug = global.debug?false:true;
 		break;
-		
-		/*
-		case "FPS":
-			global.fps_target = clamp(int64(string_digits(get_integer("Enter Desired FPS", 60))),0,999);
-			if global.fps_target != "" {
-				game_set_speed(global.fps_target,gamespeed_fps);
-				save(PROFILE);
-			}			
-		break;
-		*/
 		case "Fullscreen":
 			if window_get_fullscreen() == true {
 				global.fullscreen = false;
@@ -148,7 +169,6 @@ function menu_function(purpose = "Back",contextArg = context){
 			}
 			save(PROFILE);
 		break;
-		
 		case "Data":
 			if file_exists(SAVEFILE) {
 				file_delete(SAVEFILE);
@@ -170,7 +190,6 @@ function menu_function(purpose = "Back",contextArg = context){
 			obj_menu.savefile_exists = file_exists(SAVEFILE);
 			obj_menu.profile_exists = file_exists(PROFILE);
 		break;
-		
 		case "Audio":
 			progress_menu(1,AUDIOSETTINGSMENU);
 		break;
@@ -186,25 +205,9 @@ function menu_function(purpose = "Back",contextArg = context){
 				global.healthbar_config = HEALTHBARCONFIG.HIDEALL;
 			}
 		break;
-		
-		SLIDERS
-		break;
-		/*
-		case "Cursor":
-			
-			global.cursor_sens = clamp(int64(string_digits(get_integer("Enter Sensitivity", 3))),0.5,10);
-
-			if global.cursor_sens != "" {
-			// Save Profile Data
-				save(PROFILE);
-			}
-		break;
-		*/
-		
 		case "Display":
 			progress_menu(1,DISPLAYMENU);			
 		break;
-		
 		case "3840x2160":
 			screen_resize(3840,2160);
 		break;
@@ -223,40 +226,16 @@ function menu_function(purpose = "Back",contextArg = context){
 		case "256x144":
 			screen_resize(256,144);
 		break;
-		
-
-		
-		// PAUSE
-		case "Resume":
-			instance_destroy(obj_menu);
-			instance_destroy(obj_button);
-			audio_stop_sound(snd_phone_select);
-			pause_game(true);
-		break;
-		
-		case "Back to Title":
-			var lD = {
-				run: "MainMenu",
-				rm: rm_main_menu,
-				load: [standalone_soundtracks]
+		case "Set Name":
+			if instance_exists(obj_text_entry) {
+				instance_destroy(obj_text_entry);	
+			} else {
+				instance_create_layer(x,y,"GUI",obj_text_entry);	
 			}
-			start_transition(sq_circle_out,sq_circle_in,lD);
 		break;
-		
-		case "Restart Level":
-			
-			var lD = {
-				run: "default",
-				rm: room,
-				load: [track1,track2,track3,track4,standalone_soundtracks,sound_effects]
-			};
-			start_transition(sq_circle_out,sq_circle_in,lD);
+		// Misc
+		SLIDERS
 		break;
-		
-		case "View Journal":
-
-		break;
-		
 		case "DEBUG ROOM":
 			var lD = {
 				run: "default",

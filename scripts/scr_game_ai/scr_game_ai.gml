@@ -346,7 +346,7 @@ for (var finalScan = 1; finalScan < trackArrLeng; finalScan++) {
 		Cost = cost;
 		var timeDivisor = 1;
 		if PieceVictim.hp < attack_power {
-			timeDivisor = lerp(1,2,(attack_power -PieceVictim.hp)/attack_power)
+			timeDivisor = lerp(1,1.5,(attack_power -PieceVictim.hp)/attack_power)
 		}
 		var timerMultiplier = 1 +Cost/1.5;
 		ai_timer += timeDivisor*delta_time*DELTA_TO_SECONDS/timerMultiplier;

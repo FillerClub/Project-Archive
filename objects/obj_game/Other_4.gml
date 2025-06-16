@@ -12,6 +12,7 @@ switch room {
 	case rm_world_one:
 	case rm_sandbox:
 	case rm_debug_room:
+	case rm_multiplayer:
 		enable_pausing = true;
 	break;
 	

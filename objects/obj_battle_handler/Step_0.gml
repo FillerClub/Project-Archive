@@ -39,8 +39,12 @@ if input_check_pressed("action") && !instance_exists(obj_dummy) {
 							if clickedOn.execute != "move" {
 								clickedOn.execute = "move";	
 								clickedOn.skip_click = true;
+								audio_stop_sound(snd_put_down);
+								audio_play_sound(snd_pick_up,0,0);
 							} else {
 								clickedOn.execute = "nothing";
+								audio_stop_sound(snd_pick_up);
+								audio_play_sound(snd_put_down,0,0);
 							}			
 						break;
 					}

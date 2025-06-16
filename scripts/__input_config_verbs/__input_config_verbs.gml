@@ -22,6 +22,7 @@ function __input_config_verbs()
             
             alternate:  input_binding_key(vk_shift),
             cancel:  [input_binding_key(vk_escape), input_binding_key(vk_shift)],
+            cancel_no_shift:  [input_binding_key(vk_escape)],
             action:  [input_binding_key(vk_enter), input_binding_mouse_button(mb_left)],
             special: input_binding_mouse_button(mb_middle),
             
@@ -40,6 +41,7 @@ function __input_config_verbs()
             
             alternate:  input_binding_gamepad_button(gp_face3),
             cancel:  input_binding_gamepad_button(gp_face2),
+            cancel_no_shift:  input_binding_gamepad_button(gp_face2),
             action:  input_binding_gamepad_button(gp_face1),
             special: input_binding_gamepad_button(gp_face4),
             

@@ -9,15 +9,13 @@ mosY = floor(gY/gS)*gS;
 if time_source_get_state(error_time) == time_source_state_stopped {
 	draw_red_box = 0;
 }
-
+if cooldown > 0 {
+	cooldown -= delta_time*DELTA_TO_SECONDS;
+}
 if global.game_state == PAUSED || skip || global.mode == "delete" {
 	skip = false;
 	exit;	
 }
-if cooldown > 0 {
-	cooldown -= delta_time*DELTA_TO_SECONDS;
-}
-
 // On Click
 if position_meeting(gX,gY,self) && input_check_pressed("action") {
 	if cooldown <= 0 {

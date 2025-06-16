@@ -36,7 +36,9 @@ function manage_menu_text(text){
 		case "Debug":
 			textReturn = "Debug: " +string(global.debug?"ON":"OFF");
 		break;
-		
+		case "Set Name":
+			textReturn = (global.name == "")?"Set Name":("Name: "+string(global.name));
+		break;
 		case "FPS":
 			textReturn = "FPS: " +string(global.fps_target);
 		break;

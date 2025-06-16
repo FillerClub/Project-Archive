@@ -12,7 +12,7 @@ if time_source_get_state(error_time) == time_source_state_stopped {
 if global.game_state == PAUSED {
 	exit;	
 }
-if cooldown > 0 {
+if cooldown > 0 && !pause_cooldown {
 	cooldown -= delta_time*DELTA_TO_SECONDS;
 }
 if skip || global.mode == "delete" || global.player_team != team {

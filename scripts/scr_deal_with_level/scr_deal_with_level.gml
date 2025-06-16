@@ -4,15 +4,17 @@ function deal_with_level(level) {
 	var soundtrackPlay = GETOUTOFMYWAY;
 	switch level[0] {
 		case 0:
-			switch room {
+			// Base level function
+			// Switch depending on type of base level
+			switch level[1] {
 				default:
 					soundtrackPlay = BATTLE;
+					deployLoadout = global.unlocked_pieces;
 				break;
-				case rm_debug_room:
-					soundtrackPlay = GETOUTOFMYWAY;
+				case 1:
+					soundtrackPlay = GETOUTOFMYWAYFULL;
 				break;
 			}
-			deployLoadout = global.unlocked_pieces;
 		break;
 		case 1:
 			instance_create_layer(x,y,"AboveBoard",obj_world_one);
@@ -98,6 +100,9 @@ function deal_with_level(level) {
 					identity: deployLoadout[l]
 				});				
 			}
+		}
+		if team == global.opponent_team {
+			// GRAB OPPONENT'S LOADOUT	
 		}
 	}
 	with obj_pawn_limit {
