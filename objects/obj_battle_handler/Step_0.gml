@@ -9,7 +9,10 @@ if tutorial_piece != noone {
 if global.game_state == PAUSED {
 	exit;	
 }
-
+if change_in_speed {
+	global.level_speed = speed_factor;
+	change_in_speed = false;
+}
 // Piece Handling
 if input_check_pressed("action") && !instance_exists(obj_dummy) { 
 	var clickedOn = instance_position(obj_cursor.x,obj_cursor.y,obj_generic_piece);	
@@ -65,8 +68,8 @@ switch room {
 	
 	default:
 		if global.game_state != PAUSED {
-			timer[MAIN] += delta_time*DELTA_TO_SECONDS;	
-			if timer[ALERT] > 0 { timer[ALERT] -= delta_time*DELTA_TO_SECONDS; }
+			timer[MAIN] += delta_time*DELTA_TO_SECONDS*global.level_speed;	
+			if timer[ALERT] > 0 { timer[ALERT] -= delta_time*DELTA_TO_SECONDS*global.level_speed; }
 		}
 		if timer[MAIN] >= global.timeruplength || (global.debug && keyboard_check_pressed(vk_tab)) {
 			global.max_turns += global.turn_increment;

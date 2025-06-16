@@ -3,8 +3,8 @@ if global.game_state == PAUSED exit;
 var brk = false;
 //Convert velocity to something useable
 var baseBulletSpd = 3000,
-realXVel = round(baseBulletSpd*x_vel*delta_time*DELTA_TO_SECONDS),
-realYVel = round(baseBulletSpd*y_vel*delta_time*DELTA_TO_SECONDS);
+realXVel = round(baseBulletSpd*x_vel*delta_time*DELTA_TO_SECONDS*global.level_speed),
+realYVel = round(baseBulletSpd*y_vel*delta_time*DELTA_TO_SECONDS*global.level_speed);
 
 // Calculate steps needed to take
 var trailCover = ceil(distance_to_point(x +realXVel,y +realYVel));

@@ -25,8 +25,6 @@ function soundtrack_play(track) {
 				audio_play_sound_on(soundtrack_emitter,msc_getoutofmyway_melody,1,1,1);
 				audio_play_sound_on(soundtrack_emitter,msc_getoutofmyway_chords,1,1,1);
 				audio_play_sound_on(soundtrack_emitter,msc_getoutofmyway_percs,1,1,1);
-				audio_group_set_gain(track3,1,0);
-				audio_group_set_gain(track4,1,0);
 				audio_group_set_gain(track2,0,0);
 				audio_group_set_gain(track2,1,10000);	
 			break;

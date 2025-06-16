@@ -30,7 +30,7 @@ yRequest = y,
 hero = "n/a",
 powersAvailable = [0,0,0];
 
-timer_power += delta_time*DELTA_TO_SECONDS*timer_mod*(1 +hero_phase/9);	
+timer_power += delta_time*DELTA_TO_SECONDS*timer_mod*(1 +hero_phase/9)*global.level_speed;	
 
 with obj_power_slot {
 	if team == "enemy" {

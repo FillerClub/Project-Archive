@@ -1,6 +1,6 @@
 if team != "neutral" && global.game_state != PAUSED {
 	if shift_timer >= 4 {
-		timer += 2*pi*delta_time*DELTA_TO_SECONDS/5;
+		timer += 2*pi*delta_time*DELTA_TO_SECONDS*global.level_speed/5;
 		var flip = (team == "friendly")?0:1;
 		var ref = obj_TEST_grid_center;
 		x = ref.x +sin(timer -pi/2 +flip*pi)*(bbox_right-bbox_left);
@@ -15,6 +15,6 @@ if team != "neutral" && global.game_state != PAUSED {
 			shift_timer = 0;
 		}
 	} else {
-		shift_timer += delta_time*DELTA_TO_SECONDS;
+		shift_timer += delta_time*DELTA_TO_SECONDS*global.level_speed;
 	}
 }

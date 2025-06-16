@@ -1,12 +1,12 @@
-y += y_spd*delta_time*DELTA_TO_FRAMES*.5;	
+y += y_spd*delta_time*DELTA_TO_FRAMES*.5*global.level_speed;	
 
 if y > y_init {
 	y = y_init;
 	y_spd_max = y_spd_max/1.5;
 	y_spd = y_spd_max;
 } else { 
-	y_spd += .05*delta_time*DELTA_TO_FRAMES;
-	y += y_spd*delta_time*DELTA_TO_FRAMES*.5;	
+	y_spd += .05*delta_time*DELTA_TO_FRAMES*global.level_speed;
+	y += y_spd*delta_time*DELTA_TO_FRAMES*.5*global.level_speed;	
 }
 
 

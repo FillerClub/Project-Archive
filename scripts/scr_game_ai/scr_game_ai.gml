@@ -348,8 +348,12 @@ for (var finalScan = 1; finalScan < trackArrLeng; finalScan++) {
 		if PieceVictim.hp < attack_power {
 			timeDivisor = lerp(1,1.5,(attack_power -PieceVictim.hp)/attack_power)
 		}
-		var timerMultiplier = 1 +Cost/1.5;
-		ai_timer += timeDivisor*delta_time*DELTA_TO_SECONDS/timerMultiplier;
+		var 
+		timerMultiplier = 1 +Cost/1.5,
+		sPD = effects_array[EFFECT.SPEED],
+		sLW = effects_array[EFFECT.SLOW];
+
+		ai_timer += timeDivisor*delta_time*DELTA_TO_SECONDS*((1 +sPD/5)/(1 +sLW/5))*global.level_speed/timerMultiplier;
 		skip_timer = true;
 		var Sound = snd_move;
 		if PieceVictim != noone {

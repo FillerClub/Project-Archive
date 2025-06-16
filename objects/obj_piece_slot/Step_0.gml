@@ -10,7 +10,7 @@ if time_source_get_state(error_time) == time_source_state_stopped {
 	draw_red_box = 0;
 }
 if cooldown > 0 {
-	cooldown -= delta_time*DELTA_TO_SECONDS;
+	cooldown -= delta_time*DELTA_TO_SECONDS*global.level_speed;
 }
 if global.game_state == PAUSED || skip || global.mode == "delete" {
 	skip = false;
@@ -33,7 +33,7 @@ if position_meeting(gX,gY,self) && input_check_pressed("action") {
 create_piece_from_slot(create);
 
 if highlight {
-	timer += delta_time*DELTA_TO_SECONDS*5;
+	timer += delta_time*DELTA_TO_SECONDS*5*global.level_speed;
 	highlight_alpha = (sin(timer) +1)/2;
 	if timer >= 4*pi {
 		timer = 0;

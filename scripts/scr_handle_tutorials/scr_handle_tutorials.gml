@@ -15,7 +15,7 @@ function handle_tutorials(tutorialProgress) {
 						click_time = seconds_per_turn / 16
 						timer_tick();
 					} else {
-						timer += delta_time*DELTA_TO_SECONDS;	
+						timer += delta_time*DELTA_TO_SECONDS*global.level_speed;	
 					}
 				}
 			}

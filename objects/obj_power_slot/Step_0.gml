@@ -13,7 +13,7 @@ if global.game_state == PAUSED {
 	exit;	
 }
 if cooldown > 0 && !pause_cooldown {
-	cooldown -= delta_time*DELTA_TO_SECONDS;
+	cooldown -= delta_time*DELTA_TO_SECONDS*global.level_speed;
 }
 if skip || global.mode == "delete" || global.player_team != team {
 	skip = false;

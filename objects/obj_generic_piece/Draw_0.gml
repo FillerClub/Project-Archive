@@ -78,7 +78,7 @@ image_speed = 1 +sprite_accel*9;
 if global.game_state != PAUSED {
 	if damaged {
 		if hp < hp_max {
-			last_damaged += delta_time*DELTA_TO_SECONDS;	
+			last_damaged += delta_time*DELTA_TO_SECONDS*global.level_speed;	
 		} else {
 			last_damaged = 0;
 			damaged = false;

@@ -54,7 +54,7 @@ if execute != "move" {
 	hasCommitted = false;
 }
 
-if piece_attack(other.valid_moves[ONLY_MOVE], ONLY_MOVE, 1, true) {
+if piece_attack(other.valid_moves[ONLY_MOVE], ONLY_MOVE, cost, true) {
 	with piece_link {
 		repeat(45) {
 			part_particles_burst(global.part_sys,x +GRIDSPACE/2,y +GRIDSPACE/2,part_slap);		

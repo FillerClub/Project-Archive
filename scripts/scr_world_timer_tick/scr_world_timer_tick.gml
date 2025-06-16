@@ -30,6 +30,6 @@ function world_timer_tick(reverse = false){
 		diff_factor: 1
 	});
 	*/
-	timer += delta_time*DELTA_TO_SECONDS*totalFact;	
+	timer += delta_time*DELTA_TO_SECONDS*totalFact*global.level_speed;	
 	
 }

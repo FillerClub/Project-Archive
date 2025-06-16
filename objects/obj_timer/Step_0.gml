@@ -15,7 +15,7 @@ if global.game_state == PAUSED {
 }
 
 if !instance_exists(obj_server) {
-	timer += delta_time*DELTA_TO_SECONDS*global.timer_speed_mult*(1 +spd/16 -slw/16)*(accel);
+	timer += delta_time*DELTA_TO_SECONDS*global.timer_speed_mult*(1 +spd/16 -slw/16)*(accel)*global.level_speed;
 	//accel += delta_time*DELTA_TO_SECONDS/1000;
 }
 

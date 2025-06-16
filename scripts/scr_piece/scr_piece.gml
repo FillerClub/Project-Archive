@@ -33,7 +33,7 @@ sLW = effects_array[EFFECT.SLOW],
 pOIS = effects_array[EFFECT.POISON];
 
 // Speed and slow effects
-var timerTickRate = delta_time*DELTA_TO_SECONDS*((1 +sPD/5)/(1 +sLW/5));
+var timerTickRate = delta_time*DELTA_TO_SECONDS*((1 +sPD/5)/(1 +sLW/5))*global.level_speed;
 // Tick internal timer
 if !skip_timer { 
 	timer += timerTickRate;
@@ -54,7 +54,7 @@ if effects_array[EFFECT.INTANGIBILITY] > 0 {
 }
 // Poison
 if pOIS > 0 {
-	poison_tick += delta_time*DELTA_TO_SECONDS;
+	poison_tick += delta_time*DELTA_TO_SECONDS*global.level_speed;
 	var poison_end_tick = 3/(1 +pOIS/5);
 	if poison_tick >= poison_end_tick {
 		poison_tick -= poison_end_tick;

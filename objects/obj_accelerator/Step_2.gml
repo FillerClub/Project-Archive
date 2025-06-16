@@ -13,5 +13,5 @@ if resource_timer >= time_to_produce {
 	}
 } else {
 	image_index = max(image_index -1, 0);
-	resource_timer += delta_time*DELTA_TO_SECONDS;	
+	resource_timer += delta_time*DELTA_TO_SECONDS*global.level_speed;	
 }

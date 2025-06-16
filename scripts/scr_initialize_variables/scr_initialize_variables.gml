@@ -35,7 +35,7 @@ function initialize_variables(isFresh = false) {
 		global.max_ai_moving_pieces = infinity;
 	}
 	
-	
+	global.level_speed = 1;
 	global.max_turns = 30;
 	global.timeruplength = 30;
 	global.timer_max_speed_mult = 4;

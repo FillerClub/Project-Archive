@@ -11,7 +11,7 @@ with link {
 	pause_cooldown = true;
 	cooldown = cooldown_length;
 }
-
+cost = power_database("Warden-a",POWERDATA.COST);
 valid_moves[ONLY_MOVE] = [	[0,0],
 							[0, 1],
 							[0, 2],
