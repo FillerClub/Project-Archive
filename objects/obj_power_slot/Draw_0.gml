@@ -11,8 +11,17 @@ with obj_generic_hero {
 
 draw_sprite(spr_slot_frame,0,x,y);
 //draw text indicating amount of powers
-
 var textCol = (cooldown <= 0)?c_white:c_red;
+if global.player_team == "friendly" {
+	if global.player_turns < cost {
+		textCol = c_red;	
+	}
+} else {
+	if global.opponent_turns < cost {
+		textCol = c_red;
+	}
+}
+
 draw_set_halign(fa_center); draw_set_valign(fa_middle); draw_set_color(textCol) draw_set_font(fnt_bit);
 draw_text_transformed(x +37,y +58,cost,1,1,0);
 draw_set_color(c_white) draw_set_font(fnt_fancy);
