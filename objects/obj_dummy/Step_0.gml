@@ -139,8 +139,6 @@ if placed && placeable {
 			grid_pos: [gX,gY],
 			piece_on_grid: cursor_on_grid
 		});		
-		show_debug_message(on_grid);
-		show_debug_message(on_piece);
 	}
 	instance_destroy();	 
 } else if placed && place_immediately { 

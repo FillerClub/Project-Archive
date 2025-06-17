@@ -29,8 +29,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"Gamebits",
-    "path":"folders/Sprites/Gamebits.yy",
+    "name":"Buttons",
+    "path":"folders/Sprites/Gamebits/Buttons.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

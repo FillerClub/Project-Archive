@@ -1,5 +1,5 @@
 
-if (input_check_pressed("action") && position_meeting(obj_cursor.x,obj_cursor.y,self)) || input_check_pressed("alternate") {
+if (input_check_pressed("action") && position_meeting(obj_cursor.x,obj_cursor.y,self)) || input_check_pressed("start_delete") {
 	switch global.mode {
 		case "move":
 		global.mode = "delete";

@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"scr_effect_destroy",
+  "%Name":"scr_gen_random_string",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"scr_effect_destroy",
+  "name":"scr_gen_random_string",
   "parent":{
-    "name":"Effects",
-    "path":"folders/Scripts/Piece/Effects.yy",
+    "name":"Misc",
+    "path":"folders/Scripts/Misc.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

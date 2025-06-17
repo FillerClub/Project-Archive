@@ -47,7 +47,7 @@ if buffIncreased {
 for (var iii = 0; iii < array_length(piece_tracking_array);iii++) {
 	with piece_tracking_array[iii] {
 		if wrath_passive_buffed == false {
-			effect_give(EFFECT.SPEED,infinity,other.passive_buff);
+			effect_generate(EFFECT.SPEED,infinity,other.passive_buff);
 			wrath_passive_buffed = true;
 		}
 	}	

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_effect_deplete",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_effect_deplete",
+  "parent":{
+    "name":"Effects",
+    "path":"folders/Scripts/Piece/Effects.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"scr_effect_add",
+  "%Name":"scr_effect_set",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"scr_effect_add",
+  "name":"scr_effect_set",
   "parent":{
     "name":"Effects",
     "path":"folders/Scripts/Piece/Effects.yy",

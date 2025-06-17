@@ -8,8 +8,8 @@
   "name":"obj_stick",
   "overriddenProperties":[],
   "parent":{
-    "name":"Parents",
-    "path":"folders/Objects/Piece Stuff/Parents.yy",
+    "name":"Pieces",
+    "path":"folders/Objects/Piece Stuff/Pieces.yy",
   },
   "parentObjectId":{
     "name":"obj_generic_piece",

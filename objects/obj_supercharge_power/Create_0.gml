@@ -18,11 +18,10 @@ for (var i = 0; i < ar_leng; ++i)	{
 	var yM = aura[i][1]*gS +y;		
 	// And if coords collide with obstacle/piece, draw RED. Else...
 	if position_meeting(xM,yM,obj_generic_piece) {
-		with instance_position(xM,yM,obj_generic_piece) {
-			if team == other.team {
-				effect_give(EFFECT.SPEED,5.5,10);
-				effect_give(EFFECT.INTANGIBILITY,5.5,1);
-			}
+		var instMeet = instance_position(xM,yM,obj_generic_piece);
+		if instMeet.team == team {
+			effect_generate(instMeet,EFFECT.SPEED,5.5,10);
+			effect_generate(instMeet,EFFECT.INTANGIBILITY,5.5,1);
 		} 	
 	}			
 }

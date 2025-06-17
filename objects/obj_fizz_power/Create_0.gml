@@ -21,8 +21,8 @@ for (var i = 0; i < ar_leng; ++i)	{
 		if position_meeting(xM,yM,obj_generic_piece) {
 			with instance_position(xM,yM,obj_generic_piece) {
 				if team != other.team && !intangible {
-					effect_give(EFFECT.SLOW,15,2);
-					effect_give(EFFECT.POISON,15,1);
+					effect_generate(self,EFFECT.SLOW,15,2);
+					effect_generate(self,EFFECT.POISON,15,1);
 				}
 			}
 		} 	

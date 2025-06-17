@@ -20,12 +20,15 @@ function __input_config_verbs()
             left:  [input_binding_key(vk_left),  input_binding_key("A")],
             right: [input_binding_key(vk_right), input_binding_key("D")],
             
-            alternate:  input_binding_key(vk_shift),
             cancel:  [input_binding_key(vk_escape), input_binding_key(vk_shift)],
             cancel_no_shift:  [input_binding_key(vk_escape)],
             action:  [input_binding_key(vk_enter), input_binding_mouse_button(mb_left)],
             special: input_binding_mouse_button(mb_middle),
             
+			// Level controls
+			fast_forward: input_binding_key(vk_space),
+			start_delete: input_binding_key(vk_shift),
+			
             //No aiming verbs since we use the mouse for that (see below for aiming verb examples)
             shoot: input_binding_mouse_button(mb_left),
             
@@ -39,13 +42,16 @@ function __input_config_verbs()
             left:  [input_binding_gamepad_axis(gp_axislh, true),  input_binding_gamepad_button(gp_padl)],
             right: [input_binding_gamepad_axis(gp_axislh, false), input_binding_gamepad_button(gp_padr)],
             
-            alternate:  input_binding_gamepad_button(gp_face3),
             cancel:  input_binding_gamepad_button(gp_face2),
             cancel_no_shift:  input_binding_gamepad_button(gp_face2),
             action:  input_binding_gamepad_button(gp_face1),
             special: input_binding_gamepad_button(gp_face4),
             
-            aim_up:    input_binding_gamepad_axis(gp_axisrv, true),
+            // Level controls
+			fast_forward: input_binding_gamepad_button(gp_shoulderlb),
+			start_delete: input_binding_gamepad_button(gp_shoulderrb),
+			
+			aim_up:    input_binding_gamepad_axis(gp_axisrv, true),
             aim_down:  input_binding_gamepad_axis(gp_axisrv, false),
             aim_left:  input_binding_gamepad_axis(gp_axisrh, true),
             aim_right: input_binding_gamepad_axis(gp_axisrh, false),

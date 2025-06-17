@@ -21,8 +21,6 @@ if piece_on_grid != noone {
 	}
 }
 
-deal_with_effects();
-
 depth = -bbox_bottom;
 if ai_controlled { auto_attack_timer(); }
 
@@ -33,13 +31,17 @@ sLW = effects_array[EFFECT.SLOW],
 pOIS = effects_array[EFFECT.POISON];
 
 // Speed and slow effects
-var timerTickRate = delta_time*DELTA_TO_SECONDS*((1 +sPD/5)/(1 +sLW/5))*global.level_speed;
+var
+timerTickRate = delta_time*DELTA_TO_SECONDS*global.level_speed,
+effectModifier = (1 +sPD/5)/(1 +sLW/5);
 // Tick internal timer
 if !skip_timer { 
-	timer += timerTickRate;
+	// Effect timer is used to time buffs/debuffs, not affected by speed or slow
+	effects_timer += timerTickRate;
+	// Base timer is affected by speed and slow
+	timer += timerTickRate*effectModifier;
 }
 move_cooldown_timer = max(move_cooldown_timer -timerTickRate,0);
-
 // If intangible, intiate flashing timer
 if effects_array[EFFECT.INTANGIBILITY] > 0 {
 	if time_source_get_state(intan_blink_time) != time_source_state_active {
@@ -63,7 +65,6 @@ if pOIS > 0 {
 } else {
 	poison_tick = 0; 	
 }
-
 // If it has no hp, destroy
 if hp <= 0 {
 	instance_destroy();	
@@ -72,6 +73,6 @@ if hp > hp_max {
 	hp = hp_max;
 	hp_init = hp_max;
 }
-
+deal_with_effects();
 return true;
 }
