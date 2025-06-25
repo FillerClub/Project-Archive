@@ -3,6 +3,7 @@ enum AI {
 	GRID = 1,
 	COORD = 2
 }
+
 timer[MAIN] = 0;
 timer[ALERT] = 0;
 timer_phase = 0;

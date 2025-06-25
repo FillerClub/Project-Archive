@@ -6,8 +6,10 @@ switch room {
 	case rm_debug_room:
 		deal_with_level([0,1]);
 	break;
+	case rm_server:
+		// Do nothing
+	break;
 	default:
-	
 		deal_with_level(global.level);	
 	break;
 }

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_write_all_player_data",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_write_all_player_data",
+  "parent":{
+    "name":"Online",
+    "path":"folders/Scripts/Online.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -13,8 +13,8 @@
   ],
   "name":"rm_gameover",
   "parent":{
-    "name":"Rooms",
-    "path":"folders/Rooms.yy",
+    "name":"Base",
+    "path":"folders/Rooms/Base.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

@@ -94,52 +94,42 @@ if placed {
 	}
 }
 if global.debug { placeable = true; }
-if placed && placeable { 
-	if instance_exists(obj_client) {	
-		with obj_client {
-			action[CREATE] = other.obj_piece;
-			cX[0] = other.gClampX;
-			cY[0] = other.gClampY;
-		}
-	} else {		
-		var ignoreCost = false;
-		// Don't immediately incur cost if necessary
-		switch object {
-			case obj_net_power:
-				// Do nothing
-			break;
+if placed && placeable { 		
+	var ignoreCost = false;
+	// Don't immediately incur cost if necessary
+	switch object {
+		case obj_net_power:
+			// Do nothing
+		break;
 			
-			default:
-				if team == "friendly" { global.player_turns -= turn_cost; }
-				if team == "enemy" { global.opponent_turns -= turn_cost; }				
-			break;
-		}
-		
-
-		
-		if link != noone {
-			//Switch depending on what type the slot is
-			switch link.object_index {
-				case obj_piece_slot:
-					link.cooldown = link.cooldown_length;	
-				break;
-				case obj_power_slot:
-					link.cooldown = link.cooldown_length;	
-				break;
-			}
-			
-		}
-		var gX = cursorInstance.grid_pos[0];
-		var gY = cursorInstance.grid_pos[1];
-		instance_create_layer(gClampX,gClampY,"Instances",object, {
-			team: team,
-			link: link,
-			identity: identity,
-			skip_move: true,
-			grid_pos: [gX,gY],
-			piece_on_grid: cursor_on_grid
-		});		
+		default:
+			if team == "friendly" { global.player_turns -= turn_cost; }
+			if team == "enemy" { global.opponent_turns -= turn_cost; }				
+		break;
 	}
+	if link != noone {
+		//Switch depending on what type the slot is
+		switch link.object_index {
+			case obj_piece_slot:
+				link.cooldown = link.cooldown_length;	
+			break;
+			case obj_power_slot:
+				link.cooldown = link.cooldown_length;	
+			break;
+		}
+			
+	}
+	var gX = cursorInstance.grid_pos[0];
+	var gY = cursorInstance.grid_pos[1];
+	instance_create_layer(gClampX,gClampY,"Instances",object, {
+		team: team,
+		link: link,
+		identity: identity,
+		skip_move: true,
+		grid_pos: [gX,gY],
+		piece_on_grid: cursor_on_grid
+	});		
+
 	instance_destroy();	 
 } else if placed && place_immediately { 
 	var avoidPlaying = false;

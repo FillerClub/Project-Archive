@@ -1,1 +1,1 @@
-global.name = text;
+global.name = string_trim(text);

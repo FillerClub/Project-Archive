@@ -14,10 +14,8 @@ if global.game_state == PAUSED {
 	exit;	
 }
 
-if !instance_exists(obj_server) {
-	timer += delta_time*DELTA_TO_SECONDS*global.timer_speed_mult*(1 +spd/16 -slw/16)*(accel)*global.level_speed;
-	//accel += delta_time*DELTA_TO_SECONDS/1000;
-}
+
+timer += delta_time*DELTA_TO_SECONDS*global.timer_speed_mult*(1 +spd/16 -slw/16)*(accel)*global.level_speed;
 
 if timer >= click_time {
 	click_time += (seconds_per_turn / 16);

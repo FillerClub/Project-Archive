@@ -6,6 +6,8 @@
 // Main menu functions
 #macro FIRSTMENU ["Singleplayer","Multiplayer","Settings","Journal","Edit Loadout","Exit Game"]
 #macro SINGLEPLAYERMENU ["Campaign","Sandbox","Back"]
+#macro MULTIPLAYERMENU ["SERVER MODE","Connect to Server","DEBUG ROOM 1","DEBUG ROOM 2","Back"]
+#macro SERVERMODECONFIRM ["YES SERVER MODE","No"]
 #macro MULTIPLAYERSETTINGSMENU ["Set Name","Back"]
 #macro SETTINGSMENU ["Multiplayer Settings","Audio","Display","Cursor","Data","Debug","Back"]
 #macro HUDSETTINGSMENU ["Tooltips","Healthbars","Back"]
@@ -54,7 +56,7 @@ function menu_function(purpose = "Back",contextArg = context){
 			if global.name != "" {
 				progress_menu(1,MULTIPLAYERMENU);					
 			} else {
-				create_system_message(["Create a name in the multiplayer settings first."]);	
+				create_system_message(["Create a name in the multiplayer settings first."],BOTTOM);	
 			}
 		break;
 		case "Settings":
@@ -105,13 +107,22 @@ function menu_function(purpose = "Back",contextArg = context){
 			start_transition(sq_circle_out,sq_circle_in,lD);
 		break;
 		// Multiplayer menu
-		#macro MULTIPLAYERMENU ["Function 1","Function 2","DEBUG ROOM 1","DEBUG ROOM 2","Back"]
-		// CREATE SWITCH CASES LIKE THIS TO ADD FUNCTIONS, SEE MACRO ABOVE TO CHANGE WHAT SHOWS IN THE MULTIPLAYER MENU
-		case "Function 1":
-			
+		case "SERVER MODE":
+			create_system_message(["The game will be set up to host multiplayer games off of this machine. You cannot go back after turning on server mode. Are you sure you want to continue?"],BOTTOM);
+			progress_menu(1,SERVERMODECONFIRM);
 		break;
-		case "Function 2":
-			
+		case "YES SERVER MODE":
+			var lD = {
+				run: "Server Host",
+				rm: rm_server
+			}
+			start_transition(sq_circle_out,sq_circle_in,lD);			
+		break;
+		case "Connect to Server":
+			if global.game_state != TRANSITIONING {
+				progress_menu(1,[]);
+				instance_create_layer(x,y,"Instances",obj_client_manager);					
+			}
 		break;
 		case "DEBUG ROOM 1":
 			var lD = {

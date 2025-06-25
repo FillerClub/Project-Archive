@@ -13,10 +13,15 @@ for (var trail = 0; trail < trailCover; trail++) {
 	//Draw trail of bullet
 	var trailX = lerp(x,x +realXVel,trail/trailCover),
 	trailY = lerp(y,y +realYVel,trail/trailCover);
-	part_particles_burst(global.part_sys,trailX,trailY,part_bullet_trail);
+	//part_particles_burst(global.part_sys,trailX,trailY,part_bullet_trail);
 	
 	with collision_point(trailX,trailY,obj_obstacle,false,true) {
 		var oth = other;
+		if object_index == obj_boundary {
+			instance_destroy(oth);
+			exit;
+		}
+		
 		if team != oth.team && !intangible {
 			var sound_params = {
 			sound: snd_bullet_hit,

@@ -4,7 +4,9 @@ if blink >= .4 {
 	toggle_underscore = (toggle_underscore == "_")?"  ":"_";	
 	blink = 0;
 }
-text += keyboard_string;
+if string_length(text) < max_characters {
+	text += keyboard_string;
+}
 if keyboard_string != "" {
 	keyboard_string = "";
 }

@@ -5,9 +5,10 @@ function seq_transition(type){
 	layer_sequence_create(Lay,0,0,type);
 }
 
-function start_transition(type_out,type_in,load_in_struct) {
+function start_transition(type_out,type_in,load_in_struct,interrupt = true) {
 	if global.game_state != TRANSITIONING {
 		global.load = load_in_struct;
+		global.game_state = TRANSITIONING;
 		if type_out != INSTANT {
 			seq_transition(type_out);
 		} else {
