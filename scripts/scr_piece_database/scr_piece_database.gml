@@ -237,6 +237,15 @@ function piece_database(name, trait = -1) {
 							"Just a barrel.",
 							"Useless."]
 			break;
+			case "Empty":
+				object = [	"Empty",noone,spr_empty_slot,spr_empty_slot,
+							0,0,0,0,0,0,
+							[],
+							PLACEABLENONE,PLACEABLENONE,
+							c_white,0,
+							"",
+							""]
+			break;
 			default:
 				object = [	"debug",obj_debug_piece,spr_generic_piece,spr_generic_slot,
 							0,.1,1,-1,10,100,

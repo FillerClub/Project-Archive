@@ -8,7 +8,7 @@ if position_meeting(obj_cursor.x,obj_cursor.y,self) && input_check_pressed("acti
 		array[index] = identity;
 	}
 	global.loadout = array;
-	save(SAVEFILE);
+	save_file(SAVEFILE);
 	var lD = {
 		run: "MainMenu",
 		rm: rm_main_menu,

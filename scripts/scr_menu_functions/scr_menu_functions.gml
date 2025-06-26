@@ -41,7 +41,7 @@ function menu_function(purpose = "Back",contextArg = context){
 	}	
 	switch purpose {
 		default:
-			save(PROFILE);
+			save_file(PROFILE);
 			//Reset FPS Target
 			game_set_speed(max(global.fps_target,30),gamespeed_fps);
 			// Delete stray text entries
@@ -178,7 +178,7 @@ function menu_function(purpose = "Back",contextArg = context){
 				global.fullscreen = true;
 				window_set_fullscreen(true);	
 			}
-			save(PROFILE);
+			save_file(PROFILE);
 		break;
 		case "Data":
 			if file_exists(SAVEFILE) {

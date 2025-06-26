@@ -1,6 +1,9 @@
 #macro HEALTHCOSTMULTIPLIER .6
 #macro TIMETOTAKE 1.5
 
+// TRANSITIONS
+#macro INSTANT -1
+
 // ONLINE
 #macro D_IP "127.0.0.1"//"192.168.88.22"
 #macro D_PORT 45000
@@ -11,8 +14,8 @@ enum SEND {
 	VIEWLOBBIES = 3,
 }
 enum REMOTEDATA {
-	NAME = 0,
-	STATUS = 1,
+	STATUS = 0,
+	NAME = 1,
 	HERO = 2,
 	LOADOUT = 3,
 	PORT = 244,
@@ -20,8 +23,8 @@ enum REMOTEDATA {
 }
 enum ONLINESTATUS {
 	IDLE = 0,
-	OPENLOBBY = 1,
-	CLOSEDLOBBY = 2,
+	MATCHHOST = 1,
+	MATCHGUEST = 2,
 	INGAME = 3,	
 	SPECTATING = 4,
 }

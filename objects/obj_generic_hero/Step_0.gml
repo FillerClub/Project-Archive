@@ -28,7 +28,7 @@ if hp <= 0 {
 	switch room {
 		case rm_debug_room:
 		case rm_sandbox:
-			hp = global.max_barriers;
+			hp = global.barrier_criteria;
 			with obj_hero_wall {
 				if team == other.team && hp <= 0 {
 					hp = 10;

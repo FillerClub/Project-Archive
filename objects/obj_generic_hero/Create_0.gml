@@ -3,5 +3,5 @@ if team == global.player_team {
 }
 sprite_index = hero_database(identity,HERODATA.SPRITE);
 
-hp = global.max_barriers;
+hp = global.barrier_criteria;
 hp_init = hp;

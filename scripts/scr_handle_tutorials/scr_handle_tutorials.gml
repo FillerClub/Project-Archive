@@ -34,6 +34,6 @@ function handle_tutorials(tutorialProgress) {
 	if executed {
 		tutorial_piece = noone;
 		if global.game_state == PAUSED global.game_state = RUNNING;
-		save(SAVEFILE);
+		save_file(SAVEFILE);
 	}
 }

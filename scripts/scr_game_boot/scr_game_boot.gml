@@ -6,5 +6,5 @@ function game_boot(fade_out){
 	}
 	global.first_boot = false;
 	start_transition(fade_out,sq_fade_in,lD);
-	save(PROFILE);
+	save_file(PROFILE);
 }

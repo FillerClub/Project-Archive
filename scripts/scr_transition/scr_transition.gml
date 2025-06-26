@@ -1,4 +1,4 @@
-#macro INSTANT -1
+
 function seq_transition(type){
 	if layer_exists("Transition") layer_destroy("Transition");
 	var Lay = layer_create(-9000,"Transition");
@@ -57,7 +57,7 @@ function finish_loading(finish_run_protocol, room_going_to) {
 					}		
 				}
 			} else {
-				save(SAVEFILE);			
+				save_file(SAVEFILE);			
 			}
 		break;
 		default:

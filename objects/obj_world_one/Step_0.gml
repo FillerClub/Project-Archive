@@ -78,7 +78,7 @@ switch phase {
 		time_source_start(graphic_timer);
 		global.level = new_level;
 		audio_play_sound(snd_happy_wheels_victory,0,0);
-		save(SAVEFILE);
+		save_file(SAVEFILE);
 		with obj_game {
 			enable_pausing = false;	
 		}
@@ -93,7 +93,7 @@ switch phase {
 				load: [standalone_soundtracks]
 			}
 			start_transition(sq_fade_out,sq_fade_in,lD);
-			save(PROFILE);		
+			save_file(PROFILE);		
 		});
 		time_source_start(graphic_timer);
 	break;

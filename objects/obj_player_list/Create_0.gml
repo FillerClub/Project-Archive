@@ -1,1 +1,2 @@
-players = [];
+player = [];
+status = [];

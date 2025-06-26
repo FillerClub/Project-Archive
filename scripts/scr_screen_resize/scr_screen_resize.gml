@@ -15,6 +15,6 @@ function screen_resize(dispWidth,dispHeight,save_to_file = true){
 	surface_resize(application_surface,width,height);
 	
 	if save_to_file {
-		save(PROFILE);	
+		save_file(PROFILE);	
 	}
 }

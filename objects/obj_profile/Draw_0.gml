@@ -6,7 +6,7 @@ draw_set_halign(hlign);
 
 var off = 0,
 off2 = 1,
-maxHp = global.max_barriers,
+maxHp = global.barrier_criteria,
 iDamaged = false;
 
 

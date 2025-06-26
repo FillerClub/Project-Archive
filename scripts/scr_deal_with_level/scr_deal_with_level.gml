@@ -24,7 +24,7 @@ function deal_with_level(level) {
 			switch level[1] {
 				case 1:
 					scale_grid(1/7);
-					global.max_barriers = 3;
+					global.barrier_criteria = 3;
 					with obj_generic_hero {
 						hp = 3;	
 					}
@@ -36,7 +36,7 @@ function deal_with_level(level) {
 				
 				case 2:
 					scale_grid(5/7);
-					global.max_barriers = 3;
+					global.barrier_criteria = 3;
 					with obj_generic_hero {
 						hp = 3;	
 					}

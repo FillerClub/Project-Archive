@@ -1,14 +1,14 @@
-/// @function save(FILE);
+/// @function save_file(FILE);
 /// @param {macro} file Which file to update values and save to
 /// @description Saves to a file with everything the game needs to read (Read comments for further info)
 
 //	[NOTE] In order to add new data to the save file do the following four steps:
 //	1) Set a global variable in initialize_variables() script within obj_game
 //	2) Within the rm_setup create event, within the save struct set the new variable to read from
-//	3) Within this save() function, create the same variable to save to
+//	3) Within this save_file() function, create the same variable to save to
 //	4) Within the menu_function() script, edit the "Data" function to clear the global variable if needed
 //	5) Delete the old save file on your system
-function save(FILE) {
+function save_file(FILE) {
 	switch FILE {
 		case SAVEFILE:
 			var progress = array_create(0);

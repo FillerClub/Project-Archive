@@ -16,5 +16,5 @@ with obj_generic_piece {
 }
 
 
-draw_text_transformed(x,y,string(i) + " / " + string(global.max_pawns),.5,.5,0); 
+draw_text_transformed(x,y,string(i) + " / " + string(global.max_pieces),.5,.5,0); 
 draw_set_alpha(1);

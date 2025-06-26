@@ -1,5 +1,18 @@
 function initialize_variables(isFresh = false) {
 	if isFresh {
+		// Game Rules
+		global.player_team = "friendly";
+		global.opponent_team = "enemy";
+		global.barrier_criteria = 4;
+		global.max_turns = 30;
+		global.timeruplength = 30;
+		global.timer_max_speed_mult = 4;
+		global.player_turns = 20;
+		global.opponent_turns = 20;
+		global.turn_increment = 10;	
+		global.max_slots = 5;
+		global.max_pieces = infinity;
+		
 		global.part_sys = part_system_create();
 		global.timer_speed_mult = .5;
 		global.name = "";
@@ -12,7 +25,6 @@ function initialize_variables(isFresh = false) {
 		global.level = [1,1];
 		global.unlocked_pieces = ["shooter","wall","bishop","crawler","drooper","jumper","tank_crawler","super_tank_crawler","the_goliath","bomber"];
 		global.loadout = ["shooter"];
-		global.opponent_loadout = ["shooter"];
 		global.discovered_pieces = ["shooter","crawler"];
 		global.unlocked_heroes = ["Warden"];	
 		global.active_hero = "Warden";
@@ -22,10 +34,9 @@ function initialize_variables(isFresh = false) {
 			ONHIT = 1,
 			SHOWALL = 2,
 		}
-		global.healthbar_config = HEALTHBARCONFIG.ONHIT
+		global.healthbar_config = HEALTHBARCONFIG.ONHIT;
 		global.debug = 0;
-		global.max_slots = 5;
-		global.max_pawns = infinity;
+
 		#macro GRIDSPACE 64
 		global.cursor_sens = 3;
 		global.fps_target = 60;
@@ -36,13 +47,7 @@ function initialize_variables(isFresh = false) {
 	}
 	
 	global.level_speed = 1;
-	global.max_turns = 30;
-	global.timeruplength = 30;
-	global.timer_max_speed_mult = 4;
-	global.max_barriers = 4;
-	global.player_turns = 20;
-	global.opponent_turns = 20;
-	global.turn_increment = 10;								
+						
 	global.mode = "move";
 	global.game_state = LOADING;
 	global.load = {
@@ -55,8 +60,7 @@ function initialize_variables(isFresh = false) {
 	#macro PAUSED 1
 	#macro TRANSITIONING 2
 	#macro LOADING 3
-	global.player_team = "friendly";
-	global.opponent_team = "enemy";
+
 	if array_length(global.unlocked_pieces) <= global.max_slots {
 		global.loadout = global.unlocked_pieces;
 	}

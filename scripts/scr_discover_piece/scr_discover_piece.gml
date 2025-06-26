@@ -12,7 +12,7 @@ function discover_piece(piecePush) {
 		
 		if isNew {
 			array_push(global.discovered_pieces,piecePush);
-			save(SAVEFILE);
+			save_file(SAVEFILE);
 		}
 	}	
 }

@@ -18,7 +18,7 @@ with obj_generic_piece {
 	}
 }
 
-if i < global.max_pawns {
+if i < global.max_pieces {
 	if ((global.player_team == "friendly")? (global.player_turns >= cost):(global.opponent_turns >= cost)) {
 		switch object_index {
 			case obj_piece_slot:
@@ -57,7 +57,7 @@ if i < global.max_pawns {
 }
 
 // errors
-if i >= global.max_pawns {
+if i >= global.max_pieces {
 	audio_stop_sound(snd_pick_up);
 	audio_stop_sound(snd_error);
 	audio_stop_sound(snd_critical_error);
