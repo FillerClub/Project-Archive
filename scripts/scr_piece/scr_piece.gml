@@ -41,7 +41,7 @@ if !skip_timer {
 	// Base timer is affected by speed and slow
 	timer += timerTickRate*effectModifier;
 }
-move_cooldown_timer = max(move_cooldown_timer -timerTickRate,0);
+move_cooldown_timer = max(move_cooldown_timer -timerTickRate*effectModifier,0);
 // If intangible, intiate flashing timer
 if effects_array[EFFECT.INTANGIBILITY] > 0 {
 	if time_source_get_state(intan_blink_time) != time_source_state_active {

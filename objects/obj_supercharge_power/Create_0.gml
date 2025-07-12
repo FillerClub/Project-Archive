@@ -20,8 +20,8 @@ for (var i = 0; i < ar_leng; ++i)	{
 	if position_meeting(xM,yM,obj_generic_piece) {
 		var instMeet = instance_position(xM,yM,obj_generic_piece);
 		if instMeet.team == team {
-			effect_generate(instMeet,EFFECT.SPEED,5.5,10);
-			effect_generate(instMeet,EFFECT.INTANGIBILITY,5.5,1);
+			effect_generate(instMeet,EFFECT.SPEED,"warden_power_super",5.5,10);
+			effect_generate(instMeet,EFFECT.INTANGIBILITY,"warden_power_super",5.5,1);
 		} 	
 	}			
 }

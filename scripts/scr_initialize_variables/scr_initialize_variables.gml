@@ -10,9 +10,9 @@ function initialize_variables(isFresh = false) {
 		global.player_turns = 20;
 		global.opponent_turns = 20;
 		global.turn_increment = 10;	
-		global.max_slots = 5;
+		global.max_slots = 6;
 		global.max_pieces = infinity;
-		
+		global.game_state = LOADING;
 		global.part_sys = part_system_create();
 		global.timer_speed_mult = .5;
 		global.name = "";
@@ -23,8 +23,8 @@ function initialize_variables(isFresh = false) {
 		global.screen_res = [1280,720];
 		global.fullscreen = false;
 		global.level = [1,1];
-		global.unlocked_pieces = ["shooter","wall","bishop","crawler","drooper","jumper","tank_crawler","super_tank_crawler","the_goliath","bomber"];
-		global.loadout = ["shooter"];
+		global.unlocked_pieces = ["shooter"];
+		global.loadout = ["shooter","Empty","Empty","Empty","Empty","Empty"];
 		global.discovered_pieces = ["shooter","crawler"];
 		global.unlocked_heroes = ["Warden"];	
 		global.active_hero = "Warden";
@@ -49,7 +49,7 @@ function initialize_variables(isFresh = false) {
 	global.level_speed = 1;
 						
 	global.mode = "move";
-	global.game_state = LOADING;
+	
 	global.load = {
 		run: "MainMenu",
 		rm: rm_main_menu,

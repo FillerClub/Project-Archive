@@ -22,9 +22,11 @@ if update_players {
 	var list = obj_player_list;
 	list.player = [];
 	list.status = [];
+	list.port = [];
 	for (var ii = 0; ii < array_length(players); ii++) {
 		list.player[ii] = players[ii].name;
 		list.status[ii] = players[ii].status;
+		list.port[ii] = players[ii].port;
 	}
 	update_players = false;
 }

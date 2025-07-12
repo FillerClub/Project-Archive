@@ -1,5 +1,6 @@
 function deal_with_level(level) {
 	var deployLoadout = global.loadout;
+	default_game_rules();
 	// Default level music
 	var soundtrackPlay = GETOUTOFMYWAY;
 	switch level[0] {
@@ -25,6 +26,7 @@ function deal_with_level(level) {
 				case 1:
 					scale_grid(1/7);
 					global.barrier_criteria = 3;
+					
 					with obj_generic_hero {
 						hp = 3;	
 					}
@@ -97,7 +99,8 @@ function deal_with_level(level) {
 			var loadoutLength = array_length(deployLoadout);
 			for (var l = 0; l < loadoutLength; l++) {
 				instance_create_layer(x +l*48,y,"Instances",obj_piece_slot,{
-					identity: deployLoadout[l]
+					identity: deployLoadout[l],
+					index: l,
 				});				
 			}
 		}

@@ -15,7 +15,10 @@ function hero_database(name, trait = -1) {
 			obj = [	"Empress",spr_empress,[OFFENSECLASS,SUPPORTCLASS]];
 		break;
 		case "Lonestar":
-			obj = [	"Lonestar",spr_arthur_morgan,[CONTROLCLASS,DEFENSECLASS]];
+			obj = [	"Lonestar",spr_arthur_morgan,[CONTROLCLASS,OFFENSECLASS]];
+		break;
+		case "Engineer":
+			obj = [	"Engineer",spr_engineer,[CONTROLCLASS,SUPPORTCLASS]];
 		break;
 		default:
 			obj = [	"debug",spr_generic_hero,[SUPPORTCLASS,DEFENSECLASS,OFFENSECLASS,CONTROLCLASS]];

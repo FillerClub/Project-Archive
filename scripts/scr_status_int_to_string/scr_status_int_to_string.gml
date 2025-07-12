@@ -4,12 +4,12 @@ function status_int_to_string(status) {
 		return "Idle";
 		
 		case ONLINESTATUS.INGAME:
-		return "Playing a match";
+		return "In a game";
 		
-		case ONLINESTATUS.MATCHHOST:
-		return "Hosting a match";
+		case ONLINESTATUS.WAITING:
+		return "Waiting for opponent";
 		
-		case ONLINESTATUS.MATCHGUEST:
+		case ONLINESTATUS.PREPARING:
 		return "Preparing for a match";
 		
 		case ONLINESTATUS.SPECTATING:

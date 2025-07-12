@@ -6,10 +6,11 @@
 // Main menu functions
 #macro FIRSTMENU ["Singleplayer","Multiplayer","Settings","Journal","Edit Loadout","Exit Game"]
 #macro SINGLEPLAYERMENU ["Campaign","Sandbox","Back"]
-#macro MULTIPLAYERMENU ["SERVER MODE","Connect to Server","DEBUG ROOM 1","DEBUG ROOM 2","Back"]
+#macro MULTIPLAYERMENU ["SERVER MODE","Connect to Server","Back"]
 #macro SERVERMODECONFIRM ["YES SERVER MODE","No"]
 #macro MULTIPLAYERSETTINGSMENU ["Set Name","Back"]
 #macro SETTINGSMENU ["Multiplayer Settings","Audio","Display","Cursor","Data","Debug","Back"]
+#macro DEBUGMENU ["Debug Mode","Unlock Everything","Debug Room 1","Debug Room 2","Back"]
 #macro HUDSETTINGSMENU ["Tooltips","Healthbars","Back"]
 #macro AUDIOSETTINGSMENU ["Master","SFX","Music","Back"]
 #macro DISPLAYMENU ["3840x2160","2560x1440","1920x1080","1280x720","HUD","FPS","Fullscreen","Back"]
@@ -124,22 +125,6 @@ function menu_function(purpose = "Back",contextArg = context){
 				instance_create_layer(x,y,"Instances",obj_client_manager);					
 			}
 		break;
-		case "DEBUG ROOM 1":
-			var lD = {
-				run: "Multiplayer",
-				rm: rm_multiplayer,
-				load: [track1,track2,track3,track4]	
-			}
-			start_transition(sq_circle_out,sq_circle_in,lD);			
-		break;
-		case "DEBUG ROOM 2":
-			var lD = {
-				run: "Multiplayer",
-				rm: rm_debug_room,
-				load: [track1,track2,track3,track4]	
-			}
-			start_transition(sq_circle_out,sq_circle_in,lD);			
-		break;
 		// Main game prompts
 		case "Resume":
 			instance_destroy(obj_menu);
@@ -167,8 +152,35 @@ function menu_function(purpose = "Back",contextArg = context){
 		case "Multiplayer Settings":
 			progress_menu(1,MULTIPLAYERSETTINGSMENU);					
 		break;
+		// Debug Settings
 		case "Debug":
+			progress_menu(1,DEBUGMENU);	
+		break;
+		case "Debug Mode":
 			global.debug = global.debug?false:true;
+		break;
+		case "Unlock Everything":
+			global.unlocked_heroes = ["Warden","Empress","Lonestar","Engineer"];
+			global.unlocked_pieces = EVERYTHING;
+			global.discovered_pieces = global.unlocked_pieces;
+			audio_play_sound(snd_happy_wheels_victory,0,0);
+			save_file(SAVEFILE);
+		break;
+		case "Debug Room 1":
+			var lD = {
+				run: "Multiplayer",
+				rm: rm_multiplayer,
+				load: [track1,track2,track3,track4]	
+			}
+			start_transition(sq_circle_out,sq_circle_in,lD);			
+		break;
+		case "Debug Room 2":
+			var lD = {
+				run: "Multiplayer",
+				rm: rm_debug_room,
+				load: [track1,track2,track3,track4]	
+			}
+			start_transition(sq_circle_out,sq_circle_in,lD);			
 		break;
 		case "Fullscreen":
 			if window_get_fullscreen() == true {

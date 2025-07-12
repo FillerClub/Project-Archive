@@ -54,14 +54,24 @@ function piece_database(name, trait = -1) {
 							"Rapidly shoots at pieces in its area.",
 							"TBA"]
 			break;
-			case "splitter":
-				object = [	"splitter",obj_splitter,spr_piece_upgraded,spr_splitter_slot,
-							40,8,7,0,15,10,
+			case "double_shooter":
+				object = [	"double_shooter",obj_double_shooter,spr_piece_upgraded,spr_double_shooter_slot,
+							40,8,7,0,10,10,
 							[[[0, 1],[0, -1],[0,2],[0,-2]], 
 							[["1", 0]]],
 							SAME,PLACEABLENONE,
 							DEFENSECLASS,0,
-							"Shoots two bullets at a time. Has more HP.",
+							"Shoots two bullets at a time.",
+							"TBA"]
+			break;
+			case "splitter":
+				object = [	"splitter",obj_splitter,spr_splitter,spr_splitter_slot,
+							30,8,7,0,10,5,
+							[[[0, 1],[0, -1],[0,2],[0,-2]], 
+							[["1", 0]]],
+							SAME,PLACEABLENONE,
+							DEFENSECLASS,0,
+							"Can shoot in two lanes at once.",
 							"TBA"]
 			break;
 			case "big_shooter":
@@ -115,7 +125,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "bishop":
 				object = [	"bishop",obj_bishop,spr_bishop,spr_bishop_slot,
-							30,10,9,0,15,20,
+							30,10,14,0,10,20,
 							[undefined,
 							undefined,
 							[[1,1]]],
@@ -124,14 +134,23 @@ function piece_database(name, trait = -1) {
 							"Able to be moved diagonally anywhere on the map.",
 							"TBA"]
 			break;
-			case "wall":
-				object = [	"wall",obj_wall,spr_wall,spr_wall_slot,
-							10,16,9,0,20,5,
+			case "pawn":
+				object = [	"pawn",obj_pawn,spr_generic,spr_pawn_slot,
+							5,8,16,0,5,10,
 							[[["1", 0],["2",0]], 
 							[["1", 1],["1", -1]]],
 							SAME,PLACEABLENONE,
 							CONTROLCLASS,0,
-							"Static piece, has a lot of health and is useful for stalling.",
+							"Pawn",
+							"TBA",]
+			break;
+			case "wall":
+				object = [	"pawn",obj_wall,spr_wall,spr_wall_slot,
+							10,18,32,0,20,5,
+							[],
+							SAME,PLACEABLENONE,
+							CONTROLCLASS,0,
+							"Static piece with a lot of health. Useful for stalling.",
 							"TBA",]
 			break;
 			case "bomber":
@@ -145,7 +164,7 @@ function piece_database(name, trait = -1) {
 			break;
 			case "stick":
 				object = [	"stick",obj_stick,spr_stick,spr_stick_slot,
-							5,30,1,0,5,10,
+							5,30,1,0,5,20,
 							[undefined, 
 							[[1, 0],[-1, 0]]],
 							SAME,PLACEABLENONE,
@@ -242,7 +261,7 @@ function piece_database(name, trait = -1) {
 							0,0,0,0,0,0,
 							[],
 							PLACEABLENONE,PLACEABLENONE,
-							c_white,0,
+							#4C4C4C,0,
 							"",
 							""]
 			break;

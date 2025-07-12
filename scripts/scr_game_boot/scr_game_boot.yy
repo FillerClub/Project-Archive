@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scr_game_boot",
   "parent":{
-    "name":"Misc",
-    "path":"folders/Scripts/Misc.yy",
+    "name":"Important",
+    "path":"folders/Scripts/Important.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

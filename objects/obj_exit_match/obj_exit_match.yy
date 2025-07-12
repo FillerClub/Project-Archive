@@ -8,8 +8,8 @@
   "name":"obj_exit_match",
   "overriddenProperties":[],
   "parent":{
-    "name":"Lobby UI",
-    "path":"folders/Objects/Lobby UI.yy",
+    "name":"Online",
+    "path":"folders/Objects/Loadout Zone UI/Online.yy",
   },
   "parentObjectId":null,
   "persistent":false,

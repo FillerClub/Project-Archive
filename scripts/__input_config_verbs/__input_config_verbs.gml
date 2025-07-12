@@ -50,6 +50,8 @@ function __input_config_verbs()
             // Level controls
 			fast_forward: input_binding_gamepad_button(gp_shoulderlb),
 			start_delete: input_binding_gamepad_button(gp_shoulderrb),
+			special_left: input_binding_gamepad_button(gp_shoulderl),
+			special_right: input_binding_gamepad_button(gp_shoulderr),
 			
 			aim_up:    input_binding_gamepad_axis(gp_axisrv, true),
             aim_down:  input_binding_gamepad_axis(gp_axisrv, false),

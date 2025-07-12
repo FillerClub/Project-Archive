@@ -27,6 +27,8 @@ function soundtrack_play(track) {
 				audio_play_sound_on(soundtrack_emitter,msc_getoutofmyway_percs,1,1,1);
 				audio_group_set_gain(track2,0,0);
 				audio_group_set_gain(track2,1,10000);	
+				audio_group_set_gain(track3,1,0);
+				audio_group_set_gain(track4,1,0);			
 			break;
 			case LOOKINGBACK:
 				audio_play_sound_on(soundtrack_emitter,msc_beauty_in_recollection,1,1,1);

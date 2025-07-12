@@ -33,7 +33,7 @@ function manage_menu_text(text){
 		case "Cursor":
 			textReturn = "Cursor Sensitivity: " +string(global.cursor_sens);
 		break;
-		case "Debug":
+		case "Debug Mode":
 			textReturn = "Debug: " +string(global.debug?"ON":"OFF");
 		break;
 		case "Set Name":

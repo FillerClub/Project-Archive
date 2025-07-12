@@ -10,14 +10,19 @@ function write_data_buffer(buffer,data_type,data) {
 		case REMOTEDATA.LOADOUT:
 			buffer_write(buffer,buffer_string,json_stringify(data))
 		break;
-		case REMOTEDATA.STATUS:
-			buffer_write(buffer,buffer_u8,data);
-		break;
 		case REMOTEDATA.PORT:
 			buffer_write(buffer,buffer_u16,data);
 		break;
+		case REMOTEDATA.STATUS:
+		case REMOTEDATA.MAXSLOTS:
+		case REMOTEDATA.SHOWSLOTS:
+		case REMOTEDATA.BARRIER:
+		case REMOTEDATA.TIMELENGTH:
 		default:
 			buffer_write(buffer,buffer_u8,data);
+		break;
+		case REMOTEDATA.MAXPIECES:
+			buffer_write(buffer,buffer_u8,clamp(data,0,255));
 		break;
 	}
 }

@@ -1,6 +1,6 @@
 #macro HEALTHCOSTMULTIPLIER .6
 #macro TIMETOTAKE 1.5
-
+#macro EVERYTHING ["shooter","splitter","double_shooter","short","accelerator","piercer","stick","shotgun","cross","bishop","wall","pawn","bomber","super_stick","crawler","drooper","tank_crawler","jumper","super_tank_crawler","the_goliath","big_shooter"]
 // TRANSITIONS
 #macro INSTANT -1
 
@@ -11,20 +11,33 @@ enum SEND {
 	DISCONNECT = 0,
 	CONNECT = 1,
 	DATA = 2,
-	VIEWLOBBIES = 3,
+	TOGGLEJOIN = 3,
 }
 enum REMOTEDATA {
 	STATUS = 0,
 	NAME = 1,
 	HERO = 2,
 	LOADOUT = 3,
+	MAXSLOTS = 4,
+	SHOWSLOTS = 5,
+	BARRIER = 6,
+	TIMELENGTH = 7,
+	MAXPIECES = 8,
 	PORT = 244,
+	MATCHPORT = 245,
+	CREATEMATCH = 246,
 	END = 255,
 }
 enum ONLINESTATUS {
 	IDLE = 0,
-	MATCHHOST = 1,
-	MATCHGUEST = 2,
+	WAITING = 1,
+	PREPARING = 2,
 	INGAME = 3,	
 	SPECTATING = 4,
+}
+
+enum MEMBERSTATUS {
+	SPECTATOR = -1,	
+	HOST = 0,	
+	MEMBER = 1,
 }

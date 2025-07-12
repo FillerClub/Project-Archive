@@ -22,6 +22,7 @@ if i < global.max_pieces {
 	if ((global.player_team == "friendly")? (global.player_turns >= cost):(global.opponent_turns >= cost)) {
 		switch object_index {
 			case obj_piece_slot:
+			case obj_slot_selector:
 				var info = piece_database(identity);
 				instance_create_layer(gX,gY,"AboveBoard",obj_dummy, {
 					object: info[PIECEDATA.OBJECT],	

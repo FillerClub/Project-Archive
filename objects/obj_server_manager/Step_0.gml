@@ -25,9 +25,6 @@ if update_players {
 		buffer_write(send_buffer, buffer_u8,REMOTEDATA.END);
 		// Send buffer to everyone
 		for (var uu = 0; uu < arPlay; uu++) {
-			if players[uu].status != ONLINESTATUS.IDLE {
-				continue;
-			}
 			network_send_udp(socket,players[uu].ip,players[uu].port,send_buffer,buffer_tell(send_buffer));
 		}
 		// Update object

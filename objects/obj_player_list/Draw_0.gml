@@ -10,7 +10,7 @@ if array_length(player) > 0 {
 			case ONLINESTATUS.IDLE:
 				textCol = #515151;
 			break;
-			case ONLINESTATUS.MATCHHOST:
+			case ONLINESTATUS.WAITING:
 				textCol = #00FF48;
 			break;
 		}

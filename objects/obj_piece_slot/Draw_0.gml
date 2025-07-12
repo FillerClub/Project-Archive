@@ -14,8 +14,8 @@ if global.player_team == "friendly" {
 if cooldown > 0 {
 	textcol = c_red;
 }
-
-draw_slot(sprite_slot,col,textcol,cost);
+var drawcost = (identity != "Empty")?cost:"";
+draw_slot(sprite_slot,col,textcol,drawcost);
 
 //draw_text_transformed(x + sprite_width/2,y + sprite_height*1.2 +x,string(identity[PIECEDATA.NAME]),.25,.25,0);
 //draw cooldown shader
@@ -27,4 +27,4 @@ if fillRect > 0 {
 }
 draw_set_alpha(1);
 draw_set_color(c_white);
-if selected { draw_sprite(spr_slot_select,image_index,x,y);	}
+if selected && identity != "Empty" { draw_sprite(spr_slot_highlight,image_index,x,y);	}

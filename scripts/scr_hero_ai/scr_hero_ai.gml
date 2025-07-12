@@ -235,7 +235,7 @@ if countFPiece > 0 {
 				row_threat[fY] += 2;
 			break;
 			
-			case "splitter":
+			case "double_shooter":
 				row_value[fY] += lerp(1,6,fX);
 				row_threat[fY] += 4;
 			break;	

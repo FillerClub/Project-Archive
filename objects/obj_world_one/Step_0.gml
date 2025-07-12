@@ -119,7 +119,7 @@ switch level[1] {
 		enemy_spawn_sequence(5,["crawler"],4,2) 
 		//Expand grid, introduce movement, etc...
 		if pause_sequence(6,(!enemyPiecePresent || stupid_idiot_check),6/(1+stupid_idiot_check/2)) {
-			scale_grid(3);	
+			scale_grid(3,false);	
 			global.mode = "move";
 			random_time_add = random_range(0,1);
 			with obj_hero_wall {
@@ -176,7 +176,7 @@ switch level[1] {
 		initiate_final_wave(10,!enemyPiecePresent);
 		enemy_spawn_sequence(11,["crawler","drooper"],1,10,0,random_y);
 		enemy_spawn_sequence(12,["tank_crawler"],1,5,0,random_y);
-		drop_slot(13,"splitter",[1,4],!enemyPiecePresent);
+		drop_slot(13,"double_shooter",[1,4],!enemyPiecePresent);
 	break;
 	
 	case 4:

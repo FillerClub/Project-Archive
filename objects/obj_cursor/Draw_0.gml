@@ -102,19 +102,25 @@ if !position_meeting(x,y,movingSomething) && on_grid != noone {
 
 // Draw pop up descriptions from slots
 with instance_position(x,y,obj_piece_slot) {
-	stringDraw = desc;
-	descWidth = string_width(stringDraw);
-	descHeight = string_height(stringDraw);
+	if identity != "Empty" {
+		stringDraw = desc;
+		descWidth = string_width(stringDraw);
+		descHeight = string_height(stringDraw);
+	}
 }
 with instance_position(x,y,obj_loadout_slot) {
-	stringDraw = desc;
-	descWidth = string_width(stringDraw);
-	descHeight = string_height(stringDraw);
+	if identity != "Empty" {
+		stringDraw = desc;
+		descWidth = string_width(stringDraw);
+		descHeight = string_height(stringDraw);
+	}
 }
 with instance_position(x,y,obj_unlocked_slot) {
-	stringDraw = desc;
-	descWidth = string_width(stringDraw);
-	descHeight = string_height(stringDraw);
+	if identity != "Empty" {
+		stringDraw = desc;
+		descWidth = string_width(stringDraw);
+		descHeight = string_height(stringDraw);
+	}
 }
 // Draw power passive popup
 with instance_position(x,y,obj_power_passive) {

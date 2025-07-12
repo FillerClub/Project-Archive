@@ -40,14 +40,14 @@ with obj_power_database {
 						"Breaking down walls give your pieces a permanent speed boost."];
 		break;
 		case "Empress-a":
-			object = [	"Forceful Grasp",obj_net_power,5,32,spr_net_slot,
+			object = [	"Poison",obj_fizz_power,5,17,spr_fizz_slot,
+						PLACEABLENONE,DIFFERENT,
+						"Lob poison at an enemy, deal splash damage."];
+		break;		
+		case "Empress-b":
+			object = [	"Forceful Grasp",obj_net_power,10,50,spr_net_slot,
 						PLACEABLENONE,PLACEABLEANY,
 						"Displace any piece."];
-		break;
-		case "Empress-b":
-			object = [	"Poison",obj_fizz_power,10,55,spr_fizz_slot,
-						PLACEABLEANY,PLACEABLEANY,
-						"Splashes enemies, slowing and poisoning them"];
 		break;
 		case "Empress-c":
 			object = [	"Big guy call",obj_horde_power,15,160,spr_horde_slot,
@@ -56,24 +56,45 @@ with obj_power_database {
 		break;
 		// Lonestars' Powers
 		case "Lonestar-passive":
-			object = [	"3x Timer Speed",obj_lonestar_passive,1,0,spr_lust_of_wrath_passive,
+			object = [	"Fire at will",obj_constant_reload,1,13.5,spr_lust_of_wrath_passive,
 						PLACEABLEANY,PLACEABLEANY,
-						"For fun."];
+						"Your powers use ammo. Ammo recharges overtime."];
 		break;
 		case "Lonestar-a":
-			object = [	"Big guy call",obj_horde_power,5,30,spr_horde_slot,
-						SAME,PLACEABLEANY,
-						"For fun."];
+			object = [	"Intimidate",obj_horde_power,5,2.5,spr_horde_slot,
+						PLACEABLEANY,PLACEABLEANY,
+						"Fire a warning shot, stunning pieces briefly."];
 		break;
 		case "Lonestar-b":
-			object = [	"Big guy call",obj_horde_power,10,30,spr_horde_slot,
-						SAME,PLACEABLEANY,
-						"For fun."];
+			object = [	"Infiltrate",obj_horde_power,10,35,spr_horde_slot,
+						PLACEABLEANY,PLACEABLEANY,
+						"Lob dynamite onto the board. Can be shot to detonate early."];
 		break;
 		case "Lonestar-c":
-			object = [	"Big guy call",obj_horde_power,15,30,spr_horde_slot,
-						SAME,PLACEABLEANY,
-						"For fun."];
+			object = [	"Destroy",obj_horde_power,15,65,spr_horde_slot,
+						PLACEABLEANY,PLACEABLEANY,
+						"Use all bullets in your chamber to deal massive damage to the enemy defenses."];
+		break;
+		// Engineer's Powers
+		case "Engineer-passive":
+			object = [	"Aegis Bloom",obj_aegis_bloom_passive,0,0,spr_aegis_bloom_passive,
+						PLACEABLEANY,PLACEABLEANY,
+						"When a wall breaks, it emits a powerful burst of energy that vaporizes any piece in its lane."];
+		break;
+		case "Engineer-a":
+			object = [	"Refurbishment",obj_heal_power,5,12,spr_heal_power_slot,
+						PLACEABLENONE,SAME,
+						"Heal a piece, and gives a slight speed boost."];
+		break;
+		case "Engineer-b":
+			object = [	"Forceful Grasp",obj_net_power,10,50,spr_net_slot,
+						PLACEABLENONE,PLACEABLEANY,
+						"Displace any piece."];
+		break;
+		case "Engineer-c":
+			object = [	"Destroy",obj_horde_power,15,160,spr_horde_slot,
+						PLACEABLEANY,PLACEABLEANY,
+						"Use all bullets in your chamber to deal massive damage to the enemy defenses."];
 		break;
 		default:
 			object = [	"debug_power",obj_debug_piece,1,10,spr_generic_slot,

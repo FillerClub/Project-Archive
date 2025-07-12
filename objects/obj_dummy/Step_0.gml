@@ -63,8 +63,8 @@ if placed {
 	
 	switch on_piece {
 		case SAME:
-			if position_meeting(gClampX,gClampY,obj_obstacle) {
-				var instattack = instance_position(gClampX,gClampY,obj_obstacle);
+			if position_meeting(gClampX,gClampY,obj_generic_piece) {
+				var instattack = instance_position(gClampX,gClampY,obj_generic_piece);
 				if instattack.team != team {
 					placeable = false;
 				} else { placeable = true; }
@@ -72,8 +72,8 @@ if placed {
 		break;
 		
 		case DIFFERENT:
-			if position_meeting(gClampX,gClampY,obj_obstacle) {
-				var instattack = instance_position(gClampX,gClampY,obj_obstacle);
+			if position_meeting(gClampX,gClampY,obj_generic_piece) {
+				var instattack = instance_position(gClampX,gClampY,obj_generic_piece);
 				if instattack.team == team {
 					placeable = false;	
 				} else { placeable = true; }

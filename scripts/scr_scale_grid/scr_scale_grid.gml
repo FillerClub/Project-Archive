@@ -1,4 +1,4 @@
-function scale_grid(scale_factor){
+function scale_grid(scale_factor,create_walls = true){
 	var shiftAmt = 0,
 	oY = 0,
 	yDiff = 0;
@@ -9,9 +9,7 @@ function scale_grid(scale_factor){
 	} else {
 		exit;	
 	}
-	with obj_hero_wall {		
-		instance_destroy();
-	}
+	instance_destroy(obj_hero_wall);
 	with obj_grid {
 		var midCenter = (bbox_top +bbox_bottom)/2;
 		oY = y;

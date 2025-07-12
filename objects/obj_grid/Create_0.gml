@@ -7,7 +7,7 @@ if (team != "friendly" && team != "enemy") || !generate_walls {
 	exit;	
 }
 var tM = (team == "friendly")?bbox_left:bbox_right -GRIDSPACE,
-gridVar = self;
+gridVar = id;
 for (var g = 0; g <= floor((bbox_bottom -bbox_top -1)/GRIDSPACE); g++) {
 	instance_create_layer(tM,bbox_top +g*GRIDSPACE,"Instances",obj_hero_wall, {			
 		team: team,
@@ -15,3 +15,4 @@ for (var g = 0; g <= floor((bbox_bottom -bbox_top -1)/GRIDSPACE); g++) {
 		grid_pos: [(tM -bbox_left)/GRIDSPACE,g]
 	});
 }
+obj_game.debug_count++;

@@ -10,8 +10,8 @@
   "name":"obj_player_list",
   "overriddenProperties":[],
   "parent":{
-    "name":"Lobby UI",
-    "path":"folders/Objects/Lobby UI.yy",
+    "name":"Online",
+    "path":"folders/Objects/Main/Online.yy",
   },
   "parentObjectId":null,
   "persistent":false,
