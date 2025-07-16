@@ -7,8 +7,12 @@ if index < arLength2 {
 	identity = "Empty"	
 }
 if index == 0 {
+	var shiftY = 0;
 	for (var i = 1; i < arLength; i++) {
-		instance_create_layer(x +i*sprite_width,y,"Instances",obj_loadout_slot, {
+		if i mod SLOTROW == 0 {
+			shiftY++;	
+		}
+		instance_create_layer(x +(i -shiftY*SLOTROW)*sprite_width,y +shiftY*sprite_height,"Instances",obj_loadout_slot, {
 			index: i
 		});
 	}

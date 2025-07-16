@@ -2,7 +2,7 @@ var heroString = "",
 out = true;
 with obj_generic_hero {
 	if team == other.team {
-		heroString = identity + "-" +other.identity;
+		heroString = identity + "-" +string(other.index);
 		out = false;
 	}
 }
@@ -13,7 +13,7 @@ cost = info[POWERDATA.COST];
 cooldown_length = info[POWERDATA.SLOTCOOLDOWN];
 sprite_slot = info[POWERDATA.SLOTSPRITE];
 desc = info[POWERDATA.DESCRIPTION];
-name = heroString;
-if identity != "a" {
+identity = heroString;
+if index != 1 {
 	cooldown = cooldown_length;
 }

@@ -8,6 +8,10 @@ if grid_pos[0] == -1 && grid_pos[1] == -1 && piece_on_grid != noone {
 	grid_pos[0] = floor((x -piece_on_grid.bbox_left)/GRIDSPACE);
 	grid_pos[1] = floor((y -piece_on_grid.bbox_top)/GRIDSPACE); 
 }
+if instance_exists(piece_on_grid) {
+	x = grid_pos[0]*GRIDSPACE +piece_on_grid.bbox_left;
+	y = grid_pos[1]*GRIDSPACE +piece_on_grid.bbox_top;
+}
 move_cooldown_timer = 0;
 move_cooldown = piece_database(identity,PIECEDATA.MOVECOOLDOWN);
 hp = piece_database(identity,PIECEDATA.HP);

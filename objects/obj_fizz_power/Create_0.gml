@@ -7,8 +7,8 @@ var gS = GRIDSPACE;
 var ar_leng = array_length(aura);
 with instance_position(x,y,obj_generic_piece) {
 	hp -= 2;
-	effect_generate(self,EFFECT.SLOW,"empress_poison",undefined,16,2);
-	effect_generate(self,EFFECT.POISON,"empress_poison",undefined,9,1);
+	effect_generate(self,EFFECT.SLOW,"empress_poison",16,2);
+	effect_generate(self,EFFECT.POISON,"empress_poison",9,1);
 }
 
 for (var i = 0; i < ar_leng; ++i)	{

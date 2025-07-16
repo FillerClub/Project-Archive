@@ -7,7 +7,7 @@ function handle_tutorials(tutorialProgress) {
 				break;
 			}
 			
-			if global.player_turns < tutorial_piece.cost {
+			if global.friendly_turns < tutorial_piece.cost {
 				with obj_timer {
 					if (timer >= seconds_per_turn) {
 						timer = 0;	

@@ -19,14 +19,12 @@ if input_check_pressed("action") && arLeng > 0 && global.game_state == RUNNING {
 				// Send connection request to server
 				match_togglejoin(connectToPort);
 				buffer_seek(send_buffer,buffer_seek_start,0);
-				buffer_write(send_buffer,buffer_u8,SEND.DATA);
-				write_data_buffer(send_buffer,REMOTEDATA.STATUS,game_status);
-				buffer_write(send_buffer,buffer_u8,REMOTEDATA.END);
+				buffer_write(send_buffer,buffer_u8,SEND.MATCHDATA);
+				write_data_buffer(send_buffer,DATA.STATUS,game_status);
+				buffer_write(send_buffer,buffer_u8,DATA.END);
 				network_send_udp(socket,server_ip,server_port,send_buffer,buffer_tell(send_buffer));	
 			}
 		}
-		global.team = "enemy";
-		global.opponent_team = "friendly";
 		room_goto(rm_loadout_zone_multiplayer);
 	}
 }

@@ -88,7 +88,7 @@ if global.game_state != PAUSED {
 	hp_init = hp;
 	skip_click = false;
 }
-//draw_text_scribble(x,y -8,grid_pos);
+//draw_text(x,y -8,string(id));
 //draw_text_scribble(x,y -16,piece_on_grid);
 /*
 draw_text(x,y+64,string(effects_array));

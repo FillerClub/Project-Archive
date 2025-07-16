@@ -26,7 +26,6 @@ if hp < hp_init {
 
 if hp <= 0 {
 	switch room {
-		case rm_debug_room:
 		case rm_sandbox:
 			hp = global.barrier_criteria;
 			with obj_hero_wall {
@@ -53,6 +52,18 @@ if hp <= 0 {
 						phase = HEROBATTLEEND;
 					}
 				}
+			}
+		break;
+		case rm_level_conveyor:
+		case rm_level_small:
+		case rm_level_normal:
+		case rm_level_split:
+			var lose = {
+				action: DATA.LOSE,
+				team: team,
+			}
+			with obj_battle_handler {
+				array_push(requests,lose);	
 			}
 		break;
 	}

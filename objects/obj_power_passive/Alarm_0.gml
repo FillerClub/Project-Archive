@@ -1,7 +1,7 @@
 var heroString = "";
 with obj_generic_hero {
 	if team == other.team {
-		heroString = identity + "-passive";
+		heroString = identity + "-0";
 	}
 }
 

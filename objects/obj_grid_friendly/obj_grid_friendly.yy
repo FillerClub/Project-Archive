@@ -6,10 +6,11 @@
   "name":"obj_grid_friendly",
   "overriddenProperties":[
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_grid","path":"objects/obj_grid/obj_grid.yy",},"propertyId":{"name":"team","path":"objects/obj_grid/obj_grid.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"friendly",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_grid","path":"objects/obj_grid/obj_grid.yy",},"propertyId":{"name":"generate_walls","path":"objects/obj_grid/obj_grid.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"False",},
   ],
   "parent":{
     "name":"Grid",
-    "path":"folders/Objects/Grid.yy",
+    "path":"folders/Objects/Main/Level/Grid.yy",
   },
   "parentObjectId":{
     "name":"obj_grid",

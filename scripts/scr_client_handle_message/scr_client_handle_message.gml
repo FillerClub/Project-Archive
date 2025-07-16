@@ -69,9 +69,9 @@ function scr_client_handle_message(){
 							grid_pos = [xCnew/gS,yCnew/gS];	
 						}
 						if isFriendly {
-							global.player_turns -= 1;
+							global.friendly_turns -= 1;
 						} else {
-							global.opponent_turns -= 1;					
+							global.enemy_turns -= 1;					
 						}	
 
 						

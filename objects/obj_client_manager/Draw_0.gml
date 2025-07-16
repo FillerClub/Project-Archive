@@ -14,6 +14,7 @@ if connection_status == -1 {
 	draw_text(64,room_height/2 +256,"Connecting" +bufferingString);
 	
 }
+/*
 for (var i = 0; i < array_length(players); i++) {
 	draw_text(64,room_height/2 +256 +20*i,string(players[i]));	
 }

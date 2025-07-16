@@ -5,9 +5,9 @@ function timer_tick(tick_amt = global.turn_increment){
 	yFrom = bbox_top,
 	yTo = bbox_top -20;
 	if team == "friendly" {
-		if global.player_turns < global.max_turns {
-			var amtIncrease = min(tick_amt,max(global.max_turns -global.player_turns,0));
-			global.player_turns += amtIncrease;
+		if global.friendly_turns < global.max_turns {
+			var amtIncrease = min(tick_amt,max(global.max_turns -global.friendly_turns,0));
+			global.friendly_turns += amtIncrease;
 			instance_create_layer(xFrom,yFrom,"GUI",obj_hit_fx, {
 				hp: amtIncrease,
 				x_target: xTo,
@@ -32,9 +32,9 @@ function timer_tick(tick_amt = global.turn_increment){
 			}
 		}
 	} else {
-		if global.opponent_turns < global.max_turns {
-			var amtIncrease = min(tick_amt,max(global.max_turns -global.opponent_turns,0));
-			global.opponent_turns += amtIncrease;
+		if global.enemy_turns < global.max_turns {
+			var amtIncrease = min(tick_amt,max(global.max_turns -global.enemy_turns,0));
+			global.enemy_turns += amtIncrease;
 			instance_create_layer(xFrom,yFrom,"GUI",obj_hit_fx, {
 				hp: amtIncrease,
 				x_target: xTo,

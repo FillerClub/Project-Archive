@@ -3,25 +3,26 @@ function write_data_buffer(buffer,data_type,data) {
 	buffer_write(buffer, buffer_u8,data_type);
 	// Write appropriate buffer based on index
 	switch data_type {
-		case REMOTEDATA.NAME:
-		case REMOTEDATA.HERO:
+		case DATA.NAME:
+		case DATA.HERO:
 			buffer_write(buffer,buffer_string,data);
 		break;
-		case REMOTEDATA.LOADOUT:
+		case DATA.LOADOUT:
 			buffer_write(buffer,buffer_string,json_stringify(data))
 		break;
-		case REMOTEDATA.PORT:
+		case DATA.PORT:
 			buffer_write(buffer,buffer_u16,data);
 		break;
-		case REMOTEDATA.STATUS:
-		case REMOTEDATA.MAXSLOTS:
-		case REMOTEDATA.SHOWSLOTS:
-		case REMOTEDATA.BARRIER:
-		case REMOTEDATA.TIMELENGTH:
+		case DATA.STATUS:
+		case DATA.MAXSLOTS:
+		case DATA.SHOWSLOTS:
+		case DATA.BARRIER:
+		case DATA.TIMELENGTH:
+		case DATA.MAP:
 		default:
 			buffer_write(buffer,buffer_u8,data);
 		break;
-		case REMOTEDATA.MAXPIECES:
+		case DATA.MAXPIECES:
 			buffer_write(buffer,buffer_u8,clamp(data,0,255));
 		break;
 	}
@@ -30,20 +31,20 @@ function write_data_buffer(buffer,data_type,data) {
 function read_data_buffer(buffer,data_type) {
 	var re = false;
 	switch data_type {
-		case REMOTEDATA.NAME:
-		case REMOTEDATA.HERO:
+		case DATA.NAME:
+		case DATA.HERO:
 			re = buffer_read(buffer,buffer_string);
 		break;
-		case REMOTEDATA.LOADOUT:
+		case DATA.LOADOUT:
 			re = json_parse(buffer_read(buffer,buffer_string));
 		break;
-		case REMOTEDATA.STATUS:
+		case DATA.STATUS:
 			re = buffer_read(buffer,buffer_u8);
 		break;
-		case REMOTEDATA.PORT:
+		case DATA.PORT:
 			re = buffer_read(buffer,buffer_u16);
 		break;
-		case REMOTEDATA.END:
+		case DATA.END:
 			//re = buffer_read(buffer,buffer_u8);
 		break;
 		default:

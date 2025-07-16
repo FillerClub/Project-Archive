@@ -16,19 +16,32 @@ if index == 0 {
 			lastSlot = index;
 		}
 	}
-	if lastSlot +1 < maxSlots {
-		for (var c = lastSlot; c < maxSlots; c++) {
+	if lastSlot +1< maxSlots {
+		var shiftY = 0;
+		for (var c = lastSlot +1; c < maxSlots; c++) {
+			shiftY = floor(c/SLOTROW);
 			if c <= 0 {
 				continue;
 			}
-			instance_create_layer(x +c*sprite_width,y,"Instances",obj_loadout_slot, {
+			instance_create_layer(x +(c -shiftY*SLOTROW)*sprite_width,y +shiftY*sprite_height,"Instances",obj_loadout_slot, {
 				index: c
 			});	
 		}
+	}	
+	var arrayLength = instance_number(obj_loadout_slot);
+	var array = array_create(arrayLength,0);
+	with obj_loadout_slot {
+		array[index] = identity;
 	}
+	global.loadout = array;
 }
 if index >= maxSlots {
 	instance_destroy();	
+}
+if instance_exists(obj_ready) {
+	if obj_ready.ready {
+		exit;	
+	}
 }
 // On Click
 if position_meeting(cX,cY,self) && input_check_pressed("action") && identity != "Empty" {

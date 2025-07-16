@@ -11,7 +11,10 @@
     "name":"Empress",
     "path":"folders/Objects/Piece Stuff/Heros/Powers/Empress.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"obj_generic_powerup",
+    "path":"objects/obj_generic_powerup/obj_generic_powerup.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

@@ -40,7 +40,7 @@ with instance_position(x,y,obj_hero_wall) {
 	descHeight = string_height(stringDraw);
 }
 
-if !position_meeting(x,y,movingSomething) && on_grid != noone {
+if !position_meeting(x,y,movingSomething) && instance_exists(on_grid) {
 	with movingSomething {
 		var 
 		setsOfMoves = array_length(valid_moves),
@@ -48,8 +48,13 @@ if !position_meeting(x,y,movingSomething) && on_grid != noone {
 		mouseOnCantAttack = false,
 		mosX = other.grid_pos[0]*GRIDSPACE +other.on_grid.bbox_left,
 		mosY = other.grid_pos[1]*GRIDSPACE +other.on_grid.bbox_top,
-		gcX = grid_pos[0]*GRIDSPACE +piece_on_grid.bbox_left,
-		gcY = grid_pos[1]*GRIDSPACE +piece_on_grid.bbox_top;
+		gcX = x,
+		gcY = y;
+		if instance_exists(piece_on_grid) {
+			gcX = grid_pos[0]*GRIDSPACE +piece_on_grid.bbox_left;
+			gcY = grid_pos[1]*GRIDSPACE +piece_on_grid.bbox_top;	
+		}
+		
 				
 		for (var set = 0; set < setsOfMoves; ++set)	{	
 			var arLeng = array_length(valid_moves[set]);

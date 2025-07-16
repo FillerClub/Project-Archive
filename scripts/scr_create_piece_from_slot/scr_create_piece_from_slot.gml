@@ -19,7 +19,7 @@ with obj_generic_piece {
 }
 
 if i < global.max_pieces {
-	if ((global.player_team == "friendly")? (global.player_turns >= cost):(global.opponent_turns >= cost)) {
+	if ((global.player_team == "friendly")? (global.friendly_turns >= cost):(global.enemy_turns >= cost)) {
 		switch object_index {
 			case obj_piece_slot:
 			case obj_slot_selector:
@@ -38,7 +38,7 @@ if i < global.max_pieces {
 				});
 			break;
 			case obj_power_slot:
-			var info = power_database(name);
+			var info = power_database(identity);
 				instance_create_layer(gX,gY,"AboveBoard",obj_dummy, {
 					object: info[POWERDATA.OBJECT],
 					sprite_index: info[POWERDATA.SLOTSPRITE],
@@ -68,7 +68,7 @@ if i >= global.max_pieces {
 	}	
 }
 	
-if ((global.player_team == "friendly")? (global.player_turns < cost):(global.opponent_turns < cost)) {
+if ((global.player_team == "friendly")? (global.friendly_turns < cost):(global.enemy_turns < cost)) {
 	audio_stop_sound(snd_pick_up);
 	audio_stop_sound(snd_error);
 	audio_stop_sound(snd_critical_error);

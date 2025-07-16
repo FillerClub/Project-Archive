@@ -14,3 +14,8 @@ with obj_hero_display {
 if !markValid && identity != "Empty" {
 	draw_sprite(spr_cant_slot,0,x+2,y+2);
 }
+if instance_exists(obj_ready) {
+	if obj_ready.ready {
+		draw_sprite(spr_slot_lock,0,x,y);	
+	}
+}

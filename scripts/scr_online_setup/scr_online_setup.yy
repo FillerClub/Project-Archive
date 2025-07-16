@@ -6,7 +6,7 @@
   "name":"scr_online_setup",
   "parent":{
     "name":"Server",
-    "path":"folders/Scripts/Server.yy",
+    "path":"folders/Server.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

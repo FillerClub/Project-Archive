@@ -16,13 +16,14 @@ if update_players {
 	// Write current player list
 	for (var u = 0; u < arPlay; u++) {
 		buffer_seek(send_buffer, buffer_seek_start,0);
-		buffer_write(send_buffer, buffer_u8,SEND.DATA);
-		write_data_buffer(send_buffer,REMOTEDATA.PORT,players[u].port);
-		write_data_buffer(send_buffer,REMOTEDATA.STATUS,players[u].status);
-		write_data_buffer(send_buffer,REMOTEDATA.NAME,players[u].name);
-		write_data_buffer(send_buffer,REMOTEDATA.HERO,players[u].hero);
-		write_data_buffer(send_buffer,REMOTEDATA.LOADOUT,players[u].loadout);
-		buffer_write(send_buffer, buffer_u8,REMOTEDATA.END);
+		buffer_write(send_buffer, buffer_u8,SEND.MATCHDATA);
+		write_data_buffer(send_buffer,DATA.PORT,players[u].port);
+		write_data_buffer(send_buffer,DATA.STATUS,players[u].status);
+		write_data_buffer(send_buffer,DATA.NAME,players[u].name);
+		write_data_buffer(send_buffer,DATA.HERO,players[u].hero);
+		// Keep loadout data hidden
+		// write_data_buffer(send_buffer,REMOTEDATA.LOADOUT,players[u].loadout);
+		buffer_write(send_buffer, buffer_u8,DATA.END);
 		// Send buffer to everyone
 		for (var uu = 0; uu < arPlay; uu++) {
 			network_send_udp(socket,players[uu].ip,players[uu].port,send_buffer,buffer_tell(send_buffer));

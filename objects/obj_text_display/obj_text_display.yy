@@ -27,6 +27,8 @@
   "physicsStartAwake":true,
   "properties":[
     {"$GMObjectProperty":"v1","%Name":"strg","filters":[],"listItems":[],"multiselect":false,"name":"strg","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"Your Loadout","varType":2,},
+    {"$GMObjectProperty":"v1","%Name":"font","filters":[],"listItems":[],"multiselect":false,"name":"font","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resource":{"name":"fnt_basic","path":"fonts/fnt_basic/fnt_basic.yy",},"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"fnt_basic","varType":5,},
+    {"$GMObjectProperty":"v1","%Name":"h_align","filters":[],"listItems":[],"multiselect":false,"name":"h_align","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"fa_left","varType":4,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

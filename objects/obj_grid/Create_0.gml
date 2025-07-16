@@ -1,8 +1,3 @@
-enum GROUNDTYPE {
-	NORMAL = 0,
-	WATER = 1,
-}
-
 if (team != "friendly" && team != "enemy") || !generate_walls {
 	exit;	
 }

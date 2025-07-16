@@ -13,11 +13,11 @@ draw_sprite(spr_slot_frame,0,x,y);
 //draw text indicating amount of powers
 var textCol = (cooldown <= 0)?c_white:c_red;
 if global.player_team == "friendly" {
-	if global.player_turns < cost {
+	if global.friendly_turns < cost {
 		textCol = c_red;	
 	}
 } else {
-	if global.opponent_turns < cost {
+	if global.enemy_turns < cost {
 		textCol = c_red;
 	}
 }

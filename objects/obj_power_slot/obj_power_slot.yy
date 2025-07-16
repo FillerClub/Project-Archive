@@ -11,7 +11,7 @@
   "name":"obj_power_slot",
   "overriddenProperties":[
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_piece_slot","path":"objects/obj_piece_slot/obj_piece_slot.yy",},"propertyId":{"name":"identity","path":"objects/obj_piece_slot/obj_piece_slot.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"a",},
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_piece_slot","path":"objects/obj_piece_slot/obj_piece_slot.yy",},"propertyId":{"name":"index","path":"objects/obj_piece_slot/obj_piece_slot.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"-2",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_piece_slot","path":"objects/obj_piece_slot/obj_piece_slot.yy",},"propertyId":{"name":"index","path":"objects/obj_piece_slot/obj_piece_slot.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"1",},
   ],
   "parent":{
     "name":"Slots",

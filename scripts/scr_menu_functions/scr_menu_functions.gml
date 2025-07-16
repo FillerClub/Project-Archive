@@ -169,7 +169,7 @@ function menu_function(purpose = "Back",contextArg = context){
 		case "Debug Room 1":
 			var lD = {
 				run: "Multiplayer",
-				rm: rm_multiplayer,
+				rm: rm_level_split,
 				load: [track1,track2,track3,track4]	
 			}
 			start_transition(sq_circle_out,sq_circle_in,lD);			
@@ -177,7 +177,7 @@ function menu_function(purpose = "Back",contextArg = context){
 		case "Debug Room 2":
 			var lD = {
 				run: "Multiplayer",
-				rm: rm_debug_room,
+				rm: rm_level_conveyor,
 				load: [track1,track2,track3,track4]	
 			}
 			start_transition(sq_circle_out,sq_circle_in,lD);			

@@ -6,7 +6,7 @@
   "name":"scr_send_name_to_client",
   "parent":{
     "name":"Server to Client",
-    "path":"folders/Scripts/Server/SCRAP/Server to Client.yy",
+    "path":"folders/Server/SCRAP/Server to Client.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

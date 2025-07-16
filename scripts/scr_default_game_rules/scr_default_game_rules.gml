@@ -10,9 +10,9 @@ function default_game_rules() {
 	global.show_opponent_slots = DEFAULT.SHOWSLOTS;
 	global.max_pieces = infinity;
 	global.timeruplength = DEFAULT.TIMELENGTH;
-	global.team = "friendly";
-	global.enemy_team = "enemy";
+	global.player_team = "friendly";
+	global.opponent_team = "enemy";
 	global.max_turns = 30;
-	global.player_turns = 20;
-	global.opponent_turns = 20;
+	global.friendly_turns = 20;
+	global.enemy_turns = 20;
 }

@@ -14,5 +14,5 @@ instance_create_layer(gridRef.bbox_right -abs(spawn_x_offset*GRIDSPACE) -GRIDSPA
 	team: "enemy",
 	ai_controlled: true
 });
-global.opponent_turns -= cost;
+global.enemy_turns -= cost;
 }

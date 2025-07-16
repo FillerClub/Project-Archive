@@ -13,8 +13,8 @@
     "path":"folders/Objects/Piece Stuff/Heros/Powers.yy",
   },
   "parentObjectId":{
-    "name":"obj_obstacle",
-    "path":"objects/obj_obstacle/obj_obstacle.yy",
+    "name":"obj_generic_powerup",
+    "path":"objects/obj_generic_powerup/obj_generic_powerup.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

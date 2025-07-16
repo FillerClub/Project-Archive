@@ -20,7 +20,7 @@ ar_leng = array_length(valid_attacks),
 moving = false;
 
 if global.mode == "move" && execute == "move" {
-	if checkPress && cursorOnGrid != noone {
+	if checkPress && instance_exists(cursorOnGrid) {
 		// Grab cursor position on board
 		cursorX = cursorGridPosition[0]*GRIDSPACE +cursorOnGrid.bbox_left +GRIDSPACE/2;
 		cursorY = cursorGridPosition[1]*GRIDSPACE +cursorOnGrid.bbox_top +GRIDSPACE/2;
@@ -92,15 +92,15 @@ if global.mode == "move" && execute == "move" {
 		var affordable = false;
 		switch team {
 			case "friendly":
-				if global.player_turns >= cost {
-					global.player_turns -= cost;
+				if global.friendly_turns >= cost {
+					global.friendly_turns -= cost;
 					affordable = true;
 				} 
 			break;
 					
 			case "enemy":
-				if global.opponent_turns >= cost {
-					global.opponent_turns -= cost;
+				if global.enemy_turns >= cost {
+					global.enemy_turns -= cost;
 					affordable = true;
 				} 
 			break;
@@ -120,39 +120,7 @@ if global.mode == "move" && execute == "move" {
 			}
 			return false;
 		}
-		// Handle special cases for moving onto different pieces
-		if piececlick != noone {
-			switch piececlick.object_index {
-				case obj_hero_wall:
-					piececlick.hp -= attack_power;
-					instance_destroy();			
-					// Never destroy a hero wall
-				break;
-				
-				default:
-					piececlick.hp -= attack_power;
-					if piececlick.hp <= 0 {
-						// Destroy target piece if it's hp is 0
-						instance_destroy(piececlick);
-					} else {
-						// Destroy the attacking piece if it's too weak, while still knocking down hp
-						instance_destroy();	
-					}
-				break;
-			}			
-		}
-		// At this point, we are confident in committing to the move.
-		re = true;
-		if re && !bypass_cooldown {
-			move_cooldown_timer = move_cooldown;	
-			skip_click = true;
-		}
-		// Move, while changing the grid position
-		x = gClampX -GRIDSPACE/2;
-		y = gClampY -GRIDSPACE/2;
-		grid_pos = [cursorGridPosition[0],cursorGridPosition[1]];
-		piece_on_grid = moveToGrid;
-		return re;	
+		r_move_piece([cursorGridPosition[0],cursorGridPosition[1]],moveToGrid,tag);	
 	}
 }
 }

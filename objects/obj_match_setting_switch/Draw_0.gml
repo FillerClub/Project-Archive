@@ -1,12 +1,17 @@
-draw_set_font(fnt_basic);
+draw_set_font(fnt_tiny);
 draw_set_color(c_white);
 draw_set_valign(fa_middle);
 draw_set_halign(fa_center);
-draw_self();
-var drawValue = string(setting_value);
+if !obj_ready.ready && obj_client_manager.member_status == MEMBERSTATUS.HOST {
+	draw_self();
+}
+
+var drawValue = 0;
 switch setting {
-	case "Show Opponent's Picks": drawValue = (drawValue)?"True":"False"; break;
-	case "Time Until Timer Upgrade": drawValue = drawValue +" seconds"; break;
-	case "Max Pieces": if drawValue == infinity { drawValue = "No limit"; } break;
+	case "Show Opponent's Picks": drawValue = (global.show_opponent_slots)?"True":"False"; break;
+	case "Time Until Timer Upgrade": drawValue = string(global.timeruplength) +" seconds"; break;
+	case "Max Pieces": if global.max_pieces > 99 { drawValue = "No limit"; } else { drawValue = string(global.max_pieces); } break;
+	case "Max Slots": drawValue = string(global.max_slots); break;
+	case "Barrier Win Condition": drawValue = string(global.barrier_criteria); break;
 }
 draw_text(x +sprite_width/2,y +sprite_height/2,string(setting) +": " +drawValue);

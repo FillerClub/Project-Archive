@@ -1,7 +1,8 @@
 draw_slot(slot_index,frame_color,c_white,cost);
 var available = true;
 var markValid = false;
-var create = false;
+var create = false,
+canTouch = true;
 with obj_loadout_slot {
 	if identity == other.identity {
 		available = false;	
@@ -17,13 +18,17 @@ with obj_hero_display {
 		}
 	}		
 }
-
+if instance_exists(obj_ready) {
+	if obj_ready.ready {
+		canTouch = false;	
+	}
+}
 if !available {
 	draw_set_color(c_black);
 	draw_set_alpha(0.5);
 	draw_rectangle(bbox_left,bbox_top,bbox_right,bbox_bottom,0);
 	draw_set_color(c_white);
-	if position_meeting(obj_cursor.x,obj_cursor.y,self) && input_check_pressed("action") {
+	if position_meeting(obj_cursor.x,obj_cursor.y,self) && input_check_pressed("action") && canTouch {
 		with obj_loadout_slot {
 			if identity == other.identity {
 				identity = "Empty";
@@ -33,7 +38,7 @@ if !available {
 	}
 } else {
 	// On Click
-	if position_meeting(obj_cursor.x,obj_cursor.y,self) && input_check_pressed("action") {
+	if position_meeting(obj_cursor.x,obj_cursor.y,self) && input_check_pressed("action") && canTouch {
 		if !instance_exists(obj_slot_dragging) {
 			select_sound(snd_pick_up);
 			create = true;

@@ -10,4 +10,5 @@ draw_text_scribble(x,y -44,fps);
 draw_text_scribble(x,y -23,fps_real);
 camera_set_view_pos(view_camera[0],x -oX,0);
 
-//draw_text(x,y +360,string(players));
+draw_text(x,y +360,"Packets Processed: " +string(packet_count));
+//draw_text(x,y +392,"IP: " +string());

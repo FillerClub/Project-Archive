@@ -9,7 +9,7 @@
   ],
   "parent":{
     "name":"Grid",
-    "path":"folders/Objects/Grid.yy",
+    "path":"folders/Objects/Main/Level/Grid.yy",
   },
   "parentObjectId":{
     "name":"obj_grid",

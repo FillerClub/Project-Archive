@@ -178,7 +178,7 @@ if timer_power >= timer_power_end {
 								cooldown = cooldown_length;	
 							}
 						}
-						global.opponent_turns--;
+						global.enemy_turns--;
 						doesBreak = true;
 						break;
 					}
@@ -196,7 +196,7 @@ if timer_power >= timer_power_end {
 							cooldown = cooldown_length;		
 						}
 					}
-					global.opponent_turns--;
+					global.enemy_turns--;
 					break;
 				}
 			}

@@ -8,6 +8,7 @@ draw_text(x,y-16,string(player.name));
 draw_text(x,y,"Port: " +string(player.port));
 var stringDraw = status_int_to_string(player.status);
 draw_text(x,y+16,stringDraw);
+draw_text(x,y+32,string(player.loadout));
 
 if instance_exists(player.match) {
 	draw_set_color(#1CFF7A);

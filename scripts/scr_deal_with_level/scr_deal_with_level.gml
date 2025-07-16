@@ -91,23 +91,8 @@ function deal_with_level(level) {
 				break;
 			}
 		break;
-	}
-	
-
-	with obj_slot_bg {
-		if team == global.player_team {
-			var loadoutLength = array_length(deployLoadout);
-			for (var l = 0; l < loadoutLength; l++) {
-				instance_create_layer(x +l*48,y,"Instances",obj_piece_slot,{
-					identity: deployLoadout[l],
-					index: l,
-				});				
-			}
-		}
-		if team == global.opponent_team {
-			// GRAB OPPONENT'S LOADOUT	
-		}
-	}
+	}	
+	load_slots(deployLoadout);
 	with obj_pawn_limit {
 		visible = true;	
 	}

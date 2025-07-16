@@ -7,6 +7,9 @@ if (input_check_pressed("action") && position_meeting(obj_cursor.x,obj_cursor.y,
 				execute = "nothing";	
 			}
 		}
+		with obj_piece_slot {
+			team = "friendly";
+		}
 		global.player_team = "enemy";
 		global.opponent_team = "friendly";
 		sprite = spr_enemy_team;
@@ -19,6 +22,9 @@ if (input_check_pressed("action") && position_meeting(obj_cursor.x,obj_cursor.y,
 			if team == "enemy" {
 				execute = "nothing";	
 			}
+		}
+		with obj_piece_slot {
+			team = "friendly";
 		}
 		global.player_team = "friendly";
 		global.opponent_team = "enemy";

@@ -67,6 +67,8 @@
     {"$GMObjectProperty":"v1","%Name":"attack_power","filters":[],"listItems":[],"multiselect":false,"name":"attack_power","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"skip_click","filters":[],"listItems":[],"multiselect":false,"name":"skip_click","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
     {"$GMObjectProperty":"v1","%Name":"effects_timer","filters":[],"listItems":[],"multiselect":false,"name":"effects_timer","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
+    {"$GMObjectProperty":"v1","%Name":"tag","filters":[],"listItems":[],"multiselect":false,"name":"tag","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"id","varType":4,},
+    {"$GMObjectProperty":"v1","%Name":"interact","filters":[],"listItems":[],"multiselect":false,"name":"interact","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

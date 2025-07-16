@@ -11,8 +11,10 @@ var gS = GRIDSPACE;
 switch room {
 	case rm_world_one:
 	case rm_sandbox:
-	case rm_debug_room:
-	case rm_multiplayer:
+	case rm_level_small:
+	case rm_level_conveyor:
+	case rm_level_normal:
+	case rm_level_split:
 		enable_pausing = true;
 	break;
 	

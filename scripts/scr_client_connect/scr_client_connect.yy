@@ -6,7 +6,7 @@
   "name":"scr_client_connect",
   "parent":{
     "name":"NEW",
-    "path":"folders/Scripts/Server/NEW.yy",
+    "path":"folders/Server/NEW.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

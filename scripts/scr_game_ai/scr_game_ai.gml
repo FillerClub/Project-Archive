@@ -378,7 +378,7 @@ for (var finalScan = 1; finalScan < trackArrLeng; finalScan++) {
 		if PieceVictim != noone {
 			// Deal Damage/Destroy Victim Piece
 			with PieceVictim {
-				global.opponent_turns -= Cost;	
+				global.enemy_turns -= Cost;	
 				hp -= PieceEnemy.attack_power;
 				if object_index == obj_hero_wall || hp > 0 {
 					destroyEnemy = true;

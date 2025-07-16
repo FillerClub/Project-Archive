@@ -8,13 +8,13 @@ if piece() && !skip_move {
 				gY = obj_cursor.y,
 				mX = floor(gX/gS)*gS,
 				mY = floor(gY/gS)*gS;
-				if ((team == "friendly")?(global.player_turns >= cost):(global.opponent_turns >= cost)) {
+				if ((team == "friendly")?(global.friendly_turns >= cost):(global.enemy_turns >= cost)) {
 					if !position_meeting(mX,mY,self) && position_meeting(mX,mY,obj_grid){
 						instance_create_layer(mX,mY,"Instances",obj_bomb);
 						if team == "friendly" {
-							global.player_turns -= cost;	
+							global.friendly_turns -= cost;	
 						} else {
-							global.opponent_turns -= cost;	
+							global.enemy_turns -= cost;	
 						}
 						execute = "nothing";
 					}

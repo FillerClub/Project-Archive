@@ -4,7 +4,8 @@ function process_packet_server(buffer_s){
 	port = async_load[? "port"],
 	ip = string(async_load[? "ip"]),
 	valid = false,
-	ID = buffer_read(buffer_s,buffer_u8);
+	ID = buffer_read(buffer_s,buffer_u8),
+	arLeng = array_length(players);
 	switch ID {
 		case SEND.CONNECT:
 			var 
@@ -22,10 +23,14 @@ function process_packet_server(buffer_s){
 			buffer_write(send_buffer,buffer_u16,port);
 			network_send_udp(socket,ip,port,send_buffer,buffer_tell(send_buffer));
 		break;
+		case SEND.PING:
+			buffer_seek(send_buffer,buffer_seek_start,0);
+			buffer_write(send_buffer,buffer_u8,SEND.PING);
+			network_send_udp(socket,ip,port,send_buffer,buffer_tell(send_buffer));
+		break;
 		case SEND.DISCONNECT:
 			var
-			name = "null",
-			arLeng = array_length(players);
+			name = "null";
 			// Check port to delete
 			for (var d = 0; d < arLeng; d++) {
 				if port == players[d].port {
@@ -45,7 +50,7 @@ function process_packet_server(buffer_s){
 			}
 			arLeng = array_length(players);
 			instance_create_layer(room_width,0,"GUI",obj_plain_text_box, {
-				text: name +" disconnected from port " +string(port) +"."
+				text: string(name) +" disconnected from port " +string(port) +"."
 			});	
 			// Send disconnect to everyone else
 			for (var dd = 0; dd < arLeng; dd++) {
@@ -58,7 +63,7 @@ function process_packet_server(buffer_s){
 				network_send_udp(socket,players[dd].ip,players[dd].port,send_buffer,buffer_tell(send_buffer));
 			}
 		break;
-		case SEND.DATA:
+		case SEND.MATCHDATA:
 			var dataID = undefined,
 			readData = undefined,
 			matchExists = false,
@@ -76,10 +81,10 @@ function process_packet_server(buffer_s){
 			}
 			do {
 				dataID = buffer_read(buffer_s,buffer_u8);
-				if dataID == REMOTEDATA.END {
+				if dataID == DATA.END {
 					break;
 				}
-				if dataID == REMOTEDATA.CREATEMATCH {
+				if dataID == DATA.CREATEMATCH {
 					var ranX = random_range(-64,64),
 					ranY = random_range(-64,64);
 					players[i].match = instance_create_layer(room_width/2 +ranX -room_width,room_height/2 +ranY,"GUI",obj_match_manager, {
@@ -91,46 +96,50 @@ function process_packet_server(buffer_s){
 				readData = read_data_buffer(buffer_s,dataID);
 				switch dataID {
 					// Player data
-					case REMOTEDATA.NAME:
+					case DATA.NAME:
 						players[i].name = readData;
 						updatePlayers = true;
 					break;
-					case REMOTEDATA.STATUS:
+					case DATA.STATUS:
 						players[i].status = readData;
 						updatePlayers = true;
 					break;
-					case REMOTEDATA.HERO:
+					case DATA.HERO:
 						players[i].hero = readData;
 						updatePlayers = true;
 					break;
-					case REMOTEDATA.LOADOUT:
+					case DATA.LOADOUT:
 						players[i].loadout = readData;
 						updatePlayers = true;
 					break;
 					// Match data
-					case REMOTEDATA.MAXSLOTS:
+					case DATA.MAXSLOTS:
 						players[i].match.max_slots = readData;
 						updateMatch = true;
 					break;
-					case REMOTEDATA.SHOWSLOTS:
+					case DATA.SHOWSLOTS:
 						players[i].match.show_opponent_slots = readData;
 						updateMatch = true;
 					break;
-					case REMOTEDATA.BARRIER:
+					case DATA.BARRIER:
 						players[i].match.barrier_criteria = readData;
 						updateMatch = true;
 					break;
-					case REMOTEDATA.TIMELENGTH:
+					case DATA.TIMELENGTH:
 						players[i].match.timeruplength = readData;
 						updateMatch = true;
 					break;
-					case REMOTEDATA.MAXPIECES:
+					case DATA.MAXPIECES:
 						players[i].match.max_pieces = readData;
+						updateMatch = true;
+					break;
+					case DATA.MAP:
+						players[i].match.map = readData;
 						updateMatch = true;
 					break;
 				}
 				limiter++;
-			} until dataID == REMOTEDATA.END || limiter > 32
+			} until dataID == DATA.END || limiter > 32
 			if updatePlayers {
 				update_players = true;
 			}
@@ -138,12 +147,41 @@ function process_packet_server(buffer_s){
 				players[i].match.update = true;
 			}
 		break;
+		case SEND.GAMEDATA:
+			// Can implement a way to read and verify actions later
+			var gameData = json_parse(buffer_read(buffer_s,buffer_string)),
+			stop = false;
+			// For now mirror information to match object
+			// Find if match exists
+			for (var i = 0; i < array_length(players); i++) {
+				if players[i].port == port {
+					if instance_exists(players[i].match) {
+						matchExists = true;
+					}
+					break;	
+				}
+			}
+			if !matchExists {
+				break;	
+			}
+			switch gameData.action {
+				case DATA.LOSE:
+					if players[i].match.winner == -1 {
+						winner = port;
+					} else {
+						stop = true;	
+					}
+				break;
+			}
+			if !stop {
+				array_push(players[i].match.requests,gameData);	
+			}
+		break;
 		case SEND.TOGGLEJOIN:
 			var sendTo = buffer_read(buffer_s,buffer_u16),
 			sendFrom = port,
 			foundTo = false,
-			foundFrom = false,
-			arLeng = array_length(players);
+			foundFrom = false;
 			// Grab ip address to send to
 			for	(var to = 0; to < arLeng; to++) {
 				if players[to].port == sendTo {
@@ -192,9 +230,11 @@ function process_packet_server(buffer_s){
 						}
 					}
 					players[from].match = noone;
+					players[to].match.host_ready = false;
+					players[to].match.opponent_ready = false;					
 					if resetStatus && players[to].status == ONLINESTATUS.PREPARING {
 						players[to].status = ONLINESTATUS.WAITING;
-					}	
+					}
 				} else {
 					with toMatch {
 						// Only if there is no opponent, set opponent to that port
@@ -217,12 +257,41 @@ function process_packet_server(buffer_s){
 				buffer_seek(send_buffer,buffer_seek_start,0);
 				buffer_write(send_buffer,buffer_u8,SEND.TOGGLEJOIN);
 				buffer_write(send_buffer,buffer_u16,sendTo);
+				network_send_udp(socket,players[from].ip,sendFrom,send_buffer,buffer_tell(send_buffer));
+				// Send extra match info
+				buffer_seek(send_buffer,buffer_seek_start,0);
+				buffer_write(send_buffer,buffer_u8,SEND.MATCHDATA);
+				write_all_gamerule_data(send_buffer,toMatch.max_slots,toMatch.show_opponent_slots,toMatch.barrier_criteria,toMatch.timeruplength,toMatch.max_pieces,toMatch.map);
+				buffer_write(send_buffer,buffer_u8,DATA.END);
 				network_send_udp(socket,players[from].ip,sendFrom,send_buffer,buffer_tell(send_buffer));	
 			} else {
 				if sendTo == 0 {
 					instance_destroy(players[from].match);
 					players[from].match = noone;
 					update_players = true;
+				}
+			}
+		break;
+		case SEND.READY:
+			var found = false;
+			// Find player's match
+			for	(var r = 0; r < arLeng; r++) {
+				if players[r].port == port {
+					if instance_exists(players[r].match) {
+						found = true;	
+					}
+					break;
+				}
+			}
+			if !found {
+				break;
+			}
+			with players[r].match {
+				if host_port == port {
+					host_ready = host_ready?false:true;	
+				}
+				if opponent_port == port {
+					opponent_ready = opponent_ready?false:true;
 				}
 			}
 		break;
@@ -248,12 +317,18 @@ function process_packet_client(buffer_c) {
 				array_push(players,dataInsert);
 			}
 		break;
-		case SEND.DATA:
+		case SEND.PING:
+			with obj_ping {
+				ping = current_time - past_time;
+				send = true;
+			}
+		break;
+		case SEND.MATCHDATA:
 			// Update player data given 
 			var dataID = buffer_read(buffer_c,buffer_u8),
 			readData = undefined,
 			dataInsert = undefined,
-			index = 0,
+			i = 0,
 			found = true,
 			arLeng = array_length(players),
 			limiter = 0;
@@ -261,16 +336,16 @@ function process_packet_client(buffer_c) {
 				if limiter > 0 {
 					dataID = buffer_read(buffer_c,buffer_u8);
 				}
-				if dataID == REMOTEDATA.END {
+				if dataID == DATA.END {
 					break;
 				}
 				readData = read_data_buffer(buffer_c,dataID);
 				switch dataID {
-					case REMOTEDATA.PORT:
+					case DATA.PORT:
 						found = false;
 						// Find player in array
-						for (index = 0; index < arLeng; index++) {
-							if readData == players[index].port {
+						for (i = 0; i < arLeng; i++) {
+							if readData == players[i].port {
 								found = true;
 								break;
 							}
@@ -280,37 +355,52 @@ function process_packet_client(buffer_c) {
 							array_push(players,dataInsert);
 						}
 					break;
-					case REMOTEDATA.NAME:
-						players[index].name = readData;
+					case DATA.NAME:
+						players[i].name = readData;
 					break;
-					case REMOTEDATA.STATUS:
-						players[index].status = readData;
+					case DATA.STATUS:
+						players[i].status = readData;
 					break;
-					case REMOTEDATA.HERO:
-						players[index].hero = readData;
+					case DATA.HERO:
+						players[i].hero = readData;
 					break;
-					case REMOTEDATA.LOADOUT:
-						players[index].loadout = readData;
+					case DATA.LOADOUT:
+						players[i].loadout = readData;
+						opponent_loadout = readData;
 					break;
-					case REMOTEDATA.MAXSLOTS:
+					case DATA.MAXSLOTS:
 						global.max_slots = readData;
 					break;
-					case REMOTEDATA.SHOWSLOTS:
+					case DATA.SHOWSLOTS:
 						global.show_opponent_slots = readData;
 					break;
-					case REMOTEDATA.BARRIER:
+					case DATA.BARRIER:
 						global.barrier_criteria = readData;
 					break;
-					case REMOTEDATA.TIMELENGTH:
+					case DATA.TIMELENGTH:
 						global.timeruplength = readData;
 					break;
-					case REMOTEDATA.MAXPIECES:
+					case DATA.MAXPIECES:
 						global.max_pieces = readData;
+					break;
+					case DATA.MAP:
+						obj_map_switch.map = readData;
 					break;
 				}
 				limiter++;
-			} until dataID == REMOTEDATA.END || limiter > 16
+			} until dataID == DATA.END || limiter > 16
 			update_players = true;
+		break;
+		case SEND.GAMEDATA:
+			var gameData = json_parse(buffer_read(buffer_c,buffer_string));
+			// Extra actions for each action
+			switch gameData.action {
+				case DATA.SPAWN:
+					// Grab tag generated by server
+					gameData.tag = buffer_read(buffer_c,buffer_u8);
+				break;
+			}	
+			array_push(requests,gameData);
 		break;
 		case SEND.DISCONNECT:
 			var portDisconnect = buffer_read(buffer_c,buffer_u16);
@@ -330,22 +420,61 @@ function process_packet_client(buffer_c) {
 			if portIn == opponent_port {
 				opponent_port = -1;
 				// Temporary block of code
-				if game_status == ONLINESTATUS.PREPARING {
-					game_status = ONLINESTATUS.WAITING;
-					buffer_seek(send_buffer,buffer_seek_start,0);
-					buffer_write(send_buffer,buffer_u8,SEND.DATA);
-					write_data_buffer(send_buffer,REMOTEDATA.STATUS,game_status);
-					buffer_write(send_buffer,buffer_u8,REMOTEDATA.END);
-					network_send_udp(socket,server_ip,server_port,send_buffer,buffer_tell(send_buffer));
-					if member_status == MEMBERSTATUS.MEMBER {
-						shift_hero_displays();
-						member_status = MEMBERSTATUS.HOST;
-						create_system_message(["Host of current match has left, you are now host."])
-					}
+				switch game_status {
+					case ONLINESTATUS.PREPARING:
+						game_status = ONLINESTATUS.WAITING;
+						buffer_seek(send_buffer,buffer_seek_start,0);
+						buffer_write(send_buffer,buffer_u8,SEND.MATCHDATA);
+						write_data_buffer(send_buffer,DATA.STATUS,game_status);
+						buffer_write(send_buffer,buffer_u8,DATA.END);
+						network_send_udp(socket,server_ip,server_port,send_buffer,buffer_tell(send_buffer));
+						if member_status == MEMBERSTATUS.MEMBER {
+							if room == rm_loadout_zone_multiplayer { shift_hero_displays(); }
+							member_status = MEMBERSTATUS.HOST;
+							create_system_message(["Host of current match has left, you are now host."])
+						}
+					break;
+					case ONLINESTATUS.INGAME:
+						instance_destroy(obj_client_manager);
+						create_system_message(["Opponent has disconnected."]);
+						room_goto(rm_main_menu);
+					break;
 				}
 			} else {
 				opponent_port = portIn;
 			}
+		break;
+		case SEND.READY:
+			random_set_seed(buffer_read(buffer_c,buffer_u32));
+			
+			var rGo = rm_level_normal;
+			
+			switch obj_map_switch.map {
+				case 1: rGo = rm_level_normal; break;
+				case 2: rGo = rm_level_small; break;
+				case 3: rGo = rm_level_split; break;
+				case 4: rGo = rm_level_conveyor; break;
+			}
+			if member_status == MEMBERSTATUS.HOST {
+				global.player_team = "friendly";
+				global.opponent_team = "enemy";
+			}
+			if member_status == MEMBERSTATUS.MEMBER {
+				global.player_team = "enemy";
+				global.opponent_team = "friendly";
+			}
+			game_status = ONLINESTATUS.INGAME;
+			global.active_hero = obj_hero_display.identity;
+			var arrayLength = instance_number(obj_loadout_slot);
+			var array = array_create(arrayLength,0);
+			with obj_loadout_slot {
+				array[index] = identity;
+			}
+			global.max_turns = 30;
+			global.friendly_turns = 20;
+			global.enemy_turns = 20;
+			global.loadout = array;
+			room_goto(rGo);
 		break;
 	}
 }
