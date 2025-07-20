@@ -20,7 +20,6 @@ hp_init = hp;
 hp_max = hp;
 valid_moves = piece_database(identity,PIECEDATA.MOVES);
 cost = piece_database(identity,PIECEDATA.MOVECOST);
-sprite_index = piece_database(identity,PIECEDATA.SPRITE);
 
 error_time = time_source_create(time_source_global,.03,time_source_units_seconds,function(){
 	if timer_color == c_black {
@@ -30,11 +29,11 @@ error_time = time_source_create(time_source_global,.03,time_source_units_seconds
 	}			
 },[],6);
 
-intan_blink_time = time_source_create(time_source_global,.03,time_source_units_seconds,function(){
-	if intangible_tick == 1 {
-		intangible_tick = .5;
+invin_blink_time = time_source_create(time_source_global,.03,time_source_units_seconds,function(){
+	if invincible_tick == 1 {
+		invincible_tick = .5;
 	} else {
-		intangible_tick = 1;
+		invincible_tick = 1;
 	}			
 },[],-1);
 
@@ -48,5 +47,5 @@ if asset_get_type(place_sound) == asset_sound {
 effects_management_array[0] = new effect_array_create(EFFECT.NOTHING);
 effects_array[EFFECT.SPEED] = 0;
 effects_array[EFFECT.SLOW] = 0;
-effects_array[EFFECT.INTANGIBILITY] = 0;
+effects_array[EFFECT.INVINCIBILITY] = 0;
 effects_array[EFFECT.POISON] = 0;

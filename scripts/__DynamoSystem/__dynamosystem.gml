@@ -44,7 +44,7 @@ function __DynamoInitialize()
     {
         if (!directory_exists(_globalState.__projectDirectory))
         {
-           // __DynamoError("Could not find project directory \"", _globalState.__projectDirectory, "\"\nYou may need to run the GameMaker IDE in administrator mode");
+           __DynamoError("Could not find project directory \"", _globalState.__projectDirectory, "\"\nYou may need to run the GameMaker IDE in administrator mode");
         }
         
         if (DYNAMO_VERBOSE) __DynamoTrace("Found project path \"", _globalState.__projectDirectory, "\"");

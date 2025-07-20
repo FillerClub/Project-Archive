@@ -3,8 +3,8 @@ function piece() {
 if time_source_get_state(error_time) == time_source_state_stopped {
 	timer_color = c_black;
 }
-if time_source_get_state(intan_blink_time) == time_source_state_stopped {
-	intangible_tick = 1;
+if time_source_get_state(invin_blink_time) == time_source_state_stopped {
+	invincible_tick = 1;
 }
 if global.game_state == PAUSED && !ignore_pause {
 	// Delay alarms responsible for invincibilty
@@ -38,17 +38,17 @@ if !skip_timer {
 	timer += timerTickRate*effectModifier;
 }
 move_cooldown_timer = max(move_cooldown_timer -timerTickRate*effectModifier,0);
-// If intangible, intiate flashing timer
-if effects_array[EFFECT.INTANGIBILITY] > 0 {
-	if time_source_get_state(intan_blink_time) != time_source_state_active {
-		time_source_start(intan_blink_time);	
+// If invincible, intiate flashing timer
+if effects_array[EFFECT.INVINCIBILITY] > 0 {
+	if time_source_get_state(invin_blink_time) != time_source_state_active {
+		time_source_start(invin_blink_time);	
 	}
-	intangible = true;
+	invincible = true;
 } else {
-	if time_source_get_state(intan_blink_time) == time_source_state_active {
-		time_source_stop(intan_blink_time);	
+	if time_source_get_state(invin_blink_time) == time_source_state_active {
+		time_source_stop(invin_blink_time);	
 	}
-	intangible = false;
+	invincible = false;
 }
 // Poison
 if pOIS > 0 {

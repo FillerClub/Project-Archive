@@ -28,7 +28,7 @@ if global.mode == "move" && execute == "move" {
 		if position_meeting(cursorX,cursorY,obj_obstacle) {
 			piececlick = instance_position(cursorX,cursorY,obj_obstacle);
 			// Cancel if clicked on illegal spot
-			if piececlick.team != global.opponent_team || piececlick.intangible == true || mode == ONLY_MOVE || piececlick.hp <= 0 {
+			if piececlick.team != global.opponent_team || piececlick.invincible == true || mode == ONLY_MOVE || piececlick.hp <= 0 {
 				return false;					
 			}
 		// Else if move set is only attacking, exit

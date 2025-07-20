@@ -75,7 +75,7 @@ for (var inst = 0; inst < arrayLength; inst++) {
 				case ONLY_ATTACK:
 					if position_meeting(validX,validY,obj_obstacle) {
 						with instance_position(validX,validY,obj_obstacle) {
-							if pieceInst.team != team && !intangible && hp > 0 {    
+							if pieceInst.team != team && !invincible && hp > 0 {    
 								pushMoveToList = true;
 							}	
 						}
@@ -102,7 +102,7 @@ for (var inst = 0; inst < arrayLength; inst++) {
 					pushMoveToList = true;
 					if position_meeting(validX,validY,obj_obstacle) {
 						with instance_position(validX,validY,obj_obstacle) {
-							if pieceInst.team == team || intangible || hp <= 0 {    
+							if pieceInst.team == team || invincible || hp <= 0 {    
 								pushMoveToList = false;
 							} else {
 								canTakePiece = true;	

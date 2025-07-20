@@ -7,15 +7,15 @@ if piece() && !skip_move {
 			for (var list = 0; list < arrayLengthMovesList; list++) {
 				// Filter out dead arrays
 				if valid_moves[list] != undefined && valid_moves[list] != 0 {
-					if piece_attack(valid_moves[list],list,cost) {
-						moved = true;
-						instance_destroy();
-						audio_play_sound(snd_move,0,0);	
-					} 
+					piece_attack(valid_moves[list],list,cost);	 
 				}	
 			}		
 		break;
 	}
+}
+if moved {
+	moved = false;
+	instance_destroy();
 }
 skip_move = false;
 

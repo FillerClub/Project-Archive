@@ -3,8 +3,8 @@ if global.game_state == PAUSED exit;
 var brk = false;
 //Convert velocity to something useable
 var baseBulletSpd = 3000,
-realXVel = round(baseBulletSpd*x_vel*delta_time*DELTA_TO_SECONDS*global.level_speed),
-realYVel = round(baseBulletSpd*y_vel*delta_time*DELTA_TO_SECONDS*global.level_speed);
+realXVel = baseBulletSpd*x_vel*delta_time*DELTA_TO_SECONDS*global.level_speed,
+realYVel = baseBulletSpd*y_vel*delta_time*DELTA_TO_SECONDS*global.level_speed;
 
 // Calculate steps needed to take
 var trailCover = ceil(distance_to_point(x +realXVel,y +realYVel));
@@ -22,7 +22,7 @@ for (var trail = 0; trail < trailCover; trail++) {
 			exit;
 		}
 		
-		if team != oth.team && !intangible {
+		if team != oth.team && !invincible {
 			var sound_params = {
 			sound: snd_bullet_hit,
 			pitch: random_range(0.7,1.3),

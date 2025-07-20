@@ -1,11 +1,15 @@
 #macro HEALTHCOSTMULTIPLIER .6
 #macro TIMETOTAKE 1.5
-#macro EVERYTHING ["shooter","splitter","double_shooter","short","accelerator","piercer","stick","shotgun","cross","bishop","wall","pawn","bomber","super_stick","crawler","drooper","tank_crawler","jumper","super_tank_crawler","the_goliath","big_shooter"]
+#macro EVERYTHING ["shooter","ball","splitter","double_shooter","short","accelerator","piercer","stick","shotgun","cross","bishop","wall","pawn","bomber","super_stick","crawler","drooper","tank_crawler","jumper","super_tank_crawler","the_goliath","big_shooter","bomb"]
 // TRANSITIONS
 #macro INSTANT -1
-
+// PIECE FUNCTIONS
+enum MEDIUM {
+	GROUND = 0,
+	
+}
 // ONLINE
-#macro D_IP "10.25.131.212"//"127.0.0.1"//"192.168.88.22"
+#macro D_IP "12.110.153.58"//"127.0.0.1"//"192.168.88.22"
 #macro D_PORT 45000
 enum SEND {
 	DISCONNECT = 0,

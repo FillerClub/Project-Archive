@@ -10,6 +10,7 @@ for (var i = 0; i < ar_leng; ++i) {
 	var yM = aura[i][1]*GRIDSPACE +y +GRIDSPACE/2;		
 	// If coords within move array are on the grid; 0 = x, 1 = y
 	if position_meeting(xM,yM,obj_grid) {
+		
 		// And if coords collide with obstacle/piece, draw RED. Else...
 		if position_meeting(xM,yM,obj_generic_piece) && !position_meeting(xM,yM,obj_cross) {
 			var buffPiece = instance_position(xM,yM,obj_generic_piece);

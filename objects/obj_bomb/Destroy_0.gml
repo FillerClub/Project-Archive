@@ -1,26 +1,18 @@
-audio_stop_sound(snd);
-
-var sound_params = {
-	sound: snd_explosion,
-	pitch: random_range(0.9,1.1),
-	};
-
-var ar_leng = array_length(valid_moves);
-
-audio_play_sound_ext(sound_params);
-
+audio_play_sound(snd_bomb_explode,0,0);
+var ar_leng = array_length(aura);
+// For each move available (i)
 for (var i = 0; i < ar_leng; ++i) {
-	
-	if place_meeting(valid_moves[i][0],valid_moves[i][1],obj_grid) {
+	var xM = aura[i][0]*GRIDSPACE +x +GRIDSPACE/2;
+	var yM = aura[i][1]*GRIDSPACE +y +GRIDSPACE/2;		
+	// If coords within move array are on the grid; 0 = x, 1 = y
+	if position_meeting(xM,yM,obj_grid) {
 		repeat(20){
-			part_particles_burst(global.part_sys,valid_moves[i][0] +GRIDSPACE/2,valid_moves[i][1] +GRIDSPACE/2,part_explode);		
+			part_particles_burst(global.part_sys,xM,yM,part_explode);		
 		}
-		if place_meeting(valid_moves[i][0],valid_moves[i][1],obj_generic_piece) {
-			with instance_place(valid_moves[i][0],valid_moves[i][1],obj_generic_piece) {
-				if !intangible {
-					hp -= 5;
-				}
-			}
-		}
-	}
+		// And if coords collide with obstacle/piece, draw RED. Else...
+		if position_meeting(xM,yM,obj_obstacle) {
+			var pC = instance_position(xM,yM,obj_obstacle);
+			pC.hp -= attack_power;
+		} 	
+	}			
 }

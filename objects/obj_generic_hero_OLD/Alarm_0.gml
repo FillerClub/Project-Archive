@@ -1,2 +1,2 @@
 /// @description Invincibility Timer
-intangible = false;
+invincible = false;

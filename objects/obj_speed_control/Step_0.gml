@@ -12,3 +12,11 @@ if (input_check_pressed("action") && position_meeting(obj_cursor.x,obj_cursor.y,
 		}
 	}
 }	
+
+
+if (mouse_check_button_pressed(mb_middle) && position_meeting(obj_cursor.x,obj_cursor.y,self) && global.debug) {
+	with obj_battle_handler {
+		speed_factor = .2;	
+		change_in_speed = true;
+	}	
+}

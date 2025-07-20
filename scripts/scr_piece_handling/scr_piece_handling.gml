@@ -6,7 +6,7 @@ if input_check_pressed("action") && !instance_exists(obj_dummy) {
 			case "delete":
 				var del = {
 					action: DATA.DELETE,
-					tag: tag,
+					tag: clickedOn.tag,
 				}
 				array_push(requests,del);
 			break;

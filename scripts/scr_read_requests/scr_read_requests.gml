@@ -57,8 +57,8 @@ function read_requests(ar,is_online = false) {
 					piece_on_grid = read.piece_on_grid;
 					var tarX = grid_pos[0]*GRIDSPACE +piece_on_grid.bbox_left,
 					tarY = grid_pos[1]*GRIDSPACE +piece_on_grid.bbox_top;
-					move_cooldown_timer = move_cooldown;	
-					skip_click = true;
+					move_cooldown_timer = move_cooldown;
+					moved = true;
 					if position_meeting(tarX +GRIDSPACE/2,tarY +GRIDSPACE/2,obj_obstacle) {
 						var collide = instance_position(tarX +GRIDSPACE/2,tarY +GRIDSPACE/2,obj_obstacle);
 						switch collide.object_index {
@@ -80,6 +80,7 @@ function read_requests(ar,is_online = false) {
 							break;									
 						}
 					}
+					if team == global.player_team { execute = "move"; }
 					if team == "friendly" { global.friendly_turns -= cost; }
 					if team == "enemy" { global.enemy_turns -= cost; }	
 					x = tarX;

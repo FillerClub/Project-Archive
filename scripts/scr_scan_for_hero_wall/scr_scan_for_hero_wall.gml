@@ -14,7 +14,7 @@ do {
 			if !detect_walls && object_index == obj_hero_wall {
 				break;
 			}
-			if team != other.team && !intangible && hp > 0 {
+			if team != other.team && !invincible && hp > 0 {
 				return true;
 			}
 		}

@@ -8,7 +8,7 @@ if (input_check_pressed("action") && position_meeting(obj_cursor.x,obj_cursor.y,
 			}
 		}
 		with obj_piece_slot {
-			team = "friendly";
+			team = "enemy";
 		}
 		global.player_team = "enemy";
 		global.opponent_team = "friendly";

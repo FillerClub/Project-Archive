@@ -17,7 +17,7 @@ for (var i = 0; i < ar_leng; ++i)	{
 	// And if coords collide with obstacle/piece, draw RED. Else...
 	if position_meeting(xM,yM,obj_generic_piece) {
 		with instance_position(xM,yM,obj_generic_piece) {
-			if team != other.team && !intangible {
+			if team != other.team && !invincible {
 				hp -= 1;
 			}
 		}

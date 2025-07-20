@@ -1,16 +1,12 @@
-valid_moves = [	[x,y],
-				[x +GRIDSPACE,y +GRIDSPACE],
-				[x -GRIDSPACE,y +GRIDSPACE],
-				[x +GRIDSPACE,y -GRIDSPACE],
-				[x -GRIDSPACE,y -GRIDSPACE],
-				[x,y +GRIDSPACE],
-				[x,y -GRIDSPACE],
-				[x +GRIDSPACE,y],
-				[x -GRIDSPACE,y],];
+event_inherited();
 
-var sound_params = {
-	sound: snd_warning,
-	loop: true,
-	};
-
-snd = audio_play_sound_ext(sound_params);
+sound = audio_play_sound(snd_bomb_initiate,0,1);
+aura =			[[0, 0], 
+				[0, 1],
+				[0, -1],
+				[1, 0],
+				[1, 1],
+				[1, -1],
+				[-1, 0],
+				[-1, 1],
+				[-1, -1]];

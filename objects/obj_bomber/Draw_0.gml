@@ -13,7 +13,7 @@ if !skip_move {
 					with instance_position(gCX,gCY,obj_generic_piece) {
 						if team == other.team {
 							col = c_red	
-						} else if team != other.team && hp > 0 && !intangible {
+						} else if team != other.team && hp > 0 && !invincible {
 							col = c_aqua;	
 						}
 					}

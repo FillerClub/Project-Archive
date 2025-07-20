@@ -12,8 +12,8 @@
   "duration":0.18285714,
   "name":"snd_dialogue_tick",
   "parent":{
-    "name":"Sounds",
-    "path":"folders/Sounds.yy",
+    "name":"Vocals",
+    "path":"folders/Sounds/Vocals.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

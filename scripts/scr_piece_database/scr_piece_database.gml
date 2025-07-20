@@ -153,9 +153,18 @@ function piece_database(name, trait = -1) {
 							"Static piece with a lot of health. Useful for stalling.",
 							"TBA",]
 			break;
+			case "bomb":
+				object = [	"bomb",obj_bomb,spr_bomb,spr_bomb_slot,
+							60,30,0,0,25,25,
+							[undefined],
+							NEUTRAL,PLACEABLEANY,
+							CONTROLCLASS,0,
+							"Explodes dealing massive damage to its surroundings.",
+							"TBA"]
+			break;
 			case "bomber":
 				object = [	"bomber",obj_bomber,spr_bomber,spr_bomber_slot,
-							30,16,21,0,10,10,
+							80,16,21,0,10,10,
 							[undefined],
 							SAME,PLACEABLENONE,
 							CONTROLCLASS,0,
@@ -256,6 +265,17 @@ function piece_database(name, trait = -1) {
 							"Just a barrel.",
 							"Useless."]
 			break;
+			case "ball":
+				object = [	"ball",obj_ball,spr_ball,spr_ball_slot,
+							10,6,1,0,10,1,
+							[[],
+							[],
+							[[1,0],[0,1],[1,1],[-1,0],[0,-1],[-1,-1],[-1,1],[1,-1]]],
+							SAME,PLACEABLENONE,
+							CONTROLCLASS,0,
+							"Bounces",
+							""]
+			break;			
 			case "Empty":
 				object = [	"Empty",noone,spr_empty_slot,spr_empty_slot,
 							0,0,0,0,0,0,
@@ -264,7 +284,7 @@ function piece_database(name, trait = -1) {
 							#4C4C4C,0,
 							"",
 							""]
-			break;
+			break;			
 			default:
 				object = [	"debug",obj_debug_piece,spr_generic_piece,spr_generic_slot,
 							0,.1,1,-1,10,100,

@@ -31,7 +31,7 @@ if hp <= 0 {
 			with obj_hero_wall {
 				if team == other.team && hp <= 0 {
 					hp = 10;
-					intangible = false;
+					invincible = false;
 				}
 			}
 		break;

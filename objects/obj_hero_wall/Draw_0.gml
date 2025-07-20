@@ -17,7 +17,7 @@ if hp_init != hp {
 				hp -= 1;	
 			}
 		}
-		intangible = true;
+		invincible = true;
 	}
 }
 

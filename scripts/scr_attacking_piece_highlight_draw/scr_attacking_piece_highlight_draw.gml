@@ -30,7 +30,7 @@ for (var i = 0; i < ar_leng; ++i)	{
 		if position_meeting(xA,yA,obj_obstacle) {
 			var instattack = instance_position(xA,yA,obj_obstacle);
 			if instattack.team != team && instattack.hp > 0 {
-				can_attack = (!instattack.intangible);	
+				can_attack = (!instattack.invincible);	
 				alph = 1;
 			}
 		}

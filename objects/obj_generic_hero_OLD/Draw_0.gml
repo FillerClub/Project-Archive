@@ -32,7 +32,7 @@ if team == global.player_team {
 }
 
 if team == "enemy" {
-	draw_sprite_ext(sprite_index,0,x,y,1,1,0,c_red,(intangible)?0.5:1);
+	draw_sprite_ext(sprite_index,0,x,y,1,1,0,c_red,(invincible)?0.5:1);
 } else {
-	draw_sprite_ext(sprite_index,0,x,y,1,1,0,c_white,(intangible)?0.5:1);	
+	draw_sprite_ext(sprite_index,0,x,y,1,1,0,c_white,(invincible)?0.5:1);	
 }

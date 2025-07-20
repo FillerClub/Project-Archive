@@ -19,7 +19,7 @@ if global.game_state != PAUSED{
 			for (var xPro = x; position_meeting(xPro,y,obj_grid); xPro += tM*gS) {
 				var victimInst = instance_position(xPro,y,obj_generic_piece);
 				if victimInst != noone {
-					if team != victimInst.team && !victimInst.intangible {
+					if team != victimInst.team && !victimInst.invincible {
 						effect_set(victimInst,"piercer_slow",-1,EFFECT.SLOW,8,2);
 						victimInst.hp -= 1;
 						repeat(30){ part_particles_burst(global.part_sys,xPro,y +sprite_height/2,part_bullet_impact); }
