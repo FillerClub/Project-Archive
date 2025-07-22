@@ -11,10 +11,6 @@ if global.game_state != PAUSED{
 			shootMid = false;	
 		}
 		
-		repeat_shot -= 1;
-		timer = 0;
-		timer_end = random_percent(1.4,4);
-		
 		if repeat_shot <= 0 {
 			repeat_shot = 2;
 
@@ -41,6 +37,11 @@ if global.game_state != PAUSED{
 			team: team,	
 			x_vel: ((team == "friendly")?1:-1),
 			});				
+		}
+		if shootBottom || shootMid || shootTop {
+			repeat_shot -= 1;
+			timer = 0;
+			timer_end = random_percent(1.4,4);			
 		}
 	}
 }

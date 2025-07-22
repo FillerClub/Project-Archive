@@ -10,7 +10,10 @@ enum MEDIUM {
 }
 // ONLINE
 #macro D_IP "12.110.153.58"//"127.0.0.1"//"192.168.88.22"
-#macro D_PORT 45000
+#macro D_DEBUG_IP "127.0.0.1"//"192.168.88.22"
+#macro D_CLIENT_PORT 98670
+#macro D_SERVER_PORT 98680
+
 enum SEND {
 	DISCONNECT = 0,
 	CONNECT = 1,

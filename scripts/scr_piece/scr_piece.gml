@@ -15,9 +15,10 @@ if global.game_state == PAUSED && !ignore_pause {
 if instance_exists(piece_on_grid) {
 	x = grid_pos[0]*GRIDSPACE +piece_on_grid.bbox_left;
 	y = grid_pos[1]*GRIDSPACE +piece_on_grid.bbox_top;
+	z = piece_on_grid.z;
 } 
 
-depth = -bbox_bottom;
+depth = -bbox_bottom +z;
 if ai_controlled { auto_attack_timer(); }
 
 

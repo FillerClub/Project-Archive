@@ -404,6 +404,7 @@
     {"id":{"name":"part_explode","path":"particles/part_explode/part_explode.yy",},},
     {"id":{"name":"part_slap","path":"particles/part_slap/part_slap.yy",},},
     {"id":{"name":"rm_gameover","path":"rooms/rm_gameover/rm_gameover.yy",},},
+    {"id":{"name":"rm_heights","path":"rooms/rm_heights/rm_heights.yy",},},
     {"id":{"name":"rm_journal","path":"rooms/rm_journal/rm_journal.yy",},},
     {"id":{"name":"rm_level_conveyor","path":"rooms/rm_level_conveyor/rm_level_conveyor.yy",},},
     {"id":{"name":"rm_level_normal","path":"rooms/rm_level_normal/rm_level_normal.yy",},},
@@ -1441,6 +1442,7 @@
     {"roomId":{"name":"rm_level_split","path":"rooms/rm_level_split/rm_level_split.yy",},},
     {"roomId":{"name":"rm_level_normal","path":"rooms/rm_level_normal/rm_level_normal.yy",},},
     {"roomId":{"name":"rm_level_conveyor","path":"rooms/rm_level_conveyor/rm_level_conveyor.yy",},},
+    {"roomId":{"name":"rm_heights","path":"rooms/rm_heights/rm_heights.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[

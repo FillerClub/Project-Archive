@@ -62,7 +62,7 @@ if global.game_state != PAUSED{
 			instance_create_depth(x +sprite_width/2 +random_range(-4,4),y +sprite_height/2 +random_range(-4,4),depth -gS/2,obj_bullet_parent, {
 			team: team,
 			x_vel: xV,
-			y_vel: yV
+			y_vel: yV,
 			});
 		}
 	}

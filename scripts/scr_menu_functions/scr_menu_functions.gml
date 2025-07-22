@@ -168,8 +168,8 @@ function menu_function(purpose = "Back",contextArg = context){
 		break;
 		case "Debug Room 1":
 			var lD = {
-				run: "Multiplayer",
-				rm: rm_level_split,
+				run: "Sandbox",
+				rm: rm_heights,
 				load: [track1,track2,track3,track4]	
 			}
 			start_transition(sq_circle_out,sq_circle_in,lD);			

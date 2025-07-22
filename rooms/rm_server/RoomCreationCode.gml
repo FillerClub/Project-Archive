@@ -11,6 +11,7 @@ with all {
 		case obj_back_to_lobby:
 		case obj_cursor:
 		case obj_plain_text_box:
+		case obj_game:
 			// Ignore
 		break;
 		default:

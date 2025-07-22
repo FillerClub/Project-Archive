@@ -3,14 +3,19 @@ with obj_client_manager {
 		instance_destroy();	
 	}
 }
-server_ip = D_IP;
+var connectIP = D_IP
+if obj_game.debug_connection {
+	connectIP = D_DEBUG_IP;
+}
+server_ip = connectIP;
 server_port = D_PORT;
-socket = network_create_socket(network_socket_udp);
+socket = network_create_socket_ext(network_socket_udp,D_PORT);
 send_buffer = buffer_create(1024,buffer_fixed,1);
 update_players = false;
 game_status = -1;
 member_status = -1;
 players = [];
+
 // Write a connection request
 buffer_seek(send_buffer, buffer_seek_start,0);
 buffer_write(send_buffer, buffer_u8,SEND.CONNECT); 

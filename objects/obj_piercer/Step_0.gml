@@ -5,10 +5,7 @@ if global.game_state != PAUSED{
 	var 
 	gS = GRIDSPACE,
 	tM = (team == "friendly")?1:-1;
-	if (timer >= timer_end) {
-		timer = 0;
-		timer_end = random_percent(4,5);
-		
+	if (timer >= timer_end) {		
 		var decideShoot = scan_for_enemy(false),
 		playSound = false;
 		
@@ -28,6 +25,8 @@ if global.game_state != PAUSED{
 				}
 			}
 			if playSound { audio_play_sound(snd_bullet_hit,0,0); }
+			timer = 0;
+			timer_end = random_percent(4,5);
 		}
 	}
 }

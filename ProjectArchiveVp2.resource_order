@@ -333,6 +333,7 @@
     {"name":"part_explode","order":1,"path":"particles/part_explode/part_explode.yy",},
     {"name":"part_slap","order":4,"path":"particles/part_slap/part_slap.yy",},
     {"name":"rm_gameover","order":3,"path":"rooms/rm_gameover/rm_gameover.yy",},
+    {"name":"rm_heights","order":4,"path":"rooms/rm_heights/rm_heights.yy",},
     {"name":"rm_journal","order":8,"path":"rooms/rm_journal/rm_journal.yy",},
     {"name":"rm_level_conveyor","order":6,"path":"rooms/rm_level_conveyor/rm_level_conveyor.yy",},
     {"name":"rm_level_normal","order":5,"path":"rooms/rm_level_normal/rm_level_normal.yy",},

@@ -6,6 +6,7 @@ function process_packet_server(buffer_s){
 	valid = false,
 	ID = buffer_read(buffer_s,buffer_u8),
 	arLeng = array_length(players);
+	show_message(port);
 	switch ID {
 		case SEND.CONNECT:
 			var 

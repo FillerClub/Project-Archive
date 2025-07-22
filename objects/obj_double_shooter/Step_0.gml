@@ -22,6 +22,7 @@ if global.game_state != PAUSED{
 			team: team,	
 			x_vel: ((team == "friendly")?1:-1),
 			});
+
 		}
 	}
 }
