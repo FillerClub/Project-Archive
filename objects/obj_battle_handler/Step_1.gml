@@ -1,0 +1,1 @@
+part_type_life(bullet_part,delta_time/(250*global.level_speed),delta_time/(250*global.level_speed));

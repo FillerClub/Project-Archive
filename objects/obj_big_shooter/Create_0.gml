@@ -10,10 +10,6 @@ with obj_generic_piece {
 	}
 }
 
-// Increase hp
-hp += floor(pieces_sacrificed/2)*5;
-hp_init = hp;
-hp_max = hp;
 
 // Increase fire rate and power
 damage += pieces_sacrificed/32;

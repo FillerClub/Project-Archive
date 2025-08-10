@@ -6,8 +6,8 @@ if update {
 		write_all_gamerule_data(send_buffer,other.max_slots,other.show_opponent_slots,other.barrier_criteria,other.timeruplength,other.max_pieces,other.map);
 		buffer_write(send_buffer, buffer_u8,DATA.END);
 		// Send buffer to opponent, since host already dictated rules
-		if other.opponent_port != -1 {
-			network_send_udp(socket,other.opponent_ip,other.opponent_port,send_buffer,buffer_tell(send_buffer));
+		if other.opponent_id != -1 {
+			network_send_udp(socket,other.opponent_ip,D_CLIENT_PORT,send_buffer,buffer_tell(send_buffer));
 		}
 	}
 	update = false;
@@ -16,19 +16,19 @@ if update {
 if host_ready && opponent_ready {
 	ready_timer += delta_time*DELTA_TO_SECONDS;
 	if ready_timer >= 1 {
-		var hostP = host_port,
+		var hostP = host_id,
 		hostIP = host_ip,
-		opponentP = opponent_port,
+		opponentP = opponent_id,
 		opponentIP = opponent_ip;
 		seed = irandom(4294967295);
 		with obj_server_manager {
 			var host = undefined,
 			opponent = undefined;
 			for (var i = 0; i < array_length(players); i++) {
-				if players[i].port == hostP {
+				if players[i].network_id == hostP {
 					host = players[i];
 				}
-				if players[i].port == opponentP {
+				if players[i].network_id == opponentP {
 					opponent = players[i];
 				}
 			}
@@ -40,18 +40,18 @@ if host_ready && opponent_ready {
 				buffer_write(send_buffer, buffer_u8,SEND.MATCHDATA);
 				write_data_buffer(send_buffer,DATA.LOADOUT,host.loadout);
 				buffer_write(send_buffer, buffer_u8,DATA.END);
-				network_send_udp(socket,opponentIP,opponentP,send_buffer,buffer_tell(send_buffer));
+				network_send_udp(socket,opponentIP,D_CLIENT_PORT,send_buffer,buffer_tell(send_buffer));
 				buffer_seek(send_buffer, buffer_seek_start,0);
 				buffer_write(send_buffer, buffer_u8,SEND.MATCHDATA);
 				write_data_buffer(send_buffer,DATA.LOADOUT,opponent.loadout);
 				buffer_write(send_buffer, buffer_u8,DATA.END);
-				network_send_udp(socket,hostIP,hostP,send_buffer,buffer_tell(send_buffer));
+				network_send_udp(socket,hostIP,D_CLIENT_PORT,send_buffer,buffer_tell(send_buffer));
 			}
 			buffer_seek(send_buffer, buffer_seek_start,0);
 			buffer_write(send_buffer, buffer_u8,SEND.READY);
 			buffer_write(send_buffer, buffer_u32,other.seed);
-			network_send_udp(socket,hostIP,hostP,send_buffer,buffer_tell(send_buffer));
-			network_send_udp(socket,opponentIP,opponentP,send_buffer,buffer_tell(send_buffer));
+			network_send_udp(socket,hostIP,D_CLIENT_PORT,send_buffer,buffer_tell(send_buffer));
+			network_send_udp(socket,opponentIP,D_CLIENT_PORT,send_buffer,buffer_tell(send_buffer));
 			host.status = ONLINESTATUS.INGAME;
 			opponent.status = ONLINESTATUS.INGAME;
 		}
@@ -62,9 +62,9 @@ if host_ready && opponent_ready {
 }
 var len = array_length(requests);
 if len > 0 {
-	var hostP = host_port,
+	var hostP = host_id,
 	hostIP = host_ip,
-	opponentP = opponent_port,
+	opponentP = opponent_id,
 	opponentIP = opponent_ip,
 	read = array_shift(requests),
 	struct = json_stringify(read);
@@ -79,8 +79,8 @@ if len > 0 {
 				other.tag_assign++;
 			break;
 		}
-		network_send_udp(socket,hostIP,hostP,send_buffer,buffer_tell(send_buffer));	
-		network_send_udp(socket,opponentIP,opponentP,send_buffer,buffer_tell(send_buffer));	
+		network_send_udp(socket,hostIP,D_CLIENT_PORT,send_buffer,buffer_tell(send_buffer));	
+		network_send_udp(socket,opponentIP,D_CLIENT_PORT,send_buffer,buffer_tell(send_buffer));	
 	}
 	if tag_assign > 255 {
 		tag_assign = 0;

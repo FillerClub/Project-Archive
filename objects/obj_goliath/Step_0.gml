@@ -7,7 +7,7 @@ if global.game_state != PAUSED{
 	gS = GRIDSPACE;
 	if position_meeting(x +tM*gS,y,obj_obstacle) {
 		with instance_position(x +tM*gS,y,obj_obstacle) {
-			if hp > 0 && team == other.team {
+			if total_health(hp) > 0 && team == other.team {
 				other.skip_timer = true;	
 			} else {
 				other.skip_timer = false;
@@ -23,7 +23,7 @@ if global.game_state != PAUSED{
 		} else {
 			var inst = instance_position(x +tM*gS,y,obj_obstacle);
 			if inst != -4 {
-				if (inst.hp <= 0) || (inst.team == team) {
+				if (total_health(inst.hp) <= 0) || (inst.team == team) {
 					toggle = (toggle)?false:true;	
 				} 
 			}
@@ -40,9 +40,9 @@ if global.game_state != PAUSED{
 					canMove = false;
 				}	
 				if team != other.team {
-					if hp > 0 {
-						hp -= 15;
-						if hp > 0 {
+					if total_health(hp) > 0 {
+						hurt(hp,15,self);
+						if total_health(hp) > 0 {
 							canMove = false
 							audio_stop_sound(snd_giant_step);
 							audio_play_sound(snd_giant_step,0,0);

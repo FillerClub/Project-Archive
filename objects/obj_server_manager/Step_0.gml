@@ -12,12 +12,12 @@ if exit_timer >= 2 {
 	game_end();	
 }
 var arPlay = array_length(players);
-if update_players {
+if false {
 	// Write current player list
 	for (var u = 0; u < arPlay; u++) {
 		buffer_seek(send_buffer, buffer_seek_start,0);
 		buffer_write(send_buffer, buffer_u8,SEND.MATCHDATA);
-		write_data_buffer(send_buffer,DATA.PORT,players[u].port);
+		write_data_buffer(send_buffer,DATA.ID,players[u].network_id);
 		write_data_buffer(send_buffer,DATA.STATUS,players[u].status);
 		write_data_buffer(send_buffer,DATA.NAME,players[u].name);
 		write_data_buffer(send_buffer,DATA.HERO,players[u].hero);
@@ -26,7 +26,8 @@ if update_players {
 		buffer_write(send_buffer, buffer_u8,DATA.END);
 		// Send buffer to everyone
 		for (var uu = 0; uu < arPlay; uu++) {
-			network_send_udp(socket,players[uu].ip,players[uu].port,send_buffer,buffer_tell(send_buffer));
+			packet_count++;
+			network_send_udp(socket,players[uu].ip,D_CLIENT_PORT,send_buffer,buffer_tell(send_buffer));
 		}
 		// Update object
 		with players[u].object {

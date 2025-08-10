@@ -30,8 +30,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_highlighter",
-    "path":"sprites/spr_highlighter/spr_highlighter.yy",
+    "name":"spr_grid_highlight_dotted",
+    "path":"sprites/spr_grid_highlight_dotted/spr_grid_highlight_dotted.yy",
   },
   "spriteMaskId":null,
   "visible":true,

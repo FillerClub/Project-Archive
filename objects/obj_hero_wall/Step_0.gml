@@ -7,3 +7,4 @@ if piece_on_grid != noone {
 	}
 }
 
+last_damaged += delta_time*DELTA_TO_SECONDS;

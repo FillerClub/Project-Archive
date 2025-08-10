@@ -23,7 +23,7 @@ if global.game_state != PAUSED{
 			team: team,	
 			dmg: damage,
 			x_vel: ((team == "friendly")?1:-1),
-			z: GRIDSPACE/2
+			z: z
 			});
 			repeat_shot -= 1;
 			timer -= timer_end;

@@ -5,7 +5,7 @@ draw_set_valign(fa_middle);
 draw_set_halign(fa_center);
 draw_set_color(c_white);
 draw_text(x,y-16,string(player.name));
-draw_text(x,y,"Port: " +string(player.port));
+draw_text(x,y,"ID: " +string(player.network_id));
 var stringDraw = status_int_to_string(player.status);
 draw_text(x,y+16,stringDraw);
 draw_text(x,y+32,string(player.loadout));

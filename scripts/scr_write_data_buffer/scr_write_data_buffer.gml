@@ -10,8 +10,8 @@ function write_data_buffer(buffer,data_type,data) {
 		case DATA.LOADOUT:
 			buffer_write(buffer,buffer_string,json_stringify(data))
 		break;
-		case DATA.PORT:
-			buffer_write(buffer,buffer_u16,data);
+		case DATA.ID:
+			buffer_write(buffer,buffer_string,data);
 		break;
 		case DATA.STATUS:
 		case DATA.MAXSLOTS:
@@ -41,7 +41,7 @@ function read_data_buffer(buffer,data_type) {
 		case DATA.STATUS:
 			re = buffer_read(buffer,buffer_u8);
 		break;
-		case DATA.PORT:
+		case DATA.ID:
 			re = buffer_read(buffer,buffer_u16);
 		break;
 		case DATA.END:

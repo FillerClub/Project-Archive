@@ -15,11 +15,11 @@ function crawler_code() {
 	if position_meeting(targetX,targetY,obj_obstacle) && !bounce {
 		obstacleInWay = instance_position(targetX,targetY,obj_obstacle);
 		with obstacleInWay {
-			if (hp > 0 ) && object_index != obj_hero_wall {
+			if (total_health(hp) > 0 ) && object_index != obj_hero_wall {
 				other.skip_timer = true;	
 			} else {
 				// Destroy if at an already destroyed hero wall
-				if hp <= 0 && object_index == obj_hero_wall {	
+				if total_health(hp) <= 0 && object_index == obj_hero_wall {	
 					instance_destroy();	
 				}
 				other.skip_timer = false;

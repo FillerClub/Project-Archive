@@ -12,7 +12,7 @@ function handle_tutorials(tutorialProgress) {
 					if (timer >= seconds_per_turn) {
 						timer = 0;	
 						total_ticks += 1;
-						click_time = seconds_per_turn / 16
+						click_time = seconds_per_turn / 8
 						timer_tick();
 					} else {
 						timer += delta_time*DELTA_TO_SECONDS*global.level_speed;	

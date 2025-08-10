@@ -1,18 +1,14 @@
 #macro HEALTHCOSTMULTIPLIER .6
 #macro TIMETOTAKE 1.5
-#macro EVERYTHING ["shooter","ball","splitter","double_shooter","short","accelerator","piercer","stick","shotgun","cross","bishop","wall","pawn","bomber","super_stick","crawler","drooper","tank_crawler","jumper","super_tank_crawler","the_goliath","big_shooter","bomb"]
+#macro EVERYTHING ["shooter","smoke_bomb","lobber","flyer","ball","splitter","double_shooter","short","accelerator","piercer","stick","shotgun","cross","bishop","wall","pawn","bomber","super_stick","crawler","drooper","tank_crawler","jumper","super_tank_crawler","the_goliath","big_shooter","bomb"]
 // TRANSITIONS
 #macro INSTANT -1
-// PIECE FUNCTIONS
-enum MEDIUM {
-	GROUND = 0,
-	
-}
+
 // ONLINE
 #macro D_IP "12.110.153.58"//"127.0.0.1"//"192.168.88.22"
 #macro D_DEBUG_IP "127.0.0.1"//"192.168.88.22"
-#macro D_CLIENT_PORT 98670
-#macro D_SERVER_PORT 98680
+#macro D_CLIENT_PORT 9867
+#macro D_SERVER_PORT 9868
 
 enum SEND {
 	DISCONNECT = 0,
@@ -42,7 +38,7 @@ enum DATA {
 	DELETE = 53,
 	LOSE = 54,
 	
-	PORT = 244,
+	ID = 244,
 	MATCHPORT = 245,
 	CREATEMATCH = 246,
 	END = 255,
@@ -72,3 +68,24 @@ enum GROUNDTYPE {
 	NORMAL = 0,
 	WATER = 1,
 }
+enum DAMAGE {
+	NORMAL = 0,
+	PHYSICAL = 1,
+	ENERGY = 2,
+}
+// PIECE FUNCTIONS
+enum MEDIUM {
+	GROUND = 0,
+	
+}
+#macro MITIGATIONBEHAVIOR													\
+over: function(dmg,invert = false) { return dmg; },   						\
+shield: function(dmg,invert = false) { return invert?sqr(dmg):sqrt(dmg); }, \
+armor: function(dmg, invert = false) { return invert?dmg*2:dmg/2; },		\
+base: function(dmg, invert = false) { return dmg; }					
+#macro HEALINGBEHAVIOR								\
+base: function(hL,invert = false) { return hL; },	\
+armor: function(hL,invert = false) { return hL; },	\
+shield: function(hL,invert = false) { return hL; },	\
+over: function(hL,invert = false) { return 0; },	
+// Overhealth does not heal   

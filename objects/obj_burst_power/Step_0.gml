@@ -25,7 +25,7 @@ for (var i = 0; i < length; ++i) {
 			if team != global.player_team {
 				part_particles_burst(global.part_sys,hX -i*lengthX/length +sprite_width/2,hY -i*lengthY/length +sprite_height/2,part_explode);	
 				if !invincible {
-					hp -= 10;
+					hurt(hp,10,self);
 				}
 				breakIf = true;
 			}

@@ -1,12 +1,13 @@
 event_inherited();
 
 // shoot
-if global.game_state != PAUSED{
+if global.game_state != PAUSED {
 	if (timer >= timer_end) {
-		var shootTop = scan_for_enemy(false,100,x,y -GRIDSPACE),
-		shootBottom = scan_for_enemy(false,100,x,y +GRIDSPACE),
-		shootMid = scan_for_enemy(true,100,x,y),
-		hasShot = false;
+		var shootTop = scan_for_enemy(false,100,false,1,x,y -GRIDSPACE),
+		shootBottom = scan_for_enemy(false,100,false,1,x,y +GRIDSPACE),
+		shootMid = scan_for_enemy(true,100,false,1,x,y),
+		hasShot = false,
+		zOff = z;
 		if shootTop && shootBottom {
 			shootMid = false;	
 		}
@@ -19,23 +20,28 @@ if global.game_state != PAUSED{
 		if repeat_shot > 1 {
 			timer = timer_end*.95;	
 		}
-		
+		if instance_exists(piece_on_grid) {
+			zOff += piece_on_grid.z;	
+		}
 		if shootTop && repeat_shot == 2 {
 			instance_create_depth(x +sprite_width/2 +random_range(-4,4),y +sprite_height/2 +random_range(-4,4) -GRIDSPACE,depth -GRIDSPACE/2,obj_bullet_parent, {
 			team: team,	
 			x_vel: ((team == "friendly")?1:-1),
+			z: zOff,
 			});				
 		}
 		if shootMid && repeat_shot != 2 {
 			instance_create_depth(x +sprite_width/2 +random_range(-4,4),y +sprite_height/2 +random_range(-4,4),depth -GRIDSPACE/2,obj_bullet_parent, {
 			team: team,	
 			x_vel: ((team == "friendly")?1:-1),
+			z: zOff,
 			});				
 		}
 		if shootBottom && repeat_shot != 2 {
 			instance_create_depth(x +sprite_width/2 +random_range(-4,4),y +sprite_height/2 +random_range(-4,4) +GRIDSPACE,depth -GRIDSPACE/2,obj_bullet_parent, {
 			team: team,	
 			x_vel: ((team == "friendly")?1:-1),
+			z: zOff,
 			});				
 		}
 		if shootBottom || shootMid || shootTop {

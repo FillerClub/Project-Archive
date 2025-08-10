@@ -4,8 +4,12 @@ with obj_generic_piece	{
 	gX = obj_cursor.x,
 	gY = obj_cursor.y,
 	colS = c_white,
-	drawSpr = spr_grid_highlight;
-	
+	drawSpr = spr_grid_highlight_dotted,
+	onGrid = piece_on_grid,
+	zOff = 0;
+	if instance_exists(onGrid) {
+		zOff += onGrid.z;
+	}
 	// Draw movement options
 	if execute != "move" && globalDebugMode && ai_controlled { debugOn = true; } else
 	if execute != "move" {
@@ -14,17 +18,17 @@ with obj_generic_piece	{
 
 	// Draw own square
 	if debugOn {
-		drawSpr = spr_grid_dotted; 
+		drawSpr = spr_grid_highlight; 
 	}
 	
-	if position_meeting(gX,gY,self) && !debugOn {
+	if position_meeting(gX,gY +zOff,self) && !debugOn {
 		colS = c_red;
 	}
 		
-	draw_sprite_ext(drawSpr,image_index,
-		x,
-		y,
-		1,1,0,colS,1);
+	draw_sprite_ext(drawSpr,other.image_index,
+	x,
+	y -zOff,
+	1,1,0,colS,1);
 		
 	var arrayLengthMovesList = array_length(valid_moves);
 	// From each valid_moves array, grab each moves list (ONLY_ATTACK, ONLY_MOVE, BOTH)

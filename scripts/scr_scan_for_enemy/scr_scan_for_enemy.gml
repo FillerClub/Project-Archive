@@ -11,7 +11,7 @@ do {
 	countLimit++;
 	if position_meeting(x_scan,piece_y,obj_obstacle) {
 		with instance_position(x_scan,piece_y,obj_obstacle) {
-			if object_index == obj_hero_wall && hp > 0 && team != other.team {
+			if object_index == obj_hero_wall && total_health(hp) > 0 && team != other.team {
 				return true;
 			}
 		}

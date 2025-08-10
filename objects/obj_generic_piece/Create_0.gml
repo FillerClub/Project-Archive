@@ -1,5 +1,4 @@
 /// @desc Grabs object info from database
-
 // Set on grid if pos nor grid not set for piece
 if piece_on_grid == noone && position_meeting(x,y,obj_grid) {
 	piece_on_grid = instance_position(x,y,obj_grid);
@@ -12,14 +11,17 @@ if instance_exists(piece_on_grid) {
 	x = grid_pos[0]*GRIDSPACE +piece_on_grid.bbox_left;
 	y = grid_pos[1]*GRIDSPACE +piece_on_grid.bbox_top;
 }
+hp = piece_database(identity,PIECEDATA.HP);
+hp_max = piece_database(identity,PIECEDATA.HP);
+last_damaged = infinity;
+
 move_cooldown_timer = 0;
 move_cooldown = piece_database(identity,PIECEDATA.MOVECOOLDOWN);
-hp = piece_database(identity,PIECEDATA.HP);
 attack_power = piece_database(identity,PIECEDATA.ATTACKPOWER);
-hp_init = hp;
-hp_max = hp;
+
 valid_moves = piece_database(identity,PIECEDATA.MOVES);
 cost = piece_database(identity,PIECEDATA.MOVECOST);
+sprite_index = piece_database(identity,PIECEDATA.SPRITE);
 
 error_time = time_source_create(time_source_global,.03,time_source_units_seconds,function(){
 	if timer_color == c_black {
@@ -44,8 +46,5 @@ if asset_get_type(place_sound) == asset_sound {
 
 
 
-effects_management_array[0] = new effect_array_create(EFFECT.NOTHING);
-effects_array[EFFECT.SPEED] = 0;
-effects_array[EFFECT.SLOW] = 0;
-effects_array[EFFECT.INVINCIBILITY] = 0;
-effects_array[EFFECT.POISON] = 0;
+effects_management_array[0] = new effect_array_create(EFFECT.NOTHING,"Base");
+effects_array = array_create(EFFECT.FIRE +1,0);

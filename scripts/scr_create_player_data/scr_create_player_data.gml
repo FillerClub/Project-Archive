@@ -1,6 +1,6 @@
-function create_player_data(_ip, _port, _name, _status = ONLINESTATUS.IDLE, _hero = -1, _loadout = -1,_match_object = noone,_dummy_object = noone) constructor {
+function create_player_data(_ip, _id, _name, _status = ONLINESTATUS.IDLE, _hero = -1, _loadout = -1,_match_object = noone,_dummy_object = noone) constructor {
 	ip = _ip;
-	port = _port;
+	network_id = _id;
 	name = _name;
 	status = _status;
 	hero = _hero;

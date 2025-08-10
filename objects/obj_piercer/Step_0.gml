@@ -18,7 +18,7 @@ if global.game_state != PAUSED{
 				if victimInst != noone {
 					if team != victimInst.team && !victimInst.invincible {
 						effect_set(victimInst,"piercer_slow",-1,EFFECT.SLOW,8,2);
-						victimInst.hp -= 1;
+						hurt(victimInst.hp,1,victimInst);
 						repeat(30){ part_particles_burst(global.part_sys,xPro,y +sprite_height/2,part_bullet_impact); }
 						playSound = true;
 					}					

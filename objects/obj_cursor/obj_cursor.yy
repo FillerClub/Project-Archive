@@ -32,6 +32,7 @@
     {"$GMObjectProperty":"v1","%Name":"last_x","filters":[],"listItems":[],"multiselect":false,"name":"last_x","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"room_width/2","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"last_y","filters":[],"listItems":[],"multiselect":false,"name":"last_y","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"room_height/2","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"use_cursor","filters":[],"listItems":[],"multiselect":false,"name":"use_cursor","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
+    {"$GMObjectProperty":"v1","%Name":"string_draw","filters":[],"listItems":[],"multiselect":false,"name":"string_draw","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"","varType":2,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

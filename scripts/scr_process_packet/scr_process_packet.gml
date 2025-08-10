@@ -1,40 +1,40 @@
 function process_packet_server(buffer_s){
 	// SERVER
 	var 
-	port = async_load[? "port"],
 	ip = string(async_load[? "ip"]),
 	valid = false,
 	ID = buffer_read(buffer_s,buffer_u8),
 	arLeng = array_length(players);
-	show_message(port);
 	switch ID {
 		case SEND.CONNECT:
+			
 			var 
 			name = buffer_read(buffer_s,buffer_string),
 			tempObj = instance_create_layer(room_width/2,room_height/2,"GUI",obj_test_player),
-			data = new create_player_data(ip,port,-1,255,-1,-1,noone,tempObj);
+			data = new create_player_data(ip,string_random(8),-1,255,-1,-1,noone,tempObj);
 			array_push(players,data); 
 			tempObj.player = data;
 			instance_create_layer(room_width,0,"GUI",obj_plain_text_box, {
-				text: name +" connected on port " +string(port) +"."
+				text: name +" connected from '" +string(ip) +"' with id '" +string(data.network_id) +"'."
 			});
 			
 			buffer_seek(send_buffer,buffer_seek_start,0);
 			buffer_write(send_buffer,buffer_u8,SEND.CONNECT);
-			buffer_write(send_buffer,buffer_u16,port);
-			network_send_udp(socket,ip,port,send_buffer,buffer_tell(send_buffer));
+			buffer_write(send_buffer,buffer_bool,true);
+			buffer_write(send_buffer,buffer_string,data.network_id);
+			network_send_udp(socket,ip,D_CLIENT_PORT,send_buffer,buffer_tell(send_buffer));
 		break;
 		case SEND.PING:
 			buffer_seek(send_buffer,buffer_seek_start,0);
 			buffer_write(send_buffer,buffer_u8,SEND.PING);
-			network_send_udp(socket,ip,port,send_buffer,buffer_tell(send_buffer));
+			network_send_udp(socket,ip,D_CLIENT_PORT,send_buffer,buffer_tell(send_buffer));
 		break;
 		case SEND.DISCONNECT:
 			var
 			name = "null";
 			// Check port to delete
 			for (var d = 0; d < arLeng; d++) {
-				if port == players[d].port {
+				if ip == players[d].ip {
 					// Check for if the player is hosting a match 
 					if instance_exists(players[d].match) {
 						//instance_destroy(players[d].match);
@@ -51,7 +51,7 @@ function process_packet_server(buffer_s){
 			}
 			arLeng = array_length(players);
 			instance_create_layer(room_width,0,"GUI",obj_plain_text_box, {
-				text: string(name) +" disconnected from port " +string(port) +"."
+				text: string(name) +" disconnected from " +string(ip) +"."
 			});	
 			// Send disconnect to everyone else
 			for (var dd = 0; dd < arLeng; dd++) {
@@ -60,8 +60,9 @@ function process_packet_server(buffer_s){
 				}
 				buffer_seek(send_buffer,buffer_seek_start,0);
 				buffer_write(send_buffer,buffer_u8,SEND.DISCONNECT);
-				buffer_write(send_buffer,buffer_u16,port);
-				network_send_udp(socket,players[dd].ip,players[dd].port,send_buffer,buffer_tell(send_buffer));
+				buffer_write(send_buffer,buffer_bool,false);
+				buffer_write(send_buffer,buffer_string,players[d].network_id);
+				network_send_udp(socket,players[dd].ip,D_CLIENT_PORT,send_buffer,buffer_tell(send_buffer));
 			}
 		break;
 		case SEND.MATCHDATA:
@@ -73,7 +74,7 @@ function process_packet_server(buffer_s){
 			limiter = 0;
 			// Find player in list 
 			for (var i = 0; i < array_length(players); i++) {
-				if players[i].port == port {
+				if players[i].ip == ip {
 					if instance_exists(players[i].match) {
 						matchExists = true;
 					}
@@ -89,7 +90,7 @@ function process_packet_server(buffer_s){
 					var ranX = random_range(-64,64),
 					ranY = random_range(-64,64);
 					players[i].match = instance_create_layer(room_width/2 +ranX -room_width,room_height/2 +ranY,"GUI",obj_match_manager, {
-						host_port: port,
+						host_id: players[i].network_id,
 						host_ip: ip
 					});
 					continue;
@@ -155,7 +156,7 @@ function process_packet_server(buffer_s){
 			// For now mirror information to match object
 			// Find if match exists
 			for (var i = 0; i < array_length(players); i++) {
-				if players[i].port == port {
+				if players[i].ip == ip {
 					if instance_exists(players[i].match) {
 						matchExists = true;
 					}
@@ -168,7 +169,7 @@ function process_packet_server(buffer_s){
 			switch gameData.action {
 				case DATA.LOSE:
 					if players[i].match.winner == -1 {
-						winner = port;
+						winner = players[i].network_id;
 					} else {
 						stop = true;	
 					}
@@ -179,20 +180,22 @@ function process_packet_server(buffer_s){
 			}
 		break;
 		case SEND.TOGGLEJOIN:
-			var sendTo = buffer_read(buffer_s,buffer_u16),
-			sendFrom = port,
+			var sendToID = buffer_read(buffer_s,buffer_string),
+			sendFrom = ip,
+			sendFromID = -1,
 			foundTo = false,
 			foundFrom = false;
 			// Grab ip address to send to
 			for	(var to = 0; to < arLeng; to++) {
-				if players[to].port == sendTo {
+				if players[to].network_id == sendToID {
 					foundTo = true;
 					break;
 				}
 			}
-			// Grab ip address to return back info
+			// Grab player from
 			for	(var from = 0; from < arLeng; from++) {
-				if players[from].port == sendFrom {
+				if players[from].ip == ip {
+					sendFromID = players[from].network_id;
 					foundFrom = true;
 					break;
 				}
@@ -205,25 +208,25 @@ function process_packet_server(buffer_s){
 					var resetStatus = false;
 					with toMatch {
 						// If player exiting is host, set new host port
-						if host_port == port {
-							if opponent_port != -1 {
-								host_port = opponent_port;
+						if host_id == sendFromID {
+							if opponent_id != -1 {
+								host_id = opponent_id;
 								host_ip = opponent_ip;
-								opponent_port = -1;	
+								opponent_id = -1;	
 								opponent_ip = -1;
 							} else {
 								// Abandon if no opponent
 								instance_destroy();	
 							}
 							resetStatus = true;
-						} else if opponent_port == port {
-							opponent_port = -1;
+						} else if opponent_id == sendFromID {
+							opponent_id = -1;
 							opponent_ip = -1;
 							resetStatus = true;
 						} else {
-							for (var s = 0; s < array_length(spectator_ports); s++) {
-								if spectator_ports[s] == port {
-									array_delete(spectator_ports,s,1);
+							for (var s = 0; s < array_length(spectator_id); s++) {
+								if spectator_ids[s] == sendFromID {
+									array_delete(spectator_ids,s,1);
 									array_delete(spectator_ips,s,1);
 									break;
 								}
@@ -239,12 +242,12 @@ function process_packet_server(buffer_s){
 				} else {
 					with toMatch {
 						// Only if there is no opponent, set opponent to that port
-						if opponent_port == -1 {
+						if opponent_id == -1 {
 							other.players[to].status = ONLINESTATUS.PREPARING;
-							opponent_port = port;
+							opponent_id = players[to].network_id;
 							opponent_ip = ip;
 						} else {
-							array_push(spectator_ports,port);
+							array_push(spectator_id,players[to].network_id);
 							array_push(spectator_ips,ip);
 						}
 					}
@@ -253,20 +256,20 @@ function process_packet_server(buffer_s){
 				update_players = true;
 				buffer_seek(send_buffer,buffer_seek_start,0);
 				buffer_write(send_buffer,buffer_u8,SEND.TOGGLEJOIN);
-				buffer_write(send_buffer,buffer_u16,sendFrom);
-				network_send_udp(socket,players[to].ip,sendTo,send_buffer,buffer_tell(send_buffer));	
+				buffer_write(send_buffer,buffer_u16,sendFromID);
+				network_send_udp(socket,players[to].ip,D_CLIENT_PORT,send_buffer,buffer_tell(send_buffer));	
 				buffer_seek(send_buffer,buffer_seek_start,0);
 				buffer_write(send_buffer,buffer_u8,SEND.TOGGLEJOIN);
-				buffer_write(send_buffer,buffer_u16,sendTo);
-				network_send_udp(socket,players[from].ip,sendFrom,send_buffer,buffer_tell(send_buffer));
+				buffer_write(send_buffer,buffer_u16,sendToID);
+				network_send_udp(socket,players[from].ip,D_CLIENT_PORT,send_buffer,buffer_tell(send_buffer));
 				// Send extra match info
 				buffer_seek(send_buffer,buffer_seek_start,0);
 				buffer_write(send_buffer,buffer_u8,SEND.MATCHDATA);
 				write_all_gamerule_data(send_buffer,toMatch.max_slots,toMatch.show_opponent_slots,toMatch.barrier_criteria,toMatch.timeruplength,toMatch.max_pieces,toMatch.map);
 				buffer_write(send_buffer,buffer_u8,DATA.END);
-				network_send_udp(socket,players[from].ip,sendFrom,send_buffer,buffer_tell(send_buffer));	
+				network_send_udp(socket,players[from].ip,D_CLIENT_PORT,send_buffer,buffer_tell(send_buffer));	
 			} else {
-				if sendTo == 0 {
+				if sendToID == "d" {
 					instance_destroy(players[from].match);
 					players[from].match = noone;
 					update_players = true;
@@ -277,7 +280,7 @@ function process_packet_server(buffer_s){
 			var found = false;
 			// Find player's match
 			for	(var r = 0; r < arLeng; r++) {
-				if players[r].port == port {
+				if players[r].ip == ip {
 					if instance_exists(players[r].match) {
 						found = true;	
 					}
@@ -288,10 +291,10 @@ function process_packet_server(buffer_s){
 				break;
 			}
 			with players[r].match {
-				if host_port == port {
+				if host_id == other.players[r].network_id {
 					host_ready = host_ready?false:true;	
 				}
-				if opponent_port == port {
+				if opponent_id == other.players[r].network_id {
 					opponent_ready = opponent_ready?false:true;
 				}
 			}
@@ -303,10 +306,12 @@ function process_packet_client(buffer_c) {
 	var ID = buffer_read(buffer_c,buffer_u8);
 	switch ID {
 		case SEND.CONNECT:
+			var isMe = buffer_read(buffer_c,buffer_bool),
+			iD = buffer_read(buffer_c,buffer_string);
 			// Grab port number for future reference
-			if port == -1 {
-				port = buffer_read(buffer_c,buffer_u16);
-				connection_status = 1;
+			if isMe {
+				connection_status = true;
+				network_id = iD;
 				var lD = {
 					run: "Lobby",
 					rm: rm_lobby,
@@ -314,19 +319,17 @@ function process_packet_client(buffer_c) {
 				}
 				start_transition(sq_circle_out,sq_circle_in,lD);
 			} else {
-				var	dataInsert = new create_player_data(-1,buffer_read(buffer_c,buffer_u16),-1,-1,-1,-1,noone,noone);
+				var	dataInsert = new create_player_data(-1,iD,-1,-1,-1,-1,noone,noone);
 				array_push(players,dataInsert);
 			}
 		break;
 		case SEND.PING:
-			with obj_ping {
-				ping = current_time - past_time;
-				send = true;
-			}
+			ping = current_time - ping_past_time;
+			ping_send = true;
 		break;
 		case SEND.MATCHDATA:
 			// Update player data given 
-			var dataID = buffer_read(buffer_c,buffer_u8),
+			var dataID = -1,
 			readData = undefined,
 			dataInsert = undefined,
 			i = 0,
@@ -334,25 +337,24 @@ function process_packet_client(buffer_c) {
 			arLeng = array_length(players),
 			limiter = 0;
 			do {
-				if limiter > 0 {
-					dataID = buffer_read(buffer_c,buffer_u8);
-				}
+				dataID = buffer_read(buffer_c,buffer_u8);
 				if dataID == DATA.END {
 					break;
 				}
 				readData = read_data_buffer(buffer_c,dataID);
+				show_debug_message(string(dataID) +": "+string(readData));
 				switch dataID {
-					case DATA.PORT:
+					case DATA.ID:
 						found = false;
 						// Find player in array
 						for (i = 0; i < arLeng; i++) {
-							if readData == players[i].port {
+							if readData == players[i].network_id {
 								found = true;
 								break;
 							}
 						}
 						if !found {
-							dataInsert = new create_player_data(-1,readData,-1,-1,-1,-1,noone,noone);
+							dataInsert = new create_player_data(-1,readData,-1,-1,-1,noone,noone);
 							array_push(players,dataInsert);
 						}
 					break;
@@ -389,7 +391,7 @@ function process_packet_client(buffer_c) {
 					break;
 				}
 				limiter++;
-			} until dataID == DATA.END || limiter > 16
+			} until dataID == DATA.END || limiter > 999
 			update_players = true;
 		break;
 		case SEND.GAMEDATA:
@@ -404,22 +406,23 @@ function process_packet_client(buffer_c) {
 			array_push(requests,gameData);
 		break;
 		case SEND.DISCONNECT:
-			var portDisconnect = buffer_read(buffer_c,buffer_u16);
-			if portDisconnect == opponent_port {
-				opponent_port = -1;	
-			}
-			for (var d = 0; d < array_length(players);d++) {
-				if portDisconnect == players[d].port {
-					array_delete(players,d,1);
-					d--;
+			var isMe = buffer_read(buffer_c,buffer_bool),
+			iD = buffer_read(buffer_c,buffer_string);
+			arLeng = array_length(players);
+			if !isMe {
+				for (var d = 0; d < arLeng; d++) {
+					if players[d].network_id == iD {
+						array_delete(players,d,1);	
+						break;
+					}
 				}
+				update_players = true;	
 			}
-			update_players = true;
 		break;
 		case SEND.TOGGLEJOIN:
-			var portIn = buffer_read(buffer_c,buffer_u16);
-			if portIn == opponent_port {
-				opponent_port = -1;
+			var iDIn = buffer_read(buffer_c,buffer_string);
+			if iDIn == opponent_id {
+				opponent_id = -1;
 				// Temporary block of code
 				switch game_status {
 					case ONLINESTATUS.PREPARING:
@@ -442,7 +445,7 @@ function process_packet_client(buffer_c) {
 					break;
 				}
 			} else {
-				opponent_port = portIn;
+				opponent_id = iDIn;
 			}
 		break;
 		case SEND.READY:

@@ -12,7 +12,9 @@ for (var i = 0; i < ar_leng; ++i) {
 		// And if coords collide with obstacle/piece, draw RED. Else...
 		if position_meeting(xM,yM,obj_obstacle) {
 			var pC = instance_position(xM,yM,obj_obstacle);
-			pC.hp -= attack_power;
+			if z_collide(self,pC,4) {
+				hurt(pC.hp,attack_power,pC);
+			}
 		} 	
 	}			
 }

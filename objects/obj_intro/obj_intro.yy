@@ -11,8 +11,8 @@
   "name":"obj_intro",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"SCRAP",
+    "path":"folders/Objects/SCRAP.yy",
   },
   "parentObjectId":null,
   "persistent":false,

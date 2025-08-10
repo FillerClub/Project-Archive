@@ -13,7 +13,7 @@ with obj_hero_wall {
 
 for (var ii = 0; ii < array_length(wall_tracking_array);ii++) {
 	with wall_tracking_array[ii] {
-		if hp <= 0 && wrath_ability_activate == false {
+		if total_health(hp) <= 0 && wrath_ability_activate == false {
 			// Avoid buffing in the same frame 
 			if !buffIncreased {
 				wrath_ability_activate = true;

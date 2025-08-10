@@ -17,7 +17,7 @@ for (var lanes = 0; lanes < board_height +1; lanes += 1) {
 //Grab all pieces on the board
 var countFPiece = 0;
 with obj_obstacle {
-	if team == global.player_team && hp > 0 {
+	if team == global.player_team && total_health(hp) > 0 {
 		other.friendly_pieces[countFPiece] = id;
 		other.piece_value[countFPiece] = 0;
 		countFPiece++;

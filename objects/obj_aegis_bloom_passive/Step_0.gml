@@ -11,7 +11,7 @@ with obj_hero_wall {
 
 for (var ii = 0; ii < array_length(wall_tracking_array);ii++) {
 	with wall_tracking_array[ii] {
-		if hp <= 0 && aegis_ability_done == false {
+		if total_health(hp) <= 0 && aegis_ability_done == false {
 			instance_create_layer(x,y,"Instances",obj_aegis_bloom_power,{
 				team: team
 			});	

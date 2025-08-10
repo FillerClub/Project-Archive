@@ -1,1 +1,0 @@
-part_particles_burst(global.part_sys,x,y,part_slap);	

@@ -1,0 +1,22 @@
+var own = noone;
+with obj_constant_reload {
+	if team == other.team {
+		own = self;	
+	}
+}
+if !instance_exists(own) {
+	instance_destroy();
+	exit;
+}
+if own.ammo <= 0 {
+	instance_destroy();	
+}
+with obj_generic_piece {
+	if team == other.team {
+		effect_generate(self,EFFECT.OVERHEALTH,string_random(3),1,5,noone,true);
+		effect_generate(self,EFFECT.SPEED,"Adrenaline",1,1,noone);
+	}
+}
+own.ammo--;
+audio_play_sound(snd_final_bullet,0,0);
+instance_destroy();

@@ -1,0 +1,1 @@
+part_type_destroy(bullet_part);

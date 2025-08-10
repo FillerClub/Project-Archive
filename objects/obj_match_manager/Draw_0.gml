@@ -9,6 +9,6 @@ draw_text(x,y,"Barriers: " +string(barrier_criteria));
 draw_text(x,y+16,"Time Length: " +string(timeruplength));
 draw_text(x,y+32,"Max Pieces: " +string(max_pieces));
 draw_text(x,y+48,"Map: " +string(map));
-draw_text(x,y+80,"Host: " +string(host_port) +" - " +string(host_ready));
-draw_text(x,y+96,"Opponent: " +string(opponent_port) +" - " +string(opponent_ready));
+draw_text(x,y+80,"Host: " +string(host_id) +" - " +string(host_ready));
+draw_text(x,y+96,"Opponent: " +string(opponent_id) +" - " +string(opponent_ready));
 //draw_text(x,y+112,+string(host_ip));

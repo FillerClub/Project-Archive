@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_determine_to_draw_hp",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_determine_to_draw_hp",
+  "parent":{
+    "name":"Draw",
+    "path":"folders/Scripts/Draw.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,7 +1,12 @@
 {
   "$GMObject":"",
   "%Name":"obj_dynamite",
-  "eventList":[],
+  "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":1,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+  ],
   "managed":true,
   "name":"obj_dynamite",
   "overriddenProperties":[],
@@ -10,8 +15,8 @@
     "path":"folders/Objects/Piece Stuff/Heros/Powers/Lonestar.yy",
   },
   "parentObjectId":{
-    "name":"obj_generic_powerup",
-    "path":"objects/obj_generic_powerup/obj_generic_powerup.yy",
+    "name":"obj_bullet_parent",
+    "path":"objects/obj_bullet_parent/obj_bullet_parent.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,
@@ -26,11 +31,18 @@
   "physicsShape":1,
   "physicsShapePoints":[],
   "physicsStartAwake":true,
-  "properties":[],
+  "properties":[
+    {"$GMObjectProperty":"v1","%Name":"explode_timer","filters":[],"listItems":[],"multiselect":false,"name":"explode_timer","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
+    {"$GMObjectProperty":"v1","%Name":"shot","filters":[],"listItems":[],"multiselect":false,"name":"shot","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
+    {"$GMObjectProperty":"v1","%Name":"hitbox","filters":[],"listItems":[],"multiselect":false,"name":"hitbox","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"25","varType":0,},
+  ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"spr_dynamite",
+    "path":"sprites/spr_dynamite/spr_dynamite.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

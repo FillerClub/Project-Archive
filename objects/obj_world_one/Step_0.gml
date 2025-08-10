@@ -1,7 +1,7 @@
 // Stupid idiot check
 if level[1] == 1 && phase < 6 && time_source_get_time_remaining(timer) > 0 {
 	with obj_hero_wall {
-		if hp <= 0 {
+		if total_health(hp) <= 0 {
 			other.phase = 6;
 			other.timer = 0;
 			other.stupid_idiot_check = true;
@@ -46,7 +46,7 @@ do {
 	// Cycle through player's walls
 	with obj_hero_wall {
 		// If it is in position, has hp, and is player's, settle on this y
-		if position_meeting(x,random_y*GRIDSPACE +gridRef.bbox_top,self) && hp > 0 && team == global.player_team {
+		if position_meeting(x,random_y*GRIDSPACE +gridRef.bbox_top,self) && total_health(hp) > 0 && team == global.player_team {
 			reroll_y = false
 		}
 	}

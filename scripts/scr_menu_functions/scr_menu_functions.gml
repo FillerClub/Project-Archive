@@ -177,7 +177,7 @@ function menu_function(purpose = "Back",contextArg = context){
 		case "Debug Room 2":
 			var lD = {
 				run: "Multiplayer",
-				rm: rm_level_conveyor,
+				rm: rm_heights_2,
 				load: [track1,track2,track3,track4]	
 			}
 			start_transition(sq_circle_out,sq_circle_in,lD);			

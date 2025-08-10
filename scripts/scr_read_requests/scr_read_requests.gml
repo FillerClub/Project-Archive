@@ -61,25 +61,27 @@ function read_requests(ar,is_online = false) {
 					moved = true;
 					if position_meeting(tarX +GRIDSPACE/2,tarY +GRIDSPACE/2,obj_obstacle) {
 						var collide = instance_position(tarX +GRIDSPACE/2,tarY +GRIDSPACE/2,obj_obstacle);
+						hurt(collide.hp,attack_power,collide);
+						// Hurt behavior depending on object
 						switch collide.object_index {
+							// Never destroy a hero wall
 							case obj_hero_wall:
-								collide.hp -= attack_power;
 								instance_destroy();			
-								// Never destroy a hero wall
 							break;
 				
 							default:
-								collide.hp -= attack_power;
-								if collide.hp <= 0 {
+								if total_health(collide.hp) <= 0 {
 									// Destroy target piece if it's hp is 0
 									instance_destroy(collide);
 								} else {
-									// Destroy the attacking piece if it's too weak, while still knocking down hp
+									// Destroy the attacking piece if it's too weak
 									instance_destroy();	
 								}
+
 							break;									
 						}
 					}
+					
 					if team == global.player_team { execute = "move"; }
 					if team == "friendly" { global.friendly_turns -= cost; }
 					if team == "enemy" { global.enemy_turns -= cost; }	
@@ -87,6 +89,8 @@ function read_requests(ar,is_online = false) {
 					y = tarY;
 					audio_stop_sound(snd_move);
 					audio_play_sound(snd_move,0,0);
+					// Activate move event
+					event_perform(ev_other,ev_user0);
 				}
 			}
 		break;
@@ -97,7 +101,7 @@ function read_requests(ar,is_online = false) {
 			}
 			with varObj {
 				if tag == read.tag {
-					interact = true;
+					event_perform(ev_other,ev_user1);
 				}
 			}
 		break;

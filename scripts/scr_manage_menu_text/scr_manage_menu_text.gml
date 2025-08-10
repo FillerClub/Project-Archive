@@ -51,7 +51,7 @@ function manage_menu_text(text){
 					textReturn = "Healthbars: Hide";
 				break;
 				case HEALTHBARCONFIG.ONHIT:
-					textReturn = "Healthbars: On hit";
+					textReturn = "Healthbars: On interact";
 				break;
 				case HEALTHBARCONFIG.SHOWALL:
 					textReturn = "Healthbars: Show";

@@ -17,18 +17,33 @@ cursorOnGrid = obj_cursor.on_grid,
 cursorGridPosition = obj_cursor.grid_pos,
 piececlick = noone,
 ar_leng = array_length(valid_attacks),
-moving = false;
+moving = false,
+moveToGrid = noone;
 
 if global.mode == "move" && execute == "move" {
 	if checkPress && instance_exists(cursorOnGrid) {
-		// Grab cursor position on board
-		cursorX = cursorGridPosition[0]*GRIDSPACE +cursorOnGrid.bbox_left +GRIDSPACE/2;
-		cursorY = cursorGridPosition[1]*GRIDSPACE +cursorOnGrid.bbox_top +GRIDSPACE/2;
 		// Check if clicked on piece
-		if position_meeting(cursorX,cursorY,obj_obstacle) {
-			piececlick = instance_position(cursorX,cursorY,obj_obstacle);
+		with obj_obstacle {
+			var zOff = 0;
+			if instance_exists(piece_on_grid) {
+				zOff += piece_on_grid.z;
+			}
+			// Check if hitting the piece's grid spot
+			if collision_rectangle(bbox_left,bbox_top -zOff,bbox_right,bbox_bottom -zOff,obj_cursor,false,false) {
+				piececlick = id;
+				// Ignore self and pieces on the same team
+				if piececlick == other.id || team == other.team {
+					exit;
+				}	
+			} 
+		}
+		var zOff = z;
+		if instance_exists(piece_on_grid) {
+			zOff += piece_on_grid.z;	
+		}
+		if instance_exists(piececlick) {
 			// Cancel if clicked on illegal spot
-			if piececlick.team != global.opponent_team || piececlick.invincible == true || mode == ONLY_MOVE || piececlick.hp <= 0 {
+			if piececlick.team != global.opponent_team || piececlick.invincible == true || mode == ONLY_MOVE || total_health(piececlick.hp) <= 0 {
 				return false;					
 			}
 		// Else if move set is only attacking, exit
@@ -48,18 +63,17 @@ if global.mode == "move" && execute == "move" {
 			}
 			// Center coordinates if is drawing from piece
 			moveToX = x +(precheckX +.5)*GRIDSPACE;
-			moveToY = y +(precheckY +.5)*GRIDSPACE;		
+			moveToY = y +(precheckY +.5)*GRIDSPACE;
+			moveToGrid = instance_position(moveToX,moveToY,obj_grid);
 			// If the move does not fall onto a grid, or is on self, ignore it.
-			if !position_meeting(moveToX,moveToY,obj_grid) || (precheckX == 0 && precheckY == 0) {
+			if !instance_exists(moveToGrid) || (precheckX == 0 && precheckY == 0) {
 				continue;	
 			} 
 			// Get the move's position on the grid so we can check for it easier
-			var
-			moveToGrid = instance_position(moveToX,moveToY,obj_grid),
-			gClampX = floor((moveToX -moveToGrid.bbox_left)/GRIDSPACE)*GRIDSPACE +moveToGrid.bbox_left +GRIDSPACE/2,
-			gClampY = floor((moveToY -moveToGrid.bbox_top)/GRIDSPACE)*GRIDSPACE +moveToGrid.bbox_top +GRIDSPACE/2;
+			var	gClampX = floor((moveToX -moveToGrid.bbox_left)/GRIDSPACE)*GRIDSPACE +moveToGrid.bbox_left,
+			gClampY = floor((moveToY -moveToGrid.bbox_top)/GRIDSPACE)*GRIDSPACE +moveToGrid.bbox_top;
 			// If cursor is hovering over the move position, determine that's the move we want to make
-			if (gClampX == cursorX) && (gClampY == cursorY) {
+			if collision_rectangle(gClampX,gClampY -moveToGrid.z,gClampX +GRIDSPACE,gClampY +GRIDSPACE -moveToGrid.z,obj_cursor,false,false) {
 				moving = true;
 				// Why in the fuck do I have to move this if statement here
 				if !bypass_cooldown && move_cooldown_timer > 0 {
@@ -68,9 +82,13 @@ if global.mode == "move" && execute == "move" {
 					audio_play_sound(snd_critical_error,0,0);
 					return false;	
 				}
+				if max(moveToGrid.z -zOff,0) > climb_height || max(zOff -moveToGrid.z,0) > drop_height {
+					audio_stop_sound(snd_critical_error);
+					audio_play_sound(snd_critical_error,0,0);
+					return false;	
+				}
 				break;
-			} 
-			
+			} 	
 		}
 		// At this point, we go back to using "return false;" instead of "continue;"
 		if !moving {

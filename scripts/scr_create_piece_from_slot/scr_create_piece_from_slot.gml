@@ -2,7 +2,7 @@ function create_piece_from_slot(create) {
 if !create {
 	exit;	
 }
-
+select_sound(snd_pick_up);
 var 
 i = 0,
 gS = GRIDSPACE,

@@ -1,19 +1,19 @@
-function match_togglejoin(target_port = -1){
+function match_togglejoin(target_id = -1){
 	var sendFinal = false,
-	sendPort = target_port;
-	if (target_port == -1 && opponent_port != -1) ||
-	(target_port != -1 && opponent_port == -1) {
-		if sendPort == -1 {
-			if opponent_port != -1 {
-				sendPort = opponent_port;
+	sendID = target_player;
+	if (target_id == -1 && opponent_id != -1) ||
+	(target_id != -1 && opponent_id == -1) {
+		if sendID == -1 {
+			if opponent_id != -1 {
+				sendID = opponent_id;
 			}
 		}
 	} else {
 		// Disconnect
-		sendPort = 0;	
+		sendID = "d";	
 	}
 	buffer_seek(send_buffer,buffer_seek_start,0);
 	buffer_write(send_buffer,buffer_u8,SEND.TOGGLEJOIN);
-	buffer_write(send_buffer,buffer_u16,sendPort);
+	buffer_write(send_buffer,buffer_string,sendID);
 	network_send_udp(socket,server_ip,server_port,send_buffer,buffer_tell(send_buffer));
 }

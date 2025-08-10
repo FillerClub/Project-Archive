@@ -1,7 +1,9 @@
 event_inherited();
 
 var tM = (team == "friendly")?1:-1,
-gS = GRIDSPACE;
+gS = GRIDSPACE,
+zOff = z;
+
 
 if execute == "move" || ai_controlled { 
 	short_shooter_move_handler();
@@ -22,14 +24,14 @@ if global.game_state != PAUSED{
 		
 		var countPiece = 0;
 		with obj_obstacle {
-			if team != other.team && hp > 0 {
+			if team != other.team && total_health(hp) > 0 {
 				other.targets[countPiece] = id;
 				countPiece++;
 			}
 		}
 		
 		with obj_hero_wall {
-			if team == other.team && hp > 0 {
+			if team == other.team && total_health(hp) > 0 {
 				heroWallX = x;	
 			}
 		}
@@ -44,7 +46,7 @@ if global.game_state != PAUSED{
 						var tM0 = (team == "friendly")?1:-1,
 						offX = gS/2*tM0;
 					}
-					if distance_to_point(heroWallX,y) < leastX {
+					if distance_to_point(heroWallX,y) < leastX && z_collide(other,self,0) {
 						leastX = distance_to_point(heroWallX,y);
 						other.decide_shoot = true;	
 						var b = x - other.x +offX,
@@ -59,10 +61,14 @@ if global.game_state != PAUSED{
 		}
 		
 		if decide_shoot {
+			if instance_exists(piece_on_grid) {
+				zOff += piece_on_grid.z;	
+			}
 			instance_create_depth(x +sprite_width/2 +random_range(-4,4),y +sprite_height/2 +random_range(-4,4),depth -gS/2,obj_bullet_parent, {
 			team: team,
 			x_vel: xV,
 			y_vel: yV,
+			z: zOff,
 			});
 		}
 	}

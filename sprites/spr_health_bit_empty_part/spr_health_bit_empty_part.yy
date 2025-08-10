@@ -44,8 +44,8 @@
   },
   "origin":3,
   "parent":{
-    "name":"UI",
-    "path":"folders/Sprites/UI.yy",
+    "name":"HP",
+    "path":"folders/Sprites/UI/HP.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

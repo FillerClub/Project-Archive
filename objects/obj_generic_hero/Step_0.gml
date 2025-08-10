@@ -29,8 +29,8 @@ if hp <= 0 {
 		case rm_sandbox:
 			hp = global.barrier_criteria;
 			with obj_hero_wall {
-				if team == other.team && hp <= 0 {
-					hp = 10;
+				if team == other.team && total_health(hp) <= 0 {
+					hp.base = 10;
 					invincible = false;
 				}
 			}

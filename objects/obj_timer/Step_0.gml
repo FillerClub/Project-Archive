@@ -18,7 +18,7 @@ if global.game_state == PAUSED {
 timer += delta_time*DELTA_TO_SECONDS*global.timer_speed_mult*(1 +spd/16 -slw/16)*(accel)*global.level_speed;
 
 if timer >= click_time {
-	click_time += (seconds_per_turn / 16);
+	click_time += (seconds_per_turn / 8);
 	if team == global.player_team {
 		audio_play_sound(snd_timer_click,0,0);
 	}
@@ -27,7 +27,7 @@ if timer >= click_time {
 if (timer >= seconds_per_turn) {
 	timer -= seconds_per_turn;	
 	total_ticks += 1;
-	click_time = seconds_per_turn / 16;
+	click_time = seconds_per_turn / 8;
 	timer_tick();
 }
 

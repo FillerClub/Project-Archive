@@ -10,7 +10,7 @@ function grid_highlight_draw(valid_spots = [[0,0]], placeable_on_grid = PLACEABL
 // Grab amount of valid moves
 var ar_leng = array_length(valid_spots),
 onGrid = noone,
-cursorOnGrid = noone,
+cursorOnGrid = obj_cursor.on_grid,
 cursorX = -9999,
 cursorY = -9999,
 precheckX = x,
@@ -23,10 +23,9 @@ checkPieceObject = object_index != obj_dummy,
 drawnSquareIsMeeting = noone,
 healthDrawIteration = 0;
 // Check if cursor is on a grid
-if position_meeting(obj_cursor.x,obj_cursor.y,obj_grid) {
-	cursorOnGrid = instance_position(obj_cursor.x,obj_cursor.y,obj_grid);
-	cursorX = floor((obj_cursor.x -cursorOnGrid.bbox_left)/GRIDSPACE)*GRIDSPACE +cursorOnGrid.bbox_left;
-	cursorY = floor((obj_cursor.y -cursorOnGrid.bbox_top)/GRIDSPACE)*GRIDSPACE +cursorOnGrid.bbox_top; 
+var zOff = z;
+if instance_exists(piece_on_grid) {
+	zOff += piece_on_grid.z;		
 }
 for (var moves = 0; moves < ar_leng; moves++) {
 	color = c_white;
@@ -47,8 +46,8 @@ for (var moves = 0; moves < ar_leng; moves++) {
 	drawToY = y +(precheckY +checkPieceObject/2)*GRIDSPACE;
 	//part_particles_burst(global.part_sys,drawToX,drawToY,part_slap);	
 	// Snap to grid if it is on one
-	if position_meeting(drawToX,drawToY,obj_grid) {
-		onGrid = instance_position(drawToX,drawToY,obj_grid);
+	onGrid = instance_position(drawToX,drawToY,obj_grid);
+	if instance_exists(onGrid) {
 		drawToX = floor((drawToX -onGrid.bbox_left)/GRIDSPACE)*GRIDSPACE +onGrid.bbox_left;
 		drawToY = floor((drawToY -onGrid.bbox_top)/GRIDSPACE)*GRIDSPACE +onGrid.bbox_top;	
 		// Verify position is actually on grid
@@ -56,20 +55,22 @@ for (var moves = 0; moves < ar_leng; moves++) {
 			continue;	
 		}
 		// If the cursor's position is equal to the drawn square AND is not at the center of the piece/object
-		if (cursorX == drawToX) && (cursorY == drawToY) && !(precheckX == 0 && precheckY == 0) {
+		if collision_rectangle(drawToX,drawToY -onGrid.z,drawToX +GRIDSPACE,drawToY +GRIDSPACE -onGrid.z,obj_cursor,false,true) && !(precheckX == 0 && precheckY == 0) {
 			color = c_aqua;	
 			selectColor = c_aqua;
 		} 
 		// Check if square is on an object it can't colide with
 		if position_meeting(drawToX,drawToY,obj_obstacle) {
 			drawnSquareIsMeeting = instance_position(drawToX,drawToY,obj_obstacle);
-			if (drawnSquareIsMeeting.hp <= 0) || (exclude_barriers && drawnSquareIsMeeting.object_index != obj_hero_wall) {
+			if (total_health(drawnSquareIsMeeting.hp) <= 0) || (exclude_barriers && drawnSquareIsMeeting.object_index != obj_hero_wall) {
 				color = c_red;
 			}
 		} else {
-			drawnSquareIsMeeting = noone;	
+			drawnSquareIsMeeting = noone;
+			if max(onGrid.z -zOff,0) > climb_height || max(zOff -onGrid.z,0) > drop_height {
+				color = c_red;
+			}
 		}
-			
 		if color != c_red {
 		// Check how script respects grid territories
 			switch placeable_on_grid {		
@@ -102,18 +103,18 @@ for (var moves = 0; moves < ar_leng; moves++) {
 							if drawnSquareIsMeeting.team != team {
 								color = selectColor;
 								if variable_instance_exists(self,"attack_power") {
-									var atk = attack_power;
-									if atk < drawnSquareIsMeeting.hp && selectColor != c_aqua {
+									var atk = attack_power,
+									hurtHP = variable_clone(drawnSquareIsMeeting.hp);
+									hurt(hurtHP,atk);
+									if total_health(hurtHP) > 0 && selectColor != c_aqua {
 										color = c_yellow;	
 									} 
-									
 									with obj_piece_ui_manager {
 										piece_attacking_array[healthDrawIteration] = drawnSquareIsMeeting;
 										attack_power_array[healthDrawIteration] = atk;
 									}
 									healthDrawIteration++;
 								}
-
 							} else {
 								color = c_red;	
 							}
@@ -128,18 +129,16 @@ for (var moves = 0; moves < ar_leng; moves++) {
 		}
 		
 		// Draw valid moves on grid
-		if !faux {
-			var draw_spr = spr_grid_highlight;	
+		if !faux { var draw_spr = spr_grid_highlight;	
 		} else { var draw_spr = spr_grid_dotted; }
 		draw_sprite_ext(draw_spr,obj_piece_move_highlighter.image_index,
 		drawToX,
-		drawToY,
+		drawToY -onGrid.z,
 		1,1,0,color,1);		
-		
 		if show_lines {
-			draw_line_width_color(x +sprite_width/2,y +sprite_height/2,drawToX +sprite_width/2,drawToY +sprite_height/2,2,c_white,color);
-			draw_circle_color(x +sprite_width/2,y +sprite_height/2,3,c_white,c_white,0);
-			draw_rectangle_color(drawToX +sprite_width/2-7,drawToY +sprite_height/2-7,drawToX +sprite_width/2+7,drawToY +sprite_height/2+7,color,color,color,color,0);			
+			draw_line_width_color(x +sprite_width/2,y +sprite_height/2 -zOff,drawToX +sprite_width/2,drawToY +sprite_height/2 -onGrid.z,2,c_white,color);
+			draw_circle_color(x +sprite_width/2,y +sprite_height/2 -zOff,3,c_white,c_white,0);
+			draw_rectangle_color(drawToX +sprite_width/2-7,drawToY +sprite_height/2-7 -onGrid.z,drawToX +sprite_width/2+7,drawToY +sprite_height/2+7 -onGrid.z,color,color,color,color,0);			
 		}
 	} 
 }	

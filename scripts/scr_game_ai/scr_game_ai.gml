@@ -75,7 +75,7 @@ for (var inst = 0; inst < arrayLength; inst++) {
 				case ONLY_ATTACK:
 					if position_meeting(validX,validY,obj_obstacle) {
 						with instance_position(validX,validY,obj_obstacle) {
-							if pieceInst.team != team && !invincible && hp > 0 {    
+							if pieceInst.team != team && !invincible && total_health(hp) > 0 {    
 								pushMoveToList = true;
 							}	
 						}
@@ -102,7 +102,7 @@ for (var inst = 0; inst < arrayLength; inst++) {
 					pushMoveToList = true;
 					if position_meeting(validX,validY,obj_obstacle) {
 						with instance_position(validX,validY,obj_obstacle) {
-							if pieceInst.team == team || invincible || hp <= 0 {    
+							if pieceInst.team == team || invincible || total_health(hp) <= 0 {    
 								pushMoveToList = false;
 							} else {
 								canTakePiece = true;	
@@ -179,7 +179,7 @@ for (var sortMoves = 0; sortMoves < arrayLengthValid; sortMoves++) {
 			}			
 		break;
 		default:
-			if !position_meeting(sortX,sortY,obj_obstacle) || sortPiece.attack_power < sortPieceColliding.hp {
+			if !position_meeting(sortX,sortY,obj_obstacle) || sortPiece.attack_power < total_health(sortPieceColliding.hp) {
 				skipMove = true;
 			}					
 		break;
@@ -267,7 +267,7 @@ for (var finalScan = 1; finalScan < trackArrLeng; finalScan++) {
 	targetY = EnemyPos[1]*GRIDSPACE +EnemyOnGrid.y +GRIDSPACE/2,
 	PieceVictim = instance_position(targetX,targetY,obj_obstacle);	
 	if levelWorld != 0 && global.tutorial_progress <= 0 && position_meeting(targetX,targetY,obj_obstacle) {
-		if PieceVictim.hp > 0 {
+		if total_health(PieceVictim.hp) > 0 {
 			var TvalidMoves = PieceVictim.valid_moves,
 			TaLML = array_length(TvalidMoves);
 			// From each valid_moves array, grab each moves list (ONLY_ATTACK, ONLY_MOVE, BOTH)
@@ -285,7 +285,9 @@ for (var finalScan = 1; finalScan < trackArrLeng; finalScan++) {
 				// From each moves list, grab the moves available
 				for (var moves = 0; moves < TaLM; moves++) {
 					var TprecheckX = TvalidMoves[list][moves][0],
-					TprecheckY = TvalidMoves[list][moves][1];
+					TprecheckY = TvalidMoves[list][moves][1],
+					hurtHP = variable_clone(PieceEnemy.hp);
+					hurt(hurtHP,PieceVictim.attack_power);
 					// Check if affected by team & toggle
 					if is_string(TprecheckX) {
 						TprecheckX = tm_dp(real(TprecheckX),PieceVictim.team,PieceVictim.toggle);
@@ -305,9 +307,9 @@ for (var finalScan = 1; finalScan < trackArrLeng; finalScan++) {
 					} 
 			
 					if position_meeting(TvalidX,TvalidY,PieceEnemy) {
-						if PieceVictim.attack_power < PieceEnemy.hp {
-							PieceEnemy.hp = PieceVictim.attack_power; 	
-							PieceEnemy.hp_init = PieceVictim.attack_power; 
+						if total_health(hurtHP) > 0 {
+							var takeOff = total_effective_health(variable_clone(PieceEnemy.hp)) -PieceVictim.attack_power;
+							hurt(PieceEnemy.hp,takeOff,PieceEnemy);
 							audio_play_sound(snd_bullet_hit,0,0);
 						}
 						if PieceVictim.execute != "move" {
@@ -325,7 +327,7 @@ for (var finalScan = 1; finalScan < trackArrLeng; finalScan++) {
 						}
 						global.tutorial_progress = 1;
 						PieceVictim.ignore_pause = true;
-						PieceVictim.skip_timer = true;
+						PieceVictim.skip_timer = false;
 						PieceVictim.execute = "move";
 						tutorial_piece = PieceVictim;
 						global.mode = "move";
@@ -344,9 +346,12 @@ for (var finalScan = 1; finalScan < trackArrLeng; finalScan++) {
 	with PieceEnemy {
 		// Build up timer to take piece, based on cost
 		Cost = cost;
-		var timeDivisor = 1;
-		if PieceVictim.hp < attack_power {
-			timeDivisor = lerp(1,1.5,(attack_power -PieceVictim.hp)/attack_power)
+		var timeDivisor = 1,
+		hurtEnemyHP = variable_clone(PieceVictim.hp);
+		hurt(hurtEnemyHP,attack_power);
+		var totalHP = total_health(hurtEnemyHP);
+		if totalHP > 0 {
+			timeDivisor = lerp(1,2,(totalHP/attack_power));
 		}
 		var 
 		timerMultiplier = 1 +Cost/1.5,
@@ -375,14 +380,16 @@ for (var finalScan = 1; finalScan < trackArrLeng; finalScan++) {
 	}
 	// Now commit to making the move
 	if commitMove {
+		r_move_piece(EnemyPos,EnemyOnGrid,PieceEnemy.tag);
+		/*
 		if PieceVictim != noone {
 			// Deal Damage/Destroy Victim Piece
 			with PieceVictim {
 				global.enemy_turns -= Cost;	
-				hp -= PieceEnemy.attack_power;
-				if object_index == obj_hero_wall || hp > 0 {
+				//hp -= PieceEnemy.attack_power;
+				if object_index == obj_hero_wall || total_health(hp) > 0 {
 					destroyEnemy = true;
-				} else if hp <= 0 {
+				} else if total_health(hp) <= 0 {
 					instance_destroy();	
 				}
 			}			
@@ -401,7 +408,7 @@ for (var finalScan = 1; finalScan < trackArrLeng; finalScan++) {
 				move_count++;
 			}
 		}
-
+		*/
 	}	
 }
 }

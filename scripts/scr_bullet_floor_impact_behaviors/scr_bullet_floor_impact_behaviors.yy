@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_bullet_floor_impact_behaviors",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_bullet_floor_impact_behaviors",
+  "parent":{
+    "name":"Bullet",
+    "path":"folders/Scripts/Misc/Bullet.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

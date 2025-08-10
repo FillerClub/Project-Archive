@@ -9,7 +9,7 @@
   "bitRate":512,
   "compression":2,
   "conversionMode":0,
-  "duration":2.026042,
+  "duration":2.0260544,
   "name":"snd_shield_up",
   "parent":{
     "name":"Sounds",

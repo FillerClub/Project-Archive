@@ -18,7 +18,7 @@ for (var i = 0; i < arLeng; ++i) {
 		hP = 0;
 		with instance_position(validX,validY,obj_obstacle) {
 			tM = team;
-			hP = hp;
+			hP = total_health(hp);
 		}
 		if team != tM && hP > 0 {
 			movelist[index] = [validX,validY];	

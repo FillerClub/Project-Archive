@@ -2,7 +2,7 @@ enum DEFAULT {
 	MAXSLOTS = 6,
 	SHOWSLOTS = 1,
 	BARRIER = 4,
-	TIMELENGTH = 30,	
+	TIMELENGTH = 15,	
 }
 function default_game_rules() {
 	global.max_slots = DEFAULT.MAXSLOTS;
@@ -12,7 +12,7 @@ function default_game_rules() {
 	global.timeruplength = DEFAULT.TIMELENGTH;
 	global.player_team = "friendly";
 	global.opponent_team = "enemy";
-	global.max_turns = 30;
-	global.friendly_turns = 20;
-	global.enemy_turns = 20;
+	global.max_turns = 6;
+	global.friendly_turns = 4;
+	global.enemy_turns = 4;
 }

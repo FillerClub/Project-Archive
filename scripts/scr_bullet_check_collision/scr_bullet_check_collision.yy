@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_bullet_check_collision",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_bullet_check_collision",
+  "parent":{
+    "name":"Bullet",
+    "path":"folders/Scripts/Misc/Bullet.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
