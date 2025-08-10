@@ -20,6 +20,6 @@ if global.game_state != PAUSED {
 			});
 		}
 		timer = 0;
-		timer_end = random_percent(.014,4);
+		timer_end = random_percent(1.4,4);
 	}
 }
