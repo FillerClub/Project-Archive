@@ -51,6 +51,16 @@ switch room {
 					accel = min(accel +0.025,global.timer_max_speed_mult)
 				} 
 			}
+			
+			// Bonus functionality
+			/*
+			with obj_constant_reload {
+				if ammo < 6 {
+					audio_play_from_array([snd_lonestar_reload],.2);
+					ammo++;
+				}
+			}
+			*/
 			timer[MAIN] = 0;
 		}
 	break;

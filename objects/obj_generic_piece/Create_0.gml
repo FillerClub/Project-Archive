@@ -11,17 +11,18 @@ if instance_exists(piece_on_grid) {
 	x = grid_pos[0]*GRIDSPACE +piece_on_grid.bbox_left;
 	y = grid_pos[1]*GRIDSPACE +piece_on_grid.bbox_top;
 }
-hp = piece_database(identity,PIECEDATA.HP);
-hp_max = piece_database(identity,PIECEDATA.HP);
+data = piece_database(identity);
+hp = data[$ "hp"];
+hp_max = variable_clone(data[$ "hp"]);
 last_damaged = infinity;
 
 move_cooldown_timer = 0;
-move_cooldown = piece_database(identity,PIECEDATA.MOVECOOLDOWN);
-attack_power = piece_database(identity,PIECEDATA.ATTACKPOWER);
+move_cooldown = data[$ "move_cooldown"];
+attack_power = data[$ "attack_power"];
 
-valid_moves = piece_database(identity,PIECEDATA.MOVES);
-cost = piece_database(identity,PIECEDATA.MOVECOST);
-sprite_index = piece_database(identity,PIECEDATA.SPRITE);
+valid_moves = data[$ "moves"];
+cost = data[$ "move_cost"];
+sprite_index = data[$ "sprite"];
 
 error_time = time_source_create(time_source_global,.03,time_source_units_seconds,function(){
 	if timer_color == c_black {

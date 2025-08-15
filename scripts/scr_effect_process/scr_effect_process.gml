@@ -42,6 +42,7 @@ function effect_process() {
 		if poison_tick >= end_tick {
 			poison_tick -= end_tick;
 			hp.base--;
+			last_damaged = 0;
 		}
 	} else {
 		poison_tick = 0; 	

@@ -1,5 +1,5 @@
 var sound_params = {
-	sound: snd_final_bullet,
+	sound: snd_lonestar_gunshot_1,
 	pitch: random_range(0.9,1.1),
 	};
 
@@ -25,7 +25,7 @@ for (var i = 0; i < length; ++i) {
 			if team != global.player_team {
 				part_particles_burst(global.part_sys,hX -i*lengthX/length +sprite_width/2,hY -i*lengthY/length +sprite_height/2,part_explode);	
 				if !invincible {
-					hurt(hp,10,self);
+					hurt(hp,10,DAMAGE.ENERGY,self);
 				}
 				breakIf = true;
 			}

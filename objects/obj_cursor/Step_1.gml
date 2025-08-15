@@ -40,7 +40,15 @@ if !using_mk && !instance_exists(obj_menu) {
     cursor_sprite = cr_none;
     image_alpha = 1;
 } else {
-    cursor_sprite = spr_cursor;
+	switch global.mode {
+		case "delete":
+			cursor_sprite = spr_cursor_delete;
+		break;
+		default:
+			cursor_sprite = spr_cursor;
+		break;
+	}
+    
 	image_alpha = 0;
 }
 
@@ -70,7 +78,7 @@ var slots = [obj_piece_slot, obj_loadout_slot, obj_unlocked_slot];
 for (var i = 0; i < array_length(slots); i++) {
     var inst = instance_position(x, y, slots[i]);
     if instance_exists(inst) && inst.identity != "Empty" {
-        tooltip_string = inst.desc;
+		tooltip_string = inst.desc;
     }
 }
 var passive = instance_position(x, y, obj_power_passive);
@@ -133,7 +141,7 @@ if instance_exists(movingSomething) {
 						} else {
 							// See if it can be killed
 							var dummyHP = variable_clone(check.hp);
-							hurt(dummyHP,attack_power);
+							hurt(dummyHP,attack_power,DAMAGE.PHYSICAL);
 							if total_health(dummyHP) > 0 {
 								other.tooltip_string = "CAN'T KILL"		
 							} else {

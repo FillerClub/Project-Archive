@@ -7,8 +7,8 @@ with obj_grid {
 	}
 }
 var
-obj = piece_database(spawn_actual,PIECEDATA.OBJECT),
-cost = piece_database(spawn_actual,PIECEDATA.PLACECOST);
+obj = piece_database(spawn_actual,"object"),
+cost = piece_database(spawn_actual,"place_cost");
 instance_create_layer(gridRef.bbox_right -abs(spawn_x_offset*GRIDSPACE) -GRIDSPACE,gridRef.bbox_top +spawn_y_offset*GRIDSPACE,"Instances",obj,{
 	identity: spawn_actual,
 	team: "enemy",

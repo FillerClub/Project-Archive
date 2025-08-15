@@ -1,4 +1,8 @@
-if moved {
-	valid_moves[ONLY_MOVE] = [["1", 0]];
-}
 event_inherited();
+
+if global.game_state != PAUSED {
+	expire_timer += delta_time*DELTA_TO_SECONDS*global.level_speed;
+	if expire_timer >= 16 {
+		instance_destroy();	
+	}
+}

@@ -21,5 +21,5 @@
   "sampleRate":44100,
   "soundFile":"snd_explosion.ogg",
   "type":0,
-  "volume":0.71,
+  "volume":0.7,
 }

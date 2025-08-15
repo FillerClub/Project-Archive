@@ -18,7 +18,7 @@ for (var i = 0; i < ar_leng; ++i) {
 		if place_meeting(valid_moves[i][0],valid_moves[i][1],obj_generic_piece) {
 			with instance_place(valid_moves[i][0],valid_moves[i][1],obj_generic_piece) {
 				if !invincible {
-					hurt(hp,5,self);
+					hurt(hp,5,DAMAGE.ENERGY,self);
 				}
 			}
 		}

@@ -13,8 +13,8 @@ for (var i = 0; i < ar_leng; ++i) {
 		if position_meeting(xM,yM,obj_obstacle) {
 			var pC = instance_position(xM,yM,obj_obstacle);
 			if z_collide(self,pC,6) {
-				effect_generate(pC,EFFECT.SLOW,"smoke_bomb",11,5);
-				effect_generate(pC,EFFECT.POISON,"smoke_bomb",6,2);
+				effect_generate(pC,EFFECT.SLOW,"smoke_bomb",12,5);
+				effect_generate(pC,EFFECT.POISON,"smoke_bomb",12,2);
 			}
 		} 	
 	}			

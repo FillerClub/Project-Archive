@@ -2,7 +2,7 @@ function bishop_move_handler(){
 	var tM = (team == "friendly")?1:-1,
 	gS = GRIDSPACE;
 
-	valid_moves = piece_database(identity,PIECEDATA.MOVES);
+	valid_moves = piece_database(identity,"moves");
 
 	for (var ii = 0; ii < 4; ++ii) {
 		var 

@@ -13,7 +13,7 @@ for (var i = 0; i < ar_leng; ++i) {
 		if position_meeting(xM,yM,obj_obstacle) {
 			var pC = instance_position(xM,yM,obj_obstacle);
 			if z_collide(self,pC,4) {
-				hurt(pC.hp,attack_power,pC);
+				hurt(pC.hp,attack_power,DAMAGE.ENERGY,pC);
 			}
 		} 	
 	}			

@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"Gamebits",
-    "path":"folders/Sprites/Gamebits.yy",
+    "name":"Cursor",
+    "path":"folders/Sprites/Gamebits/Cursor.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

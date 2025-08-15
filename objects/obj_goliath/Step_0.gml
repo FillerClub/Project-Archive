@@ -2,70 +2,72 @@ event_inherited();
 
 
 
-if global.game_state != PAUSED{
-	var tM = ((team == "friendly")?1:-1)*(1 -toggle*2),
-	gS = GRIDSPACE;
-	if position_meeting(x +tM*gS,y,obj_obstacle) {
-		with instance_position(x +tM*gS,y,obj_obstacle) {
-			if total_health(hp) > 0 && team == other.team {
-				other.skip_timer = true;	
-			} else {
-				other.skip_timer = false;
-			}
-		}
-	} else { skip_timer = false; }
-
+if global.game_state != PAUSED {
+	if global.game_state == PAUSED {
+		return false;	
+	}
+	var 
+	tM = tm_dp(1,team,toggle),
+	targetX = x +tM*GRIDSPACE +GRIDSPACE/2,
+	targetY = y +GRIDSPACE/2,
+	targetGrid = noone,
+	obstacleInWay = noone,
+	canMove = true,
+	still = false,
+	// Debug setting
+	bounce = false;
 	if timer >= timer_end && moving {
-		var canMove = true;
-		var still = false;
-		if !position_meeting(x +tM*gS,y,obj_grid) {
+		// Flip if it meets the end of a grid
+		if !position_meeting(targetX,targetY,obj_grid) {
 			toggle = (toggle)?false:true;
-		} else {
-			var inst = instance_position(x +tM*gS,y,obj_obstacle);
-			if inst != -4 {
-				if (total_health(inst.hp) <= 0) || (inst.team == team) {
-					toggle = (toggle)?false:true;	
-				} 
-			}
+			return false;	
 		}
-	
-		tM = ((team == "friendly")?1:-1)*(1 -toggle*2);
-		
-		
-		if !position_meeting(x +tM*gS,y,obj_grid) {
+		// Recalculate target position upon flipping
+		tM = tm_dp(1,team,toggle);
+		targetX = x +tM*GRIDSPACE +GRIDSPACE/2;
+		targetY = y +GRIDSPACE/2;
+		// Redetermine if it can move
+		if !position_meeting(targetX,targetY,obj_grid) {
 			canMove = false;	
-		} else if position_meeting(x +tM*gS,y,obj_obstacle) {
-			with instance_position(x +tM*gS,y,obj_obstacle) {
-				if team == other.team {
+		} else {
+			targetGrid = instance_position(targetX,targetY,obj_grid);
+			if position_meeting(targetX,targetY,obj_obstacle) && !bounce {
+				obstacleInWay = instance_position(targetX,targetY,obj_obstacle);
+				if obstacleInWay.team == team {
 					canMove = false;
 				}	
-				if team != other.team {
-					if total_health(hp) > 0 {
-						hurt(hp,15,self);
-						if total_health(hp) > 0 {
-							canMove = false
-							audio_stop_sound(snd_giant_step);
-							audio_play_sound(snd_giant_step,0,0);
-						}
+				if obstacleInWay.team != team {
+					hurt(obstacleInWay.hp,15,DAMAGE.PHYSICAL,obstacleInWay);
+					audio_play_sound(snd_bullet_hit,0,0);
+					if total_health(obstacleInWay.hp) > 0 {
+						still = true;
 					} else {
-						still = true;	
+						canMove = true;
 					}
 				}
 			}
 		}
-	
+		if bounce {
+			skip_timer = false;
+			if still {
+				toggle = (toggle)?false:true;
+			}
+			still = false;
+		}
 		if canMove {
 			if !still {
-				x += tM*gS;	
-				timer = 0;
-				audio_play_sound(snd_giant_step,0,0);
-			}
+				piece_on_grid = targetGrid;
+				var
+				targetGridPos = [floor((targetX -targetGrid.bbox_left)/GRIDSPACE),floor((targetY -targetGrid.bbox_top)/GRIDSPACE)];
+				grid_pos = targetGridPos;
+				x = targetGridPos[0]*GRIDSPACE +targetGrid.bbox_left;
+				y = targetGridPos[1]*GRIDSPACE +targetGrid.bbox_top;
+			} 
+			audio_play_sound(snd_giant_step,0,0);
+			timer = 0;
 		} else {
 			toggle = (toggle)?false:true;
-			tM = ((team == "friendly")?1:-1)*(1 -toggle*2);	
 		}
 	}
-
-
 }
 

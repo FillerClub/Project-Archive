@@ -12,7 +12,10 @@
     "name":"Grid",
     "path":"folders/Objects/Main/Level/Grid.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"obj_game_object",
+    "path":"objects/obj_game_object/obj_game_object.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

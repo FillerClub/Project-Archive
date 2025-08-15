@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"snd_lonestar_gunshot_2",
+  "audioGroupId":{
+    "name":"sound_effects",
+    "path":"audiogroups/sound_effects",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":1.2143084,
+  "name":"snd_lonestar_gunshot_2",
+  "parent":{
+    "name":"Lonestar",
+    "path":"folders/Sounds/Heroes/Lonestar.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":48000,
+  "soundFile":"snd_lonestar_gunshot_2.ogg",
+  "type":1,
+  "volume":0.3,
+}

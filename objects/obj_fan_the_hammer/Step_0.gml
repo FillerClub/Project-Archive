@@ -14,7 +14,24 @@ if own.ammo <= 0 {
 timer += delta_time*DELTA_TO_SECONDS*global.level_speed;
 
 if timer >= .15 {
-	own.ammo--;
-	audio_play_sound(snd_final_bullet,0,0);
-	timer = 0;
+	var close = infinity,
+	closest = noone;
+	with obj_generic_piece {
+		if team == other.team {
+			continue;	
+		}
+		var dist = distance_to_object(own); 
+		if dist < close {
+			close = dist;
+			closest = id;
+		}
+	}
+	if instance_exists(closest) {
+		hurt(closest.hp,25,DAMAGE.NORMAL,closest);
+		own.ammo--;
+		audio_play_from_array([snd_lonestar_gunshot_1,snd_lonestar_gunshot_2,snd_lonestar_gunshot_3]);
+		timer = 0;	
+	} else if timer >= .8 {
+		instance_destroy();
+	}
 }

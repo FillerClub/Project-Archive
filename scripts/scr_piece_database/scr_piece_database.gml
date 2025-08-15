@@ -2,7 +2,7 @@
 /// @param {string} name Name of the object to lookup.
 /// @param {macro} trait Return specified trait of the object, if blank, returns every trait as an array instead.
 /// @param {string} team Team of piece to return; MOVE trait only
-/// @param {integer} toggle -1 or 1; PIECEDATA.MOVES trait only
+/// @param {integer} toggle -1 or 1; "moves" trait only
 enum PIECEDATA {
 ALL = -1,					// Everything
 NAME = 0,					// String
@@ -15,7 +15,7 @@ MOVECOOLDOWN = 6,			// Real
 MOVECOST = 7,				// Integer
 HP = 8,						// Real
 ATTACKPOWER = 9,					// Real
-MOVES = 10,					// Array, with subarrays: PIECEDATA.TYPE OF MOVELIST[ MOVELIST[ MOVE[x,y], [x +1,y -1], etc...]]
+MOVES = 10,					// Array, with subarrays: "type" OF MOVELIST[ MOVELIST[ MOVE[x,y], [x +1,y -1], etc...]]
 PLACEMENTONGRID = 11,		// Macro
 PLACEMENTONPIECE = 12,		// Macro
 CLASS = 13,					// Macro
@@ -31,301 +31,421 @@ DESCRIPTION = 16,			// String
 
 // Object types
 //#macro 0 0
-
+function make_piece(_name = "debug",_obj = obj_debug_piece,_spr = spr_generic_piece,_slotSpr = spr_generic_slot,
+	_placeCost = 2,_slotCD = 10,_moveCD = 10,_moveCost = 0,_hp = {base:10},_atk = 10,_moves = 
+	[[[0,1],[0,-1]],				// first array ONLY_MOVE  
+	[["-1",1],["-1",0],["-1",-1]],	// second array ONLY_ATTACK // Numbers in strings are affectd by team & toggling variables
+	[["1",1],["1",0],["1",-1]]],	// third array BOTH						
+	_placeGrid = SAME, _placePiece = PLACEABLENONE, _class = DEFENSECLASS, _type = 0, _brief = "Not available", _desc = "Not available") constructor {
+		
+    name = _name;				object = _obj;				sprite = _spr;				slot_sprite = _slotSpr;
+    place_cost = _placeCost;	slot_cooldown = _slotCD;	move_cooldown = _moveCD;	move_cost = _moveCost;
+    hp = _hp;					attack_power = _atk;		moves = _moves;
+    grid_placement_behavior = _placeGrid;					piece_placement_behavior = _placePiece;
+    class = _class;				type = _type;				short_description = _brief;
+	full_description = _desc;
+}
 function piece_database(name, trait = -1) {
-	with obj_piece_database {
-		switch name {
-			case "shooter":
-				object = [	"shooter",obj_shooter,spr_shooter,spr_shooter_slot,
-							4,6,9,0,{base:10},5,
-							[[[0, 1],[0, -1]], 
-							[["1", 0]]],
-							SAME,PLACEABLENONE,
-							DEFENSECLASS,0,
-							"Shoots at enemy pieces and the enemy base.",
-							"I love this piece. My mom gave this piece to me when I first started playing Adler's Game. Placing them all makes me feel safe, like a queen defending her castle. I keep its card on my nightstand to remind me of those times."]
-			break;
-			case "lobber":
-				object = [	"lobber",obj_lobber,spr_lobber,spr_lobber_slot,
-							4,6,9,0,{base:10},5,
-							[[[0, 1],[0, -1]], 
-							[["1", 0]]],
-							SAME,PLACEABLENONE,
-							DEFENSECLASS,0,
-							"Lobs projectiles instead of shooting straight.",
-							""]
-			break;
-			case "short":
-				object = [	"short",obj_short_shooter,spr_short_shooter,spr_short_shooter_slot,
-							8,10,19,0,{base:10},10,
-							[[[1, 1]]],
-							SAME,PLACEABLENONE,
-							DEFENSECLASS,0,
-							"Rapidly shoots at pieces in its area.",
-							"TBA"]
-			break;
-			case "double_shooter":
-				object = [	"double_shooter",obj_double_shooter,spr_piece_upgraded,spr_double_shooter_slot,
-							8,8,7,0,{base:10},10,
-							[[[0, 1],[0, -1],[0,2],[0,-2]], 
-							[["1", 0]]],
-							SAME,PLACEABLENONE,
-							DEFENSECLASS,0,
-							"Shoots two bullets at a time.",
-							"TBA"]
-			break;
-			case "splitter":
-				object = [	"splitter",obj_splitter,spr_splitter,spr_splitter_slot,
-							6,8,7,0,{base:10},5,
-							[[[0, 1],[0, -1],[0,2],[0,-2]], 
-							[["1", 0]]],
-							SAME,PLACEABLENONE,
-							DEFENSECLASS,0,
-							"Can shoot in two lanes at once.",
-							"TBA"]
-			break;
-			case "big_shooter":
-				object = [	"big_shooter",obj_big_shooter,spr_big_shooter,spr_big_shooter_slot,
-							16,120,8,4,{base:10},10,
-							[undefined,
-							undefined,
-							[[1,1]]],
-							SAME,PLACEABLENONE,
-							DEFENSECLASS,0,
-							"Sacrifices all of your pieces to feed the ultimate war machine. The more pieces the better!",
-							"TBA"]
-			break;
-			case "piercer":
-				object = [	"piercer",obj_piercer,spr_piercer,spr_piercer_slot,
-							4,6,20,0,{base:10},20,
-							[[["-1", 1],["-1", -1]], 
-							undefined,
-							[["1",0]]],
-							SAME,PLACEABLENONE,
-							SUPPORTCLASS,0,
-							"Shoots a piercing projectile, cannot attack walls but slows down pieces.",
-							"TBA"]
-			break;
-			case "shotgun":
-				object = [	"shotgun",obj_shotgun,spr_shotgun,spr_shotgun_slot,
-							10,12,12,0,{base:10},5,
-							[[["1", 0],["-1", 1],["-1", 0],["-1", -1]]],
-							SAME,PLACEABLENONE,
-							DEFENSECLASS,0,
-							"High damage at a short distance.",
-							"TBA"]
-			break;
-			case "accelerator":
-				object = [	"accelerator",obj_accelerator,spr_accelerator,spr_accelerator_slot,
-							2,20,30,0,{base:10},1,
-							[[[1, 1],[1,-1],[-1,1],[-1,-1]]],
-							SAME,PLACEABLENONE,
-							SUPPORTCLASS,0,
-							"Produces points over a period of time. A worthwhile investment!",
-							"I don't know what I would do without these things. They've single handedly turned games around for me in the past. Yeah they don't really do much on their own; they're quite fragile at that, but they are well worth the little time and resources it takes."]
-			break;
-			case "cross":
-				object = [	"cross",obj_cross,spr_cross,spr_cross_slot,
-							6,15,6,0,{base:10},5,
-							[[[1, 0],[2, 0],[-1,0],[-2,0],[0,1],[0,2],[0,-1],[0,-2]]],
-							SAME,PLACEABLENONE,
-							SUPPORTCLASS,0,
-							"Gives a buff to pieces surrounding it.",
-							"TBA"]
-			break;
-			case "bishop":
-				object = [	"bishop",obj_bishop,spr_bishop,spr_bishop_slot,
-							6,10,14,0,{base:10},20,
-							[undefined,
-							undefined,
-							[[1,1]]],
-							SAME,PLACEABLENONE,
-							CONTROLCLASS,0,
-							"Able to be moved diagonally anywhere on the map.",
-							"TBA"]
-			break;
-			case "pawn":
-				object = [	"pawn",obj_pawn,spr_generic,spr_pawn_slot,
-							3,7,14,0,{base:5},10,
-							[[["1", 0],["2",0]], 
-							[["1", 1],["1", -1]]],
-							SAME,PLACEABLENONE,
-							CONTROLCLASS,0,
-							"Pawn",
-							"TBA",]
-			break;
-			case "wall":
-				object = [	"pawn",obj_wall,spr_wall,spr_wall_slot,
-							2,18,32,0,{base:5,armor:5},5,
-							[],
-							SAME,PLACEABLENONE,
-							CONTROLCLASS,0,
-							"Static piece with a lot of health. Useful for stalling.",
-							"TBA",]
-			break;
-			case "bomb":
-				object = [	"bomb",obj_bomb,spr_bomb,spr_bomb_slot,
-							12,30,0,0,{base:5},25,
-							[undefined],
-							NEUTRAL,PLACEABLEANY,
-							CONTROLCLASS,0,
-							"Explodes dealing massive damage to its surroundings.",
-							"TBA"]
-			break;
-			case "smoke_bomb":
-				object = [	"smoke_bomb",obj_smoke_bomb,spr_smoke_bomb,spr_smoke_bomb_slot,
-							0,17,0,0,{base:5},0,
-							[undefined],
-							NEUTRAL,PLACEABLENONE,
-							CONTROLCLASS,0,
-							"Slows enemy pieces in its radius when destroyed.",
-							"TBA"]
-			break;
-			case "bomber":
-				object = [	"bomber",obj_bomber,spr_bomber,spr_bomber_slot,
-							16,16,21,0,{base:10},10,
-							[undefined],
-							SAME,PLACEABLENONE,
-							CONTROLCLASS,0,
-							"Instead of moving, launches an explosive anywhere on the map.",
-							"TBA"]
-			break;
-			case "stick":
-				object = [	"stick",obj_stick,spr_stick,spr_stick_slot,
-							1,30,1,0,{base:5},20,
-							[undefined, 
-							[[1, 0],[-1, 0]]],
-							SAME,PLACEABLENONE,
-							SUPPORTCLASS,0,
-							"Breaks upon taking a piece.",
-							"A stick is a weird choice to add to the game. You'd think they'd add something with a little more flair like a living trapdoor, or an explosive mine maybe. But no, it's just a stick. No personality, not very interactive, only brown. I'm sorry but this thing is really boring."]
-			break;
-			case "super_stick":
-				object = [	"super_stick",obj_super_stick,spr_super_stick,spr_super_stick_slot,
-							9,50,6,0,{base:15,armor:5,shield:5},20,
-							[undefined, 
-							[[1,1]]],
-							SAME,PLACEABLENONE,
-							SUPPORTCLASS,0,
-							"Doesn't break, and has a larger range. Overall more super.",
-							"... another stick?"]
-			break;
-			// Crawlers
-			case "crawler":
-				object = [	"crawler",obj_crawler,spr_crawler,spr_crawler_slot,
-							1,10,4,0,{base:10},10,
-							[undefined, 
-							[["1", 0]]],
-							SAME,PLACEABLENONE,
-							OFFENSECLASS,0,
-							"Crawls all the way to the enemy's base.",
-							"Crawlers, despite their limited mobility, they always seem to get into the strangest places if when left by themselves. Plus, they always like herding into groups of other crawlers for whatever reason. They kinda freak me out for that but some people seem to really like crawlers, so I can't fault them for that."]
-			break;
-			case "flyer":
-				object = [	"flyer",obj_flyer,spr_flyer,spr_flyer_slot,
-							1,10,4,0,{base:10},10,
-							[undefined, 
-							[["1", 0]]],
-							SAME,PLACEABLENONE,
-							OFFENSECLASS,0,
-							"Flies all the way to the enemy's base.",
-							""]
-			break;
-			case "drooper":
-				object = [	"drooper",obj_drooper,spr_drooper,spr_drooper_slot,
-							2,16,4,0,{base:10},10,
-							[undefined, 
-							[["1", 0]]],
-							SAME,PLACEABLENONE,
-							OFFENSECLASS,0,
-							"Crawler able to take pieces in its immediate column.",
-							"Because of this piece's ability to drop from high up the map to take a piece, this crawler has a very peculiar feature to show for that. Its snout! Anytime the drooper attacks an enemy from above (or below), it would use its snoot to droop on the enemy piece. That's why it's called the droop snoot, the snoot would droop."]
-			break;
-			case "tank_crawler":
-				object = [	"tank_crawler",obj_crawler,spr_tank_crawler,spr_tank_crawler_slot,
-							2,20,4,0,{base:15},10,
-							[undefined, 
-							[["1", 0]]],
-							SAME,PLACEABLENONE,
-							OFFENSECLASS,0,
-							"Able to take more damage than a normal crawler.",
-							//Change?
-							"People are always confused as to why this thing has twice the health of a regular crawler. Are the spikes supposed to give it tougher skin? Is it just twice as massive? This piece recieves a large amount of ridicule because of the wacky logic behind it. Yet, I think it's tougher in a different way. I respect tank crawlers inspite of all the flack they get, they just disregard whatever hateful thing is said about them and keep doing their job. You go little champ!"]
-			break;
-			case "super_tank_crawler":
-				object = [	"super_tank_crawler",obj_crawler,spr_super_tank_crawler,spr_super_tank_crawler_slot,
-							3,25,4,0,{base:10,armor:5},10,
-							[undefined, 
-							[["1", 0]]],
-							SAME,PLACEABLENONE,
-							OFFENSECLASS,0,
-							"Takes even more damage to kill.",
-							"Even more spikes."]
-			break;
-			case "the_goliath":
-				object = [	"the_goliath",obj_goliath,spr_goliath,spr_goliath_slot,
-							20,25,12,0,{base:10,armor:10,shield:10},20,
-							[undefined,
-							undefined,
-							[[0,1],[0,-1]]],
-							SAME,PLACEABLENONE,
-							OFFENSECLASS,0,
-							"Big guy.",
-							"TBA",]
-			break;
-			case "jumper":
-				object = [	"jumper",obj_jumper,spr_jumper,spr_jumper_slot,
-							2,16,3,0,{base:10},10,
-							[undefined, 
-							[["1",0]],
-							[["2",1],["2",-1]]],
-							SAME,PLACEABLENONE,
-							OFFENSECLASS,0,
-							"Can make a jump over pieces.",
-							"TBA"]
-			break;
-			// Misc
-			case "barrel":
-				object = [	"barrel",obj_generic_piece,spr_barrel_SCRAPPLS,spr_generic_piece,
-							1,.5,1,1,{base:10},0,
-							[undefined],
-							SAME,PLACEABLENONE,
-							DEFENSECLASS,0,
-							"Just a barrel.",
-							"Useless."]
-			break;
-			case "ball":
-				object = [	"ball",obj_ball,spr_ball,spr_ball_slot,
-							5,6,1,0,{base:10},1,
-							[[],
-							[],
-							[[1,0],[0,1],[1,1],[-1,0],[0,-1],[-1,-1],[-1,1],[1,-1]]],
-							SAME,PLACEABLENONE,
-							CONTROLCLASS,0,
-							"Bounces",
-							""]
-			break;			
-			case "Empty":
-				object = [	"Empty",noone,spr_empty_slot,spr_empty_slot,
-							0,0,0,0,{base:0},0,
-							[],
-							PLACEABLENONE,PLACEABLENONE,
-							#4C4C4C,0,
-							"",
-							""]
-			break;			
-			default:
-				object = [	"debug",obj_debug_piece,spr_generic_piece,spr_generic_slot,
-							0,.1,1,-1,{base:10},100,
-							[[[0,1],[0,-1]], 
-							[["-1",1],["-1",0],["-1",-1]], 
-							[["1",1],["1",0],["1",-1]]],
-							SAME,PLACEABLENONE,
-							DEFENSECLASS,0,
-							"What? Is this supposed to be here?",
-							"Seriously, I don't remember seeing anything like this before. My phone must be bugged or something. Extremely odd."]
-			break;
-		}
-		if trait >= 0 { return object[trait]; } else { return object; }
+    // Helper to make pieces quickly
+    static p = new make_piece(),
+	returnPiece = -1;
+	switch name {
+		// Shooters
+		case "shooter":
+			p.name = "Shooter";						p.object = obj_shooter;		
+			p.sprite = spr_shooter;					p.slot_sprite = spr_shooter_slot;
+			p.place_cost = 4;						p.move_cost = 0;
+			p.slot_cooldown = 6;					p.move_cooldown = 9;	
+			p.hp = {base:10};						p.attack_power = 5;		
+			p.moves = [/* ONLY_MOVE */[[0, 1],[0, -1]], /* ONLY_ATTACK */[["1", 0]]];
+			p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
+			p.class = DEFENSECLASS;					p.type = 0;				
+			p.short_description = "Shoots at enemy pieces and the enemy base.";
+			p.full_description = "TBA";
+			returnPiece = p;
+		break;
+		case "short":
+			p.name = "Bastion";						p.object = obj_short_shooter;		
+			p.sprite = spr_short_shooter;			p.slot_sprite = spr_short_shooter_slot;
+			p.place_cost = 8;						p.move_cost = 0;
+			p.slot_cooldown = 9.5;					p.move_cooldown = 17.5;	
+			p.hp = {base:10};						p.attack_power = 5;		
+			p.moves = [/*ONLY_MOVE*/[[1, 1]]];
+			p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
+			p.class = DEFENSECLASS;					p.type = 0;				
+			p.short_description = "Rapidly shoots at pieces in its area.";
+			p.full_description = "TBA";
+			returnPiece = p;
+		break;
+		case "lobber":
+			p.name = "Lobber";						p.object = obj_lobber;		
+			p.sprite = spr_lobber;					p.slot_sprite = spr_lobber_slot;
+			p.place_cost = 4;						p.move_cost = 0;
+			p.slot_cooldown = 6;					p.move_cooldown = 7;	
+			p.hp = {base:10};						p.attack_power = 5;		
+			p.moves = [/* ONLY_MOVE */[[0, 1],[0, -1],[1, 0],[-1, 0]]];
+			p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
+			p.class = DEFENSECLASS;					p.type = 0;				
+			p.short_description = "Lobs projectiles instead of shooting straight.";
+			p.full_description = "TBA";
+			returnPiece = p;
+		break;
+		case "mortar":
+			p.name = "Mortar";						p.object = obj_mortar;		
+			p.sprite = spr_mortar;					p.slot_sprite = spr_mortar_slot;
+			p.place_cost = 10;						p.move_cost = 0;
+			p.slot_cooldown = 10;					p.move_cooldown = 10.5;	
+			p.hp = {base:10};						p.attack_power = 10;		
+			p.moves = [[],[],/* BOTH */[[0, 1],[0, -1],[1, 0],[-1, 0],[1, 1],[1, -1],[-1, 1],[-1, -1]]];
+			p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
+			p.class = DEFENSECLASS;					p.type = 0;				
+			p.short_description = "Lobs heavy projectiles dealing massive damage and splashes.";
+			p.full_description = "TBA";
+			returnPiece = p;
+		break;
+		case "double_shooter":
+            p.name = "Double Shooter";				p.object = obj_double_shooter;
+            p.sprite = spr_piece_upgraded;			p.slot_sprite = spr_double_shooter_slot;
+            p.place_cost = 8;						p.move_cost = 0;
+            p.slot_cooldown = 8;					p.move_cooldown = 7;
+            p.hp = {base:10};						p.attack_power = 10;
+            p.moves = [[[0, 1],[0, -1],[0, 2],[0, -2]], [["1", 0]]];
+            p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
+            p.class = DEFENSECLASS;					p.type = 0;
+            p.short_description = "Shoots two bullets at a time.";
+            p.full_description = "TBA";
+            returnPiece = p;
+        break;
+        case "splitter":
+            p.name = "Splitter";					p.object = obj_splitter;
+            p.sprite = spr_splitter;				p.slot_sprite = spr_splitter_slot;
+            p.place_cost = 6;						p.move_cost = 0;
+            p.slot_cooldown = 7;					p.move_cooldown = 7;
+            p.hp = {base:10};						p.attack_power = 5;
+            p.moves = [[[0, 1],[0, -1],[0, 2],[0, -2]], [["1", 0]]];
+            p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
+            p.class = DEFENSECLASS;					p.type = 0;
+            p.short_description = "Can shoot in two lanes at once.";
+            p.full_description = "TBA";
+            returnPiece = p;
+        break;
+        case "big_shooter":
+            p.name = "Big Shooter";					p.object = obj_big_shooter;
+            p.sprite = spr_big_shooter;				p.slot_sprite = spr_big_shooter_slot;
+            p.place_cost = 16;						p.move_cost = 4;
+            p.slot_cooldown = 120;					p.move_cooldown = 8;
+            p.hp = {base:10};						p.attack_power = 10;
+            p.moves = [undefined, undefined, [[1, 1]]];
+            p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
+            p.class = DEFENSECLASS;					p.type = 0;
+            p.short_description = "Sacrifices all of your pieces to feed the ultimate war machine. The more pieces the better!";
+            p.full_description = "TBA";
+            returnPiece = p;
+        break;
+        case "piercer":
+            p.name = "Piercer";						p.object = obj_piercer;
+            p.sprite = spr_piercer;					p.slot_sprite = spr_piercer_slot;
+            p.place_cost = 4;						p.move_cost = 0;
+            p.slot_cooldown = 6;					p.move_cooldown = 20;
+            p.hp = {base:10};						p.attack_power = 20;
+            p.moves = [[["-1", 1],["-1", -1]], undefined, [["1", 0]]];
+            p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
+            p.class = SUPPORTCLASS;					p.type = 0;
+            p.short_description = "Shoots a piercing projectile, cannot attack walls but slows down pieces.";
+            p.full_description = "TBA";
+            returnPiece = p;
+        break;
+        case "shotgun":
+            p.name = "Shotgun";						p.object = obj_shotgun;
+            p.sprite = spr_shotgun;					p.slot_sprite = spr_shotgun_slot;
+            p.place_cost = 10;						p.move_cost = 0;
+            p.slot_cooldown = 12;					p.move_cooldown = 12;
+            p.hp = {base:10};						p.attack_power = 5;
+            p.moves = [[["1", 0],["-1", 1],["-1", 0],["-1", -1]]];
+            p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
+            p.class = DEFENSECLASS;					p.type = 0;
+            p.short_description = "High damage at a short distance.";
+            p.full_description = "TBA";
+            returnPiece = p;
+        break;
+		// Supports
+        case "accelerator":
+            p.name = "Accelerator";					p.object = obj_accelerator;
+            p.sprite = spr_accelerator;				p.slot_sprite = spr_accelerator_slot;
+            p.place_cost = 2;						p.move_cost = 0;
+            p.slot_cooldown = 14;					p.move_cooldown = 25;
+            p.hp = {base:10};						p.attack_power = 1;
+            p.moves = [[[1, 1],[1, -1],[-1, 1],[-1, -1]]];
+            p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
+            p.class = SUPPORTCLASS;					p.type = 0;
+            p.short_description = "Produces points over a period of time. A worthwhile investment!";
+            p.full_description = "I don't know what I would do without these things. They've single handedly turned games around for me in the past. Yeah they don't really do much on their own; they're quite fragile at that, but they are well worth the little time and resources it takes.";
+            returnPiece = p;
+        break;
+        case "cross":
+            p.name = "Cross";						p.object = obj_cross;
+            p.sprite = spr_cross;					p.slot_sprite = spr_cross_slot;
+            p.place_cost = 6;						p.move_cost = 0;
+            p.slot_cooldown = 15;					p.move_cooldown = 6;
+            p.hp = {base:10};						p.attack_power = 5;
+            p.moves = [[[1, 0],[2, 0],[-1, 0],[-2, 0],[0, 1],[0, 2],[0, -1],[0, -2]]];
+            p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
+            p.class = SUPPORTCLASS;					p.type = 0;
+            p.short_description = "Gives a buff to pieces surrounding it.";
+            p.full_description = "TBA";
+            returnPiece = p;
+        break;
+		// Control
+        case "bishop":
+            p.name = "Bishop";						p.object = obj_bishop;
+            p.sprite = spr_bishop;					p.slot_sprite = spr_bishop_slot;
+            p.place_cost = 6;						p.move_cost = 0;
+            p.slot_cooldown = 10;					p.move_cooldown = 9.5;
+            p.hp = {base:7.5,shield:2.5};			p.attack_power = 25;
+            p.moves = [undefined, undefined, [[1, 1]]];
+            p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
+            p.class = CONTROLCLASS;					p.type = 0;
+            p.short_description = "Able to be moved diagonally anywhere on the map.";
+            p.full_description = "TBA";
+            returnPiece = p;
+        break;
+        case "pawn":
+            p.name = "Pawn";						p.object = obj_pawn;
+            p.sprite = spr_generic;					p.slot_sprite = spr_pawn_slot;
+            p.place_cost = 0;						p.move_cost = 0;
+            p.slot_cooldown = 5;					p.move_cooldown = 15;
+            p.hp = {base:5};						p.attack_power = 5;
+            p.moves = [[["1", 0],["2", 0]], [["1", 1],["1", -1]]];
+            p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
+            p.class = CONTROLCLASS;					p.type = 0;
+            p.short_description = "Spammable defense, expires after a short amount of time.";
+            p.full_description = "TBA";
+            returnPiece = p;
+        break;
+        case "wall":
+            p.name = "Wall";						p.object = obj_wall;
+            p.sprite = spr_wall;					p.slot_sprite = spr_wall_slot;
+            p.place_cost = 2;						p.move_cost = 0;
+            p.slot_cooldown = 20;					p.move_cooldown = 32;
+            p.hp = {base:10, armor:10};				p.attack_power = 5;
+            p.moves = [undefined];
+            p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
+            p.class = CONTROLCLASS;					p.type = 0;
+            p.short_description = "Static piece with a lot of health. Useful for stalling.";
+            p.full_description = "TBA";
+            returnPiece = p;
+        break;
+        case "shield_gen":
+            p.name = "Shield Generator";			p.object = obj_shield_generator;
+            p.sprite = spr_wall;					p.slot_sprite = spr_wall_slot;
+            p.place_cost = 3;						p.move_cost = 0;
+            p.slot_cooldown = 16;					p.move_cooldown = 32;
+            p.hp = {base:10, shield:10};			p.attack_power = 5;
+            p.moves = [undefined];
+            p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
+            p.class = CONTROLCLASS;					p.type = 0;
+            p.short_description = "Constantly regenerates its shield health.";
+            p.full_description = "TBA";
+            returnPiece = p;
+        break;
+        case "bomb":
+            p.name = "Bomb";						p.object = obj_bomb;
+            p.sprite = spr_bomb;					p.slot_sprite = spr_bomb_slot;
+            p.place_cost = 12;						p.move_cost = 0;
+            p.slot_cooldown = 30;					p.move_cooldown = 0;
+            p.hp = {base:5};						p.attack_power = 25;
+            p.moves = [undefined];
+            p.grid_placement_behavior = NEUTRAL;	p.piece_placement_behavior = PLACEABLEANY;
+            p.class = CONTROLCLASS;					p.type = 0;
+            p.short_description = "Explodes dealing massive damage to its surroundings.";
+            p.full_description = "TBA";
+            returnPiece = p;
+        break;
+        case "smoke_bomb":
+            p.name = "Smoke Bomb";					p.object = obj_smoke_bomb;
+            p.sprite = spr_smoke_bomb;				p.slot_sprite = spr_smoke_bomb_slot;
+            p.place_cost = 0;						p.move_cost = 0;
+            p.slot_cooldown = 12;					p.move_cooldown = 0;
+            p.hp = {base:5};						p.attack_power = 0;
+            p.moves = [undefined];
+            p.grid_placement_behavior = NEUTRAL;	p.piece_placement_behavior = PLACEABLENONE;
+            p.class = CONTROLCLASS;					p.type = 0;
+            p.short_description = "Slows enemy pieces in its radius when destroyed.";
+            p.full_description = "TBA";
+            returnPiece = p;
+        break;
+        case "bomber":
+            p.name = "Bomber";						p.object = obj_bomber;
+            p.sprite = spr_bomber;					p.slot_sprite = spr_bomber_slot;
+            p.place_cost = 16;						p.move_cost = 0;
+            p.slot_cooldown = 16;					p.move_cooldown = 21;
+            p.hp = {base:10};						p.attack_power = 10;
+            p.moves = [undefined];
+            p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
+            p.class = CONTROLCLASS;					p.type = 0;
+            p.short_description = "Instead of moving, launches an explosive anywhere on the map.";
+            p.full_description = "TBA";
+            returnPiece = p;
+        break;	
+        case "stick":
+            p.name = "Stick";						p.object = obj_stick;
+            p.sprite = spr_stick;					p.slot_sprite = spr_stick_slot;
+            p.place_cost = 1;						p.move_cost = 0;
+            p.slot_cooldown = 30;					p.move_cooldown = 99;
+            p.hp = {base:5};						p.attack_power = 25;
+            p.moves = [undefined,[[1, 0],[-1, 0]]];
+            p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
+            p.class = SUPPORTCLASS;					p.type = 0;
+            p.short_description = "Breaks upon taking a piece.";
+            p.full_description = "TBA";
+            returnPiece = p;
+        break;	
+		case "super_stick":
+            p.name = "Super Stick";					p.object = obj_super_stick;
+            p.sprite = spr_super_stick;				p.slot_sprite = spr_super_stick_slot;
+            p.place_cost = 9;						p.move_cost = 0;
+            p.slot_cooldown = 35;					p.move_cooldown = 8;
+            p.hp = {base:15,armor:5,shield:5};		p.attack_power = 25;
+            p.moves = [undefined,[[1,1]]];
+            p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
+            p.class = SUPPORTCLASS;					p.type = 0;
+            p.short_description = "Doesn't break, and has a larger range. Overall more super.";
+            p.full_description = "TBA";
+            returnPiece = p;		
+		break;
+		// Crawlers
+		case "crawler":
+            p.name = "Crawler";						p.object = obj_crawler;
+            p.sprite = spr_crawler;					p.slot_sprite = spr_crawler_slot;
+            p.place_cost = 1;						p.move_cost = 0;
+            p.slot_cooldown = 9;					p.move_cooldown = 4;
+            p.hp = {base:10};						p.attack_power = 10;
+            p.moves = [undefined,[["1", 0]]];
+            p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
+            p.class = OFFENSECLASS;					p.type = 0;
+            p.short_description = "Crawls all the way to the enemy's base.";
+            p.full_description = "TBA";
+            returnPiece = p;		
+		break;
+		case "flyer":
+            p.name = "Flyer";						p.object = obj_flyer;
+            p.sprite = spr_flyer;					p.slot_sprite = spr_flyer_slot;
+            p.place_cost = 2;						p.move_cost = 0;
+            p.slot_cooldown = 22;					p.move_cooldown = 4;
+            p.hp = {base:10};						p.attack_power = 10;
+            p.moves = [undefined,[["1", 0]]];
+            p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
+            p.class = OFFENSECLASS;					p.type = 0;
+            p.short_description = "Flies all the way to the enemy's base. Can't be hit by grounded enemies.";
+            p.full_description = "TBA";
+            returnPiece = p;		
+		break;
+		case "drooper":
+            p.name = "Drooper";						p.object = obj_drooper;
+            p.sprite = spr_drooper;					p.slot_sprite = spr_drooper_slot;
+            p.place_cost = 2;						p.move_cost = 0;
+            p.slot_cooldown = 16;					p.move_cooldown = 4;
+            p.hp = {base:10};						p.attack_power = 10;
+            p.moves = [undefined,[["1", 0]]];
+            p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
+            p.class = OFFENSECLASS;					p.type = 0;
+            p.short_description = "Crawler able to take pieces in its immediate column.";
+            p.full_description = "Because of this piece's ability to drop from high up the map to take a piece, this crawler has a very peculiar feature to show for that. Its snout! Anytime the drooper attacks an enemy from above (or below), it would use its snoot to droop on the enemy piece. That's why it's called the droop snoot, the snoot would droop.";
+            returnPiece = p;			
+		break;
+		case "tank_crawler":
+            p.name = "Tanky Crawler";				p.object = obj_crawler;
+            p.sprite = spr_tank_crawler;			p.slot_sprite = spr_tank_crawler_slot;
+            p.place_cost = 3;						p.move_cost = 0;
+            p.slot_cooldown = 20;					p.move_cooldown = 4;
+            p.hp = {base:10,armor:5};			p.attack_power = 10;
+            p.moves = [undefined,[["1", 0]]];
+            p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
+            p.class = OFFENSECLASS;					p.type = 0;
+            p.short_description = "Able to take more damage than a normal crawler.";
+            p.full_description = "TBA";
+            returnPiece = p;				
+		break;
+		case "super_tank_crawler":
+            p.name = "Very Tanky Crawler";			p.object = obj_crawler;
+            p.sprite = spr_super_tank_crawler;		p.slot_sprite = spr_super_tank_crawler_slot;
+            p.place_cost = 5;						p.move_cost = 0;
+            p.slot_cooldown = 25;					p.move_cooldown = 4.5;
+            p.hp = {base:15,armor:5};				p.attack_power = 20;
+            p.moves = [undefined,[["1", 0]]];
+            p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
+            p.class = OFFENSECLASS;					p.type = 0;
+            p.short_description = "Has armor, takes even more damage to kill.";
+            p.full_description = "TBA";
+            returnPiece = p;			
+		break;	
+		case "the_goliath":
+            p.name = "The Goliath";					p.object = obj_goliath;
+            p.sprite = spr_goliath;					p.slot_sprite = spr_goliath_slot;
+            p.place_cost = 15;						p.move_cost = 0;
+            p.slot_cooldown = 25;					p.move_cooldown = 12;
+            p.hp = {base:10,armor:10,shield:10};	p.attack_power = 25;
+            p.moves = [undefined,undefined,[[0,1],[0,-1]]];
+            p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
+            p.class = OFFENSECLASS;					p.type = 0;
+            p.short_description = "Big guy";
+            p.full_description = "TBA";
+            returnPiece = p;			
+		break;
+		case "jumper":
+			p.name = "Jumper";						p.object = obj_jumper;
+            p.sprite = spr_jumper;					p.slot_sprite = spr_jumper_slot;
+            p.place_cost = 3;						p.move_cost = 0;
+            p.slot_cooldown = 16;					p.move_cooldown = 3;
+            p.hp = {base:10};						p.attack_power = 10;
+            p.moves = [undefined, [["1",0]], [["2",1],["2",-1]]];
+            p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
+            p.class = OFFENSECLASS;					p.type = 0;
+            p.short_description = "Can make a jump over pieces.";
+            p.full_description = "TBA";
+            returnPiece = p;	
+		break;
+		// Debug
+		case "barrel":
+			p.name = "Barrel";						p.object = obj_wall;
+            p.sprite = spr_barrel_SCRAPPLS;			p.slot_sprite = spr_generic_piece;
+            p.place_cost = 1;						p.move_cost = 1;
+            p.slot_cooldown = 1;					p.move_cooldown = 1;
+            p.hp = {base:10};						p.attack_power = 1;
+            p.moves = [undefined];
+            p.grid_placement_behavior= PLACEABLEANY;p.piece_placement_behavior = PLACEABLENONE;
+            p.class = SUPPORTCLASS;					p.type = 0;
+            p.short_description = "Just a barrel.";
+            p.full_description = "Useless.";
+            returnPiece = p;			
+		break;
+		case "ball":
+			p.name = "Ball";						p.object = obj_ball;
+            p.sprite = spr_ball;					p.slot_sprite = spr_ball_slot;
+            p.place_cost = 1;						p.move_cost = 0;
+            p.slot_cooldown = 1;					p.move_cooldown = 1;
+            p.hp = {base:10};						p.attack_power = 1;
+            p.moves = [[],[],[[1,0],[0,1],[1,1],[-1,0],[0,-1],[-1,-1],[-1,1],[1,-1]]];
+            p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
+            p.class = CONTROLCLASS;					p.type = 0;
+            p.short_description = "Bounces";
+            p.full_description = "Useless.";
+            returnPiece = p;			
+		break;
+		case "Empty":
+			p.name = "Nothing";						p.object = noone;
+            p.sprite = spr_empty_slot;				p.slot_sprite = spr_empty_slot;
+            p.class = #4C4C4C;						p.type = 0;
+            returnPiece = p;			
+		break;	
+		default:
+			returnPiece = p;
+		break;
 	}
+	var finalReturn = variable_struct_get(returnPiece,trait);
+	if is_undefined(finalReturn) {
+        return returnPiece
+    } else {
+        return finalReturn;
+    }
 }

@@ -1,65 +1,71 @@
-if global.game_state == PAUSED exit;	
+if (global.game_state == PAUSED) exit;
 
-var brk = false;
-//Convert velocity to something useable
-var baseBulletSpd = 1500,
-realXVel = baseBulletSpd*x_vel*delta_time*DELTA_TO_SECONDS*global.level_speed,
-realYVel = baseBulletSpd*y_vel*delta_time*DELTA_TO_SECONDS*global.level_speed;
+// Base velocity
+var baseBulletSpd = 1000;
+var realXVel = baseBulletSpd * x_vel * delta_time * DELTA_TO_SECONDS * global.level_speed;
+var realYVel = baseBulletSpd * y_vel * delta_time * DELTA_TO_SECONDS * global.level_speed;
 
-// Calculate steps needed to take
-var trailCover = clamp(ceil(distance_to_point(x +realXVel,y +realYVel)),1,32);
-if instance_exists(target) {
-	var zFinal = target.z;
-	if object_get_parent(target.object_index) == obj_generic_piece {
-		zFinal += target.piece_on_grid.z;
-	}
-	z_target = zFinal;
-	x_target = target.x +GRIDSPACE/2;
-	y_target = target.y +GRIDSPACE/2;
-	if abs(y_init -y_target) > abs(x_init -x_target) {
-		use_y_target = true;	
-	} else {
-		use_y_target = false;
-	}
+// Final position
+var finalX = x + realXVel;
+var finalY = y + realYVel;
+
+// Precompute distance and steps
+var totalDist = distance_to_point(finalX, finalY);
+var trailCover = clamp(ceil(totalDist), 1, 32);
+
+// Target setup
+if (instance_exists(target)) {
+    z_target = target.z;
+    if (object_get_parent(target.object_index) == obj_generic_piece) {
+        z_target += target.piece_on_grid.z;
+    }
+    x_target = target.x + GRIDSPACE / 2;
+    y_target = target.y + GRIDSPACE / 2;
+    use_y_target = (abs(y_init - y_target) > abs(x_init - x_target));
 }
+
+// Precompute increments for trail points
+var stepX = (finalX - x) / trailCover;
+var stepY = (finalY - y) / trailCover;
+var trailX = x;
+var trailY = y;
+
+// Trail loop
 for (var trail = 0; trail < trailCover; trail++) {
-	//Draw trail of bullet
-	var trailX = lerp(x,x +realXVel,trail/trailCover),
-	trailY = lerp(y,y +realYVel,trail/trailCover);
-	bullet_lobbing(moving_z,x_target,y_target,z_target,x_init,y_init,z_init,lob_height,use_y_target);
-	bullet_on_grid = collision_point(trailX,trailY,obj_grid,false,false);
-	var bZOff = 0;
-	if instance_exists(bullet_on_grid) {
-		bZOff += bullet_on_grid.z;
-	}
-	if z < bZOff -32 {
-		sound = snd_bullet_empty_slap;
-		instance_destroy();	
-		exit;
-	} 
-	/*
-	var particle = -1;
-	with obj_battle_handler {
-		particle = bullet_part;
-	}
-	if particle != -1 {
-		part_particles_create(global.part_sys,trailX,trailY -z,particle,1);
-	}
-	*/	
-	var preCheckObj = collision_point(trailX,trailY,obj_obstacle,false,true);  
-	if !instance_exists(preCheckObj) {
-		continue;	
-	}
-	if !z_collide(self,preCheckObj) && preCheckObj != target.id {
-		continue;
-	}	
-	if bullet_check_collision(trailX,trailY) { instance_destroy(); exit; }
+    bullet_lobbing(moving_z, x_target, y_target, z_target, x_init, y_init, z_init, lob_height, use_y_target);
+    // Collision checks
+    var hitGRID = collision_point(trailX, trailY, obj_grid, false, true),
+    hitOBSTACLE = collision_point(trailX, trailY, obj_obstacle, false, true);
+    // If it's an obstacle
+   if instance_exists(hitOBSTACLE) {
+		if z_collide(self, hitOBSTACLE) {
+			if bullet_check_collision(trailX, trailY) {
+				instance_destroy();
+		        exit;
+		    }
+		}
+    }
+    var bZOff = 0;
+    // If it's a grid object
+    if instance_exists(hitGRID) {
+        bZOff = hitGRID.z;
+        if (z < bZOff - 32) {
+            sound = snd_bullet_empty_slap;
+            instance_destroy();
+            exit;
+        }
+    }
+    // Move to next trail point
+    trailX += stepX;
+    trailY += stepY;
 }
-var bZOff = 0;
-depth = -10000 +bZOff +z;
-if brk { exit; }
-x += realXVel;
-y += realYVel;
 
-dmg = dmg/(max(distance_to_point(x_init,y_init)/falloff_dist,1));
+// Depth
+depth = -10000 + z;
 
+// Apply final position
+x = finalX;
+y = finalY;
+
+// Damage falloff
+dmg /= max(totalDist / falloff_dist, 1);

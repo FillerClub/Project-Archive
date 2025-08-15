@@ -44,6 +44,7 @@
     {"$GMObjectProperty":"v1","%Name":"lob_height","filters":[],"listItems":[],"multiselect":false,"name":"lob_height","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"use_y_target","filters":[],"listItems":[],"multiselect":false,"name":"use_y_target","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
     {"$GMObjectProperty":"v1","%Name":"sound","filters":[],"listItems":[],"multiselect":false,"name":"sound","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resource":{"name":"snd_bullet_hit","path":"sounds/snd_bullet_hit/snd_bullet_hit.yy",},"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"snd_bullet_hit","varType":5,},
+    {"$GMObjectProperty":"v1","%Name":"object_hit","filters":[],"listItems":[],"multiselect":false,"name":"object_hit","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"","varType":5,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

@@ -287,7 +287,7 @@ for (var finalScan = 1; finalScan < trackArrLeng; finalScan++) {
 					var TprecheckX = TvalidMoves[list][moves][0],
 					TprecheckY = TvalidMoves[list][moves][1],
 					hurtHP = variable_clone(PieceEnemy.hp);
-					hurt(hurtHP,PieceVictim.attack_power);
+					hurt(hurtHP,PieceVictim.attack_power,DAMAGE.PHYSICAL);
 					// Check if affected by team & toggle
 					if is_string(TprecheckX) {
 						TprecheckX = tm_dp(real(TprecheckX),PieceVictim.team,PieceVictim.toggle);
@@ -309,7 +309,7 @@ for (var finalScan = 1; finalScan < trackArrLeng; finalScan++) {
 					if position_meeting(TvalidX,TvalidY,PieceEnemy) {
 						if total_health(hurtHP) > 0 {
 							var takeOff = total_effective_health(variable_clone(PieceEnemy.hp)) -PieceVictim.attack_power;
-							hurt(PieceEnemy.hp,takeOff,PieceEnemy);
+							hurt(PieceEnemy.hp,takeOff,DAMAGE.PHYSICAL,PieceEnemy);
 							audio_play_sound(snd_bullet_hit,0,0);
 						}
 						if PieceVictim.execute != "move" {
@@ -348,7 +348,7 @@ for (var finalScan = 1; finalScan < trackArrLeng; finalScan++) {
 		Cost = cost;
 		var timeDivisor = 1,
 		hurtEnemyHP = variable_clone(PieceVictim.hp);
-		hurt(hurtEnemyHP,attack_power);
+		hurt(hurtEnemyHP,attack_power,DAMAGE.PHYSICAL);
 		var totalHP = total_health(hurtEnemyHP);
 		if totalHP > 0 {
 			timeDivisor = lerp(1,2,(totalHP/attack_power));

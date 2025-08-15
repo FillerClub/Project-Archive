@@ -34,6 +34,7 @@
     {"$GMObjectProperty":"v1","%Name":"frame_color","filters":[],"listItems":[],"multiselect":false,"name":"frame_color","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"$FFFFFFFF","varType":7,},
     {"$GMObjectProperty":"v1","%Name":"slot_index","filters":[],"listItems":[],"multiselect":false,"name":"slot_index","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resource":{"name":"spr_empty_slot","path":"sprites/spr_empty_slot/spr_empty_slot.yy",},"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"spr_empty_slot","varType":5,},
     {"$GMObjectProperty":"v1","%Name":"cost","filters":[],"listItems":[],"multiselect":false,"name":"cost","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"","varType":2,},
+    {"$GMObjectProperty":"v1","%Name":"desc","filters":[],"listItems":[],"multiselect":false,"name":"desc","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"","varType":2,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

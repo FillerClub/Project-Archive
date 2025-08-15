@@ -8,11 +8,11 @@ error_time = time_source_create(time_source_global,.03,time_source_units_seconds
 
 info = piece_database(identity);
 
-sprite_slot = info[PIECEDATA.SLOTSPRITE];
-cost = info[PIECEDATA.PLACECOST];
-class = info[PIECEDATA.CLASS];
-desc = info[PIECEDATA.BRIEFDESCRIPTION];
-cooldown_length = info[PIECEDATA.SLOTCOOLDOWN];
+sprite_slot = info[$ "slot_sprite"];
+cost = info[$ "place_cost"];
+class = info[$ "class"];
+desc = info[$ "short_description"];
+cooldown_length = info[$ "slot_cooldown"];
 cooldown = 0;
 with obj_generic_hero {
 	if team != other.team {

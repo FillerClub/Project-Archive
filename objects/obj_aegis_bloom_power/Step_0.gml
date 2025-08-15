@@ -15,7 +15,7 @@ if timer >= .10 {
 	} else {
 		with instance_position(x,y,obj_generic_piece) {
 			if team != other.team {
-				hurt(hp,15,self);
+				hurt(hp,25,DAMAGE.ENERGY,self);
 				audio_play_sound(snd_bullet_hit,0,0);
 				var rand = (irandom_range(0,1)*2 -1)*gS;
 				if !position_meeting(other.x,other.y +rand,obj_obstacle) && position_meeting(other.x,other.y +rand,obj_grid) {

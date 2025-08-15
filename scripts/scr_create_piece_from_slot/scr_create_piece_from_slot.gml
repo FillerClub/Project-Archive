@@ -25,12 +25,12 @@ if i < global.max_pieces {
 			case obj_slot_selector:
 				var info = piece_database(identity);
 				instance_create_layer(gX,gY,"AboveBoard",obj_dummy, {
-					object: info[PIECEDATA.OBJECT],	
-					sprite_index: info[PIECEDATA.SPRITE],
+					object: info[$ "object"],	
+					sprite_index: info[$ "sprite"],
 					turn_cost: cost,
 					team: global.player_team,
-					on_grid: info[PIECEDATA.PLACEMENTONGRID],
-					on_piece: info[PIECEDATA.PLACEMENTONPIECE],
+					on_grid: info[$ "grid_placement_behavior"],
+					on_piece: info[$ "piece_placement_behavior"],
 					identity: identity, 
 					orig_x: x, 
 					orig_y: y,	

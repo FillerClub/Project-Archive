@@ -18,5 +18,5 @@ with obj_generic_piece {
 	}
 }
 own.ammo--;
-audio_play_sound(snd_final_bullet,0,0);
+audio_play_from_array([snd_lonestar_gunshot_1,snd_lonestar_gunshot_2,snd_lonestar_gunshot_3]);
 instance_destroy();

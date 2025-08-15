@@ -58,7 +58,7 @@ with obj_power_database {
 		case "Lonestar-0":
 			object = [	"Fire at will",obj_constant_reload,1,13.1,spr_lonestar_passive,
 						PLACEABLEANY,PLACEABLEANY,
-						"Your powers use ammo. Ammo recharges overtime."];
+						"Your powers use ammo. Gain ammo either by taking pieces or slowly overtime."];
 		break;
 		case "Lonestar-1":
 			object = [	"Intimidate",obj_adrenaline_shot,1,0.05,spr_destroy_slot,

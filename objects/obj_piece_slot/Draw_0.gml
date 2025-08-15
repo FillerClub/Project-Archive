@@ -17,7 +17,7 @@ if cooldown > 0 {
 var drawcost = (identity != "Empty")?cost:"";
 draw_slot(sprite_slot,col,textcol,drawcost);
 
-//draw_text_transformed(x + sprite_width/2,y + sprite_height*1.2 +x,string(identity[PIECEDATA.NAME]),.25,.25,0);
+//draw_text_transformed(x + sprite_width/2,y + sprite_height*1.2 +x,string(identity["name"]),.25,.25,0);
 //draw cooldown shader
 draw_set_alpha(0.5);
 draw_set_color(boxcol);

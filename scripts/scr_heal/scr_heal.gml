@@ -37,23 +37,44 @@ function heal(hp_struct,hp_struct_max,amount,increase_max_health = false) {
     }
 }
 
-function hurt(hp_struct,amount,object = noone) {
+function hurt(hp_struct,amount,type = DAMAGE.NORMAL,object = noone) {
 	var raw_damage = abs(amount),
 	damaged = false;
     // Define mitigation behavior per HP type, also defines order
     var types = ["over", "shield", "armor", "base"],
 	mitigation = {
-		over: function(dmg,invert = false) { return dmg; },   						
-		shield: function(dmg,invert = false) { return invert?sqr(dmg):sqrt(dmg); }, 
-		armor: function(dmg, invert = false) { return invert?dmg*2:dmg/2; },		
-		base: function(dmg, invert = false) { return dmg; }		            
+		over: function(dmg,typ, invert = false) { return dmg; },   						
+		shield: function(dmg,typ, invert = false) { 
+			switch typ {
+				default:
+					return invert?max(dmg,sqr(dmg)):min(dmg,sqrt(dmg)); 
+				break;				
+				case DAMAGE.PHYSICAL:
+					return dmg;
+				break;
+
+			}
+		}, 
+		armor: function(dmg,typ,  invert = false) { 
+			switch typ {
+				default:
+					return invert?dmg/.75:dmg*.75; 
+				break;
+				case DAMAGE.PHYSICAL:
+					return invert?dmg/.5:dmg*.5;
+				break;
+			}			
+		},		
+		base: function(dmg,typ,  invert = false) { 
+			return dmg; 
+		}		            
 	}
     for (var i = 0; i < array_length(types); i++) {
         if variable_struct_exists(hp_struct, types[i]) {
             var hp_val = struct_get(hp_struct, types[i]);
 			var mitigate = struct_get(mitigation, types[i]);
-			if is_undefined(mitigate) mitigate = function(dmg,invert = false) { return dmg; };
-			var mitigated = mitigate(raw_damage);
+			if is_undefined(mitigate) mitigate = function(dmg,typ, invert = false) { return dmg; };
+			var mitigated = mitigate(raw_damage,type);
             // Apply mitigated damage to current hp type
             var remaining = max(hp_val - mitigated, 0);
             var absorbed = hp_val - remaining;
@@ -67,7 +88,7 @@ function hurt(hp_struct,amount,object = noone) {
             if absorbed >= mitigated {
                 exit;
             }
-			raw_damage -= mitigate(absorbed,true);
+			raw_damage -= mitigate(absorbed,type,true);
             // Else, move on to next HP type, but pass in the original raw_damage again
         }
     }

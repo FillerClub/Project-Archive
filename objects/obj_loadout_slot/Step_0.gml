@@ -1,8 +1,8 @@
 data = piece_database(identity);
-slot_index = data[PIECEDATA.SLOTSPRITE];
-frame_color = data[PIECEDATA.CLASS];
-cost = data[PIECEDATA.PLACECOST];
-desc = data[PIECEDATA.BRIEFDESCRIPTION];
+slot_index = data[$ "slot_sprite"];
+frame_color = data[$ "class"];
+cost = data[$ "place_cost"];
+desc = data[$ "short_description"];
 var cX = obj_cursor.x,
 cY = obj_cursor.y,
 create = false,

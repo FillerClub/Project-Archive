@@ -15,6 +15,7 @@
   "overriddenProperties":[
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_obstacle","path":"objects/obj_obstacle/obj_obstacle.yy",},"propertyId":{"name":"hp_max","path":"objects/obj_obstacle/obj_obstacle.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"{base:10,armor:0,shield:0,over:0}",},
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_obstacle","path":"objects/obj_obstacle/obj_obstacle.yy",},"propertyId":{"name":"hp","path":"objects/obj_obstacle/obj_obstacle.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"{base:10}",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_obstacle","path":"objects/obj_obstacle/obj_obstacle.yy",},"propertyId":{"name":"zidth","path":"objects/obj_obstacle/obj_obstacle.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"16",},
   ],
   "parent":{
     "name":"Parents",

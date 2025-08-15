@@ -9,7 +9,7 @@
   "bitRate":512,
   "compression":0,
   "conversionMode":0,
-  "duration":38.91892,
+  "duration":38.91891,
   "name":"snd_prototype3",
   "parent":{
     "name":"Sounds",

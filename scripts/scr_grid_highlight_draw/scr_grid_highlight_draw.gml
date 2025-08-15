@@ -105,7 +105,7 @@ for (var moves = 0; moves < ar_leng; moves++) {
 								if variable_instance_exists(self,"attack_power") {
 									var atk = attack_power,
 									hurtHP = variable_clone(drawnSquareIsMeeting.hp);
-									hurt(hurtHP,atk);
+									hurt(hurtHP,atk,DAMAGE.PHYSICAL);
 									if total_health(hurtHP) > 0 && selectColor != c_aqua {
 										color = c_yellow;	
 									} 

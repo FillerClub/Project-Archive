@@ -19,8 +19,8 @@ function read_requests(ar,is_online = false) {
 			}
 			switch type {
 				case obj_piece_slot:
-					varObj = piece_database(read.identity,PIECEDATA.OBJECT);
-					varCost = piece_database(read.identity,PIECEDATA.PLACECOST);
+					varObj = piece_database(read.identity,"object");
+					varCost = piece_database(read.identity,"place_cost");
 				break;
 				case obj_power_slot:
 					varObj = power_database(read.identity,POWERDATA.OBJECT);
@@ -47,7 +47,8 @@ function read_requests(ar,is_online = false) {
 			}
 		break;
 		case DATA.MOVE:
-			var varObj = obj_generic_piece;
+			var varObj = obj_generic_piece,
+			teamCheck = "";
 			if !is_online {
 				varObj = read.tag;
 			}
@@ -61,7 +62,7 @@ function read_requests(ar,is_online = false) {
 					moved = true;
 					if position_meeting(tarX +GRIDSPACE/2,tarY +GRIDSPACE/2,obj_obstacle) {
 						var collide = instance_position(tarX +GRIDSPACE/2,tarY +GRIDSPACE/2,obj_obstacle);
-						hurt(collide.hp,attack_power,collide);
+						hurt(collide.hp,attack_power,DAMAGE.PHYSICAL,collide);
 						// Hurt behavior depending on object
 						switch collide.object_index {
 							// Never destroy a hero wall
@@ -72,6 +73,7 @@ function read_requests(ar,is_online = false) {
 							default:
 								if total_health(collide.hp) <= 0 {
 									// Destroy target piece if it's hp is 0
+									teamCheck = team;
 									instance_destroy(collide);
 								} else {
 									// Destroy the attacking piece if it's too weak
@@ -91,6 +93,17 @@ function read_requests(ar,is_online = false) {
 					audio_play_sound(snd_move,0,0);
 					// Activate move event
 					event_perform(ev_other,ev_user0);
+				}
+			}
+			if teamCheck != "" {
+				with obj_constant_reload {
+					if teamCheck != team {
+						continue;
+					}
+					if ammo < 6 {
+						audio_play_from_array([snd_lonestar_reload],.2);
+						ammo++;
+					}
 				}
 			}
 		break;

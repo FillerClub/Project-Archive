@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.803573,
+  "duration":0.8035828,
   "name":"snd_bullet_hit",
   "parent":{
     "name":"Sounds",

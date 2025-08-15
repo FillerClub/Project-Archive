@@ -1,6 +1,6 @@
 #macro HEALTHCOSTMULTIPLIER .6
 #macro TIMETOTAKE 1.5
-#macro EVERYTHING ["shooter","smoke_bomb","lobber","flyer","ball","splitter","double_shooter","short","accelerator","piercer","stick","shotgun","cross","bishop","wall","pawn","bomber","super_stick","crawler","drooper","tank_crawler","jumper","super_tank_crawler","the_goliath","big_shooter","bomb"]
+#macro EVERYTHING ["shooter","smoke_bomb","mortar","lobber","flyer","ball","splitter","double_shooter","short","accelerator","piercer","stick","shotgun","cross","bishop","wall","shield_gen","pawn","bomber","super_stick","crawler","drooper","tank_crawler","jumper","super_tank_crawler","the_goliath","big_shooter","bomb"]
 // TRANSITIONS
 #macro INSTANT -1
 

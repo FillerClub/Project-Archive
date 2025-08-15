@@ -6,7 +6,7 @@ function draw_piece_hp(subtract_health = 0){
 	newHP = variable_clone(hp),
 	preHealthCount = floor(total_health(newHP)/HEALTHCHUNK),
 	preHealthPart = total_health(newHP)/HEALTHCHUNK -preHealthCount;
-	hurt(newHP,subtract_health);
+	hurt(newHP,subtract_health,DAMAGE.PHYSICAL);
 	var
 	totalHP = total_health(newHP),
 	totalHPMax = total_health(hp_max),
