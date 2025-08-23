@@ -27,7 +27,7 @@
   "origin":9,
   "parent":{
     "name":"Cursor",
-    "path":"folders/Sprites/Gamebits/Cursor.yy",
+    "path":"folders/Sprites/UI/Cursor.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

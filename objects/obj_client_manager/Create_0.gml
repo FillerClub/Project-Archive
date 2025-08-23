@@ -3,17 +3,11 @@ with obj_client_manager {
 		instance_destroy();	
 	}
 }
-var connectIP = D_IP
-if debug_connection {
-	connectIP = D_DEBUG_IP;
+default_game_rules();
+var datLeng = array_length(LOBBYDATA);
+inbuf = buffer_create(16, buffer_grow, 1);
+member_status = MEMBERSTATUS.SPECTATOR;
+ready_timer = 0;
+for (var i = 0; i < datLeng; i++) {
+	lobby_data[i] = {type:"null", data: "null",update: true};
 }
-server_ip = connectIP;
-server_port = D_SERVER_PORT;
-socket = network_create_socket_ext(network_socket_udp,D_CLIENT_PORT);
-send_buffer = buffer_create(1024,buffer_fixed,1);
-update_players = false;
-game_status = -1;
-member_status = -1;
-players = [];
-
-alarm[0] = 1;

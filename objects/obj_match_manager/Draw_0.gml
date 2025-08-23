@@ -4,7 +4,7 @@ draw_set_valign(fa_middle);
 draw_set_halign(fa_center);
 draw_set_color(c_white);
 draw_text(x,y-32,"Max Slots: " +string(max_slots));
-draw_text(x,y-16,"Show Slots: " +string(show_opponent_slots));
+draw_text(x,y-16,"Show Slots: " +string(enable_bans));
 draw_text(x,y,"Barriers: " +string(barrier_criteria));
 draw_text(x,y+16,"Time Length: " +string(timeruplength));
 draw_text(x,y+32,"Max Pieces: " +string(max_pieces));

@@ -31,14 +31,14 @@ DESCRIPTION = 16,			// String
 
 // Object types
 //#macro 0 0
-function make_piece(_name = "debug",_obj = obj_debug_piece,_spr = spr_generic_piece,_slotSpr = spr_generic_slot,
+function make_piece(_name = "debug",_obj = obj_debug_piece,_spr = spr_generic_piece,_slotSpr = spr_generic_slot, _anim = -1,
 	_placeCost = 2,_slotCD = 10,_moveCD = 10,_moveCost = 0,_hp = {base:10},_atk = 10,_moves = 
 	[[[0,1],[0,-1]],				// first array ONLY_MOVE  
 	[["-1",1],["-1",0],["-1",-1]],	// second array ONLY_ATTACK // Numbers in strings are affectd by team & toggling variables
 	[["1",1],["1",0],["1",-1]]],	// third array BOTH						
 	_placeGrid = SAME, _placePiece = PLACEABLENONE, _class = DEFENSECLASS, _type = 0, _brief = "Not available", _desc = "Not available") constructor {
 		
-    name = _name;				object = _obj;				sprite = _spr;				slot_sprite = _slotSpr;
+    name = _name;				object = _obj;				sprite = _spr;				slot_sprite = _slotSpr;		idle_animation = _anim;
     place_cost = _placeCost;	slot_cooldown = _slotCD;	move_cooldown = _moveCD;	move_cost = _moveCost;
     hp = _hp;					attack_power = _atk;		moves = _moves;
     grid_placement_behavior = _placeGrid;					piece_placement_behavior = _placePiece;
@@ -47,13 +47,13 @@ function make_piece(_name = "debug",_obj = obj_debug_piece,_spr = spr_generic_pi
 }
 function piece_database(name, trait = -1) {
     // Helper to make pieces quickly
-    static p = new make_piece(),
+    var p = new make_piece(),
 	returnPiece = -1;
 	switch name {
 		// Shooters
 		case "shooter":
-			p.name = "Shooter";						p.object = obj_shooter;		
-			p.sprite = spr_shooter;					p.slot_sprite = spr_shooter_slot;
+			p.name = "Shooter";						p.object = obj_shooter;	
+			p.sprite = spr_shooter;					p.slot_sprite = spr_shooter_slot;	p.idle_animation = sq_shooter_idle;
 			p.place_cost = 4;						p.move_cost = 0;
 			p.slot_cooldown = 6;					p.move_cooldown = 9;	
 			p.hp = {base:10};						p.attack_power = 5;		

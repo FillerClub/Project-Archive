@@ -7,13 +7,6 @@ if identity != "noone" {
 	var fntA = fa_right,
 	mult = 1,
 	add = 0;
-	if instance_exists(obj_client_manager) {
-		if obj_client_manager.member_status == MEMBERSTATUS.MEMBER {
-			fntA = fa_left;
-			mult = -1;
-			add = sprite_width;
-		}
-	}
 	draw_set_font(fnt_basic);
 	draw_set_valign(fa_middle);
 	draw_set_halign(fntA);

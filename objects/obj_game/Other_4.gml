@@ -48,7 +48,7 @@ switch room {
 	break;
 	
 	case rm_loadout_zone:
-	case rm_loadout_zone_multiplayer:
+	case rm_match_menu:
 		soundtrack_play(LOOKINGBACK);
 		enable_pausing = false;
 	break;

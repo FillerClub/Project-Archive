@@ -3,7 +3,7 @@ if update {
 		// Write updated rules
 		buffer_seek(send_buffer, buffer_seek_start,0);
 		buffer_write(send_buffer, buffer_u8,SEND.MATCHDATA);
-		write_all_gamerule_data(send_buffer,other.max_slots,other.show_opponent_slots,other.barrier_criteria,other.timeruplength,other.max_pieces,other.map);
+		write_all_gamerule_data(send_buffer,other.max_slots,other.enable_bans,other.barrier_criteria,other.timeruplength,other.max_pieces,other.map);
 		buffer_write(send_buffer, buffer_u8,DATA.END);
 		// Send buffer to opponent, since host already dictated rules
 		if other.opponent_id != -1 {
@@ -35,7 +35,7 @@ if host_ready && opponent_ready {
 			if host == undefined || opponent == undefined {
 				exit;
 			}	
-			if other.show_opponent_slots {
+			if other.enable_bans {
 				buffer_seek(send_buffer, buffer_seek_start,0);
 				buffer_write(send_buffer, buffer_u8,SEND.MATCHDATA);
 				write_data_buffer(send_buffer,DATA.LOADOUT,host.loadout);

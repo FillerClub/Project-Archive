@@ -1,27 +1,24 @@
-draw_set_font(fnt_phone);
-draw_set_halign(fa_left);
-draw_set_valign(fa_middle);
-
-var drawText = "No players online",
-textCol = c_white;
-if array_length(player) > 0 {
-	for (var i = 0;i < array_length(player);i++) {
-		switch status[i] {
-			case ONLINESTATUS.IDLE:
-				textCol = #515151;
-			break;
-			case ONLINESTATUS.WAITING:
-				textCol = #00FF48;
-			break;
+if steam_initialised() {
+	draw_set_font(fnt_generic_dialogue);
+	draw_set_halign(fa_left);
+	draw_set_valign(fa_top);
+	draw_set_color(c_white);
+	if steam_lobby_list_is_loading() {
+		draw_text(x,y,"Loading list of matches...");
+	} else {
+		var arLeng = array_length(lobby_list),
+		drawString = "",
+		yy = 0;
+		for(var i = 0 ; i < arLeng; i++) {
+			draw_set_color((i == index)?c_aqua:c_white);
+			yy = i*20;
+			drawString = string(lobby_list[i].name) + " - " +string(lobby_list[i].count) +"/8 players";
+			draw_text(x,y +yy,drawString);
+		}	
+		if drawString == "" {
+			drawString = "No matches are running."
+			draw_text(x,y +yy,drawString);
 		}
-		if i == index {
-			textCol = c_aqua;	
-		}
-		drawText = string(player[i]) +" - " +status_int_to_string(status[i]);
-		draw_set_color(textCol);
-		draw_text(x,y +i*15,drawText);	
 	}
-} else {
-	draw_text(x,y,drawText);	
 }
-//draw_text(x,y-14,string(players));
+//draw_text(x,y +60,lobby_list);

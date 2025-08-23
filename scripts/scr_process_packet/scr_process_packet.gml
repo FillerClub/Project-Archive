@@ -7,7 +7,6 @@ function process_packet_server(buffer_s){
 	arLeng = array_length(players);
 	switch ID {
 		case SEND.CONNECT:
-			
 			var 
 			name = buffer_read(buffer_s,buffer_string),
 			tempObj = instance_create_layer(room_width/2,room_height/2,"GUI",obj_test_player),
@@ -120,7 +119,7 @@ function process_packet_server(buffer_s){
 						updateMatch = true;
 					break;
 					case DATA.SHOWSLOTS:
-						players[i].match.show_opponent_slots = readData;
+						players[i].match.enable_bans = readData;
 						updateMatch = true;
 					break;
 					case DATA.BARRIER:
@@ -265,7 +264,7 @@ function process_packet_server(buffer_s){
 				// Send extra match info
 				buffer_seek(send_buffer,buffer_seek_start,0);
 				buffer_write(send_buffer,buffer_u8,SEND.MATCHDATA);
-				write_all_gamerule_data(send_buffer,toMatch.max_slots,toMatch.show_opponent_slots,toMatch.barrier_criteria,toMatch.timeruplength,toMatch.max_pieces,toMatch.map);
+				write_all_gamerule_data(send_buffer,toMatch.max_slots,toMatch.enable_bans,toMatch.barrier_criteria,toMatch.timeruplength,toMatch.max_pieces,toMatch.map);
 				buffer_write(send_buffer,buffer_u8,DATA.END);
 				network_send_udp(socket,players[from].ip,D_CLIENT_PORT,send_buffer,buffer_tell(send_buffer));	
 			} else {
@@ -375,7 +374,7 @@ function process_packet_client(buffer_c) {
 						global.max_slots = readData;
 					break;
 					case DATA.SHOWSLOTS:
-						global.show_opponent_slots = readData;
+						global.enable_bans = readData;
 					break;
 					case DATA.BARRIER:
 						global.barrier_criteria = readData;
@@ -433,7 +432,7 @@ function process_packet_client(buffer_c) {
 						buffer_write(send_buffer,buffer_u8,DATA.END);
 						network_send_udp(socket,server_ip,server_port,send_buffer,buffer_tell(send_buffer));
 						if member_status == MEMBERSTATUS.MEMBER {
-							if room == rm_loadout_zone_multiplayer { shift_hero_displays(); }
+							if room == rm_match_menu { shift_hero_displays(); }
 							member_status = MEMBERSTATUS.HOST;
 							create_system_message(["Host of current match has left, you are now host."])
 						}

@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scr_match_join_disconnect",
   "parent":{
-    "name":"Online",
-    "path":"folders/Scripts/Online.yy",
+    "name":"OLD",
+    "path":"folders/Scripts/Online/OLD.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -45,8 +45,8 @@
   },
   "name":"sq_circle_in",
   "parent":{
-    "name":"Sequences",
-    "path":"folders/Sequences.yy",
+    "name":"Screen",
+    "path":"folders/Sequences/Screen.yy",
   },
   "playback":0,
   "playbackSpeed":60.0,

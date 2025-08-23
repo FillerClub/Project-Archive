@@ -11,9 +11,13 @@ maxSlots = global.max_slots,
 lastSlot = 0;
 // Live updating of slots
 if index == 0 {
+	var arrayLength = 0;
 	with obj_loadout_slot {
-		if index > lastSlot {
-			lastSlot = index;
+		if player == other.player {
+			if index > lastSlot {
+				lastSlot = index;
+			}
+			arrayLength++;
 		}
 	}
 	if lastSlot +1< maxSlots {
@@ -28,8 +32,6 @@ if index == 0 {
 			});	
 		}
 	}	
-	var arrayLength = instance_number(obj_loadout_slot);
-	var array = array_create(arrayLength,0);
 	with obj_loadout_slot {
 		array[index] = identity;
 	}
@@ -37,6 +39,9 @@ if index == 0 {
 }
 if index >= maxSlots {
 	instance_destroy();	
+}
+if locked {
+	exit;	
 }
 if instance_exists(obj_ready) {
 	if obj_ready.ready {

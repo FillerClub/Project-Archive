@@ -6,48 +6,37 @@ if index < 0 {
 if index > endInd {
 	index = 0;	
 }
-identity = unlocked_heroes[index];
-sprite_index = hero_database(identity,HERODATA.SPRITE);
-classes = hero_database(identity,HERODATA.CLASSES);
+if read && instance_exists(obj_client_manager) {
+	var player1Hero = steam_lobby_get_data("Player1Hero"),
+	player2Hero = steam_lobby_get_data("Player2Hero");
+	if player == 1 {
+		identity = player1Hero;	
+		//show_message(string(player1Hero) +string(typeof(player1Hero)));
+	}
+	if player == 2 {
+		identity = player2Hero;	
+	}
+	update_hero_display();
+}	
 if update {
-	global.active_hero = identity;
+	// Send update through server
 	if instance_exists(obj_client_manager) {
-		with obj_client_manager {
-			buffer_seek(send_buffer,buffer_seek_start,0);
-			buffer_write(send_buffer,buffer_u8,SEND.MATCHDATA);
-			write_data_buffer(send_buffer,DATA.HERO,other.identity)
-			buffer_write(send_buffer,buffer_u8,DATA.END);
-			network_send_udp(socket,server_ip,server_port,send_buffer,buffer_tell(send_buffer));	
-		}	
-	}
-	var slotTrack = [];
-	with obj_unlocked_slot {
-		array_push(slotTrack, id);
-	}
-	var _f = function sort_class_then_price(_a,_b) {
-		var classPriorityA = class_priority(_a.frame_color),
-		classPriorityB = class_priority(_b.frame_color);
-		for (var i = 0; i < array_length(classes); i++) {
-			if classes[i] == _a.frame_color {
-				classPriorityA += 10;
-			}
-		} 
-		for (var i = 0; i < array_length(classes); i++) {
-			if classes[i] == _b.frame_color {
-				classPriorityB += 10;
-			}
+		var player1 = steam_lobby_get_data("Player1"),
+		player2 = steam_lobby_get_data("Player2");
+		if other.player == 1 && player1 == obj_preasync_handler.steam_id {
+			identity = unlocked_heroes[index];
+			steam_bounce({Message: SEND.MATCHDATA, Player1Hero: identity});
+			read = false;
 		}
-		if classPriorityB != classPriorityA {
-			return classPriorityB - classPriorityA;
-		} else {
-			return _a.cost -_b.cost;
+		if other.player == 2 && player2 == obj_preasync_handler.steam_id {
+			identity = unlocked_heroes[index];
+			steam_bounce({Message: SEND.MATCHDATA, Player2Hero: identity});
+			read = false;
 		}
+	} else {
+		identity = unlocked_heroes[index];
+		global.active_hero = identity;
 	}
-	array_sort(slotTrack,_f);
-	for (var up = 0; up < array_length(slotTrack); up++) {
-		with (slotTrack[up]) {
-			index = up;
-		}
-	}
+	update_hero_display();
 	update = false;
 }

@@ -10,8 +10,9 @@ function effect_process() {
 	// Speed and slow effects
 	var
 	baseRate = delta_time*DELTA_TO_SECONDS,
-	timerTickRate = baseRate*global.level_speed,
-	effectModifier = (1 +sPD/5)/(1 +sLW/5);
+	levelSpd = global.level_speed,
+	timerTickRate = baseRate*levelSpd,
+	effectModifier = speed_slow_formula(1,sPD,sLW);
 	last_damaged += baseRate;
 	// Tick internal timer
 	// Effect timer is used to time buffs/debuffs, not affected by speed or slow
@@ -19,6 +20,22 @@ function effect_process() {
 	if !skip_timer { 
 		// Base timer is affected by speed and slow
 		timer += timerTickRate*effectModifier;
+	}
+	// Animation speed 
+	if layer_sequence_exists("Instances",animation) {
+		var anim = layer_sequence_get_instance(animation);
+		anim.speedScale = levelSpd*effectModifier;	
+	}
+	blink_timer += timerTickRate;
+	if blink_timer >= blink_end {
+		var blinkDuration = blink_timer -blink_end;
+		eye_scale_fact = abs(cos(pi*blinkDuration/BLINKTIME));
+	} else {
+		eye_scale_fact = 1;
+	}	
+	if blink_timer >= blink_end +BLINKTIME {
+		blink_timer = 0;
+		blink_end = random_range(1,5);
 	}
 	// Movement timer
 	move_cooldown_timer = max(move_cooldown_timer -timerTickRate*effectModifier,0);	

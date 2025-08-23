@@ -784,7 +784,7 @@
   "packageId":"",
   "parent":{
     "name":"Steamworks",
-    "path":"folders/Steamworks.yy",
+    "path":"folders/_addons/Steamworks.yy",
   },
   "productId":"",
   "resourceType":"GMExtension",

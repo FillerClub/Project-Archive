@@ -3,20 +3,58 @@ var available = true;
 var markValid = false;
 var create = false,
 canTouch = true;
-with obj_loadout_slot {
-	if identity == other.identity {
-		available = false;	
-	}
+if instance_exists(obj_client_manager) {
+	var player1 = steam_lobby_get_data("Player1"),
+	player2 = steam_lobby_get_data("Player2"),
+	userID = obj_preasync_handler.steam_id;
+	with obj_loadout_slot {
+		if player1 == userID && player == 1 {
+			if identity == other.identity {
+				available = false;	
+			}
+		}
+		if player2 == userID && player == 2 {
+			if identity == other.identity {
+				available = false;	
+			}
+		}
+	}	
+} else {
+	with obj_loadout_slot {
+		if identity == other.identity {
+			available = false;	
+		}
+	}	
 }
 
 with obj_hero_display {
-	var ar = hero_database(identity,HERODATA.CLASSES);
-	var arLength = array_length(ar);
-	for (var i = 0; i < arLength; i++) {
-		if other.frame_color == ar[i] {
-			markValid = true;	
+	if instance_exists(obj_client_manager) {
+		var pass = false;
+		if player1 == userID && player == 1 {
+			pass = true;
 		}
-	}		
+		if player2 == userID && player == 2 {
+			pass = true;
+		}
+		if !pass {
+			continue;	
+		}
+		var ar = hero_database(identity,HERODATA.CLASSES);
+		var arLength = array_length(ar);
+		for (var i = 0; i < arLength; i++) {
+			if other.frame_color == ar[i] {
+				markValid = true;	
+			}
+		}			
+	} else {
+		var ar = hero_database(identity,HERODATA.CLASSES);
+		var arLength = array_length(ar);
+		for (var i = 0; i < arLength; i++) {
+			if other.frame_color == ar[i] {
+				markValid = true;	
+			}
+		}		
+	}
 }
 if instance_exists(obj_ready) {
 	if obj_ready.ready {

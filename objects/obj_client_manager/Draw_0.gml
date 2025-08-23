@@ -1,21 +1,17 @@
-draw_set_halign(fa_left);
-draw_set_font(fnt_tiny);
-if connection_status == -1 {
-	var cycleDots = timeout mod 1,
-	bufferingString = ".";
-	if cycleDots > .3 {
-		bufferingString = "..";	
-	}
-	if cycleDots > .6 {
-		bufferingString = "...";
-	}
-	draw_set_valign(fa_middle);
-	draw_set_halign(fa_center);
-	draw_text(128,room_height/2 +256,"Connecting" +bufferingString);
-	
-}
 /*
-for (var i = 0; i < array_length(players); i++) {
-	draw_text(64,room_height/2 +256 +20*i,string(players[i]));	
+if steam_lobby_get_lobby_id() == 0 || room == rm_lobby {
+	exit;	
 }
-//draw_text(room_width/2,room_height/2 +256,opponent_port);
+draw_set_halign(fa_left);
+draw_set_valign(fa_middle);
+draw_set_color(c_white);
+draw_set_font(fnt_generic_dialogue);
+var datLeng = array_length(lobby_data);
+var i = 0;
+for (i = 0; i < datLeng; i++) {
+	var typ = lobby_data[i].type,
+	dat = lobby_data[i].data,
+	sup = lobby_data[i].update;
+	draw_text(256,256 +i*24,string(typ) +": "+string(dat) +"  -"+string(sup))
+}
+i++;

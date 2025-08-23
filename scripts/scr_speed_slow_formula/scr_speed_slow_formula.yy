@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_speed_slow_formula",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_speed_slow_formula",
+  "parent":{
+    "name":"Effects",
+    "path":"folders/Scripts/Piece/Effects.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

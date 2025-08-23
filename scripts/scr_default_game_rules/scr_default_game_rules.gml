@@ -7,7 +7,7 @@ enum DEFAULT {
 function default_game_rules() {
 	global.max_slots = DEFAULT.MAXSLOTS;
 	global.barrier_criteria = DEFAULT.BARRIER;
-	global.show_opponent_slots = DEFAULT.SHOWSLOTS;
+	global.enable_bans = DEFAULT.SHOWSLOTS;
 	global.max_pieces = infinity;
 	global.timeruplength = DEFAULT.TIMELENGTH;
 	global.player_team = "friendly";
@@ -15,4 +15,5 @@ function default_game_rules() {
 	global.max_turns = 6;
 	global.friendly_turns = 4;
 	global.enemy_turns = 4;
+	global.map = 1;
 }

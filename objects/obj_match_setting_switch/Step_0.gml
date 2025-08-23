@@ -1,10 +1,11 @@
-if obj_ready.ready || obj_client_manager.member_status != MEMBERSTATUS.HOST {
+if obj_client_manager.member_status != MEMBERSTATUS.HOST || obj_ready.ready {
 	exit;	
 }
 var curX = obj_cursor.x,
 sendUpdate = false,
 increment = 0;
 if position_meeting(curX,obj_cursor.y,self) {
+	var client = obj_client_manager;
 	if input_check_pressed("action") {
 		sendUpdate = true;
 		if curX < x +sprite_width/2 {
@@ -16,7 +17,7 @@ if position_meeting(curX,obj_cursor.y,self) {
 		switch setting {
 			case "Max Slots": global.max_slots = clamp(global.max_slots +increment,1,18); 
 			break;
-			case "Show Opponent's Picks": global.show_opponent_slots = clamp(global.show_opponent_slots +increment,false,true);
+			case "Enable Bans": global.enable_bans = clamp(global.enable_bans +increment,false,true);
 			break;
 			case "Barrier Win Condition": global.barrier_criteria = clamp(global.barrier_criteria +increment,1,6);
 			break;
@@ -31,7 +32,7 @@ if position_meeting(curX,obj_cursor.y,self) {
 		switch setting {
 			case "Max Slots":  global.max_slots= DEFAULT.MAXSLOTS;
 			break;
-			case "Show Opponent's Picks": global.show_opponent_slots = DEFAULT.SHOWSLOTS;
+			case "Enable Bans": global.enable_bans = DEFAULT.SHOWSLOTS;
 			break;
 			case "Barrier Win Condition": global.barrier_criteria = DEFAULT.BARRIER;
 			break;
@@ -42,23 +43,28 @@ if position_meeting(curX,obj_cursor.y,self) {
 		}	
 	}
 	if sendUpdate {
-		with obj_client_manager {
-			buffer_seek(send_buffer,buffer_seek_start,0);
-			buffer_write(send_buffer,buffer_u8,SEND.MATCHDATA);
-			switch other.setting {
-				case "Max Slots":  write_data_buffer(send_buffer,DATA.MAXSLOTS,global.max_slots);
-				break;
-				case "Show Opponent's Picks": write_data_buffer(send_buffer,DATA.SHOWSLOTS,global.show_opponent_slots);
-				break;
-				case "Barrier Win Condition": write_data_buffer(send_buffer,DATA.BARRIER,global.barrier_criteria);
-				break;
-				case "Time Until Timer Upgrade": write_data_buffer(send_buffer,DATA.TIMELENGTH,global.timeruplength);
-				break;
-				case "Max Pieces": write_data_buffer(send_buffer,DATA.MAXPIECES,global.max_pieces);
-				break;
-			}
-			buffer_write(send_buffer,buffer_u8,DATA.END);
-			network_send_udp(socket,server_ip,server_port,send_buffer,buffer_tell(send_buffer));	
+		var readData = "",
+		setData = "",
+		lobbyData = obj_client_manager.lobby_data,
+		datLeng = array_length(lobbyData);
+		switch setting {
+			case "Max Slots": readData = "MaxSlots"; setData = global.max_slots;
+			break;
+			case "Enable Bans": readData = "Bans"; setData = global.enable_bans;	
+			break;
+			case "Barrier Win Condition": readData = "Barrier"; setData = global.barrier_criteria;
+			break;
+			case "Time Until Timer Upgrade": readData = "TimeLength"; setData = global.timeruplength;
+			break;
+			case "Max Pieces": readData = "MaxPieces"; setData = global.max_pieces;
+			break;
 		}
+		for (var i = 0; i < datLeng; i++) {
+			if lobbyData[i].type == readData {
+				lobbyData[i].update = true;	
+			}
+		}
+		steam_lobby_set_data(readData,setData);
+		//steam_relay_data({Message: SEND.MATCHDATA, Request: true, Data: dataSend});
 	}
 }

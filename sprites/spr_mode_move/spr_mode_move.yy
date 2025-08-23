@@ -30,7 +30,7 @@
   "origin":0,
   "parent":{
     "name":"Buttons",
-    "path":"folders/Sprites/Gamebits/Buttons.yy",
+    "path":"folders/Sprites/UI/Buttons.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

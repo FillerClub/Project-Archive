@@ -21,7 +21,7 @@ function hero_database(name, trait = -1) {
 			obj = [	"Engineer",spr_engineer,[CONTROLCLASS,SUPPORTCLASS]];
 		break;
 		default:
-			obj = [	"debug",spr_generic_hero,[SUPPORTCLASS,DEFENSECLASS,OFFENSECLASS,CONTROLCLASS]];
+			obj = [	"Missing Player",spr_missing_hero,[SUPPORTCLASS,DEFENSECLASS,OFFENSECLASS,CONTROLCLASS]];
 		break;
 	}
 	if trait >= 0 { return obj[trait]; } else { return obj; }

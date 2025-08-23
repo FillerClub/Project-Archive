@@ -16,7 +16,3 @@ switch execute {
 		}		
 	break;
 }
-
-if moved {
-	moved = false;	
-}

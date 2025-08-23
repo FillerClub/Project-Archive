@@ -1,5 +1,6 @@
 #macro HEALTHCOSTMULTIPLIER .6
 #macro TIMETOTAKE 1.5
+#macro BLINKTIME .25
 #macro EVERYTHING ["shooter","smoke_bomb","mortar","lobber","flyer","ball","splitter","double_shooter","short","accelerator","piercer","stick","shotgun","cross","bishop","wall","shield_gen","pawn","bomber","super_stick","crawler","drooper","tank_crawler","jumper","super_tank_crawler","the_goliath","big_shooter","bomb"]
 // TRANSITIONS
 #macro INSTANT -1
@@ -14,11 +15,15 @@ enum SEND {
 	DISCONNECT = 0,
 	CONNECT = 1,
 	MATCHDATA = 2,
-	GAMEDATA = 3,
-	TOGGLEJOIN = 4,
-	READY = 5,
-	PING = 6,
+	PLAYERJOIN = 3,
+	GAMEDATA = 4,
+	TOGGLEJOIN = 5,
+	READY = 6,
+	PING = 7,
 }
+#macro DATATYPES ["Status","Name","Hero","Loadout","MaxSlots","Bans","Barrier","TimeLength","MaxPieces","Map","Spawn","Move","Interact","Delete","Lose"]
+#macro LOBBYDATA ["Status","Name","Player1","Player1Hero","Player1Loadout","Player1Ready","Player2","Player2Hero","Player2Loadout","Player2Ready","MaxSlots","Bans","Barrier","TimeLength","MaxPieces","Map"]
+/*
 enum DATA {
 	//MATCHDATA
 	STATUS = 0,
@@ -37,12 +42,8 @@ enum DATA {
 	INTERACT = 52,
 	DELETE = 53,
 	LOSE = 54,
-	
-	ID = 244,
-	MATCHPORT = 245,
-	CREATEMATCH = 246,
-	END = 255,
 }
+*/
 enum MAP {
 	NORMAL = 1,	
 	SMALL = 2,	
@@ -78,14 +79,3 @@ enum MEDIUM {
 	GROUND = 0,
 	
 }
-#macro MITIGATIONBEHAVIOR													\
-over: function(dmg,invert = false) { return dmg; },   						\
-shield: function(dmg,invert = false) { return invert?sqr(dmg):sqrt(dmg); }, \
-armor: function(dmg, invert = false) { return invert?dmg*2:dmg/2; },		\
-base: function(dmg, invert = false) { return dmg; }					
-#macro HEALINGBEHAVIOR								\
-base: function(hL,invert = false) { return hL; },	\
-armor: function(hL,invert = false) { return hL; },	\
-shield: function(hL,invert = false) { return hL; },	\
-over: function(hL,invert = false) { return 0; },	
-// Overhealth does not heal   

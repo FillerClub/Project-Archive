@@ -23,6 +23,7 @@ function __input_config_verbs()
             cancel:  [input_binding_key(vk_escape), input_binding_key(vk_shift)],
             cancel_no_shift:  [input_binding_key(vk_escape)],
             action:  [input_binding_key(vk_enter), input_binding_mouse_button(mb_left)],
+            action_no_mouse:  [input_binding_key(vk_enter), input_binding_key(vk_space)],
             special: input_binding_mouse_button(mb_middle),
             
 			// Level controls
@@ -45,6 +46,7 @@ function __input_config_verbs()
             cancel:  input_binding_gamepad_button(gp_face2),
             cancel_no_shift:  input_binding_gamepad_button(gp_face2),
             action:  input_binding_gamepad_button(gp_face1),
+            action_no_mouse:  input_binding_gamepad_button(gp_face1),
             special: input_binding_gamepad_button(gp_face4),
             
             // Level controls

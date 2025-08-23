@@ -1,7 +1,11 @@
 var cursorMargin = GUI_MARGIN,
-minCoord = 0 +cursorMargin,
-maxX = room_width -cursorMargin,
-maxY = room_height -cursorMargin;
+cam = view_camera[0],
+camX = camera_get_view_x(cam),
+camY = camera_get_view_y(cam),
+minCoordx = camX +cursorMargin,
+minCoordy = camY +cursorMargin,
+maxX =  camX +room_width -cursorMargin,
+maxY = camY +room_height -cursorMargin;
 on_grid = noone;
 
 // With grid
@@ -15,20 +19,22 @@ with obj_grid {
 
 
 if input_mouse_moved() || input_source_using(INPUT_MOUSE) {
-	x = clamp(mouse_x,minCoord,maxX);
-	y = clamp(mouse_y,minCoord,maxY);
+	x = clamp(mouse_x,minCoordx,maxX);
+	y = clamp(mouse_y,minCoordy,maxY);
 	using_mk = true;	
 } 
 if input_check(["right","left","down","up","action"]) && input_source_using(INPUT_GAMEPAD) {
 	if !instance_exists(obj_menu) {
 		var moveX = (input_value("right") -input_value("left"))*delta_time*DELTA_TO_FRAMES,
 		moveY = (input_value("down") -input_value("up"))*delta_time*DELTA_TO_FRAMES;
-		x = clamp(x +moveX*global.cursor_sens,minCoord,maxX);
-		y = clamp(y +moveY*global.cursor_sens,minCoord,maxY);
+		x = clamp(x +moveX*global.cursor_sens,minCoordx,maxX);
+		y = clamp(y +moveY*global.cursor_sens,minCoordy,maxY);
 	}
 	using_mk = false;
 }
-
+if keyboard_check_pressed(vk_space) {
+	instance_create_layer(x,y,"Instances",obj_shooter);	
+}
 // Step Event of obj_cursor
 tooltip_string = "";
 tooltip_width = 0;
@@ -162,5 +168,5 @@ if tooltip_string != "" {
     draw_set_font(fnt_bit);
 	tooltip_width  = string_width(tooltip_string);
     tooltip_height = string_height(tooltip_string);
-    tooltip_flip   = (x <= room_width / 2) ? 1 : -1;
+    tooltip_flip   = (x <= (minCoordx +maxX)/2) ? 1 : -1;
 }

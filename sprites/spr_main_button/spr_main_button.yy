@@ -46,7 +46,7 @@
   "origin":4,
   "parent":{
     "name":"Buttons",
-    "path":"folders/Sprites/Gamebits/Buttons.yy",
+    "path":"folders/Sprites/UI/Buttons.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
@@ -83,6 +83,8 @@
     "playbackSpeedType":0,
     "resourceType":"GMSequence",
     "resourceVersion":"2.0",
+    "seqHeight":80.0,
+    "seqWidth":80.0,
     "showBackdrop":true,
     "showBackdropImage":false,
     "timeUnits":1,

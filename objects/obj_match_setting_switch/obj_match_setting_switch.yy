@@ -9,8 +9,8 @@
   "name":"obj_match_setting_switch",
   "overriddenProperties":[],
   "parent":{
-    "name":"Online",
-    "path":"folders/Objects/Loadout Zone UI/Online.yy",
+    "name":"Match Settings",
+    "path":"folders/Objects/Loadout Zone UI/Online/Match Settings.yy",
   },
   "parentObjectId":null,
   "persistent":false,

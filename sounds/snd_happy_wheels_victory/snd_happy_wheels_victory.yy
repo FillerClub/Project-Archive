@@ -9,7 +9,7 @@
   "bitRate":512,
   "compression":0,
   "conversionMode":0,
-  "duration":0.0,
+  "duration":5.5728116,
   "name":"snd_happy_wheels_victory",
   "parent":{
     "name":"Sounds",

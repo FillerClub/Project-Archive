@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_piece_get_affected_speed",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_piece_get_affected_speed",
+  "parent":{
+    "name":"Effects",
+    "path":"folders/Scripts/Piece/Effects.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

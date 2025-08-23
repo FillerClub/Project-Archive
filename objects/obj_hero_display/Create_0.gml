@@ -1,6 +1,11 @@
 unlocked_heroes = global.unlocked_heroes;
 identity = global.active_hero;
 index = 0;
+read = true;
+if instance_exists(obj_client_manager) {
+	identity = "nothing";
+	update = false;
+}
 
 for (var i = 0; i < array_length(unlocked_heroes); i++) {
 	if identity == unlocked_heroes[i] {

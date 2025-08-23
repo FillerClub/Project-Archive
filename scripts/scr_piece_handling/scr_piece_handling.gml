@@ -45,7 +45,8 @@ if input_check_pressed("action") && !instance_exists(obj_dummy) {
 		switch global.mode {
 			case "delete":
 				var del = {
-					action: DATA.DELETE,
+					Message: SEND.GAMEDATA,
+					action: "Delete",
 					tag: clickedOn.tag,
 				}
 				array_push(requests,del);

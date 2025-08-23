@@ -1,6 +1,7 @@
 function r_move_piece(_pos,_grid,_tag) {
 	var move = {
-		action: DATA.MOVE,
+		Message: SEND.GAMEDATA,
+		action: "Move",
 		grid_pos: _pos,
 		piece_on_grid: _grid,
 		tag: _tag,

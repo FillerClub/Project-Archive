@@ -5,7 +5,7 @@ function read_requests(ar,is_online = false) {
 	}
 	var read = array_shift(ar); 
 	switch read.action {
-		case DATA.SPAWN:
+		case "Spawn":
 			var sX = x,
 			sY = y,
 			type = undefined,
@@ -46,7 +46,7 @@ function read_requests(ar,is_online = false) {
 				}
 			}
 		break;
-		case DATA.MOVE:
+		case "Move":
 			var varObj = obj_generic_piece,
 			teamCheck = "";
 			if !is_online {
@@ -107,7 +107,7 @@ function read_requests(ar,is_online = false) {
 				}
 			}
 		break;
-		case DATA.INTERACT:
+		case "Interact":
 			var varObj = obj_generic_piece;
 			if !is_online {
 				varObj = read.tag;
@@ -118,7 +118,7 @@ function read_requests(ar,is_online = false) {
 				}
 			}
 		break;
-		case DATA.DELETE:
+		case "Delete":
 			var varObj = obj_generic_piece;
 			if !is_online {
 				varObj = read.tag;
@@ -129,7 +129,7 @@ function read_requests(ar,is_online = false) {
 				}
 			}
 		break;
-		case DATA.LOSE:
+		case "Lose":
 			with obj_generic_piece {
 				if team == read.team {
 					instance_destroy();	

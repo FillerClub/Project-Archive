@@ -54,10 +54,15 @@ function menu_function(purpose = "Back",contextArg = context){
 			progress_menu(1,SINGLEPLAYERMENU);
 		break;
 		case "Multiplayer":
-			if global.name != "" {
-				progress_menu(1,MULTIPLAYERMENU);					
+			if steam_initialised() {
+				var lD = {
+					run: "Lobby",
+					rm: rm_lobby,
+					load: [standalone_soundtracks]
+				}
+				start_transition(sq_circle_out,sq_circle_in,lD);				
 			} else {
-				create_system_message(["Create a name in the multiplayer settings first."],BOTTOM);	
+				create_system_message(["Steam must be initialized before playing multiplayer."],BOTTOM);	
 			}
 		break;
 		case "Settings":

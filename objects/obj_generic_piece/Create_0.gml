@@ -16,6 +16,15 @@ hp = data[$ "hp"];
 hp_max = variable_clone(data[$ "hp"]);
 last_damaged = infinity;
 
+blink_end = random(5);
+blink_timer = 0;
+eye_scale_fact = 1;
+default_animation = data[$ "idle_animation"];
+animation = -1;
+new_animation = -1;
+if default_animation != -1 {
+	animation = layer_sequence_create("Instances",x +sprite_width/2,y +sprite_height/2,default_animation);
+}
 move_cooldown_timer = 0;
 move_cooldown = data[$ "move_cooldown"];
 attack_power = data[$ "attack_power"];

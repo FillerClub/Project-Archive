@@ -1,45 +1,238 @@
-if timeout >= 0 {
-	timeout += delta_time*DELTA_TO_SECONDS;
-}
-if timeout >= 10 && connection_status == -1 {
-	audio_play_sound(snd_critical_error,0,0);
-	instance_create_layer(room_width,0,"GUI",obj_plain_text_box, {
-		text: "Failed to connect to server."
-	});
-	with obj_menu {
-		progress_menu(-1);	
-	}
-	instance_destroy();
-}
-if connection_status {
-	ping_timer += delta_time*DELTA_TO_SECONDS;
-	if ping_timer >= .8 && ping_send {
-		//audio_stop_sound(snd_critical_error);
-		//audio_play_sound(snd_critical_error,0,0);
-		ping_past_time = current_time;
-		buffer_seek(send_buffer,buffer_seek_start,0);
-		buffer_write(send_buffer,buffer_u8,SEND.PING);
-		network_send_udp(socket,server_ip,server_port,send_buffer,buffer_tell(send_buffer));	
-		ping_timer = 0;	
-		ping_send = false;
-	}	
-}
-if update_players {
-	// Clear self from list before updating
-	for (var i = 0; i < array_length(players); i++) {
-		if players[i].network_id == network_id {
-			array_delete(players,i,1);
-			i--;
+if steam_lobby_get_lobby_id() != 0 && room != rm_lobby {
+	var data = LOBBYDATA,
+	datLeng = array_length(data),
+	readData = "",
+	dataType = "",
+	dataData = "",
+	upd = false,
+	bothReady = false;
+	for (var i = 0; i < datLeng; i++) {
+		readData = steam_lobby_get_data(data[i]);
+		if readData != lobby_data[i].data {
+			dataType = data[i];	
+			dataData = is_undefined(readData)?"Undefined":readData;
+			lobby_data[i].type = dataType;
+			lobby_data[i].data = dataData;
+			upd = true;
+		}
+		// Update game values if needed
+		if lobby_data[i].update {
+			switch dataType {
+				case "Max Slots":  global.max_slots = int64(readData);
+				break;
+				case "Enable Bans": global.enable_bans = bool(readData);
+				break;
+				case "Barrier Win Condition": global.barrier_criteria = int64(readData);
+				break;
+				case "Time Until Timer Upgrade": global.timeruplength = int64(readData);
+				break;
+				case "Max Pieces": global.max_pieces = int64(readData);
+				break;
+				case "Map": global.map = int64(readData);
+				break;
+			}
+		}
+		if upd {
+			lobby_data[i].update = false;
+			upd = false;
 		}
 	}
-	var list = obj_player_list;
-	list.player = [];
-	list.status = [];
-	list.network_id = [];
-	for (var ii = 0; ii < array_length(players); ii++) {
-		list.player[ii] = players[ii].name;
-		list.status[ii] = players[ii].status;
-		list.network_id[ii] = players[ii].network_id;
+	var player1 = steam_lobby_get_data("Player1"),
+	player2 = steam_lobby_get_data("Player2"),
+	playerID = obj_preasync_handler.steam_id,
+	player1Ready = steam_lobby_get_data("Player1Ready"),
+	player2Ready = steam_lobby_get_data("Player2Ready");
+	if steam_lobby_is_owner() {
+		member_status = MEMBERSTATUS.HOST;	
+	} else if player1 == playerID || player2 == playerID {
+		member_status = MEMBERSTATUS.MEMBER;	
+	} else {
+		member_status = MEMBERSTATUS.SPECTATOR;	
 	}
-	update_players = false;
+	if player1Ready != "" && player2Ready != "" {
+		if int64(player1Ready) && int64(player2Ready) {
+			ready_timer	+= delta_time*DELTA_TO_SECONDS;
+		} else {
+			ready_timer = 0;	
+		}
+		if ready_timer >= 3 {
+			room_goto(rm_level_normal);
+			ready_timer = -9999;
+		}
+	}
+} else {
+	member_status = MEMBERSTATUS.SPECTATOR;	
+}
+
+while (steam_net_packet_receive()) {
+	steam_net_packet_get_data(inbuf);
+	var SenderID = steam_net_packet_get_sender_id();
+	if (buffer_get_size(inbuf) > 0) {
+		buffer_seek(inbuf, buffer_seek_start, 0);
+		var json = buffer_read(inbuf, buffer_text);
+		var msg = json_parse(json);
+		if struct_exists(msg,"Message") {
+			switch(msg.Message) {
+				case SEND.CONNECT:
+					var isMe = buffer_read(buffer_c,buffer_bool),
+					iD = buffer_read(buffer_c,buffer_string);
+					// Grab port number for future reference
+					if isMe {
+						connection_status = true;
+						network_id = iD;
+						var lD = {
+							run: "Lobby",
+							rm: rm_lobby,
+							load: [standalone_soundtracks]
+						}
+						start_transition(sq_circle_out,sq_circle_in,lD);
+					} else {
+						var	dataInsert = new create_player_data(-1,iD,-1,-1,-1,-1,noone,noone);
+						array_push(players,dataInsert);
+					}
+				break;
+				case SEND.PING:
+					with obj_ping {
+						ping_send = true;	
+					}
+				break;
+				case SEND.PLAYERJOIN:
+					var userID = msg.Player,
+					userHero = msg.PlayerHero,
+					userLoadout = msg.PlayerLoadout,
+					player1 = steam_lobby_get_data("Player1"),
+					player2 = steam_lobby_get_data("Player2");
+					if player1 == 0 {
+						steam_lobby_set_data("Player1",userID);		
+						steam_lobby_set_data("Player1Hero",userHero);		
+						steam_lobby_set_data("Player1Loadout",userLoadout);	
+					} else if player2 == 0 {
+						steam_lobby_set_data("Player2",userID);		
+						steam_lobby_set_data("Player2Hero",userHero);		
+						steam_lobby_set_data("Player2Loadout",userLoadout);							
+					}
+				break;
+				case SEND.MATCHDATA:
+					var dataTypeAmount = array_length(LOBBYDATA);
+					for (var i = 0; i < dataTypeAmount; i++) {
+						if variable_struct_exists(msg,LOBBYDATA[i]) {
+							var data = variable_struct_get(msg,LOBBYDATA[i]);
+							steam_lobby_set_data(LOBBYDATA[i],data);
+							// Enable updating of certain objects again
+							switch LOBBYDATA[i] {
+								case "Player1Hero":
+									with obj_hero_display {
+										if player == 1 {
+											read = true;
+										}
+									}
+								break;
+								case "Player2Hero":
+									with obj_hero_display {
+										if player == 2 {
+											read = true;
+										}
+									}								
+								break;
+								case "Player1Loadout":
+									with obj_loadout_slot {
+										if index = 0 && player == 1 {
+											read = true;
+											update = true;
+										}
+									}
+								break;
+								case "Player2Loadout":
+									with obj_loadout_slot {
+										if index = 0 && player == 2 {
+											read = true;
+											update = true;
+										}
+									}
+								break;
+							}
+						}
+					}
+				break;
+				case SEND.GAMEDATA:	
+					array_push(requests,msg);
+				break;
+				case SEND.DISCONNECT:
+					var isMe = buffer_read(buffer_c,buffer_bool),
+					iD = buffer_read(buffer_c,buffer_string);
+					arLeng = array_length(players);
+					if !isMe {
+						for (var d = 0; d < arLeng; d++) {
+							if players[d].network_id == iD {
+								array_delete(players,d,1);	
+								break;
+							}
+						}
+						update_players = true;	
+					}
+				break;
+				case SEND.TOGGLEJOIN:
+					var iDIn = buffer_read(buffer_c,buffer_string);
+					if iDIn == opponent_id {
+						opponent_id = -1;
+						// Temporary block of code
+						switch game_status {
+							case ONLINESTATUS.PREPARING:
+								game_status = ONLINESTATUS.WAITING;
+								buffer_seek(send_buffer,buffer_seek_start,0);
+								buffer_write(send_buffer,buffer_u8,SEND.MATCHDATA);
+								write_data_buffer(send_buffer,DATA.STATUS,game_status);
+								buffer_write(send_buffer,buffer_u8,DATA.END);
+								network_send_udp(socket,server_ip,server_port,send_buffer,buffer_tell(send_buffer));
+								if member_status == MEMBERSTATUS.MEMBER {
+									if room == rm_match_menu { shift_hero_displays(); }
+									member_status = MEMBERSTATUS.HOST;
+									create_system_message(["Host of current match has left, you are now host."])
+								}
+							break;
+							case ONLINESTATUS.INGAME:
+								instance_destroy(obj_client_manager);
+								create_system_message(["Opponent has disconnected."]);
+								room_goto(rm_main_menu);
+							break;
+						}
+					} else {
+						opponent_id = iDIn;
+					}
+				break;
+				case SEND.READY:
+					random_set_seed(buffer_read(buffer_c,buffer_u32));
+			
+					var rGo = rm_level_normal;
+			
+					switch obj_map_switch.map {
+						case 1: rGo = rm_level_normal; break;
+						case 2: rGo = rm_level_small; break;
+						case 3: rGo = rm_level_split; break;
+						case 4: rGo = rm_level_conveyor; break;
+					}
+					if member_status == MEMBERSTATUS.HOST {
+						global.player_team = "friendly";
+						global.opponent_team = "enemy";
+					}
+					if member_status == MEMBERSTATUS.MEMBER {
+						global.player_team = "enemy";
+						global.opponent_team = "friendly";
+					}
+					game_status = ONLINESTATUS.INGAME;
+					global.active_hero = obj_hero_display.identity;
+					var arrayLength = instance_number(obj_loadout_slot);
+					var array = array_create(arrayLength,0);
+					with obj_loadout_slot {
+						array[index] = identity;
+					}
+					global.max_turns = 30;
+					global.friendly_turns = 20;
+					global.enemy_turns = 20;
+					global.loadout = array;
+					room_goto(rGo);
+				break;
+			}
+		}
+	}	
 }
