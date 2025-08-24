@@ -64,7 +64,6 @@ function effect_process() {
 	} else {
 		poison_tick = 0; 	
 	}
-	
 	// Overhealth
 	if variable_struct_exists(hp_max,"over") {
 		hp_max.over = oH;	

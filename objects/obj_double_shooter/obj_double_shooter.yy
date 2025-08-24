@@ -7,7 +7,7 @@
   "managed":true,
   "name":"obj_double_shooter",
   "overriddenProperties":[
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_obstacle","path":"objects/obj_obstacle/obj_obstacle.yy",},"propertyId":{"name":"hp_max","path":"objects/obj_obstacle/obj_obstacle.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"10",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_obstacle","path":"objects/obj_obstacle/obj_obstacle.yy",},"propertyId":{"name":"zidth","path":"objects/obj_obstacle/obj_obstacle.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"32",},
   ],
   "parent":{
     "name":"Pieces",
@@ -43,8 +43,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_piece_upgraded",
-    "path":"sprites/spr_piece_upgraded/spr_piece_upgraded.yy",
+    "name":"spr_grandshootah",
+    "path":"sprites/spr_grandshootah/spr_grandshootah.yy",
   },
   "spriteMaskId":null,
   "visible":true,

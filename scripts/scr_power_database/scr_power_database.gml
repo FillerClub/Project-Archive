@@ -5,7 +5,7 @@ OBJECT = 1,					// Obj Asset
 COST = 2,					// Integer
 SLOTCOOLDOWN = 3,			// Real
 SLOTSPRITE = 4,				// Spr Asset
-PLACEMENTONGRID = 1,		// Macro
+PLACEMENTONGRID = 5,		// Macro
 PLACEMENTONPIECE = 6,		// Macro
 DESCRIPTION = 7,			// String
 }

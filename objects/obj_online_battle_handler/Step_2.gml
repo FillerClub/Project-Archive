@@ -2,10 +2,11 @@ var aL = false,
 cursorInstance = obj_cursor,
 cursorOnGrid = cursorInstance.on_grid,
 loadOpponentSlots = [];
-
+/*
 if loadOpponentSlots != undefined {
 	load_slots(undefined,loadOpponentSlots);
 }
+*/
 // Handle requests
 process_requests(requests,online);
 

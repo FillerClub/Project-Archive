@@ -1,3 +1,4 @@
+/*
 if steam_lobby_get_lobby_id() == 0 {
 	exit;
 }

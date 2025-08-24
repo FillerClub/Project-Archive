@@ -58,8 +58,10 @@ if hp <= 0 {
 		case rm_level_small:
 		case rm_level_normal:
 		case rm_level_split:
+		case rm_level_heights:
 			var lose = {
-				action: DATA.LOSE,
+				Message: SEND.GAMEDATA,
+				action: "Lose",
 				team: team,
 			}
 			with obj_battle_handler {

@@ -44,12 +44,12 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_shooter",
-    "path":"sprites/spr_shooter/spr_shooter.yy",
+    "name":"spr_shootah",
+    "path":"sprites/spr_shootah/spr_shootah.yy",
   },
   "spriteMaskId":{
-    "name":"spr_shooter",
-    "path":"sprites/spr_shooter/spr_shooter.yy",
+    "name":"spr_shootah",
+    "path":"sprites/spr_shootah/spr_shootah.yy",
   },
   "visible":true,
 }

@@ -174,7 +174,7 @@ function menu_function(purpose = "Back",contextArg = context){
 		case "Debug Room 1":
 			var lD = {
 				run: "Sandbox",
-				rm: rm_heights,
+				rm: rm_level_heights,
 				load: [track1,track2,track3,track4]	
 			}
 			start_transition(sq_circle_out,sq_circle_in,lD);			

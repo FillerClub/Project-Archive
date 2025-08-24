@@ -1,7 +1,7 @@
 /// @description	Run generic piece code
 function piece() {
 if time_source_get_state(error_time) == time_source_state_stopped {
-	timer_color = c_black;
+	timer_color = c_white;
 }
 if time_source_get_state(invin_blink_time) == time_source_state_stopped {
 	invincible_tick = 1;

@@ -45,8 +45,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_piece_upgraded",
-    "path":"sprites/spr_piece_upgraded/spr_piece_upgraded.yy",
+    "name":"spr_grandshootah",
+    "path":"sprites/spr_grandshootah/spr_grandshootah.yy",
   },
   "spriteMaskId":null,
   "visible":true,

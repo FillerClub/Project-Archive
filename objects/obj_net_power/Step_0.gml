@@ -54,7 +54,7 @@ if execute != "move" {
 	hasCommitted = false;
 }
 
-if piece_attack(other.valid_moves[ONLY_MOVE], ONLY_MOVE, cost, true) {
+if piece_attack(other.valid_moves[ONLY_MOVE], ONLY_MOVE, cost, true, false) {
 	with piece_link {
 		repeat(45) {
 			part_particles_burst(global.part_sys,x +GRIDSPACE/2,y +GRIDSPACE/2,part_slap);		
@@ -70,11 +70,12 @@ if piece_attack(other.valid_moves[ONLY_MOVE], ONLY_MOVE, cost, true) {
 
 if hasCommitted != -1 {
 	if !hasCommitted {
-		with link {
-			usable++;
+		with slot_linked {
 			cooldown = 0;
 		}
 	} 
-	link.pause_cooldown = false;
+	with slot_linked {
+		pause_cooldown = false;
+	}
 	instance_destroy();
 }

@@ -12,7 +12,7 @@ if position_meeting(curX,obj_cursor.y,self) {
 		} else {
 			increment = 1;
 		}
-		global.map = clamp(global.map +increment,1,MAP.MOVE);
+		global.map = clamp(global.map +increment,1,MAP.HEIGHTS);
 	}
 	if mouse_check_button_pressed(mb_middle) {
 		sendUpdate = true;

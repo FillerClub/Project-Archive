@@ -47,8 +47,8 @@
     "path":"sprites/spr_mortar/spr_mortar.yy",
   },
   "spriteMaskId":{
-    "name":"spr_shooter",
-    "path":"sprites/spr_shooter/spr_shooter.yy",
+    "name":"spr_shootah",
+    "path":"sprites/spr_shootah/spr_shootah.yy",
   },
   "visible":true,
 }

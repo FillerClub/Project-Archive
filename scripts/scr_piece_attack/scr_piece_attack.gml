@@ -138,7 +138,9 @@ if global.mode == "move" && execute == "move" {
 			}
 			return false;
 		}
+
 		r_move_piece([cursorGridPosition[0],cursorGridPosition[1]],moveToGrid,tag);	
+		return true;
 	}
 }
 }

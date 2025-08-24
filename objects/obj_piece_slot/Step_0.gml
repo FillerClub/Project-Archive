@@ -3,30 +3,25 @@ gS = GRIDSPACE,
 selectthis = true,
 gX = obj_cursor.x,
 gY = obj_cursor.y,
+paused = global.game_state,
 mosX = floor(gX/gS)*gS,
 mosY = floor(gY/gS)*gS;
 
 if time_source_get_state(error_time) == time_source_state_stopped {
 	draw_red_box = 0;
 }
-if global.game_state == PAUSED || skip || global.mode == "delete" || team == global.opponent_team {
+if cooldown > 0 && paused != PAUSED {
+	cooldown -= delta_time*DELTA_TO_SECONDS*global.level_speed;
+}
+if paused == PAUSED || skip || global.mode == "delete" || team == global.opponent_team {
 	skip = false;
 	exit;	
 }
-if cooldown > 0 {
-	cooldown -= delta_time*DELTA_TO_SECONDS*global.level_speed;
-}
 // On Click
-if position_meeting(gX,gY,self) && input_check_pressed("action") && identity != "Empty" {
-	if cooldown <= 0 {
-		if !instance_exists(obj_dummy) {
-			select_sound(snd_pick_up);
-			create = true;
-		}
-	} else {
-		scr_error();	
-		audio_stop_sound(snd_critical_error);
-		audio_play_sound(snd_critical_error,0,0);
+if position_meeting(gX,gY,self) && input_check_pressed("action") && identity != "Empty" {	
+	if !instance_exists(obj_dummy) {
+		select_sound(snd_pick_up);
+		create = true;
 	}
 }
 

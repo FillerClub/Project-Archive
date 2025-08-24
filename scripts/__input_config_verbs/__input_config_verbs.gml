@@ -29,6 +29,9 @@ function __input_config_verbs()
 			// Level controls
 			fast_forward: input_binding_key(vk_space),
 			start_delete: input_binding_key(vk_shift),
+			hotkey_power_1: input_binding_key("Q"),
+			hotkey_power_2: input_binding_key("W"),
+			hotkey_power_3: input_binding_key("E"),
 			
             //No aiming verbs since we use the mouse for that (see below for aiming verb examples)
             shoot: input_binding_mouse_button(mb_left),
@@ -38,10 +41,10 @@ function __input_config_verbs()
         
         gamepad:
         {
-            up:    [input_binding_gamepad_axis(gp_axislv, true),  input_binding_gamepad_button(gp_padu)],
-            down:  [input_binding_gamepad_axis(gp_axislv, false), input_binding_gamepad_button(gp_padd)],
-            left:  [input_binding_gamepad_axis(gp_axislh, true),  input_binding_gamepad_button(gp_padl)],
-            right: [input_binding_gamepad_axis(gp_axislh, false), input_binding_gamepad_button(gp_padr)],
+            up:    [input_binding_gamepad_axis(gp_axislv, true)],
+            down:  [input_binding_gamepad_axis(gp_axislv, false)],
+            left:  [input_binding_gamepad_axis(gp_axislh, true)],
+            right: [input_binding_gamepad_axis(gp_axislh, false)],
             
             cancel:  input_binding_gamepad_button(gp_face2),
             cancel_no_shift:  input_binding_gamepad_button(gp_face2),
@@ -52,8 +55,13 @@ function __input_config_verbs()
             // Level controls
 			fast_forward: input_binding_gamepad_button(gp_shoulderlb),
 			start_delete: input_binding_gamepad_button(gp_shoulderrb),
-			special_left: input_binding_gamepad_button(gp_shoulderl),
-			special_right: input_binding_gamepad_button(gp_shoulderr),
+			hotkey_left: input_binding_gamepad_button(gp_shoulderl),
+			hotkey_right: input_binding_gamepad_button(gp_shoulderr),
+			hotkey_first: input_binding_gamepad_button(gp_padu),
+			hotkey_power_1: input_binding_gamepad_button(gp_padl),
+			hotkey_power_2: input_binding_gamepad_button(gp_padd),
+			hotkey_power_3: input_binding_gamepad_button(gp_padr),
+
 			
 			aim_up:    input_binding_gamepad_axis(gp_axisrv, true),
             aim_down:  input_binding_gamepad_axis(gp_axisrv, false),

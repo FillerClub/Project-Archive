@@ -4,19 +4,8 @@ event_inherited();
 if global.game_state != PAUSED{
 	var gS = GRIDSPACE;
 	if (timer >= timer_end) {
-		repeat_shot -= 1;
 		timer = 0;
 		timer_end = random_percent(1.4,4);
-		
-		if repeat_shot <= 0 {
-			repeat_shot = 2;
-
-		} 
-		
-		if repeat_shot > 1 {
-			timer = timer_end*.95;	
-		}
-		
 		if scan_for_enemy() {
 			var zOff = z;
 			if instance_exists(piece_on_grid) {
@@ -26,6 +15,9 @@ if global.game_state != PAUSED{
 			team: team,	
 			x_vel: ((team == "friendly")?1:-1),
 			z: zOff,
+			dmg: 2,
+			image_xscale: 1.4,
+			image_yscale: 1.4,
 			});
 
 		}

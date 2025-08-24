@@ -52,8 +52,8 @@ function piece_database(name, trait = -1) {
 	switch name {
 		// Shooters
 		case "shooter":
-			p.name = "Shooter";						p.object = obj_shooter;	
-			p.sprite = spr_shooter;					p.slot_sprite = spr_shooter_slot;	p.idle_animation = sq_shooter_idle;
+			p.name = "Shootah";						p.object = obj_shooter;	
+			p.sprite = spr_shootah;					p.slot_sprite = spr_shooter_slot;	p.idle_animation = sq_shooter_idle;
 			p.place_cost = 4;						p.move_cost = 0;
 			p.slot_cooldown = 6;					p.move_cooldown = 9;	
 			p.hp = {base:10};						p.attack_power = 5;		
@@ -104,15 +104,15 @@ function piece_database(name, trait = -1) {
 			returnPiece = p;
 		break;
 		case "double_shooter":
-            p.name = "Double Shooter";				p.object = obj_double_shooter;
-            p.sprite = spr_piece_upgraded;			p.slot_sprite = spr_double_shooter_slot;
+            p.name = "Grandshootah";				p.object = obj_double_shooter;
+            p.sprite = spr_grandshootah;			p.slot_sprite = spr_double_shooter_slot;
             p.place_cost = 8;						p.move_cost = 0;
-            p.slot_cooldown = 8;					p.move_cooldown = 7;
+            p.slot_cooldown = 8;					p.move_cooldown = 15;
             p.hp = {base:10};						p.attack_power = 10;
-            p.moves = [[[0, 1],[0, -1],[0, 2],[0, -2]], [["1", 0]]];
+            p.moves = [[],[],[["1",0],[0,1],[0,-1]]];
             p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
             p.class = DEFENSECLASS;					p.type = 0;
-            p.short_description = "Shoots two bullets at a time.";
+            p.short_description = "Does double the damage.";
             p.full_description = "TBA";
             returnPiece = p;
         break;
@@ -213,12 +213,25 @@ function piece_database(name, trait = -1) {
             p.name = "Pawn";						p.object = obj_pawn;
             p.sprite = spr_generic;					p.slot_sprite = spr_pawn_slot;
             p.place_cost = 0;						p.move_cost = 0;
-            p.slot_cooldown = 5;					p.move_cooldown = 15;
+            p.slot_cooldown = 5;					p.move_cooldown = 6;
             p.hp = {base:5};						p.attack_power = 5;
             p.moves = [[["1", 0],["2", 0]], [["1", 1],["1", -1]]];
             p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
             p.class = CONTROLCLASS;					p.type = 0;
             p.short_description = "Spammable defense, expires after a short amount of time.";
+            p.full_description = "TBA";
+            returnPiece = p;
+        break;
+        case "drum":
+            p.name = "Drum";						p.object = obj_drum;
+            p.sprite = spr_generic;					p.slot_sprite = spr_pawn_slot;
+            p.place_cost = 2;						p.move_cost = 0;
+            p.slot_cooldown = 8;					p.move_cooldown = 9;
+            p.hp = {base:10};						p.attack_power = 15;
+            p.moves = [[],[],/*BOTH*/[[1,0],[0,1],[-1,0],[0,-1]]];
+            p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
+            p.class = CONTROLCLASS;					p.type = 0;
+            p.short_description = "Can move twice before being put on cooldown.";
             p.full_description = "TBA";
             returnPiece = p;
         break;
@@ -255,7 +268,7 @@ function piece_database(name, trait = -1) {
             p.slot_cooldown = 30;					p.move_cooldown = 0;
             p.hp = {base:5};						p.attack_power = 25;
             p.moves = [undefined];
-            p.grid_placement_behavior = NEUTRAL;	p.piece_placement_behavior = PLACEABLEANY;
+            p.grid_placement_behavior = NEUTRAL;	p.piece_placement_behavior = PLACEABLENONE;
             p.class = CONTROLCLASS;					p.type = 0;
             p.short_description = "Explodes dealing massive damage to its surroundings.";
             p.full_description = "TBA";

@@ -17,7 +17,6 @@ with obj_grid {
 	} 
 }
 
-
 if input_mouse_moved() || input_source_using(INPUT_MOUSE) {
 	x = clamp(mouse_x,minCoordx,maxX);
 	y = clamp(mouse_y,minCoordy,maxY);
@@ -32,9 +31,6 @@ if input_check(["right","left","down","up","action"]) && input_source_using(INPU
 	}
 	using_mk = false;
 }
-if keyboard_check_pressed(vk_space) {
-	instance_create_layer(x,y,"Instances",obj_shooter);	
-}
 // Step Event of obj_cursor
 tooltip_string = "";
 tooltip_width = 0;
@@ -42,19 +38,20 @@ tooltip_height = 0;
 tooltip_flip = 1; // 1 = left align, -1 = right align
 
 // --- 1. Determine base cursor look ---
+switch global.mode {
+	case "delete":
+		cursor_sprite = spr_cursor_delete;
+		sprite_index = spr_cursor_delete;
+	break;
+	default:
+		cursor_sprite = spr_cursor;
+		sprite_index = spr_cursor;
+	break;
+}
 if !using_mk && !instance_exists(obj_menu) {
     cursor_sprite = cr_none;
     image_alpha = 1;
 } else {
-	switch global.mode {
-		case "delete":
-			cursor_sprite = spr_cursor_delete;
-		break;
-		default:
-			cursor_sprite = spr_cursor;
-		break;
-	}
-    
 	image_alpha = 0;
 }
 

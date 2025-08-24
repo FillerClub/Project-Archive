@@ -1,0 +1,1 @@
+global.debug = global.debug?false:true;

@@ -15,7 +15,7 @@ data = piece_database(identity);
 hp = data[$ "hp"];
 hp_max = variable_clone(data[$ "hp"]);
 last_damaged = infinity;
-
+poison_tick = 0;
 blink_end = random(5);
 blink_timer = 0;
 eye_scale_fact = 1;
@@ -24,20 +24,28 @@ animation = -1;
 new_animation = -1;
 if default_animation != -1 {
 	animation = layer_sequence_create("Instances",x +sprite_width/2,y +sprite_height/2,default_animation);
+	sprite_index = spr_phantom_body;
+	mask_index = spr_phantom_body;
+} else {
+	sprite_index = data[$ "sprite"];
+	mask_index = spr_phantom_body;
 }
+
 move_cooldown_timer = 0;
 move_cooldown = data[$ "move_cooldown"];
 attack_power = data[$ "attack_power"];
 
 valid_moves = data[$ "moves"];
 cost = data[$ "move_cost"];
-sprite_index = data[$ "sprite"];
 
+
+
+timer_color = c_white;
 error_time = time_source_create(time_source_global,.03,time_source_units_seconds,function(){
-	if timer_color == c_black {
-		timer_color = c_red;
+	if timer_color == c_white {
+		timer_color = #FF4C55;
 	} else {
-		timer_color = c_black;
+		timer_color = c_white;
 	}			
 },[],6);
 

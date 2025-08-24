@@ -21,10 +21,6 @@ origYoffset = sprite_yoffset,
 shadowSize = 1/(max(0,log2(z/64 +.5)) +1);
 // Draw shadow
 draw_sprite_ext(spr_shadow,0,x +sprite_width/2,y +sprite_height -(z/1.5)*shadowSize -zBase, 1, shadowSize, 0, c_white, shadowSize);
-// Draw cooldown timer
-if move_cooldown_timer > 0 {
-	scr_draw_circle_part(x +sprite_width/2 -origXoffset, y +sprite_height/2 -origYoffset -zOff,32,timer_color,false,180,false,0,(360*move_cooldown_timer)/move_cooldown,.5);
-}
 if layer_sequence_exists("Instances",animation) {
 	var anim = layer_sequence_get_instance(animation),
 	animTracks = anim.activeTracks,
@@ -39,7 +35,10 @@ if layer_sequence_exists("Instances",animation) {
 	draw_sprite_ext(sprite_index,image_index,x +sprite_width/2,y +sprite_height/2 -zOff,xScale,yScale,0,col,tick);
 	sprite_set_offset(sprite_index,origXoffset,origYoffset);
 }
-
+// Draw cooldown timer
+if move_cooldown_timer > 0 {
+	scr_draw_circle_part(x +sprite_width/2 -origXoffset, y +sprite_height -4 -origYoffset -zOff,16,timer_color,false,180,false,0,(360*move_cooldown_timer)/move_cooldown,.6);
+}
 /*
 // Draw the sprite at a shifted origin to make flipping easier
 sprite_set_offset(sprite_index,sprite_width/2 +sprite_xoffset,sprite_height/2 +sprite_yoffset);

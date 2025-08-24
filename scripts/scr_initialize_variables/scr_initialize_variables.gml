@@ -28,6 +28,7 @@ function initialize_variables(isFresh = false) {
 		global.discovered_pieces = ["shooter","crawler"];
 		global.unlocked_heroes = ["Warden"];	
 		global.active_hero = "Warden";
+		global.opponent_hero = "nothing";
 		global.tooltips_enabled = true;
 		enum HEALTHBARCONFIG {
 			HIDEALL = 0,

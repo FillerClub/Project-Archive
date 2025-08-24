@@ -6,29 +6,25 @@ var gridX = cur.grid_pos[0];
 var gridY = cur.grid_pos[1];
 
 var placed = false;
-var placeable = true;
+var placeable = false;
 var destroySelf = false;
 
 piece_on_grid = cur.on_grid;
 var z = instance_exists(piece_on_grid) ? piece_on_grid.z : 0;
 
-// Handle Input
-// Release click — placing on existing grid
-if (input_check_released("action") && piece_on_grid != noone) {
-    dragging = false;
-    placed = true;
-}
-// Press click — no piece under cursor
-else if (input_check_pressed("action") && piece_on_grid == noone) {
-    if (!placed) destroySelf = true;
-
-    var slot_inst = instance_position(mosX, mosY, obj_piece_slot);
-    if (slot_inst != noone && slot_inst.identity == identity) {
-        skip = true;
-        play_place_sound();
-    } else {
-        play_place_sound();
-    }
+if input_check_released("action") && piece_on_grid != noone { 
+	dragging = false; 
+	placed = true; 
+} else if input_check_pressed("action") && piece_on_grid == noone {
+	if !placed { 
+		instance_destroy(); 
+	} 
+	//dragging = true; 
+	if position_meeting(mosX,mosY,obj_piece_slot) { 
+		with instance_position(mosX,mosY,obj_piece_slot) { 
+			if identity == other.identity { 
+				skip = true; select_sound(snd_put_down); } } } 
+	else { select_sound(snd_put_down); }
 }
 
 // Dragging Movement
@@ -44,13 +40,42 @@ if (dragging) {
     y = gClampY;
 }
 
-// Placement Checks
-if (placed) {
-    if (!global.debug) {
-        placeable = can_place_on_grid(piece_on_grid.team, team, on_grid);
-        placeable = placeable && can_place_on_piece(gClampX, gClampY, team, on_piece);
-    }
+
+if !instance_exists(piece_on_grid) {
+	exit;	
 }
+// Placement Checks
+switch on_grid { 
+	case SAME: 
+		if piece_on_grid.team == team { placeable = true; } 
+		else { placeable = false; } 
+	break; 
+	case NEUTRAL: 
+		if piece_on_grid.team == team || piece_on_grid.team == "neutral" { placeable = true; } 
+		else { placeable = false; } break; 
+	case PLACEABLENONE: placeable = false; 
+	break; 
+	default: placeable = true; 
+	break; 
+} 
+switch on_piece { 
+	case SAME: 
+		if position_meeting(gClampX,gClampY,obj_generic_piece) { var instattack = instance_position(gClampX,gClampY,obj_generic_piece); 
+			if instattack.team != team { placeable = false; } 
+			else { placeable = true; } } 
+	break; 
+	case DIFFERENT: if position_meeting(gClampX,gClampY,obj_generic_piece) { var instattack = instance_position(gClampX,gClampY,obj_generic_piece); 
+		if instattack.team == team { placeable = false; } 
+		else { placeable = true; } }
+	break; 
+	case PLACEABLEANY: 
+		if position_meeting(gClampX,gClampY,obj_generic_piece) { placeable = true; } 
+	break; 
+	case PLACEABLENONE: 
+		if position_meeting(gClampX,gClampY,obj_obstacle) { placeable = false; } 
+	break; 
+}
+can_place = placeable;
 
 if (placed && placeable) {
     r_spawn_piece(identity, team, [gridX, gridY], piece_on_grid.id);

@@ -49,15 +49,18 @@ if steam_lobby_get_lobby_id() != 0 && room != rm_lobby {
 	} else {
 		member_status = MEMBERSTATUS.SPECTATOR;	
 	}
-	if player1Ready != "" && player2Ready != "" {
+	if player1Ready != "" && player2Ready != "" && member_status == MEMBERSTATUS.HOST {
 		if int64(player1Ready) && int64(player2Ready) {
 			ready_timer	+= delta_time*DELTA_TO_SECONDS;
 		} else {
-			ready_timer = 0;	
+			ready_timer = 0;
+			in_level = false;
 		}
-		if ready_timer >= 3 {
-			room_goto(rm_level_normal);
-			ready_timer = -9999;
+		if ready_timer >= 3 && !in_level {
+			randomise();
+			var seed = random_get_seed();
+			steam_bounce({Message: SEND.READY, level_seed: seed});
+			in_level = true;
 		}
 	}
 } else {
@@ -201,35 +204,51 @@ while (steam_net_packet_receive()) {
 					}
 				break;
 				case SEND.READY:
-					random_set_seed(buffer_read(buffer_c,buffer_u32));
-			
 					var rGo = rm_level_normal;
-			
 					switch obj_map_switch.map {
 						case 1: rGo = rm_level_normal; break;
 						case 2: rGo = rm_level_small; break;
 						case 3: rGo = rm_level_split; break;
 						case 4: rGo = rm_level_conveyor; break;
+						case 5: rGo = rm_level_heights; break;
 					}
-					if member_status == MEMBERSTATUS.HOST {
-						global.player_team = "friendly";
-						global.opponent_team = "enemy";
+					switch member_status {
+						case MEMBERSTATUS.HOST:
+							global.player_team = "friendly";
+							global.opponent_team = "enemy";				
+						break;
+						case MEMBERSTATUS.MEMBER:
+							global.player_team = "enemy";
+							global.opponent_team = "friendly";				
+						break;
+						default:
+							global.player_team = "nothing";
+						break;
 					}
-					if member_status == MEMBERSTATUS.MEMBER {
-						global.player_team = "enemy";
-						global.opponent_team = "friendly";
+					with obj_hero_display {
+						if (player == 1 && player1 == obj_preasync_handler.steam_id) || (player == 2 && player2 == obj_preasync_handler.steam_id) {
+							global.active_hero = identity;
+						} else {
+							global.opponent_hero = identity;
+						}
 					}
-					game_status = ONLINESTATUS.INGAME;
-					global.active_hero = obj_hero_display.identity;
-					var arrayLength = instance_number(obj_loadout_slot);
-					var array = array_create(arrayLength,0);
+					var arrayLength = global.max_slots;
+					var playerLoadout = array_create(arrayLength,0);
+					var opponentLoadout = array_create(arrayLength,0);
 					with obj_loadout_slot {
-						array[index] = identity;
+						if (player == 1 && player1 == obj_preasync_handler.steam_id) || (player == 2 && player2 == obj_preasync_handler.steam_id) {
+							playerLoadout[index] = identity;
+						} else {
+							opponentLoadout[index] = identity;
+						}
 					}
-					global.max_turns = 30;
-					global.friendly_turns = 20;
-					global.enemy_turns = 20;
-					global.loadout = array;
+					steam_lobby_set_data("Player1Ready",false);
+					steam_lobby_set_data("Player2Ready",false);
+					global.max_turns = 6;
+					global.friendly_turns = 4;
+					global.enemy_turns = 4;
+					global.loadout = playerLoadout;
+					global.opponent_loadout = opponentLoadout;
 					room_goto(rGo);
 				break;
 			}

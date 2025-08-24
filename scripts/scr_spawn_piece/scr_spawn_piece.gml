@@ -6,6 +6,7 @@ function r_spawn_piece(_identity,_team,_grid_pos,_on_grid) {
 		identity: _identity,
 		grid_pos: _grid_pos,
 		piece_on_grid: _on_grid,
+		link: {team: team, identity: identity},
 		tag: string_random(4)
 	}
 	with obj_battle_handler {

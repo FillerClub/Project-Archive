@@ -39,7 +39,8 @@ function read_requests(ar,is_online = false) {
 				team: read.team,
 				grid_pos: read.grid_pos,
 				piece_on_grid: read.piece_on_grid,
-				skip_move: true,					
+				skip_move: true,
+				link: read.link
 			}) {
 				if is_online {
 					tag = read.tag;	
