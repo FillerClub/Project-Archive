@@ -2,8 +2,8 @@
   "$GMSound":"",
   "%Name":"snd_happy_wheels_victory",
   "audioGroupId":{
-    "name":"standalone_soundtracks",
-    "path":"audiogroups/standalone_soundtracks",
+    "name":"sound_effects",
+    "path":"audiogroups/sound_effects",
   },
   "bitDepth":1,
   "bitRate":512,

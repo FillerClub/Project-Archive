@@ -268,73 +268,75 @@ for (var finalScan = 1; finalScan < trackArrLeng; finalScan++) {
 	PieceVictim = instance_position(targetX,targetY,obj_obstacle);	
 	if levelWorld != 0 && global.tutorial_progress <= 0 && position_meeting(targetX,targetY,obj_obstacle) {
 		if total_health(PieceVictim.hp) > 0 {
-			var TvalidMoves = PieceVictim.valid_moves,
-			TaLML = array_length(TvalidMoves);
-			// From each valid_moves array, grab each moves list (ONLY_ATTACK, ONLY_MOVE, BOTH)
-			for (var list = 0; list < TaLML; list++) {
-				// Exit if the move list cannot take pieces
-				if list != ONLY_ATTACK && list != BOTH {
-					continue;	
-				} 
-				// Filter out dead arrays
-				if TvalidMoves[list] == undefined || TvalidMoves[list] == 0 {
-					continue;
-				}
-				var TaLM = array_length(TvalidMoves[list]);
-			
-				// From each moves list, grab the moves available
-				for (var moves = 0; moves < TaLM; moves++) {
-					var TprecheckX = TvalidMoves[list][moves][0],
-					TprecheckY = TvalidMoves[list][moves][1],
-					hurtHP = variable_clone(PieceEnemy.hp);
-					hurt(hurtHP,PieceVictim.attack_power,DAMAGE.PHYSICAL);
-					// Check if affected by team & toggle
-					if is_string(TprecheckX) {
-						TprecheckX = tm_dp(real(TprecheckX),PieceVictim.team,PieceVictim.toggle);
-					}
-					if is_string(TprecheckY) {
-						TprecheckY = tm_dp(real(TprecheckY),PieceVictim.team,PieceVictim.toggle);
-					}
-					// Center coordinates
-					var TvalidX = PieceVictim.x +(TprecheckX +.5)*GRIDSPACE,
-					TvalidY = PieceVictim.y +(TprecheckY +.5)*GRIDSPACE;		
-					
-					// If the move does not fall onto a grid, or is on self, ignore it.
-					if !position_meeting(TvalidX,TvalidY,obj_grid) || (TprecheckX == 0 && TprecheckY == 0) {
-						audio_stop_sound(snd_warning);
-						audio_play_sound(snd_warning,0,0);
+			if variable_instance_exists(PieceVictim,"valid_moves") {
+				var TvalidMoves = PieceVictim.valid_moves,
+				TaLML = array_length(TvalidMoves);
+				// From each valid_moves array, grab each moves list (ONLY_ATTACK, ONLY_MOVE, BOTH)
+				for (var list = 0; list < TaLML; list++) {
+					// Exit if the move list cannot take pieces
+					if list != ONLY_ATTACK && list != BOTH {
 						continue;	
 					} 
+					// Filter out dead arrays
+					if TvalidMoves[list] == undefined || TvalidMoves[list] == 0 {
+						continue;
+					}
+					var TaLM = array_length(TvalidMoves[list]);
 			
-					if position_meeting(TvalidX,TvalidY,PieceEnemy) {
-						if total_health(hurtHP) > 0 {
-							var takeOff = total_effective_health(variable_clone(PieceEnemy.hp)) -PieceVictim.attack_power;
-							hurt(PieceEnemy.hp,takeOff,DAMAGE.PHYSICAL,PieceEnemy);
-							audio_play_sound(snd_bullet_hit,0,0);
+					// From each moves list, grab the moves available
+					for (var moves = 0; moves < TaLM; moves++) {
+						var TprecheckX = TvalidMoves[list][moves][0],
+						TprecheckY = TvalidMoves[list][moves][1],
+						hurtHP = variable_clone(PieceEnemy.hp);
+						hurt(hurtHP,PieceVictim.attack_power,DAMAGE.PHYSICAL);
+						// Check if affected by team & toggle
+						if is_string(TprecheckX) {
+							TprecheckX = tm_dp(real(TprecheckX),PieceVictim.team,PieceVictim.toggle);
 						}
-						if PieceVictim.execute != "move" {
-							audio_play_sound(snd_pick_up,0,0);
-						}	
+						if is_string(TprecheckY) {
+							TprecheckY = tm_dp(real(TprecheckY),PieceVictim.team,PieceVictim.toggle);
+						}
+						// Center coordinates
+						var TvalidX = PieceVictim.x +(TprecheckX +.5)*GRIDSPACE,
+						TvalidY = PieceVictim.y +(TprecheckY +.5)*GRIDSPACE;		
 					
-						instance_destroy(obj_text_box)	
-						instance_create_layer(room_width/2,TEXTYDEFAULT,"GUI",obj_text_box, {
-							text: ["Your piece is in danger! Looks like your piece has enough power to take that piece before it takes yours."],
-							bubble_color: $FF000000,
-							text_color: $FFFFFFFF
-						});
-						with obj_generic_piece {
-							execute = "nothing";	
-						}
-						global.tutorial_progress = 1;
-						PieceVictim.ignore_pause = true;
-						PieceVictim.skip_timer = false;
-						PieceVictim.execute = "move";
-						tutorial_piece = PieceVictim;
-						global.mode = "move";
-						global.game_state = PAUSED;
-						exit;
-					}		
-				}	
+						// If the move does not fall onto a grid, or is on self, ignore it.
+						if !position_meeting(TvalidX,TvalidY,obj_grid) || (TprecheckX == 0 && TprecheckY == 0) {
+							audio_stop_sound(snd_warning);
+							audio_play_sound(snd_warning,0,0);
+							continue;	
+						} 
+			
+						if position_meeting(TvalidX,TvalidY,PieceEnemy) {
+							if total_health(hurtHP) > 0 {
+								var takeOff = total_effective_health(variable_clone(PieceEnemy.hp)) -PieceVictim.attack_power;
+								hurt(PieceEnemy.hp,takeOff,DAMAGE.PHYSICAL,PieceEnemy);
+								audio_play_sound(snd_bullet_hit,0,0);
+							}
+							if PieceVictim.execute != "move" {
+								audio_play_sound(snd_pick_up,0,0);
+							}	
+					
+							instance_destroy(obj_text_box)	
+							instance_create_layer(room_width/2,TEXTYDEFAULT,"GUI",obj_text_box, {
+								text: ["Your piece is in danger! Looks like your piece has enough power to take that piece before it takes yours."],
+								bubble_color: $FF000000,
+								text_color: $FFFFFFFF
+							});
+							with obj_generic_piece {
+								execute = "nothing";	
+							}
+							global.tutorial_progress = 1;
+							PieceVictim.ignore_pause = true;
+							PieceVictim.skip_timer = false;
+							PieceVictim.execute = "move";
+							tutorial_piece = PieceVictim;
+							global.mode = "move";
+							global.game_state = PAUSED;
+							exit;
+						}		
+					}	
+				}
 			}
 		}
 	}

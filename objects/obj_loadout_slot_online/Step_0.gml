@@ -142,6 +142,28 @@ if create {
 		index: index
 	});
 	identity = setIdentity;
+	var sendArray = array_create(maxSlots),
+	structSend = {Message: SEND.MATCHDATA},
+	playerString = "";		
+	with obj_loadout_slot {
+		if player == 1 && player1 == userID {
+			if index < maxSlots {
+				sendArray[index] = identity;
+			}
+			playerString = "Player1Loadout";
+		}
+		if player == 2 && player2 == userID {
+			if index < maxSlots {
+				sendArray[index] = identity;
+			}
+			playerString = "Player2Loadout";
+		}
+	}
+	struct_set(structSend,playerString,sendArray);
+	if playerString != "" {
+		steam_bounce(structSend);
+		update = false;
+	}
 }
 
 

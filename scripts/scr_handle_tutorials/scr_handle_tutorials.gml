@@ -19,16 +19,21 @@ function handle_tutorials(tutorialProgress) {
 					}
 				}
 			}
-
-			with tutorial_piece {
-				execute = "move";
-				if moved == true {
-					executed = true;
-					execute = "nothing";
-					ignore_pause = false;
-					skip_timer = false;
+			tutorial_piece.execute = "move"
+				
+			var requestAmt = array_length(requests);
+			for (var r = 0; r < requestAmt; r++) {
+				if requests[r].action != "Move" {
+					continue;
 				}
-			}	
+				if requests[r].tag == tutorial_piece.id {
+					executed = true;
+					with tutorial_piece {
+						ignore_pause = false;
+						skip_timer = false;	
+					}
+				}
+			}
 		break;
 	}
 	if executed {

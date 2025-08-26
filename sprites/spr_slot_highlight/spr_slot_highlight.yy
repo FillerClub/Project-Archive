@@ -19,7 +19,7 @@
   "height":80,
   "HTile":false,
   "layers":[
-    {"$GMImageLayer":"","%Name":"25d61e9e-44e8-47b6-8625-1ea643cca4e5","blendMode":0,"displayName":"default","isLocked":false,"name":"25d61e9e-44e8-47b6-8625-1ea643cca4e5","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
+    {"$GMImageLayer":"","%Name":"6df20720-6569-4661-be72-237286a58148","blendMode":0,"displayName":"Layer 1","isLocked":false,"name":"6df20720-6569-4661-be72-237286a58148","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
   "name":"spr_slot_highlight",
   "nineSlice":null,
@@ -63,6 +63,8 @@
     "playbackSpeedType":0,
     "resourceType":"GMSequence",
     "resourceVersion":"2.0",
+    "seqHeight":80.0,
+    "seqWidth":64.0,
     "showBackdrop":true,
     "showBackdropImage":false,
     "timeUnits":1,

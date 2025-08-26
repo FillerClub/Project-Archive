@@ -5,8 +5,8 @@ cursorOnGrid = cursorInstance.on_grid;
 if tutorial_piece != noone {
 	// Handle requests
 	piece_handling();
-	process_requests(requests,online);
 	handle_tutorials(global.tutorial_progress);
+	process_requests(requests,online);
 }
 
 if global.game_state == PAUSED {

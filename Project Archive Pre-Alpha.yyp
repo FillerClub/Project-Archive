@@ -1,6 +1,6 @@
 {
   "$GMProject":"v1",
-  "%Name":"ProjectArchiveVp2",
+  "%Name":"Project Archive Pre-Alpha",
   "AudioGroups":[
     {"$GMAudioGroup":"","%Name":"audiogroup_default","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
     {"$GMAudioGroup":"","%Name":"standalone_soundtracks","name":"standalone_soundtracks","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
@@ -243,7 +243,7 @@
   "MetaData":{
     "IDEVersion":"2024.13.1.193",
   },
-  "name":"ProjectArchiveVp2",
+  "name":"Project Archive Pre-Alpha",
   "resources":[
     {"id":{"name":"__ac_ppf_hhsl_curve","path":"animcurves/__ac_ppf_hhsl_curve/__ac_ppf_hhsl_curve.yy",},},
     {"id":{"name":"__ac_ppf_shockwave","path":"animcurves/__ac_ppf_shockwave/__ac_ppf_shockwave.yy",},},
