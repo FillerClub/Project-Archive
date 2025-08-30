@@ -23,6 +23,10 @@ enum SEND {
 }
 #macro DATATYPES ["Status","Name","Hero","Loadout","MaxSlots","Bans","Barrier","TimeLength","MaxPieces","Map","Spawn","Move","Interact","Delete","Lose"]
 #macro LOBBYDATA ["Status","Name","Player1","Player1Hero","Player1Loadout","Player1Ready","Player2","Player2Hero","Player2Loadout","Player2Ready","MaxSlots","Bans","Barrier","TimeLength","MaxPieces","Map"]
+#macro SAVEOBJECTS [obj_obstacle,obj_piece_slot,obj_power_passive,obj_generic_hero,obj_generic_powerup,obj_grid,obj_bullet_parent,obj_battle_handler,obj_timer]
+#macro SAVEOBJECTVARIABLES ["x","y","z","timer","move_cooldown_timer","hp","hp_max","grid_pos","cooldown","object_index","depth","team","effects_array","effects_timer","effects_management_array","invincible","dmg","x_vel","y_vel","y_spd_max","y_spd"]
+#macro SAVEOBJECTIGNOREVARIABLES ["object_index"]
+#macro SAVEGLOBALS ["max_turns","friendly_turns","enemy_turns"]
 /*
 enum DATA {
 	//MATCHDATA

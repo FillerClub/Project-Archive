@@ -82,8 +82,10 @@ with obj_piece_slot {
 		if (object_index != obj_power_slot && !goPower) || (object_index == obj_power_slot && goPower) { 
 			other.x = x;
 			other.y = y;
-			instance_destroy(obj_dummy);
-			create_piece_from_slot(true);
+			if special_slot_checks() {
+				instance_destroy(obj_dummy);
+				create_piece_from_slot(true);
+			}
 			break;
 		}
 	}

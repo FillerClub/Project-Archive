@@ -1,4 +1,4 @@
-function manage_menu_text(text){
+function manage_menu_text(text,context = 0){
 	var textReturn = "Nothing";
 	switch text {
 		case "Campaign":
@@ -60,7 +60,16 @@ function manage_menu_text(text){
 		break;
 		
 		default:
-			textReturn = text;	
+			switch context {
+				case JOURNAL:
+				case POSTLEVELJOURNAL:
+					var pieceName = piece_database(text,"name")
+					textReturn = pieceName != "debug"?pieceName:text;
+				break;
+				default:
+					textReturn = text;
+				break;
+			}
 		break;
 	}
 	return textReturn;

@@ -8,21 +8,24 @@ function read_requests(ar,is_online = false) {
 		case "Spawn":
 			var sX = x,
 			sY = y,
-			type = undefined,
+			type = read.type,
 			varObj = noone,
+			debugOn = global.debug,
 			varCost = 0;
-			with obj_piece_slot {
-				if identity == read.identity && team == read.team {
-					cooldown = cooldown_length;
-					type = object_index;
+			if !debugOn {
+				with obj_piece_slot {
+					if identity == read.identity && team == read.team && index == read.index {
+						cooldown = cooldown_length;
+						break;
+					}
 				}
 			}
 			switch type {
-				case obj_piece_slot:
+				case 0:
 					varObj = piece_database(read.identity,"object");
 					varCost = piece_database(read.identity,"place_cost");
 				break;
-				case obj_power_slot:
+				case 1:
 					varObj = power_database(read.identity,POWERDATA.OBJECT);
 					varCost = power_database(read.identity,POWERDATA.COST);
 				break;
@@ -32,15 +35,16 @@ function read_requests(ar,is_online = false) {
 				sX = read.piece_on_grid.bbox_left +read.grid_pos[0]*GRIDSPACE;
 				sY = read.piece_on_grid.bbox_top +read.grid_pos[1]*GRIDSPACE;
 			}
-			if read.team == "friendly" { global.friendly_turns -= varCost; }
-			if read.team == "enemy" { global.enemy_turns -= varCost; }		
+			if !debugOn {
+				if read.team == "friendly" { global.friendly_turns -= varCost; }
+				if read.team == "enemy" { global.enemy_turns -= varCost; }	
+			}
 			with instance_create_layer(sX,sY,"Instances",varObj, {
 				identity: read.identity,
 				team: read.team,
 				grid_pos: read.grid_pos,
 				piece_on_grid: read.piece_on_grid,
 				skip_move: true,
-				link: read.link
 			}) {
 				if is_online {
 					tag = read.tag;	
@@ -59,8 +63,6 @@ function read_requests(ar,is_online = false) {
 					piece_on_grid = read.piece_on_grid;
 					var tarX = grid_pos[0]*GRIDSPACE +piece_on_grid.bbox_left,
 					tarY = grid_pos[1]*GRIDSPACE +piece_on_grid.bbox_top;
-					move_cooldown_timer = move_cooldown;
-					moved = true;
 					if position_meeting(tarX +GRIDSPACE/2,tarY +GRIDSPACE/2,obj_obstacle) {
 						var collide = instance_position(tarX +GRIDSPACE/2,tarY +GRIDSPACE/2,obj_obstacle);
 						hurt(collide.hp,attack_power,DAMAGE.PHYSICAL,collide);
@@ -84,10 +86,12 @@ function read_requests(ar,is_online = false) {
 							break;									
 						}
 					}
-					
-					if team == global.player_team { execute = "move"; }
-					if team == "friendly" { global.friendly_turns -= cost; }
-					if team == "enemy" { global.enemy_turns -= cost; }	
+					if !read.bypass_cooldown {
+						if team == global.player_team { execute = "move"; }
+						if team == "friendly" { global.friendly_turns -= cost; }
+						if team == "enemy" { global.enemy_turns -= cost; }
+						move_cooldown_timer = move_cooldown;
+					}
 					x = tarX;
 					y = tarY;
 					audio_stop_sound(snd_move);

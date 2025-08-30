@@ -5,15 +5,36 @@ camY = camera_get_view_y(cam),
 minCoordx = camX +cursorMargin,
 minCoordy = camY +cursorMargin,
 maxX =  camX +room_width -cursorMargin,
-maxY = camY +room_height -cursorMargin;
+maxY = camY +room_height -cursorMargin,
+highLowKey = input_check("alternate_key"),
+compareZ = 0;
 on_grid = noone;
-
+if highLowKey {
+	compareZ = infinity;
+} else {
+	compareZ = -infinity	
+}
 // With grid
 with obj_grid {
-	if collision_rectangle(bbox_left,bbox_top -z,bbox_right,bbox_bottom -z,obj_cursor,false,false) {
+	if point_in_rectangle(other.x,other.y,bbox_left,bbox_top -z,bbox_right -1,bbox_bottom -z -1) {
+		var conditionCheck = false;
+		if highLowKey {
+			if z < compareZ {
+				compareZ = z;
+				conditionCheck = true;
+			}			
+		} else {
+			if z > compareZ {
+				compareZ = z;
+				conditionCheck = true;
+			}
+		}
+		if !conditionCheck { 
+			continue;	
+		}
+		var grabPos = [floor((other.x -bbox_left)/GRIDSPACE),floor((other.y -(bbox_top -z))/GRIDSPACE)];
 		other.on_grid = id;
-		other.grid_pos[0] = floor((other.x -bbox_left)/GRIDSPACE);
-		other.grid_pos[1] = floor((other.y -(bbox_top -z))/GRIDSPACE);
+		other.grid_pos = grabPos;
 	} 
 }
 

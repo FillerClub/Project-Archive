@@ -30,6 +30,7 @@ function initialize_variables(isFresh = false) {
 		global.active_hero = "Warden";
 		global.opponent_hero = "nothing";
 		global.tooltips_enabled = true;
+		global.save_state = "";
 		enum HEALTHBARCONFIG {
 			HIDEALL = 0,
 			ONHIT = 1,
@@ -47,10 +48,8 @@ function initialize_variables(isFresh = false) {
 		global.max_ai_moving_pieces = infinity;
 	}
 	
-	global.level_speed = 1;
-						
+	global.level_speed = 1;		
 	global.mode = "move";
-	
 	global.load = {
 		run: "MainMenu",
 		rm: rm_main_menu,

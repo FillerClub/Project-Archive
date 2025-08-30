@@ -61,6 +61,7 @@ function menu_create_buttons(){
 		}
 		with instance_create_layer(menu_x,menu_y +button_seperation*i,"GUI",createObject, {
 			purpose: menu[menu_index][i],
+			context: context,
 			index: i,
 			font: font,
 			font_halign: font_halign,

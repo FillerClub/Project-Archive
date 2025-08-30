@@ -1,5 +1,7 @@
 application_surface_draw_enable(false);
-
+gameframe_init();
+gameframe_caption_font = fnt_generic_dialogue;
+gameframe_caption_icon = spr_game_icon;
 // Create main effects system.
 main_id = new PPFX_System();
 // Create profile with all effects.

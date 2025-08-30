@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"Script702",
+  "%Name":"gameframe_macros",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"Script702",
+  "name":"gameframe_macros",
   "parent":{
-    "name":"Misc",
-    "path":"folders/Scripts/Misc.yy",
+    "name":"Gameframe",
+    "path":"folders/_addons/Gameframe.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

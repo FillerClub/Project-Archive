@@ -28,7 +28,8 @@ function __input_config_verbs()
             
 			// Level controls
 			fast_forward: input_binding_key(vk_space),
-			start_delete: input_binding_key(vk_shift),
+			start_delete: input_binding_key(vk_control),
+			alternate_key: input_binding_key(vk_shift),
 			hotkey_power_1: input_binding_key("Q"),
 			hotkey_power_2: input_binding_key("W"),
 			hotkey_power_3: input_binding_key("E"),
@@ -55,6 +56,7 @@ function __input_config_verbs()
             // Level controls
 			fast_forward: input_binding_gamepad_button(gp_shoulderlb),
 			start_delete: input_binding_gamepad_button(gp_shoulderrb),
+			alternate_key: input_binding_gamepad_button(gp_face3),
 			hotkey_left: input_binding_gamepad_button(gp_shoulderl),
 			hotkey_right: input_binding_gamepad_button(gp_shoulderr),
 			hotkey_first: input_binding_gamepad_button(gp_padu),

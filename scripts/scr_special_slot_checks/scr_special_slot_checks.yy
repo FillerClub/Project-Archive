@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_special_slot_checks",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_special_slot_checks",
+  "parent":{
+    "name":"Slot",
+    "path":"folders/Scripts/Slot.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,146 +1,176 @@
+
 function piece_attack(valid_attacks = [0,0], mode = BOTH, cost = 1, bypass_cooldown = false, skip_clicking = false) {
 #macro ONLY_MOVE 0
 #macro ONLY_ATTACK 1 
 #macro BOTH 2
 #macro FAUX 3
-var 
-re = false,
-checkPress = input_check_pressed("action") && !skip_clicking,
-cursorInstance = obj_cursor,
-cursorX = cursorInstance.x,
-cursorY = cursorInstance.y,
-precheckX = x,
-precheckY = y,
-moveToX = x,
-moveToY = y,
-cursorOnGrid = obj_cursor.on_grid,
-cursorGridPosition = obj_cursor.grid_pos,
-piececlick = noone,
-ar_leng = array_length(valid_attacks),
-moving = false,
-moveToGrid = noone;
 
-if global.mode == "move" && execute == "move" {
-	if checkPress && instance_exists(cursorOnGrid) {
-		// Check if clicked on piece
-		with obj_obstacle {
-			var zOff = 0;
-			if instance_exists(piece_on_grid) {
-				zOff += piece_on_grid.z;
-			}
-			// Check if hitting the piece's grid spot
-			if collision_rectangle(bbox_left,bbox_top -zOff,bbox_right,bbox_bottom -zOff,obj_cursor,false,false) {
-				piececlick = id;
-				// Ignore self and pieces on the same team
-				if piececlick == other.id || team == other.team {
-					exit;
-				}	
-			} 
-		}
-		var zOff = z;
-		if instance_exists(piece_on_grid) {
-			zOff += piece_on_grid.z;	
-		}
-		if instance_exists(piececlick) {
-			// Cancel if clicked on illegal spot
-			if piececlick.team != global.opponent_team || piececlick.invincible == true || mode == ONLY_MOVE || total_health(piececlick.hp) <= 0 {
-				return false;					
-			}
-		// Else if move set is only attacking, exit
-		} else if mode == ONLY_ATTACK {
-			return false;	
-		}
-
-		for (var moves = 0; moves < ar_leng; ++moves) {
-			precheckX = valid_attacks[moves][0];
-			precheckY = valid_attacks[moves][1];
-			// Check if affected by team & toggle
-			if is_string(precheckX) {
-				precheckX = tm_dp(real(precheckX),team,toggle);
-			}
-			if is_string(precheckY) {
-				precheckY = tm_dp(real(precheckY),team,toggle);
-			}
-			// Center coordinates if is drawing from piece
-			moveToX = x +(precheckX +.5)*GRIDSPACE;
-			moveToY = y +(precheckY +.5)*GRIDSPACE;
-			moveToGrid = instance_position(moveToX,moveToY,obj_grid);
-			// If the move does not fall onto a grid, or is on self, ignore it.
-			if !instance_exists(moveToGrid) || (precheckX == 0 && precheckY == 0) {
-				continue;	
-			} 
-			// Get the move's position on the grid so we can check for it easier
-			var	gClampX = floor((moveToX -moveToGrid.bbox_left)/GRIDSPACE)*GRIDSPACE +moveToGrid.bbox_left,
-			gClampY = floor((moveToY -moveToGrid.bbox_top)/GRIDSPACE)*GRIDSPACE +moveToGrid.bbox_top;
-			// If cursor is hovering over the move position, determine that's the move we want to make
-			if collision_rectangle(gClampX,gClampY -moveToGrid.z,gClampX +GRIDSPACE,gClampY +GRIDSPACE -moveToGrid.z,obj_cursor,false,false) {
-				moving = true;
-				// Why in the fuck do I have to move this if statement here
-				if !bypass_cooldown && move_cooldown_timer > 0 {
-					scr_error();
-					audio_stop_sound(snd_critical_error);
-					audio_play_sound(snd_critical_error,0,0);
-					return false;	
-				}
-				if max(moveToGrid.z -zOff,0) > climb_height || max(zOff -moveToGrid.z,0) > drop_height {
-					audio_stop_sound(snd_critical_error);
-					audio_play_sound(snd_critical_error,0,0);
-					return false;	
-				}
-				break;
-			} 	
-		}
-		// At this point, we go back to using "return false;" instead of "continue;"
-		if !moving {
-			return false;	
-		}
-		// Deny moving into blockades
-		if position_meeting(obj_cursor.x,obj_cursor.y,obj_territory_blockade) {
-			var sound_params = {
-					sound: snd_oip,
-					pitch: random_range(0.85,1.15),
-			};
-			repeat(45) {
-				part_particles_burst(global.part_sys,cursorX,cursorY,part_slap);		
-			}
-			audio_play_sound_ext(sound_params);	
-			return false;	
-		}	
-		// If it costs too much to move, exit
-		var affordable = false;
-		switch team {
-			case "friendly":
-				if global.friendly_turns >= cost {
-					global.friendly_turns -= cost;
-					affordable = true;
-				} 
-			break;
-					
-			case "enemy":
-				if global.enemy_turns >= cost {
-					global.enemy_turns -= cost;
-					affordable = true;
-				} 
-			break;
-		}
-		if !affordable {
-			audio_stop_sound(snd_critical_error);
-			audio_play_sound(snd_critical_error,0,0);
-			with obj_timer {
-				if team == global.player_team {
-					scr_error();
-				}
-			}
-			with obj_turn_operator {
-				if team == global.player_team {
-					scr_error();
-				}
-			}
-			return false;
-		}
-
-		r_move_piece([cursorGridPosition[0],cursorGridPosition[1]],moveToGrid,tag);	
-		return true;
-	}
+// Cache cursor instance and properties
+var cursorInstance = obj_cursor;
+if !instance_exists(cursorInstance) {
+    return false;
 }
+
+var cursorX = cursorInstance.x,
+    cursorY = cursorInstance.y,
+    cursorOnGrid = cursorInstance.on_grid,
+    cursorGridPosition = cursorInstance.grid_pos;
+
+if !instance_exists(cursorOnGrid) {
+    return false;
+}
+
+// Check for piece click
+var piececlick = [noone],
+clickIndex = 0,
+clickedOnSelf = false,
+selfZ = z + (instance_exists(piece_on_grid) ? piece_on_grid.z : 0);
+
+with obj_obstacle {
+    var targetZ = instance_exists(piece_on_grid) ? piece_on_grid.z : 0;
+    // Collision check
+    if point_in_rectangle(cursorX, cursorY, 
+                         bbox_left, bbox_top - targetZ, 
+                         bbox_right, bbox_bottom - targetZ) {
+        if mode == ONLY_MOVE {
+			exit;	
+		}
+		// Skip self and same team
+		if id == other.id || team == other.team {
+			clickedOnSelf = true;
+		} else if invincible != true && 
+				total_health(hp) > 0 {
+			piececlick[clickIndex] = id;		
+			clickIndex++;
+		}
+    }
+}
+// Validate piece click
+if (clickedOnSelf || mode == ONLY_ATTACK) && clickIndex <= 0 {
+	return false;	
+}
+
+// Cooldown check
+if !bypass_cooldown && move_cooldown_timer > 0 {
+    scr_error();
+    audio_stop_sound(snd_critical_error);
+    audio_play_sound(snd_critical_error, 0, 0);
+    return false;
+}
+
+// Territory blockade check
+if position_meeting(cursorX, cursorY, obj_territory_blockade) {
+    var sound_params = {
+        sound: snd_oip,
+        pitch: random_range(0.85, 1.15),
+    };
+    repeat(45) {
+        part_particles_burst(global.part_sys, cursorX, cursorY, part_slap);
+    }
+    audio_play_sound_ext(sound_params);
+    return false;
+}
+
+// Find valid moves
+var ar_leng = array_length(valid_attacks),
+moveToGrid = noone,
+finalX = 0,
+finalY = 0,
+highLowKey = input_check("alternate_key"),
+compareZ = 0;
+if highLowKey {
+	compareZ = infinity;
+} else {
+	compareZ = -infinity	
+}
+
+for (var i = 0; i < ar_leng; i++) {
+    var precheckX = valid_attacks[i][0];
+    var precheckY = valid_attacks[i][1];
+    // Handle team & toggle string conversion
+    if is_string(precheckX) {
+        precheckX = tm_dp(real(precheckX), team, toggle);
+    }
+    if is_string(precheckY) {
+        precheckY = tm_dp(real(precheckY), team, toggle);
+    }
+    // Skip self-moves early
+    if precheckX == 0 && precheckY == 0 {
+        continue;
+    }
+    // Calculate move position
+    var moveToX = x + (precheckX + 0.5) * GRIDSPACE;
+    var moveToY = y + (precheckY + 0.5) * GRIDSPACE;
+    var testGrid = instance_position(moveToX, moveToY, obj_grid);
+    if !instance_exists(testGrid) {
+        continue;
+    } 
+    // Grid position calculation
+    var gClampX =  floor((moveToX - testGrid.bbox_left) / GRIDSPACE),
+    gClampY = floor((moveToY - testGrid.bbox_top) / GRIDSPACE),
+	backX = testGrid.bbox_left +gClampX*GRIDSPACE,
+	backY = testGrid.bbox_top + gClampY*GRIDSPACE;
+    // Check if cursor is over this move position
+    if point_in_rectangle(cursorX, cursorY, 
+                         backX, backY - testGrid.z,
+                         backX + GRIDSPACE, backY + GRIDSPACE - testGrid.z) {
+        var conditionCheck = false;
+		// Height validation
+        if max(testGrid.z - selfZ, 0) > climb_height || 
+           max(selfZ - testGrid.z, 0) > drop_height {
+           continue;
+        }
+		if highLowKey {
+			if testGrid.z < compareZ {
+				compareZ = testGrid.z;
+				conditionCheck = true;
+			}			
+		} else {
+			if testGrid.z > compareZ {
+				compareZ = testGrid.z;
+				conditionCheck = true;
+			}
+		}
+		if !conditionCheck { 
+			continue;	
+		}
+        moveToGrid = testGrid;
+		finalX = gClampX;
+		finalY = gClampY;
+    }
+}
+
+if !instance_exists(moveToGrid) {
+    return false;
+}
+
+// Cost validation
+var canAfford = false;
+switch team {
+    case "friendly":
+        canAfford = global.friendly_turns >= cost;
+        if canAfford global.friendly_turns -= cost;
+        break;
+        
+    case "enemy":
+        canAfford = global.enemy_turns >= cost;
+        if canAfford global.enemy_turns -= cost;
+        break;
+}
+
+if !canAfford {
+    audio_stop_sound(snd_critical_error);
+    audio_play_sound(snd_critical_error, 0, 0);
+    
+    // Simplified error handling
+    if team == global.player_team {
+        with obj_timer { scr_error(); }
+        with obj_turn_operator { scr_error(); }
+    }
+    return false;
+}
+
+// Execute the move
+r_move_piece([finalX, finalY], moveToGrid, tag, bypass_cooldown);
+return true;
 }

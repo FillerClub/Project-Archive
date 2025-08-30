@@ -53,19 +53,20 @@ if execute != "nothing" && input_check_pressed("action") {
 if execute != "move" {
 	hasCommitted = false;
 }
-
-if piece_attack(other.valid_moves[ONLY_MOVE], ONLY_MOVE, cost, true, false) {
-	with piece_link {
-		repeat(45) {
-			part_particles_burst(global.part_sys,x +GRIDSPACE/2,y +GRIDSPACE/2,part_slap);		
-		}	
-		x = other.x;
-		y = other.y;
-		piece_on_grid = other.piece_on_grid;
-		grid_pos = other.grid_pos;
+if input_check_pressed("action") {
+	if piece_attack(other.valid_moves[ONLY_MOVE], ONLY_MOVE, cost, true, false) {
+		with piece_link {
+			repeat(45) {
+				part_particles_burst(global.part_sys,x +GRIDSPACE/2,y +GRIDSPACE/2,part_slap);		
+			}	
+			x = other.x;
+			y = other.y;
+			piece_on_grid = other.piece_on_grid;
+			grid_pos = other.grid_pos;
+		}
+		audio_play_sound(snd_oip,0,0);
+		hasCommitted = true;	
 	}
-	audio_play_sound(snd_oip,0,0);
-	hasCommitted = true;	
 }
 
 if hasCommitted != -1 {

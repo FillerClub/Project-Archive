@@ -29,7 +29,7 @@ if instance_exists(piece_on_grid) {
 	y = grid_pos[1]*GRIDSPACE +piece_on_grid.bbox_top;
 } 
 
-depth = -bbox_bottom +z;
+depth = -bbox_bottom -z;
 if ai_controlled { auto_attack_timer(); }
 
 effect_process();

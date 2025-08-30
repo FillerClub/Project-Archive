@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scr_draw_slot",
   "parent":{
-    "name":"Draw",
-    "path":"folders/Scripts/Draw.yy",
+    "name":"Slot",
+    "path":"folders/Scripts/Slot.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

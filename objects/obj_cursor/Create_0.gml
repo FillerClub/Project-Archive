@@ -8,3 +8,4 @@ last_x = room_width/2;
 last_y = room_height/2;
 use_cursor = false;
 using_mk = true;
+depth = 0;

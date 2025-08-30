@@ -3,6 +3,5 @@ if global.game_state == PAUSED {
 }
 
 // Handle requests
-process_requests(requests,online);
-
 piece_handling();
+process_requests(requests,online);

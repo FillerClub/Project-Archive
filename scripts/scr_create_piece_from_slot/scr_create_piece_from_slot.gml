@@ -60,8 +60,10 @@ switch object_index {
 			on_grid: info[$ "grid_placement_behavior"],
 			on_piece: info[$ "piece_placement_behavior"],
 			identity: identity, 
+			index: index,
 			orig_x: x, 
 			orig_y: y,	
+			type: 0,
 			link: id,
 		});
 	break;
@@ -75,8 +77,10 @@ switch object_index {
 			on_grid: info[POWERDATA.PLACEMENTONGRID],
 			on_piece: info[POWERDATA.PLACEMENTONPIECE],
 			identity: identity, 
+			index: index,
 			orig_x: x, 
 			orig_y: y,	
+			type: 1,
 			link: id,
 		});			
 	break;

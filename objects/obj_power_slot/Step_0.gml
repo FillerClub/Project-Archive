@@ -35,24 +35,8 @@ if position_meeting(gX,gY,self) && input_check_pressed("action") {
 		audio_play_sound(snd_critical_error,0,0);	
 		exit;
 	}
-	// Special power code 
-	switch identity {
-		// Ammo mechanics
-		case "Lonestar-1":
-		case "Lonestar-3":
-			if instance_exists(obj_constant_reload) {
-				if obj_constant_reload.ammo <= 0 {
-					with obj_constant_reload {
-						scr_error();	
-						audio_stop_sound(snd_critical_error);
-						audio_play_sound(snd_critical_error,0,0);								
-					}
-					create = false;
-				}
-			} else {
-				create = false;
-			}
-		break;
+	if !special_slot_checks() {
+		create = false;
 	}
 }
 

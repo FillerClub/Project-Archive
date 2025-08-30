@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scr_create_piece_from_slot",
   "parent":{
-    "name":"Misc",
-    "path":"folders/Scripts/Misc.yy",
+    "name":"Slot",
+    "path":"folders/Scripts/Slot.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

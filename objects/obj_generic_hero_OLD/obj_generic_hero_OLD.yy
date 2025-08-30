@@ -18,10 +18,7 @@
     "name":"SCRAP",
     "path":"folders/Objects/SCRAP.yy",
   },
-  "parentObjectId":{
-    "name":"obj_generic_piece",
-    "path":"objects/obj_generic_piece/obj_generic_piece.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

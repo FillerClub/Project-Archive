@@ -10,6 +10,7 @@ if !instance_exists(own) {
 }
 if own.ammo <= 0 {
 	instance_destroy();	
+	exit;
 }
 with obj_generic_piece {
 	if team == other.team {

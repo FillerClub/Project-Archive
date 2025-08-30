@@ -25,9 +25,13 @@ for (var i = 0; i < ar_leng; ++i)	{
 	if !position_meeting(xM,yM,obj_grid) {
 		continue;	
 	}
+	var zOff = 0;
+	if instance_exists(piece_on_grid) {
+		zOff = piece_on_grid.z;	
+	}
 	draw_sprite_ext(spr_grid_highlight,image_index,
 	xM,
-	yM -z,
+	yM -zOff,
 	1,1,0,draw_color,1);	
 		
 	if show_lines {

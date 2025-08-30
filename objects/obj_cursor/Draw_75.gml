@@ -1,5 +1,4 @@
 // Set cursor sprite
-window_set_cursor(cr_none);
 draw_self();
 
 // Tooltip

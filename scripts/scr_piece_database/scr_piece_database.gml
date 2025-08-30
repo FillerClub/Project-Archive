@@ -170,8 +170,8 @@ function piece_database(name, trait = -1) {
         break;
 		// Supports
         case "accelerator":
-            p.name = "Accelerator";					p.object = obj_accelerator;
-            p.sprite = spr_accelerator;				p.slot_sprite = spr_accelerator_slot;
+            p.name = "Aira";						p.object = obj_accelerator;
+            p.sprite = spr_accelerator;				p.slot_sprite = spr_accelerator_slot;	p.idle_animation = sq_aira_idle;
             p.place_cost = 2;						p.move_cost = 0;
             p.slot_cooldown = 14;					p.move_cooldown = 25;
             p.hp = {base:10};						p.attack_power = 1;
