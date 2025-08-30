@@ -1,4 +1,7 @@
-function create_system_message(text_array,verticle_pos = TOP) {
+function create_system_message(text_array,verticle_pos = TOP,ignore_existing_messages = true) {
+	if !ignore_existing_messages && instance_exists(obj_text_box) {
+		exit;
+	}
 	var spawnY = TEXTYDEFAULT;
 	if verticle_pos == BOTTOM {
 		spawnY = room_height -TEXTYDEFAULT;
