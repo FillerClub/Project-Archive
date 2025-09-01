@@ -10,6 +10,10 @@ function piece_draw_components(trackStruct,zOff,xScale,yScale,col,tick) {
 			if is_eyes {
 				netYScale *= other.eye_scale_fact;	
 			}
+			var final_alpha = tick * image_alpha;
+			if final_alpha <= 0 {
+				break;
+			}
             draw_sprite_ext(
                 sprite_index,
                 image_index,
@@ -24,9 +28,9 @@ function piece_draw_components(trackStruct,zOff,xScale,yScale,col,tick) {
         }
     }
     // If there are nested active tracks, recurse into them
-    if (array_length(trackStruct.activeTracks) > 0) {
-        var childTracks = trackStruct.activeTracks;
-        var len = array_length(childTracks);
+	var childTracks = trackStruct.activeTracks;
+    var len = array_length(childTracks);
+    if len > 0 {
         for (var i = 0; i < len; i++) {
            piece_draw_components(childTracks[i],zOff,xScale,yScale,col,tick);
         }

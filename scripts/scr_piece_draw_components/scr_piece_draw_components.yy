@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scr_piece_draw_components",
   "parent":{
-    "name":"Draw",
-    "path":"folders/Scripts/Draw.yy",
+    "name":"Piece",
+    "path":"folders/Scripts/Draw/Piece.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

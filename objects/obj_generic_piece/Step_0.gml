@@ -21,3 +21,7 @@ if input_check_pressed("action") && !skip_click {
 		break;
 	}
 }
+
+if global.game_state == RUNNING {
+	skip_click = false;	
+}

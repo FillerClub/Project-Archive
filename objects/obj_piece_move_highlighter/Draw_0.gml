@@ -1,4 +1,4 @@
-with obj_generic_piece	{
+with obj_generic_piece {
 	var globalDebugMode = global.debug,
 	debugOn = false,
 	gX = obj_cursor.x,
@@ -47,5 +47,5 @@ with obj_generic_piece	{
 				break;
 			}
 		}	
-	}		
+	}	
 }

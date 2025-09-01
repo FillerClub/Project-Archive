@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_piece_drawing_helpers",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_piece_drawing_helpers",
+  "parent":{
+    "name":"Piece",
+    "path":"folders/Scripts/Draw/Piece.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

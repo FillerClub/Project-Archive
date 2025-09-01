@@ -1,8 +1,13 @@
 // SAVE STATE (Enter key)
 if keyboard_check_pressed(vk_enter) {
     try {
+		if buffer_exists(save_buffer) {
+			buffer_delete(save_buffer);	
+		}
+		save_buffer = buffer_create(1024,buffer_grow,1);
+		buffer_seek(save_buffer,buffer_seek_start,0);
         var saveData = create_save_data();
-        global.save_state = json_stringify(saveData);
+		buffer_write(save_buffer,buffer_string,json_stringify(saveData));
         create_system_message(["Game state saved"],TOP,false);
     } catch (error) {
         create_system_message(["Save failed: " + string(error.message)],TOP,false);
@@ -10,9 +15,10 @@ if keyboard_check_pressed(vk_enter) {
 }
 
 // LOAD STATE (Backspace key)
-if keyboard_check_pressed(vk_backspace) && global.save_state != "" {
+if keyboard_check_pressed(vk_backspace) && buffer_exists(save_buffer) {
     try {
-        var stateData = json_parse(global.save_state);
+		buffer_seek(save_buffer,buffer_seek_start,0);
+        var stateData = json_parse(buffer_read(save_buffer,buffer_string));
         load_save_data(stateData);
         create_system_message(["Game state loaded"],TOP,false);
     } catch (error) {
@@ -111,8 +117,8 @@ function load_save_data(stateData) {
             struct_set(instancesToKeep, string(instanceId), true);
         } else {
             // Create new instance
-            create_instance_from_data(savedInstance, saveVars, saveIgnoreVars);
-            struct_set(instancesToKeep, string(instanceId), true);
+            var keepID = create_instance_from_data(savedInstance, saveVars, saveIgnoreVars);
+            struct_set(instancesToKeep, string(keepID), true);
         }
     }
     
