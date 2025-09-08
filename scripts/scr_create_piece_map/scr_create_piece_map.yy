@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_create_piece_map",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_create_piece_map",
+  "parent":{
+    "name":"Misc",
+    "path":"folders/Scripts/Online/Misc.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

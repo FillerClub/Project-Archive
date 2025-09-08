@@ -6,8 +6,8 @@
   "name":"obj_aira_body",
   "overriddenProperties":[],
   "parent":{
-    "name":"Aira",
-    "path":"folders/Sequences/Piece/Aira.yy",
+    "name":"Ira",
+    "path":"folders/Sequences/Piece/Ira.yy",
   },
   "parentObjectId":{
     "name":"obj_sequence_asset",

@@ -34,7 +34,7 @@ if global.game_state != PAUSED{
 				falloff_dist: 64*1.5,
 				});
 			}
-			timer = 0;
+			timer -= timer_end;
 			timer_end = random_percent(2.6,10);
 		}	
 	}

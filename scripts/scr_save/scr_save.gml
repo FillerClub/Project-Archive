@@ -32,7 +32,6 @@ function save_file(FILE) {
 		case PROFILE:
 			var settings = array_create(0);
 			var saveS = {
-				name: global.name, 
 				master_volume: global.master_volume,
 				sfx_volume: global.sfx_volume,
 				music_volume: global.music_volume,
@@ -44,6 +43,7 @@ function save_file(FILE) {
 				first_boot: global.first_boot,
 				tooltips_enabled: global.tooltips_enabled,
 				healthbar_config: global.healthbar_config,
+				debug: global.debug,
 			}
 			array_push(settings,saveS);
 			var strng = json_stringify(settings);

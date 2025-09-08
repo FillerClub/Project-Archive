@@ -2,25 +2,28 @@ var aL = false,
 cursorInstance = obj_cursor,
 cursorOnGrid = cursorInstance.on_grid,
 loadOpponentSlots = [];
-/*
-if loadOpponentSlots != undefined {
-	load_slots(undefined,loadOpponentSlots);
+
+cleanup_timer += delta_time *DELTA_TO_SECONDS;
+if (cleanup_timer >= 3) { 
+    cleanup_old_predictions();
+    cleanup_timer -= 3;
 }
-*/
+
 // Handle requests
+piece_handling();
 process_requests(requests,online);
 
-piece_handling();
+
 // Battle Timer Function
 if global.game_state != PAUSED {
-	timer[MAIN] += delta_time*DELTA_TO_SECONDS*global.level_speed;	
-	if timer[ALERT] > 0 { timer[ALERT] -= delta_time*DELTA_TO_SECONDS*global.level_speed; }
+	timer += delta_time*DELTA_TO_SECONDS*global.level_speed;	
+	if alert_timer > 0 { alert_timer -= delta_time*DELTA_TO_SECONDS*global.level_speed; }
 }
-if timer[MAIN] >= global.timeruplength || (global.debug && keyboard_check_pressed(vk_tab)) {
+if timer >= global.timeruplength || (global.debug && keyboard_check_pressed(vk_tab)) {
 	global.max_turns += global.turn_increment;
 	global.friendly_turns += global.turn_increment;
 	global.enemy_turns += global.turn_increment;
-	timer[ALERT] = 2.3;	
+	alert_timer = 2.3;	
 	audio_play_sound(snd_shield_up,0,0);
 	var 
 	accelCountF = 0,
@@ -31,5 +34,5 @@ if timer[MAIN] >= global.timeruplength || (global.debug && keyboard_check_presse
 			accel = min(accel +0.1,global.timer_max_speed_mult)
 		} 
 	}
-	timer[MAIN] = 0;
+	timer -= global.timeruplength;
 }

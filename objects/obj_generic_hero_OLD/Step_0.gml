@@ -6,7 +6,7 @@ with obj_timer {
 	}
 }
 
-piece();
+base_piece_behavior();
 
 switch execute {
 	case "move":

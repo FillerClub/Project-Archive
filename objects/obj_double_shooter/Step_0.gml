@@ -4,7 +4,7 @@ event_inherited();
 if global.game_state != PAUSED{
 	var gS = GRIDSPACE;
 	if (timer >= timer_end) {
-		timer = 0;
+		timer -= timer_end;
 		timer_end = random_percent(1.4,4);
 		if scan_for_enemy() {
 			var zOff = z;

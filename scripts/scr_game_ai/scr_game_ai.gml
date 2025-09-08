@@ -377,7 +377,7 @@ for (var finalScan = 1; finalScan < trackArrLeng; finalScan++) {
 	
 		if ai_timer >= TIMETOTAKE {
 			commitMove = true;
-			ai_timer = 0;
+			ai_timer -= TIMETOTAKE;
 		}							
 	}
 	// Now commit to making the move

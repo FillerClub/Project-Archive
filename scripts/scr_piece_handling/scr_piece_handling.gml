@@ -44,12 +44,14 @@ if input_check_pressed("action") && !instance_exists(obj_dummy) {
 	if instance_exists(clickedOn) {
 		switch global.mode {
 			case "delete":
-				var del = {
-					Message: SEND.GAMEDATA,
-					action: "Delete",
-					tag: clickedOn.tag,
+				if clickedOn.team == global.player_team {
+					var del = {
+						Message: SEND.GAMEDATA,
+						action: "Delete",
+						tag: clickedOn.tag,
+					}
+					array_push(requests,del);
 				}
-				array_push(requests,del);
 			break;
 			default:
 				if clickedOn.team == global.player_team && clickedOn != tutorial_piece {

@@ -171,7 +171,7 @@ function piece_database(name, trait = -1) {
 		// Supports
         case "accelerator":
             p.name = "Ira";						p.object = obj_accelerator;
-            p.sprite = spr_accelerator;				p.slot_sprite = spr_accelerator_slot;	p.idle_animation = sq_aira_idle;
+            p.sprite = spr_accelerator;				p.slot_sprite = spr_accelerator_slot;	p.idle_animation = sq_ira_idle;
             p.place_cost = 2;						p.move_cost = 0;
             p.slot_cooldown = 14;					p.move_cooldown = 25;
             p.hp = {base:10};						p.attack_power = 1;
@@ -264,7 +264,7 @@ function piece_database(name, trait = -1) {
         case "bomb":
             p.name = "Bomb";						p.object = obj_bomb;
             p.sprite = spr_bomb;					p.slot_sprite = spr_bomb_slot;
-            p.place_cost = 12;						p.move_cost = 0;
+            p.place_cost = 7;						p.move_cost = 0;
             p.slot_cooldown = 30;					p.move_cooldown = 0;
             p.hp = {base:5};						p.attack_power = 25;
             p.moves = [undefined];

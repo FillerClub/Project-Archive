@@ -8,8 +8,8 @@
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_sequence_asset","path":"objects/obj_sequence_asset/obj_sequence_asset.yy",},"propertyId":{"name":"is_eyes","path":"objects/obj_sequence_asset/obj_sequence_asset.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"True",},
   ],
   "parent":{
-    "name":"Aira",
-    "path":"folders/Sequences/Piece/Aira.yy",
+    "name":"Ira",
+    "path":"folders/Sequences/Piece/Ira.yy",
   },
   "parentObjectId":{
     "name":"obj_sequence_asset",

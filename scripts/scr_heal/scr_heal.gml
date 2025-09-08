@@ -57,6 +57,9 @@ function hurt(hp_struct,amount,type = DAMAGE.NORMAL,object = noone) {
 		}, 
 		armor: function(dmg,typ,  invert = false) { 
 			switch typ {
+				case DAMAGE.ENERGY:
+					return dmg; 
+				break;
 				default:
 					return invert?dmg/.75:dmg*.75; 
 				break;

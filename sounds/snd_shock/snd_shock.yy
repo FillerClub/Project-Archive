@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.555557,
+  "duration":0.812517,
   "name":"snd_shock",
   "parent":{
     "name":"Sounds",
@@ -21,5 +21,5 @@
   "sampleRate":44100,
   "soundFile":"snd_shock.ogg",
   "type":0,
-  "volume":0.2,
+  "volume":0.3,
 }

@@ -64,7 +64,7 @@ if global.game_state != PAUSED {
 				y = targetGridPos[1]*GRIDSPACE +targetGrid.bbox_top;
 			} 
 			audio_play_sound(snd_giant_step,0,0);
-			timer = 0;
+			timer -= timer_end;
 		} else {
 			toggle = (toggle)?false:true;
 		}

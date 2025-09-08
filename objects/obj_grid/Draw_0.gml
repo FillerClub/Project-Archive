@@ -1,6 +1,6 @@
 var invert = invert_checker;
 depth = -bbox_top +z +1000;
-draw_sprite_ext(sprite_index,image_index,x,y -z,image_xscale,image_yscale,0,c_white,1);
+draw_sprite_ext(sprite_index,image_index,x,y -z,image_xscale,image_yscale,image_angle,image_blend,image_alpha);
 if draw_checker {
 	draw_set_color(c_black);
 	draw_set_alpha(.27);

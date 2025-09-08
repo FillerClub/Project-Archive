@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_get_state_timestamp",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_get_state_timestamp",
+  "parent":{
+    "name":"Misc",
+    "path":"folders/Scripts/Online/Misc.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

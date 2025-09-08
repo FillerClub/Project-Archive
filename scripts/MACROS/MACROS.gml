@@ -1,32 +1,44 @@
 #macro HEALTHCOSTMULTIPLIER .6
 #macro TIMETOTAKE 1.5
 #macro BLINKTIME .25
+#macro GRIDSPACE 64
 #macro EVERYTHING ["shooter","smoke_bomb","mortar","lobber","flyer","ball","splitter","double_shooter","short","accelerator","piercer","stick","shotgun","cross","bishop","wall","shield_gen","pawn","drum","bomber","super_stick","crawler","drooper","tank_crawler","jumper","super_tank_crawler","the_goliath","big_shooter","bomb"]
 // TRANSITIONS
 #macro INSTANT -1
-
+// GAME STATES
+#macro RUNNING 0
+#macro PAUSED 1
+#macro TRANSITIONING 2
+#macro LOADING 3
 // ONLINE
 #macro D_IP "12.110.153.58"//"127.0.0.1"//"192.168.88.22"
 #macro D_DEBUG_IP "127.0.0.1"//"192.168.88.22"
 #macro D_CLIENT_PORT 9867
 #macro D_SERVER_PORT 9868
-
+#macro TICKLENGTH 60 // Per second
 enum SEND {
-	DISCONNECT = 0,
-	CONNECT = 1,
-	MATCHDATA = 2,
-	PLAYERJOIN = 3,
-	GAMEDATA = 4,
-	TOGGLEJOIN = 5,
-	READY = 6,
-	PING = 7,
+	DISCONNECT,
+	CONNECT,
+	MATCHDATA,
+	PLAYERJOIN,
+	GAMEDATA,
+	TOGGLEJOIN,
+	READY,
+	PING,
+	PROCESSED_TICK,
+	FULL_RESYNC,
+	REQUEST_RESYNC,
+	REQUEST_DETAILED_STATE,
+	PERIODIC_SYNC,
 }
 #macro DATATYPES ["Status","Name","Hero","Loadout","MaxSlots","Bans","Barrier","TimeLength","MaxPieces","Map","Spawn","Move","Interact","Delete","Lose"]
 #macro LOBBYDATA ["Status","Name","Player1","Player1Hero","Player1Loadout","Player1Ready","Player2","Player2Hero","Player2Loadout","Player2Ready","MaxSlots","Bans","Barrier","TimeLength","MaxPieces","Map"]
 #macro SAVEOBJECTS [obj_obstacle,obj_piece_slot,obj_power_passive,obj_generic_hero,obj_generic_powerup,obj_grid,obj_bullet_parent,obj_battle_handler,obj_timer]
-#macro SAVEOBJECTVARIABLES ["x","y","z","timer","move_cooldown_timer","hp","hp_max","grid_pos","cooldown","object_index","depth","team","effects_array","effects_timer","effects_management_array","invincible","dmg","x_vel","y_vel","y_spd_max","y_spd","starting_sequence_pos","starting_sequence","shooting","accel"]
+#macro SAVEOBJECTVARIABLES ["x","y","z","timer","move_cooldown_timer","hp","hp_max","grid_pos","cooldown","object_index","depth","team","effects_array","effects_timer","effects_management_array","invincible","dmg","x_vel","y_vel","y_spd_max","y_spd","starting_sequence_pos","starting_sequence","shooting","accel","resource_timer"]
 #macro SAVEOBJECTIGNOREVARIABLES ["object_index"]
 #macro SAVEGLOBALS ["max_turns","friendly_turns","enemy_turns"]
+#macro TIMESENSITIVEVARIABLES ["timer","move_cooldown_timer","cooldown","effects_timer","resource_timer"]
+
 /*
 enum DATA {
 	//MATCHDATA
@@ -62,11 +74,10 @@ enum ONLINESTATUS {
 	INGAME = 3,	
 	SPECTATING = 4,
 }
-
 enum MEMBERSTATUS {
 	SPECTATOR = -1,	
-	HOST = 0,	
-	MEMBER = 1,
+	PLAYER1 = 0,	
+	PLAYER2 = 1,
 }
 // Level
 #macro SLOTROW 9
@@ -82,5 +93,4 @@ enum DAMAGE {
 // PIECE FUNCTIONS
 enum MEDIUM {
 	GROUND = 0,
-	
 }

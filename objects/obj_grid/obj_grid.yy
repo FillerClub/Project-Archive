@@ -39,6 +39,7 @@
     {"$GMObjectProperty":"v1","%Name":"draw_checker","filters":[],"listItems":[],"multiselect":false,"name":"draw_checker","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"true","varType":3,},
     {"$GMObjectProperty":"v1","%Name":"z","filters":[],"listItems":[],"multiselect":false,"name":"z","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"invert_checker","filters":[],"listItems":[],"multiselect":false,"name":"invert_checker","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
+    {"$GMObjectProperty":"v1","%Name":"tag","filters":[],"listItems":[],"multiselect":false,"name":"tag","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"id","varType":4,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

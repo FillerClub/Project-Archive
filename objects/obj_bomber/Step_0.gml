@@ -1,4 +1,4 @@
-if piece() && !skip_move {
+if base_piece_behavior() && !skip_move {
 	switch execute {
 		case "move":
 			if input_check_pressed("action") {

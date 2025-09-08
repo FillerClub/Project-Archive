@@ -74,7 +74,7 @@ function effect_manager_process() {
 	// After every effects is cleared, reset timer and reduce the lengths for other effects in management array
 	aML = array_length(arr);
 	for (var iii = 0; iii < aML; iii++) {
-		effects_timer = 0;
+		effects_timer -= longestShortLength;
 		arr[iii].length -= longestShortLength;
 	}
 }

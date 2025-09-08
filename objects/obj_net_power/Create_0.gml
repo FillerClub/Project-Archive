@@ -1,7 +1,4 @@
-if !position_meeting(x +GRIDSPACE/2,y +GRIDSPACE/2,obj_generic_piece) {
-	instance_destroy();
-	exit;
-}
+
 cost = power_database("Empress-2",POWERDATA.COST);
 if team == "friendly" {
 	global.friendly_turns += cost;	
@@ -9,7 +6,7 @@ if team == "friendly" {
 if team == "enemy" {
 	global.enemy_turns += cost;	
 }
-if team != global.player_team {
+if !position_meeting(x +GRIDSPACE/2,y +GRIDSPACE/2,obj_generic_piece) || team != global.player_team {
 	instance_destroy();
 	exit;
 }
@@ -19,8 +16,10 @@ with instance_position(x +GRIDSPACE/2,y +GRIDSPACE/2,obj_generic_piece) {
 	skip_move = true;
 	other.tag = tag;
 }
+var teamCompare = link.team;
+var identityCompare = link.identity;
 with obj_power_slot {
-	if other.link.team == team && other.link.identity == identity {
+	if teamCompare == team && identityCompare == identity {
 		other.slot_linked = id;
 		pause_cooldown = true;
 		cooldown = cooldown_length;

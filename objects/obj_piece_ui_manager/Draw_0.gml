@@ -1,17 +1,4 @@
 var showHealth = global.healthbar_config != HEALTHBARCONFIG.HIDEALL; 
-// This runs after all pieces have collected their data
-gpu_push_state();
-
-// Render all shadows in one batch
-render_shadow_batch();
-
-// Render all effects in one batch  
-render_effect_batch();
-
-// Render all timers with shader
-render_timer_batch();
-
-gpu_pop_state();
 
 if !showHealth {
 	exit;	

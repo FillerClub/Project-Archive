@@ -1,5 +1,5 @@
 
-function piece_attack(valid_attacks = [0,0], mode = BOTH, cost = 1, bypass_cooldown = false, skip_clicking = false) {
+function piece_attack(valid_attacks = [0,0], mode = BOTH, cost = 1, bypass_cooldown = false) {
 #macro ONLY_MOVE 0
 #macro ONLY_ATTACK 1 
 #macro BOTH 2

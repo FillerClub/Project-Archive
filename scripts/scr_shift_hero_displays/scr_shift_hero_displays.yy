@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scr_shift_hero_displays",
   "parent":{
-    "name":"OLD",
-    "path":"folders/Scripts/Online/OLD.yy",
+    "name":"Misc",
+    "path":"folders/Scripts/Online/Misc.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

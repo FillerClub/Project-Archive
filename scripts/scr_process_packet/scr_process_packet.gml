@@ -458,13 +458,14 @@ function process_packet_client(buffer_c) {
 				case 3: rGo = rm_level_split; break;
 				case 4: rGo = rm_level_conveyor; break;
 			}
-			if member_status == MEMBERSTATUS.HOST {
+			if member_status == MEMBERSTATUS.PLAYER1 {
 				global.player_team = "friendly";
 				global.opponent_team = "enemy";
-			}
-			if member_status == MEMBERSTATUS.MEMBER {
+			} else if member_status == MEMBERSTATUS.PLAYER2 {
 				global.player_team = "enemy";
 				global.opponent_team = "friendly";
+			} else {
+				global.player_team = "nothing";	
 			}
 			game_status = ONLINESTATUS.INGAME;
 			global.active_hero = obj_hero_display.identity;

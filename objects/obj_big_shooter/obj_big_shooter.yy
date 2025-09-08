@@ -10,6 +10,7 @@
   "overriddenProperties":[
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_obstacle","path":"objects/obj_obstacle/obj_obstacle.yy",},"propertyId":{"name":"hp_max","path":"objects/obj_obstacle/obj_obstacle.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"10",},
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_generic_piece","path":"objects/obj_generic_piece/obj_generic_piece.yy",},"propertyId":{"name":"timer_end","path":"objects/obj_generic_piece/obj_generic_piece.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"2",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_generic_piece","path":"objects/obj_generic_piece/obj_generic_piece.yy",},"propertyId":{"name":"uses_timer","path":"objects/obj_generic_piece/obj_generic_piece.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"True",},
   ],
   "parent":{
     "name":"Pieces",

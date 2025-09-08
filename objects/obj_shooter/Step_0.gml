@@ -21,7 +21,7 @@ if global.game_state != PAUSED {
 					x_vel: ((team == "friendly")?1:-1),
 					z: zOff,
 				});
-				timer = 0;
+				timer -= timer_end;
 				timer_end = random_percent(1,5);
 				shooting = false;
 			}

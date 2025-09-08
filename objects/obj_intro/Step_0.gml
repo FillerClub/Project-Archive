@@ -8,7 +8,7 @@ if keyboard_check_pressed(vk_anykey) || mouse_check_button_pressed(mb_any) {
 timer += delta_time*DELTA_TO_SECONDS;
 
 if timer >= .12 {
-	timer = 0;
+	timer -= timer_end;
 	if image_alpha < 1 && add_alpha == true {
 		image_alpha += .1;	
 	}

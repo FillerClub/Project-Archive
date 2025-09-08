@@ -1,6 +1,6 @@
 var gS = GRIDSPACE;
 
-piece();
+base_piece_behavior();
 
 if !skip_move {
 	switch execute {

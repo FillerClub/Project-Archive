@@ -1,9 +1,9 @@
 switch(async_load[?"event_type"]) {
 	case "lobby_created":
 		var client = obj_client_manager;
-		var steamID = obj_preasync_handler.steam_id;
+		var steamID = steam_id;
 		steam_lobby_join_id(steam_lobby_get_lobby_id());
-		steam_lobby_set_data("Name","My Lobby");
+		steam_lobby_set_data("Name",string(steam_name) +"'s Lobby");
 		steam_lobby_set_data("Status","Looking for players.");
 		steam_lobby_set_data("Player1",string(0));
 		steam_lobby_set_data("Player1Loadout",json_stringify(["Empty"]));
@@ -62,18 +62,19 @@ switch(async_load[?"event_type"]) {
 	    for (var i = 0; i < _lb_count; i++) {
 	        var _lb_ID = steam_lobby_list_get_lobby_id(i);
 	        var _lb_owner = steam_lobby_list_get_lobby_owner_id(i);
+	        var _lb_name = steam_lobby_list_get_data(i,"Name");
 	        var _lb_members_count = steam_lobby_list_get_lobby_member_count(i);
 			lobby_list[i] = {
 				lobby_id: _lb_ID,
 				owner_id: _lb_owner,
-				name: " ... ",
+				name: _lb_name,
 				count: _lb_members_count,
 			};
 			// Put in request to fetch the name from owner id
-			steam_get_user_persona_name(_lb_owner);
-	        for (var j = 0; j < _lb_members_count; j++) {
+			//steam_get_user_persona_name(_lb_owner);
+	        //for (var j = 0; j < _lb_members_count; j++) {
 	            //var _lb_member_ID = steam_lobby_list_get_lobby_member_id(i, j);
-	        }
+	        //}
 	    }
 	break;
 	case "user_persona_name":

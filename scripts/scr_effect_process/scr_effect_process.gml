@@ -17,7 +17,7 @@ function effect_process() {
 	// Tick internal timer
 	// Effect timer is used to time buffs/debuffs, not affected by speed or slow
 	effects_timer += timerTickRate;
-	if !skip_timer { 
+	if !skip_timer && uses_timer { 
 		// Base timer is affected by speed and slow
 		timer += timerTickRate*effectModifier;
 	}
@@ -34,7 +34,7 @@ function effect_process() {
 		eye_scale_fact = 1;
 	}	
 	if blink_timer >= blink_end +BLINKTIME {
-		blink_timer = 0;
+		blink_timer -= blink_end +BLINKTIME;
 		blink_end = random_range(1,5);
 	}
 	// Movement timer

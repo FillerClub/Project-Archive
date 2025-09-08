@@ -1,6 +1,6 @@
 var Hi = 0,
 Pi = 0,
-buffIncreased = false;
+buffIncrease = 0;
 with obj_hero_wall {
 	if team != other.team {
 		other.wall_tracking_array[Hi] = id;
@@ -13,42 +13,21 @@ with obj_hero_wall {
 
 for (var ii = 0; ii < array_length(wall_tracking_array);ii++) {
 	with wall_tracking_array[ii] {
-		if total_health(hp) <= 0 && wrath_ability_activate == false {
-			// Avoid buffing in the same frame 
-			if !buffIncreased {
-				wrath_ability_activate = true;
-				buffIncreased = true;
-			}
+		if total_health(hp) <= 0 && wrath_ability_activate == false { 
+			wrath_ability_activate = true;
+		} else if total_health(hp) > 0 {
+			wrath_ability_activate = false;
+		}
+		if wrath_ability_activate {
+			buffIncrease++;
 		}
 	}
 }
+var createSpeed = 1 +(buffIncrease/(global.barrier_criteria -1));
 
-with obj_generic_piece {
-	if team == other.team {
-		other.piece_tracking_array[Pi] = id;
-		if buffIncreased && variable_instance_exists(self,"wrath_passive_buffed") {
-			if wrath_passive_buffed {
-				// Cancels out previous buffs given
-				effects_array[EFFECT.SPEED] -= other.passive_buff;
-			}
-		}
-		
-		if buffIncreased || !variable_instance_exists(self,"wrath_passive_buffed") {
-			wrath_passive_buffed = false;
-		}
-		Pi++;
+with obj_piece_slot {
+	// ONLY buff piece slots
+	if object_index == obj_piece_slot && team == other.team {
+		speed_factor = createSpeed;
 	}
-}
-
-if buffIncreased {
-	passive_buff++;	
-}
-
-for (var iii = 0; iii < array_length(piece_tracking_array);iii++) {
-	with piece_tracking_array[iii] {
-		if wrath_passive_buffed == false {
-			effect_generate(EFFECT.SPEED,infinity,"empress_lust",other.passive_buff);
-			wrath_passive_buffed = true;
-		}
-	}	
 }

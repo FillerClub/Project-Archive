@@ -5,6 +5,6 @@ switch global.map {
 	case MAP.MOVE: draw_sprite(spr_map_move,0,x,y); break;
 	case MAP.HEIGHTS: draw_sprite(spr_map_heights,0,x,y); break;
 }
-if obj_client_manager.member_status == MEMBERSTATUS.HOST && !obj_ready.ready {
+if obj_client_manager.is_host && !obj_ready.ready {
 	draw_self();
 }

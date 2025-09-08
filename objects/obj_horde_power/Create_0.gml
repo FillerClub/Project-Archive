@@ -2,18 +2,15 @@ var gD = 0;
 with instance_position(x,y,obj_grid) {
 	if team == global.player_team {
 		if team == "friendly" {
-			gD = bbox_left;
+			gD = bbox_left +GRIDSPACE;
 		} else if team == "enemy" {
-			gD = bbox_right -GRIDSPACE;
+			gD = bbox_right -GRIDSPACE -1;
 		}
 	}	
 }
 if position_meeting(gD,y+GRIDSPACE,obj_grid) && !position_meeting(gD,y+GRIDSPACE,obj_obstacle) {
 	instance_create_layer(gD,y+GRIDSPACE,"Instances",obj_goliath, {
-		identity: "the_goliath",
-		dragging: false,
-		fresh: false,
-		moveable: false,		
+		identity: "the_goliath",	
 		team: team,
 		link: link,	
 		ai_controlled: ai_controlled
@@ -22,10 +19,7 @@ if position_meeting(gD,y+GRIDSPACE,obj_grid) && !position_meeting(gD,y+GRIDSPACE
 
 if position_meeting(gD,y-GRIDSPACE,obj_grid) && !position_meeting(gD,y-GRIDSPACE,obj_obstacle) {
 	instance_create_layer(gD,y-GRIDSPACE,"Instances",obj_goliath, {
-		identity: "the_goliath",
-		dragging: false,
-		fresh: false,
-		moveable: false,		
+		identity: "the_goliath",	
 		team: team,
 		link: link,	
 		ai_controlled: ai_controlled

@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scr_steam_requests",
   "parent":{
-    "name":"Online",
-    "path":"folders/Scripts/Online.yy",
+    "name":"(1) Core Functions",
+    "path":"folders/Scripts/Online/(1) Core Functions.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

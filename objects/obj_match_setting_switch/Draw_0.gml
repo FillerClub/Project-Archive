@@ -3,7 +3,7 @@ draw_set_color(c_white);
 draw_set_valign(fa_middle);
 draw_set_halign(fa_center);
 var client = obj_client_manager;
-if client.member_status == MEMBERSTATUS.HOST && !obj_ready.ready {
+if client.is_host && !obj_ready.ready {
 	draw_self();
 }
 

@@ -67,7 +67,7 @@ function crawler_code() {
 				grid_pos = targetGridPos;
 				x = targetGridPos[0]*GRIDSPACE +targetGrid.bbox_left;
 				y = targetGridPos[1]*GRIDSPACE +targetGrid.bbox_top;
-				timer = 0;
+				timer -= timer_end;
 			}
 		} else {
 			toggle = (toggle)?false:true;

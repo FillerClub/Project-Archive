@@ -26,7 +26,7 @@
   "origin":9,
   "parent":{
     "name":"Sprites",
-    "path":"folders/Sequences/Piece/Aira/Sprites.yy",
+    "path":"folders/Sequences/Piece/Ira/Sprites.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

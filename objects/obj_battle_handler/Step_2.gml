@@ -33,15 +33,15 @@ switch room {
 	
 	default:
 		if global.game_state != PAUSED {
-			timer[MAIN] += delta_time*DELTA_TO_SECONDS*global.level_speed;	
-			if timer[ALERT] > 0 { timer[ALERT] -= delta_time*DELTA_TO_SECONDS*global.level_speed; }
+			timer += delta_time*DELTA_TO_SECONDS*global.level_speed;	
+			if alert_timer > 0 { alert_timer -= delta_time*DELTA_TO_SECONDS*global.level_speed; }
 		}
-		if timer[MAIN] >= global.timeruplength || (global.debug && keyboard_check_pressed(vk_tab)) {
+		if timer >= global.timeruplength || (global.debug && keyboard_check_pressed(vk_tab)) {
 			global.max_turns += global.turn_increment;
 			global.friendly_turns += global.turn_increment;
 			global.enemy_turns += global.turn_increment;
-			timer[ALERT] = 2.3;	
-			audio_play_sound(snd_shield_up,0,0);
+			alert_timer = 2.3;	
+			audio_play_sound(snd_timer_upgrade,0,0);
 			var 
 			accelCountF = 0,
 			accelCountE = 0;
@@ -61,7 +61,7 @@ switch room {
 				}
 			}
 			*/
-			timer[MAIN] = 0;
+			timer -= global.timeruplength;
 		}
 	break;
 }

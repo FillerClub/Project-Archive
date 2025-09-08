@@ -78,7 +78,7 @@ switch on_piece {
 can_place = placeable;
 
 if placed && (placeable || global.debug) {
-    r_spawn_piece(identity, team, index, [gridX, gridY], piece_on_grid.id,type);
+    r_spawn_piece(identity, team, index, [gridX, gridY], piece_on_grid.id, type, link);
     destroySelf = true;
 }
 else if (placed && place_immediately) {

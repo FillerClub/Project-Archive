@@ -6,3 +6,4 @@ if instance_exists(piece_on_grid) {
 }
 draw_sprite(spr_slot_highlight,image_index,orig_x,orig_y);
 draw_sprite_ext(sprite_index,image_index,x,y,image_xscale*teamFlip,image_yscale,image_angle,teamCol,image_alpha);
+//draw_text(x,y,link);

@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scr_spawn_piece",
   "parent":{
-    "name":"Game stuff",
-    "path":"folders/Scripts/Important/Game stuff.yy",
+    "name":"(2) Actions",
+    "path":"folders/Scripts/Online/(2) Actions.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

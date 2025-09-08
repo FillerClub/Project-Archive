@@ -1,3 +1,4 @@
+//draw_text(room_width/2,room_height/2,tick_count);
 /*
 if steam_lobby_get_lobby_id() == 0 || room == rm_lobby {
 	exit;	

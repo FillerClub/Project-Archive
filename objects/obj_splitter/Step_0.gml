@@ -46,7 +46,7 @@ if global.game_state != PAUSED {
 		}
 		if shootBottom || shootMid || shootTop {
 			repeat_shot -= 1;
-			timer = 0;
+			timer -= timer_end;
 			timer_end = random_percent(1.4,4);			
 		}
 	}

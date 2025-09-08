@@ -2,5 +2,5 @@ var gS = GRIDSPACE;
 
 var tm = (team == "friendly")?1:-1;
 
-piece();
+base_piece_behavior();
 

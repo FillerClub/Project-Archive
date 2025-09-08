@@ -25,7 +25,7 @@ if global.game_state != PAUSED{
 				}
 			}
 			if playSound { audio_play_sound(snd_bullet_hit,0,0); }
-			timer = 0;
+			timer -= timer_end;
 			timer_end = random_percent(4,5);
 		}
 	}

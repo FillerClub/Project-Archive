@@ -18,17 +18,17 @@ draw_text_transformed(x +strWidth/2,y +sprite_height/2 +strHeight*.75,"/" +strin
 //draw_text_scribble(x,y +64,temp_accel);
 // Game timer upgrade bar
 if instance_exists(obj_battle_handler) {
-	var barPerc = lerp(y +sprite_height/2,y -sprite_height/2,max(obj_battle_handler.timer[MAIN]/global.timeruplength,0));
+	var barPerc = lerp(y +sprite_height/2,y -sprite_height/2,max(obj_battle_handler.timer/global.timeruplength,0));
 	if team == "friendly" {
 		draw_set_color(c_black);
-		draw_rectangle(x -sprite_width/2 -16,y +sprite_height/2,x -sprite_width/2 -8,y -sprite_height/2,false);
+		draw_rectangle(x +sprite_width/2 +16,y +48/2,x +sprite_width/2 +8,y -48/2,false);
 		draw_set_color(c_aqua);
-		draw_rectangle(x -sprite_width/2 -16,y +sprite_height/2,x -sprite_width/2 -8,barPerc,false);
+		draw_rectangle(x +sprite_width/2 +16,y +48/2,x +sprite_width/2 +8,barPerc,false);
 	} else {
 		draw_set_color(c_black);
-		draw_rectangle(x +sprite_width/2 +8,y +sprite_height/2,x +sprite_width/2 +16,y -sprite_height/2,false);
+		draw_rectangle(x -sprite_width/2 -8,y +48/2,x -sprite_width/2 -16,y -48/2,false);
 		draw_set_color(c_aqua);
-		draw_rectangle(x +sprite_width/2 +8,y +sprite_height/2,x +sprite_width/2 +16,barPerc,false);
+		draw_rectangle(x -sprite_width/2 -8,y +48/2,x -sprite_width/2 -16,barPerc,false);
 	}
 }
 spd = 0;

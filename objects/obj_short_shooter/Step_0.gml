@@ -14,7 +14,7 @@ if global.game_state != PAUSED{
 	var 
 	gS = GRIDSPACE;
 	if (timer >= timer_end) {
-		timer = 0;
+		timer -= timer_end;
 		timer_end = random_percent(.7,4);
 		decide_shoot = false;
 		var xV = 0,

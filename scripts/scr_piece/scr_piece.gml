@@ -1,5 +1,5 @@
 /// @description	Run generic piece code
-function piece() {
+function base_piece_behavior() {
 if time_source_get_state(error_time) == time_source_state_stopped {
 	timer_color = c_white;
 }

@@ -32,6 +32,9 @@ if hp <= 0 {
 				if team == other.team && total_health(hp) <= 0 {
 					hp.base = 10;
 					invincible = false;
+					if variable_instance_exists(self,"aegis_ability_done") {
+						aegis_ability_done = false;	
+					}
 				}
 			}
 		break;
@@ -59,13 +62,16 @@ if hp <= 0 {
 		case rm_level_normal:
 		case rm_level_split:
 		case rm_level_heights:
-			var lose = {
-				Message: SEND.GAMEDATA,
-				action: "Lose",
-				team: team,
-			}
-			with obj_battle_handler {
-				array_push(requests,lose);	
+			if packet_send = -1 {
+				var lose = {
+					Message: SEND.GAMEDATA,
+					action: "Lose",
+					team: team,
+				}
+				with obj_battle_handler {
+					array_push(requests,lose);	
+				}
+				packet_send = true;
 			}
 		break;
 	}

@@ -19,7 +19,7 @@ if global.game_state != PAUSED {
 			lob_height: random_percent(max(512*distMod,32),10),
 			});
 		}
-		timer = 0;
+		timer -= timer_end;
 		timer_end = random_percent(1.4,4);
 	}
 }

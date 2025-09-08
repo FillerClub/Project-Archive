@@ -4,8 +4,8 @@ enum AI {
 	COORD = 2
 }
 
-timer[MAIN] = 0;
-timer[ALERT] = 0;
+timer = 0;
+alert_timer = 0;
 timer_phase = 0;
 ai_pieces = [];
 friendly_pieces = [];

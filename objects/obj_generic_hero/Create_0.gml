@@ -8,3 +8,4 @@ sprite_index = hero_database(identity,HERODATA.SPRITE);
 
 hp = global.barrier_criteria;
 hp_init = hp;
+packet_send = -1;

@@ -10,4 +10,3 @@ for (var g = 0; g <= floor((bbox_bottom -bbox_top -1)/GRIDSPACE); g++) {
 		grid_pos: [(tM -bbox_left)/GRIDSPACE,g]
 	});
 }
-obj_game.debug_count++;

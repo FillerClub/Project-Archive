@@ -37,7 +37,7 @@ with obj_power_database {
 		case "Empress-0":
 			object = [	"Lust of Wrath",obj_lust_of_wrath_passive,1,0,spr_lust_of_wrath_passive,
 						PLACEABLEANY,PLACEABLEANY,
-						"Breaking down walls give your pieces a permanent speed boost."];
+						"Breaking down walls reduces the cooldown of your piece slots."];
 		break;
 		case "Empress-1":
 			object = [	"Poison",obj_fizz_power,1,17,spr_fizz_slot,
