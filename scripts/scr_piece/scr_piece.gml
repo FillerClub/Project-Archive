@@ -26,10 +26,17 @@ if global.game_state == PAUSED && !ignore_pause {
 	}
 	return false;
 } 
-
-if instance_exists(piece_on_grid) {
-	x = grid_pos[0]*GRIDSPACE +piece_on_grid.bbox_left;
-	y = grid_pos[1]*GRIDSPACE +piece_on_grid.bbox_top;
+var gridRef = piece_on_grid;
+if is_string(gridRef) {
+	with obj_grid {
+		if tag == gridRef {
+			other.x = other.grid_pos[0]*GRIDSPACE +bbox_left;
+			other.y = other.grid_pos[1]*GRIDSPACE +bbox_top;		
+		}
+	}
+} else if instance_exists(gridRef) {
+	x = grid_pos[0]*GRIDSPACE +gridRef.bbox_left;
+	y = grid_pos[1]*GRIDSPACE +gridRef.bbox_top;
 } 
 
 depth = -bbox_bottom -z;

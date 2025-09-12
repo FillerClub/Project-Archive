@@ -1,39 +1,66 @@
 // Constants
-#macro READY_COUNTDOWN_TIME 3
+#macro READY_COUNTDOWN_TIME 2.5
 
 // Main lobby update function
 function update_lobby() {
     is_host = steam_lobby_is_owner();
-    
-    if (!is_in_valid_lobby()) {
+	if (room == rm_loadout_zone_multiplayer || room == rm_lobby) {	
+	    in_level = false;
+	}
+	if steam_lobby_get_lobby_id() == 0 || room == rm_lobby {
         member_status = MEMBERSTATUS.SPECTATOR;
         return;
     }
-    
+
     update_lobby_data();
     update_player_status();
-    
     if (is_host) {
         handle_game_start();
     }
 }
 
-// Check if we're in a valid lobby
-function is_in_valid_lobby() {
-    return steam_lobby_get_lobby_id() != 0 && room != rm_lobby;
-}
-
 // Update lobby data and sync with global variables
 function update_lobby_data() {
-    var data = LOBBYDATA;
-    var data_length = array_length(data);
-    
-    for (var i = 0; i < data_length; i++) {
-        var current_data = steam_lobby_get_data(data[i]);
-        
-        if (has_data_changed(i, current_data)) {
-            update_lobby_data_entry(i, data[i], current_data);
-            sync_global_variable(data[i], current_data);
+   var data = LOBBYDATA,
+    datLeng = array_length(data),
+    readData = "",
+    dataType = "",
+    dataData = "",
+    upd = false,
+    bothReady = false,
+	invalid = false;
+    for (var i = 0; i < datLeng; i++) {
+        readData = steam_lobby_get_data(data[i]);
+        if readData != lobby_data[i].data {
+            dataType = data[i];    
+            dataData = readData;
+            lobby_data[i].type = dataType;
+            lobby_data[i].data = dataData;
+			if is_undefined(readData) || readData == "" {
+				invalid = true;	
+			}
+        }
+        // Update game values if needed
+        if lobby_data[i].update && !invalid {
+			upd = true;
+            switch dataType {
+                case "Max Slots":  global.max_slots = int64(readData);
+                break;
+                case "Enable Bans": global.enable_bans = bool(readData);
+                break;
+                case "Barrier Win Condition": global.barrier_criteria = int64(readData);
+                break;
+                case "Time Until Timer Upgrade": global.timeruplength = int64(readData);
+                break;
+                case "Max Pieces": global.max_pieces = int64(readData);
+                break;
+                case "Map": global.map = int64(readData);
+                break;
+            }
+        }
+        if upd {
+            lobby_data[i].update = false;
+            upd = false;
         }
     }
 }
@@ -88,60 +115,52 @@ function sync_global_variable(data_type, data_value) {
 function update_player_status() {
     var player1 = steam_lobby_get_data("Player1");
     var player2 = steam_lobby_get_data("Player2");
-    var player_id = obj_preasync_handler.steam_id;
+    var playerID = obj_preasync_handler.steam_id;
     
-    if (player1 == player_id || player2 == player_id) {
-        member_status = MEMBERSTATUS.MEMBER;
+    if player1 == playerID {
+        member_status = MEMBERSTATUS.PLAYER1;
+    } else if player2 == playerID {
+        member_status = MEMBERSTATUS.PLAYER2;
     } else {
-        member_status = MEMBERSTATUS.SPECTATOR;
-    }
+		member_status = MEMBERSTATUS.SPECTATOR;
+	}
 }
-
+function generate_tag_list(length,characters = 3) {
+	var tags = [],
+	compromised = false;
+	for (var i = 0; i < 8; i++) {
+		var precheck = string_random(characters);
+		for (var ii = 0; ii < array_length(tags); ii++) {
+			if tags[ii] == precheck {
+				compromised = true;
+				break;
+			}
+		}
+		if compromised {
+			break;	
+		}
+		array_push(tags,precheck);
+	}
+	if compromised {
+		tags = generate_tag_list(length,characters);	
+	}
+	return tags;
+}
 // Handle game start logic (host only)
 function handle_game_start() {
     var player1_ready = steam_lobby_get_data("Player1Ready");
     var player2_ready = steam_lobby_get_data("Player2Ready");
-    
-    if (!are_both_players_ready(player1_ready, player2_ready)) {
-        reset_ready_timer();
-        return;
+
+    if player1_ready != "" && player2_ready != "" && int64(player1_ready) && int64(player2_ready) {
+		ready_timer += delta_time*DELTA_TO_SECONDS;
+	} else {
+		ready_timer = 0;	
+	}
+    if ready_timer >= READY_COUNTDOWN_TIME && !in_level {
+        randomise();
+		var seed = random_get_seed();
+		var tags = generate_tag_list(tag_list_length);
+		steam_bounce({Message: SEND.READY, level_seed: seed, random_object_tags: tags});
+		ready_timer = 0;
     }
-    
-    update_ready_timer();
-    
-    if (should_start_game()) {
-        start_multiplayer_game();
-    }
-}
-
-// Check if both players are ready
-function are_both_players_ready(player1_ready, player2_ready) {
-    return player1_ready != "" && player2_ready != "" && 
-           int64(player1_ready) && int64(player2_ready);
-}
-
-// Reset ready timer if not in appropriate room
-function reset_ready_timer() {
-    if (room == rm_loadout_zone_multiplayer || room == rm_lobby) {
-        ready_timer = 0;
-        in_level = false;
-    }
-}
-
-// Update the countdown timer
-function update_ready_timer() {
-    ready_timer += delta_time * DELTA_TO_SECONDS;
-}
-
-// Check if game should start
-function should_start_game() {
-    return ready_timer >= READY_COUNTDOWN_TIME && !in_level;
-}
-
-// Start the multiplayer game
-function start_multiplayer_game() {
-    randomise();
-    var seed = random_get_seed();
-    steam_bounce({Message: SEND.READY, level_seed: seed});
-    in_level = true;
 }

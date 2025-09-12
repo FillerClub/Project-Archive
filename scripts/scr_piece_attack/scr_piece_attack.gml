@@ -24,10 +24,31 @@ if !instance_exists(cursorOnGrid) {
 var piececlick = [noone],
 clickIndex = 0,
 clickedOnSelf = false,
-selfZ = z + (instance_exists(piece_on_grid) ? piece_on_grid.z : 0);
+selfZ = z;
+if is_string(piece_on_grid) {
+	with obj_grid {
+		if tag == other.piece_on_grid {
+			selfZ += z;
+			break;
+		}
+	}
+} else {
+	selfZ += (instance_exists(piece_on_grid) ? piece_on_grid.z : 0);	
+}
+
 
 with obj_obstacle {
-    var targetZ = instance_exists(piece_on_grid) ? piece_on_grid.z : 0;
+	var targetZ = 0;
+	if is_string(piece_on_grid) {
+		with obj_grid {
+			if tag == other.piece_on_grid {
+				targetZ += z;
+				break;
+			}
+		}
+	} else {
+		targetZ += (instance_exists(piece_on_grid) ? piece_on_grid.z : 0);	
+	}
     // Collision check
     if point_in_rectangle(cursorX, cursorY, 
                          bbox_left, bbox_top - targetZ, 

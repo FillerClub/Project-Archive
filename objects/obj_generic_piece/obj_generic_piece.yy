@@ -82,5 +82,5 @@
     "name":"spr_phantom_body",
     "path":"sprites/spr_phantom_body/spr_phantom_body.yy",
   },
-  "visible":true,
+  "visible":false,
 }

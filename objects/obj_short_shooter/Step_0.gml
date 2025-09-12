@@ -14,7 +14,7 @@ if global.game_state != PAUSED{
 	var 
 	gS = GRIDSPACE;
 	if (timer >= timer_end) {
-		timer -= timer_end;
+		timer = 0;
 		timer_end = random_percent(.7,4);
 		decide_shoot = false;
 		var xV = 0,
@@ -61,9 +61,15 @@ if global.game_state != PAUSED{
 		}
 		
 		if decide_shoot {
-			if instance_exists(piece_on_grid) {
-				zOff += piece_on_grid.z;	
-			}
+			var gridOff = piece_on_grid;
+			if is_string(gridOff) {
+				with obj_grid {
+					if tag == gridOff {
+						zOff += z;
+						break;
+					}
+				}
+			} else if instance_exists(gridOff) { zOff += gridOff.z; }
 			instance_create_depth(x +sprite_width/2 +random_range(-4,4),y +sprite_height/2 +random_range(-4,4),depth -gS/2,obj_bullet_parent, {
 			team: team,
 			x_vel: xV,

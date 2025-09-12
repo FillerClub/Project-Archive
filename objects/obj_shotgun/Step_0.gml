@@ -20,9 +20,15 @@ if global.game_state != PAUSED{
 			rand = 0;
 			repeat 12 {
 				var zOff = z;
-				if instance_exists(piece_on_grid) {
-					zOff += piece_on_grid.z;	
-				}
+				var gridOff = piece_on_grid;
+				if is_string(gridOff) {
+					with obj_grid {
+						if tag == gridOff {
+							zOff += z;
+							break;
+						}
+					}
+				} else if instance_exists(gridOff) { zOff += gridOff.z; }
 				rand = random_range(-16,16);
 				instance_create_depth(x +sprite_width/2 +random_range(-4,4),y +sprite_height/2 +random_range(-4,4),depth -gS/2,obj_bullet_parent, {
 				image_xscale: .5,
@@ -34,7 +40,7 @@ if global.game_state != PAUSED{
 				falloff_dist: 64*1.5,
 				});
 			}
-			timer -= timer_end;
+			timer = 0;
 			timer_end = random_percent(2.6,10);
 		}	
 	}

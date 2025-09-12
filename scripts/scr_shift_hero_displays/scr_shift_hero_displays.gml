@@ -1,9 +1,9 @@
 function shift_hero_displays(){
 	var h = obj_hero_display;
 	switch obj_client_manager.member_status {
-		case MEMBERSTATUS.HOST:
+		case MEMBERSTATUS.PLAYER1:
 		break;
-		case MEMBERSTATUS.MEMBER:
+		case MEMBERSTATUS.PLAYER2:
 			var e = obj_enemy_hero_display,
 			ohX = h.x,
 			oeX = e.x,

@@ -56,7 +56,7 @@ if global.game_state != PAUSED {
 		}
 		if canMove {
 			if !still {
-				piece_on_grid = targetGrid;
+				piece_on_grid = targetGrid.tag;
 				var
 				targetGridPos = [floor((targetX -targetGrid.bbox_left)/GRIDSPACE),floor((targetY -targetGrid.bbox_top)/GRIDSPACE)];
 				grid_pos = targetGridPos;
@@ -64,7 +64,7 @@ if global.game_state != PAUSED {
 				y = targetGridPos[1]*GRIDSPACE +targetGrid.bbox_top;
 			} 
 			audio_play_sound(snd_giant_step,0,0);
-			timer -= timer_end;
+			timer = 0;
 		} else {
 			toggle = (toggle)?false:true;
 		}

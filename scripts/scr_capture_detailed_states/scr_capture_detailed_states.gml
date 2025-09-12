@@ -21,6 +21,7 @@ function capture_detailed_state() {
 			pushStruct.grid_pos = grid_pos;
 			pushStruct.piece_on_grid = piece_on_grid;
 			pushStruct.timer = timer;
+			pushStruct.identity = identity;
 			pushStruct.move_cooldown_timer = move_cooldown_timer;
 			pushStruct.z = z;
 		}

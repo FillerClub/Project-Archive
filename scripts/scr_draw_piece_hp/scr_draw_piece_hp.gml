@@ -22,9 +22,15 @@ function draw_piece_hp(subtract_health = 0){
 		scale = 20/totalHPMax;
 	}
 	var zOff = z;
-	if instance_exists(piece_on_grid) {
-		zOff += piece_on_grid.z;
-	}
+	var gridOff = piece_on_grid;
+	if is_string(gridOff) {
+		with obj_grid {
+			if tag == gridOff {
+				zOff += z;
+				break;
+			}
+		}
+	} else if instance_exists(gridOff) { zOff += gridOff.z; }
 	var
 	spriteReference = spr_health_bit_empty,
 	wid = sprite_get_width(spriteReference),

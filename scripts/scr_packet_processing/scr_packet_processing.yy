@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_packet_processing",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_packet_processing",
+  "parent":{
+    "name":"_Debug",
+    "path":"folders/Scripts/_Debug.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

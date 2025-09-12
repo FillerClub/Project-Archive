@@ -5,9 +5,15 @@ var tM = (team == "enemy") ? -1 : 1,
     sLW = effects_array[EFFECT.SLOW];
 
 var zBase = 0;
-if instance_exists(piece_on_grid) {
-    zBase = piece_on_grid.z;    
-}
+var gridOff = piece_on_grid;
+if is_string(gridOff) {
+	with obj_grid {
+		if tag == gridOff {
+			zBase += z;
+			break;
+		}
+	}
+} else if instance_exists(gridOff) { zBase += gridOff.z; }
 
 var xFlip = (1 - toggle * 2) * tM,
     xScale = (1 + ai_timer / (TIMETOTAKE * 2)) * xFlip,

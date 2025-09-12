@@ -49,7 +49,7 @@ function process_completed_tick_batches() {
                 accepted_actions: prioritized,
                 rejected_predictions: rejected_predictions
             };
-			
+			store_executed_actions(process_tick, prioritized);
             steam_bounce(processed_batch);
         }
         

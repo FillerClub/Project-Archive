@@ -7,15 +7,31 @@ function z_collide(z_object_a, z_object_b, zidth_scale = 1) {
     // Get z positions
     var zA = z_object_a.z;
     if variable_instance_exists(z_object_a, "piece_on_grid") { 
-		if instance_exists(z_object_a.piece_on_grid) {
-			zA += z_object_a.piece_on_grid.z;
+		if is_string(z_object_a.piece_on_grid) {
+			with obj_grid {
+				if tag == z_object_a.piece_on_grid {
+					zA += z;	
+				}
+			}
+		} else {
+			if instance_exists(z_object_a.piece_on_grid) {
+				zA += z_object_a.piece_on_grid.z;
+			}
 		}
     }
 
     var zB = z_object_b.z;
     if variable_instance_exists(z_object_b, "piece_on_grid") {
-		if instance_exists(z_object_b.piece_on_grid) {
-			zB += z_object_b.piece_on_grid.z;
+		if is_string(z_object_b.piece_on_grid) {
+			with obj_grid {
+				if tag == z_object_b.piece_on_grid {
+					zB += z;	
+				}
+			}
+		} else {
+			if instance_exists(z_object_b.piece_on_grid) {
+				zB += z_object_b.piece_on_grid.z;
+			}
 		}
     }
 

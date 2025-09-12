@@ -1,6 +1,11 @@
 update_lobby();
 
 while (steam_net_packet_receive()) {
+	var player1 = steam_lobby_get_data("Player1"),
+    player2 = steam_lobby_get_data("Player2"),
+    playerID = obj_preasync_handler.steam_id,
+    player1Ready = steam_lobby_get_data("Player1Ready"),
+    player2Ready = steam_lobby_get_data("Player2Ready");
 	steam_net_packet_get_data(inbuf);
 	var SenderID = steam_net_packet_get_sender_id();
 	if (buffer_get_size(inbuf) > 0) {
@@ -12,9 +17,7 @@ while (steam_net_packet_receive()) {
 				case SEND.PLAYERJOIN:
 					var userID = msg.Player,
 					userHero = msg.PlayerHero,
-					userLoadout = msg.PlayerLoadout,
-					player1 = steam_lobby_get_data("Player1"),
-					player2 = steam_lobby_get_data("Player2");
+					userLoadout = msg.PlayerLoadout;
 					if player1 == 0 {
 						steam_lobby_set_data("Player1",userID);		
 						steam_lobby_set_data("Player1Hero",userHero);		
@@ -68,19 +71,36 @@ while (steam_net_packet_receive()) {
 					}
 				break;
 				case SEND.GAMEDATA:
-					if member_status = MEMBERSTATUS.HOST {
-						// HOST: Batch instead of immediate bounce
+					if is_host {
 						batch_action_for_tick(msg);
 					}
 				break;
 				case SEND.PROCESSED_TICK:
 					handle_authoritative_actions(msg);
 				break;
-				case SEND.REQUEST_DETAILED_STATE:
+				case SEND.DETAILED_STATE_SYNC:
 				    handle_detailed_state_sync(msg);
 				break;
 				case SEND.PERIODIC_SYNC:
 					handle_periodic_sync_packet(msg);
+				break;
+				case SEND.REQUEST_RESYNC:
+					if is_host {
+				        handle_client_resync_request(msg);
+				    }
+				break;
+				case SEND.REQUESTTAG:
+					if is_host {
+						var sendList = {
+							Message: SEND.INSERTTAG,
+							tags: generate_tag_list(msg.amount)
+						}
+						steam_bounce(sendList);
+					}
+					
+				break;
+				case SEND.INSERTTAG:
+					object_tag_list = array_concat(object_tag_list,msg.tags);
 				break;
 				case SEND.READY:
 					var rGo = rm_level_normal;
@@ -102,6 +122,7 @@ while (steam_net_packet_receive()) {
 						break;
 						default:
 							global.player_team = "nothing";
+							global.opponent_team = "nothing";
 						break;
 					}
 					with obj_hero_display {
@@ -121,13 +142,18 @@ while (steam_net_packet_receive()) {
 							opponentLoadout[index] = identity;
 						}
 					}
-					steam_lobby_set_data("Player1Ready",false);
-					steam_lobby_set_data("Player2Ready",false);
+					
 					global.max_turns = 6;
 					global.friendly_turns = 4;
 					global.enemy_turns = 4;
 					global.loadout = playerLoadout;
 					global.opponent_loadout = opponentLoadout;
+					object_tag_list = msg.random_object_tags;
+					if is_host {
+						steam_lobby_set_data("Player1Ready",false);
+						steam_lobby_set_data("Player2Ready",false);
+					}
+					in_level = true;
 					room_goto(rGo);
 				break;
 			}
@@ -135,12 +161,23 @@ while (steam_net_packet_receive()) {
 	}	
 }
 
-if in_level && is_host {
-	tick_timer += delta_time*DELTA_TO_SECONDS;	
-	if tick_timer >= 1/TICKLENGTH {
-		tick_timer -= 1/TICKLENGTH;
-		tick_count++;
-		process_completed_tick_batches();
-		handle_periodic_sync();
-	}	
+if in_level {
+	var tagLength = array_length(object_tag_list);
+	if tagLength < tag_list_length && !requested_tag {
+		var tagRequest = {
+            Message: SEND.REQUESTTAG,
+            amount: tag_list_length -tagLength,
+        };
+		steam_relay_data(tagRequest);
+		requested_tag = true;
+	}
+	if is_host {
+		tick_timer += delta_time*DELTA_TO_SECONDS;	
+		if tick_timer >= 1/TICKLENGTH {
+			tick_timer -= 1/TICKLENGTH;
+			tick_count++;
+			process_completed_tick_batches();
+			handle_periodic_sync();
+		}	
+	}
 }

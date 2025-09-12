@@ -48,7 +48,15 @@ var trailCover = clamp(ceil(totalDist), 1, 32);
 if (instance_exists(target)) {
     z_target = target.z;
     if (object_get_parent(target.object_index) == obj_generic_piece) {
-        z_target += target.piece_on_grid.z;
+		var gridRef = target.piece_on_grid;
+		if is_string(gridRef) {
+			with obj_grid {
+				if tag == gridRef {
+					other.z_target += z;
+					break;
+				}
+			}
+		} else if instance_exists(gridRef) { z_target += gridRef.z; }
     }
     x_target = target.x + GRIDSPACE / 2;
     y_target = target.y + GRIDSPACE / 2;

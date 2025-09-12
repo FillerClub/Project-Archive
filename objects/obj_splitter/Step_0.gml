@@ -20,9 +20,15 @@ if global.game_state != PAUSED {
 		if repeat_shot > 1 {
 			timer = timer_end*.95;	
 		}
-		if instance_exists(piece_on_grid) {
-			zOff += piece_on_grid.z;	
-		}
+		var gridOff = piece_on_grid;
+		if is_string(gridOff) {
+			with obj_grid {
+				if tag == gridOff {
+					zOff += z;
+					break;
+				}
+			}
+		} else if instance_exists(gridOff) { zOff += gridOff.z; }
 		if shootTop && repeat_shot == 2 {
 			instance_create_depth(x +sprite_width/2 +random_range(-4,4),y +sprite_height/2 +random_range(-4,4) -GRIDSPACE,depth -GRIDSPACE/2,obj_bullet_parent, {
 			team: team,	
@@ -46,7 +52,7 @@ if global.game_state != PAUSED {
 		}
 		if shootBottom || shootMid || shootTop {
 			repeat_shot -= 1;
-			timer -= timer_end;
+			timer = 0;
 			timer_end = random_percent(1.4,4);			
 		}
 	}

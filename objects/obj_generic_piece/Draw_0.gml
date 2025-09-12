@@ -8,15 +8,33 @@ var tM = (team == "enemy") ? -1 : 1,
     sPD = effects_array[EFFECT.SPEED],
     sLW = effects_array[EFFECT.SLOW];
 var zBase = 0;
-if instance_exists(piece_on_grid) {
-    zBase = piece_on_grid.z;    
-}
+var gridOff = piece_on_grid;
+if is_string(gridOff) {
+	with obj_grid {
+		if tag == gridOff {
+			zBase += z;
+			break;
+		}
+	}
+} else if instance_exists(gridOff) { zBase += gridOff.z; }
 var xFlip = (1 - toggle * 2) * tM,
     xScale = (1 + ai_timer / (TIMETOTAKE * 2)) * xFlip,
     yScale = (1 + ai_timer / (TIMETOTAKE * 2)),
     tick = invincible_tick,
     zOff = zBase + z;
-	
+var drawDebug = instance_exists(obj_debugger) && obj_debugger.debug_overlay && is_predicted;
+if drawDebug {
+	// Draw prediction indicator
+	draw_set_alpha(0.5);
+	draw_set_color(c_yellow);
+	draw_circle(x +GRIDSPACE/2, y +GRIDSPACE/2, 32, false);
+	draw_set_alpha(1);
+        
+	// Draw confidence
+	var confidence_color = prediction_confidence > 0.8 ? c_green : 
+	                        (prediction_confidence > 0.5 ? c_yellow : c_red);
+}
+
 if layer_sequence_exists("Instances", animation) {
     var anim = layer_sequence_get_instance(animation),
         animTracks = anim.activeTracks,
@@ -36,6 +54,9 @@ if layer_sequence_exists("Instances", animation) {
                        xScale, yScale, 0, 
                        col, col, col, col, tick);
 }
-
+if drawDebug {
+	draw_set_color(confidence_color);
+	draw_text(x - 16, y - 16, string(round(prediction_confidence * 100)) + "%");
+}
 // Restore previous GPU state
 gpu_pop_state();

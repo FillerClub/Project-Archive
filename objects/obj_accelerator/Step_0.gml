@@ -8,9 +8,15 @@ if pointReady {
 	image_index = min(image_index +1, 3);
 	var checkNoExcess = ((team == "friendly")? (global.friendly_turns < global.max_turns):(global.enemy_turns < global.max_turns));
 	var zOff = 0;
-	if instance_exists(piece_on_grid) {
-		zOff += piece_on_grid.z;	
-	}
+	var gridOff = piece_on_grid;
+	if is_string(gridOff) {
+		with obj_grid {
+			if tag == gridOff {
+				zOff += z;
+				break;
+			}
+		}
+	} else if instance_exists(gridOff) { zOff += gridOff.z; }
 	if input_check_pressed("action") && collision_rectangle(bbox_left,bbox_top -zOff,bbox_right,bbox_bottom -zOff,obj_cursor,false,false) && checkNoExcess && team == global.player_team {
 		var collect = {
 			Message: SEND.GAMEDATA,

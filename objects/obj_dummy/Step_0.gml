@@ -10,12 +10,21 @@ var placeable = false;
 var destroySelf = false;
 
 piece_on_grid = cur.on_grid;
-var z = instance_exists(piece_on_grid) ? piece_on_grid.z : 0;
+var gridRef = piece_on_grid;
+if is_string(gridRef) {
+	with obj_grid {
+		if tag == gridRef {
+			gridRef = id;
+			break;
+		}
+	}
+}
+var z = instance_exists(gridRef) ? gridRef.z : 0;
 
-if input_check_released("action") && piece_on_grid != noone { 
+if input_check_released("action") && instance_exists(gridRef) { 
 	dragging = false; 
 	placed = true; 
-} else if input_check_pressed("action") && piece_on_grid == noone {
+} else if input_check_pressed("action") && !instance_exists(gridRef) {
 	if !placed { 
 		instance_destroy(); 
 	} 
@@ -31,9 +40,9 @@ if input_check_released("action") && piece_on_grid != noone {
 if (dragging) {
     x = mosX;
     y = mosY;
-    if (piece_on_grid != noone) {
-        gClampX = gridX * GRIDSPACE + piece_on_grid.x;
-        gClampY = gridY * GRIDSPACE + piece_on_grid.y;
+    if (gridRef != noone) {
+        gClampX = gridX * GRIDSPACE + gridRef.x;
+        gClampY = gridY * GRIDSPACE + gridRef.y;
     }
 } else {
     x = gClampX;
@@ -41,17 +50,17 @@ if (dragging) {
 }
 
 
-if !instance_exists(piece_on_grid) {
+if !instance_exists(gridRef) {
 	exit;	
 }
 // Placement Checks
 switch on_grid { 
 	case SAME: 
-		if piece_on_grid.team == team { placeable = true; } 
+		if gridRef.team == team { placeable = true; } 
 		else { placeable = false; } 
 	break; 
 	case NEUTRAL: 
-		if piece_on_grid.team == team || piece_on_grid.team == "neutral" { placeable = true; } 
+		if gridRef.team == team || gridRef.team == "neutral" { placeable = true; } 
 		else { placeable = false; } break; 
 	case PLACEABLENONE: placeable = false; 
 	break; 
@@ -78,7 +87,7 @@ switch on_piece {
 can_place = placeable;
 
 if placed && (placeable || global.debug) {
-    r_spawn_piece(identity, team, index, [gridX, gridY], piece_on_grid.id, type, link);
+    r_spawn_piece(identity, team, index, [gridX, gridY], gridRef.id, type, link);
     destroySelf = true;
 }
 else if (placed && place_immediately) {

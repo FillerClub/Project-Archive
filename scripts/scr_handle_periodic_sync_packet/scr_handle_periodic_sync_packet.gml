@@ -11,6 +11,6 @@ function handle_periodic_sync_packet(packet) {
     
     // Check for full state sync
     if (variable_struct_exists(packet, "full_state")) {
-        handle_full_state_sync(packet.full_state, packet.tick);
+        handle_full_state_sync(packet);
     }
 }

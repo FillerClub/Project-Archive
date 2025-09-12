@@ -3,8 +3,8 @@ function compare_pieces(local_pieces, host_pieces) {
     var minor = [];
     
     // Create lookup maps by tag
-    var local_map = create_piece_map(local_pieces);
-    var host_map = create_piece_map(host_pieces);
+    var local_map = create_lookup_map(local_pieces);
+    var host_map = create_lookup_map(host_pieces);
     
     // Check for missing/extra pieces (critical)
     var local_tags = ds_map_keys_to_array(local_map);
@@ -36,36 +36,40 @@ function compare_pieces(local_pieces, host_pieces) {
         if (ds_map_exists(local_map, tag)) {
             var local_piece = ds_map_find_value(local_map, tag);
             var host_piece = ds_map_find_value(host_map, tag);
-            
+            //show_message("Local Piece: " +string(local_piece) +" \n vs \n Host Piece: " +string(host_piece));
             // Grid position differences (critical)
-            if (local_piece.grid_pos[0] != host_piece.grid_pos[0] || 
-                local_piece.grid_pos[1] != host_piece.grid_pos[1]) {
-                array_push(critical, {
-                    type: "PIECE_GRID_POSITION",
-                    tag: tag,
-                    local: local_piece,
-                    host: host_piece
-                });
-            }
+			if variable_struct_exists(local_piece,"grid_pos") && variable_struct_exists(host_piece,"grid_pos") {
+	            if (local_piece.grid_pos != host_piece.grid_pos) {
+	                array_push(critical, {
+	                    type: "PIECE_GRID_POSITION",
+	                    tag: tag,
+	                    local: local_piece,
+	                    host: host_piece
+	                });
+	            }				
+			}
+
             // Timer variance (minor if within tolerance)
-            if (abs(local_piece.timer - host_piece.timer) > 1) {
-                array_push(minor, {
-                    type: "PIECE_PIXEL_POSITION",
-                    tag: tag,
-                    local: local_piece,
-                    host: host_piece
-                });
-            } else if (abs(local_piece.timer - host_piece.timer) > 0) {
-                array_push(minor, {
-                    type: "PIECE_PIXEL_POSITION",
-                    tag: tag,
-                    local: local_piece,
-                    host: host_piece
-                });
-            }
+			if variable_struct_exists(local_piece,"timer") && variable_struct_exists(host_piece,"timer") {
+	            if (abs(local_piece.timer - host_piece.timer) > 1) {
+	                array_push(minor, {
+	                    type: "PIECE_PIXEL_POSITION",
+	                    tag: tag,
+	                    local: local_piece,
+	                    host: host_piece
+	                });
+	            } else if (abs(local_piece.timer - host_piece.timer) > 0) {
+	                array_push(minor, {
+	                    type: "PIECE_PIXEL_POSITION",
+	                    tag: tag,
+	                    local: local_piece,
+	                    host: host_piece
+	                });
+	            }
+			}
             
             // HP differences
-            var hp_diff = abs(local_piece.hp -host_piece.hp);
+            var hp_diff = abs(total_health(local_piece.hp) -total_health(host_piece.hp));
             if (hp_diff > 1) {
                 array_push(critical, {
                     type: "PIECE_HP_MAJOR",

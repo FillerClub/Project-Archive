@@ -24,8 +24,17 @@ drawnSquareIsMeeting = noone,
 healthDrawIteration = 0;
 // Check if cursor is on a grid
 var zOff = z;
-if instance_exists(piece_on_grid) {
-	zOff += piece_on_grid.z;		
+if !is_string(piece_on_grid) { 
+	if instance_exists(piece_on_grid) {
+		zOff += piece_on_grid.z;		
+	}
+} else {
+	with obj_grid {
+		if tag == other.piece_on_grid {
+			zOff += z;
+			break;
+		}
+	}
 }
 for (var moves = 0; moves < ar_leng; moves++) {
 	color = c_white;

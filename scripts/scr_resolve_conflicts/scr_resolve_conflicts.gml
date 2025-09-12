@@ -64,7 +64,7 @@ function execute_actions_with_dependencies(actions, is_online) {
             show_debug_message("Action invalidated due to state change: " + action.action);
             continue;
         }
-        
+        //show_message(action);
         execute_action(action, is_online);
         
         /*
@@ -122,8 +122,17 @@ function verify_spawn_still_valid(action) {
                power_database(action.identity, POWERDATA.PLACEMENTONPIECE);
 	
     // Check if position is still empty
-    var target_x = action.piece_on_grid.bbox_left + action.grid_pos[0] * GRIDSPACE;
-    var target_y = action.piece_on_grid.bbox_top + action.grid_pos[1] * GRIDSPACE;
+	var gridRef = action.piece_on_grid;
+	if is_string(gridRef) {
+		with obj_grid {
+			if tag == gridRef {
+				gridRef = id;
+			}
+		}
+	}
+	
+    var target_x = gridRef.bbox_left + action.grid_pos[0] * GRIDSPACE;
+    var target_y = gridRef.bbox_top + action.grid_pos[1] * GRIDSPACE;
     var meeting = position_meeting(target_x + GRIDSPACE/2, target_y + GRIDSPACE/2, obj_obstacle)
 	switch placementType {
 		case PLACEABLENONE:
@@ -136,10 +145,17 @@ function is_action_attack(action) {
     if (action.action != "Move") {
         return false;
     }
-
+	var gridRef = action.piece_on_grid;
+	if is_string(gridRef) {
+		with obj_grid {
+			if tag == gridRef {
+				gridRef = id;
+			}
+		}
+	}
     // Check if target position is occupied by enemy piece
-    var target_x = action.piece_on_grid.bbox_left + action.grid_pos[0] * GRIDSPACE;
-    var target_y = action.piece_on_grid.bbox_top + action.grid_pos[1] * GRIDSPACE;
+    var target_x = gridRef.bbox_left + action.grid_pos[0] * GRIDSPACE;
+    var target_y = gridRef.bbox_top + action.grid_pos[1] * GRIDSPACE;
     
     // Get moving piece's team
     var moving_piece_team = "",

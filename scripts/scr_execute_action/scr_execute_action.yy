@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_execute_action",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_execute_action",
+  "parent":{
+    "name":"Important",
+    "path":"folders/Scripts/Important.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

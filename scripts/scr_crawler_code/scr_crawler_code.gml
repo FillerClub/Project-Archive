@@ -20,7 +20,7 @@ function crawler_code() {
 			} else {
 				// Destroy if at an already destroyed hero wall
 				if total_health(hp) <= 0 && object_index == obj_hero_wall {	
-					instance_destroy();	
+					instance_destroy(other);	
 				}
 				other.skip_timer = false;
 			}
@@ -61,13 +61,13 @@ function crawler_code() {
 		}
 		if canMove {
 			if !still {
-				piece_on_grid = targetGrid;
+				piece_on_grid = targetGrid.tag;
 				var
 				targetGridPos = [floor((targetX -targetGrid.bbox_left)/GRIDSPACE),floor((targetY -targetGrid.bbox_top)/GRIDSPACE)];
 				grid_pos = targetGridPos;
 				x = targetGridPos[0]*GRIDSPACE +targetGrid.bbox_left;
 				y = targetGridPos[1]*GRIDSPACE +targetGrid.bbox_top;
-				timer -= timer_end;
+				timer = 0;
 			}
 		} else {
 			toggle = (toggle)?false:true;

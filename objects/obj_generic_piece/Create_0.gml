@@ -1,15 +1,24 @@
 /// @desc Grabs object info from database
 // Set on grid if pos nor grid not set for piece
-if piece_on_grid == noone && position_meeting(x,y,obj_grid) {
-	piece_on_grid = instance_position(x,y,obj_grid);
+var gridRef = piece_on_grid;
+if is_string(gridRef) {
+	with obj_grid {
+		if tag == gridRef {
+			gridRef = id;
+			break;
+		}
+	}
 }
-if grid_pos[0] == -1 && grid_pos[1] == -1 && piece_on_grid != noone {
-	grid_pos[0] = floor((x -piece_on_grid.bbox_left)/GRIDSPACE);
-	grid_pos[1] = floor((y -piece_on_grid.bbox_top)/GRIDSPACE); 
+if instance_exists(gridRef) && position_meeting(x,y,obj_grid) {
+	gridRef = instance_position(x,y,obj_grid);
 }
-if instance_exists(piece_on_grid) {
-	x = grid_pos[0]*GRIDSPACE +piece_on_grid.bbox_left;
-	y = grid_pos[1]*GRIDSPACE +piece_on_grid.bbox_top;
+if grid_pos[0] == -1 && grid_pos[1] == -1 && gridRef != noone {
+	grid_pos[0] = floor((x -gridRef.bbox_left)/GRIDSPACE);
+	grid_pos[1] = floor((y -gridRef.bbox_top)/GRIDSPACE); 
+}
+if instance_exists(gridRef) {
+	x = grid_pos[0]*GRIDSPACE +gridRef.bbox_left;
+	y = grid_pos[1]*GRIDSPACE +gridRef.bbox_top;
 }
 data = piece_database(identity);
 hp = data[$ "hp"];
@@ -23,6 +32,9 @@ eye_scale_fact = 1;
 default_animation = data[$ "idle_animation"];
 animation = -1;
 new_animation = -1;
+is_predicted = false;
+prediction_confidence = 1.0;
+
 if default_animation != -1 {
 	animation = layer_sequence_create("Instances",x +sprite_width/2,y +sprite_height/2,default_animation);
 	sprite_index = spr_phantom_body;

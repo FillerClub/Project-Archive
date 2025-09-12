@@ -26,9 +26,15 @@ for (var i = 0; i < ar_leng; ++i)	{
 		continue;	
 	}
 	var zOff = 0;
-	if instance_exists(piece_on_grid) {
-		zOff = piece_on_grid.z;	
-	}
+	var gridOff = piece_on_grid;
+	if is_string(gridOff) {
+		with obj_grid {
+			if tag == gridOff {
+				zOff += z;
+				break;
+			}
+		}
+	} else if instance_exists(gridOff) { zOff += gridOff.z; }
 	draw_sprite_ext(spr_grid_highlight,image_index,
 	xM,
 	yM -zOff,

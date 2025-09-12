@@ -33,3 +33,94 @@ function analyze_state_differences(local_state, host_state) {
     
     return {critical: critical_differences, minor: minor_differences};
 }
+function compare_pieces_detailed(local_pieces, host_pieces) {
+    var critical = [];
+    var minor = [];
+    
+    var local_map = create_lookup_map(local_pieces);
+    var host_map = create_lookup_map(host_pieces);
+    
+    var local_tags = ds_map_keys_to_array(local_map);
+    var host_tags = ds_map_keys_to_array(host_map);
+    
+    // Check for missing/extra pieces (critical)
+    for (var i = 0; i < array_length(local_tags); i++) {
+        if (!ds_map_exists(host_map, local_tags[i])) {
+            array_push(critical, {
+                type: "EXTRA_PIECE",
+                tag: local_tags[i]
+            });
+        }
+    }
+    
+    for (var i = 0; i < array_length(host_tags); i++) {
+        if (!ds_map_exists(local_map, host_tags[i])) {
+            array_push(critical, {
+                type: "MISSING_PIECE",
+                tag: host_tags[i],
+                piece: ds_map_find_value(host_map, host_tags[i])
+            });
+        }
+    }
+    
+    // Compare existing pieces
+    for (var i = 0; i < array_length(host_tags); i++) {
+        var tag = host_tags[i];
+        if (ds_map_exists(local_map, tag)) {
+            var local_piece = ds_map_find_value(local_map, tag);
+            var host_piece = ds_map_find_value(host_map, tag);
+            
+            // Grid position differences (critical)
+            if (local_piece.grid_pos[0] != host_piece.grid_pos[0] || 
+                local_piece.grid_pos[1] != host_piece.grid_pos[1]) {
+                array_push(critical, {
+                    type: "PIECE_POSITION_CRITICAL",
+                    tag: tag,
+                    local: local_piece,
+                    host: host_piece
+                });
+            }
+            // Timer differences (minor)
+            if (abs(local_piece.timer - host_piece.timer) > 1) {
+                array_push(minor, {
+                    type: "PIECE_TIMER_MINOR",
+                    tag: tag,
+                    local: local_piece,
+                    host: host_piece
+                });
+            }
+            // Z differences (minor)
+            if (abs(local_piece.z - host_piece.z) > 32) {
+                array_push(minor, {
+                    type: "PIECE_Z_MINOR",
+                    tag: tag,
+                    local: local_piece,
+                    host: host_piece
+                });
+            }
+            
+            // HP differences
+            var hp_diff = abs(local_piece.hp - host_piece.hp);
+            if (hp_diff > 2.5) {
+                array_push(critical, {
+                    type: "PIECE_HP_CRITICAL",
+                    tag: tag,
+                    local: local_piece,
+                    host: host_piece
+                });
+            } else if (hp_diff > 0) {
+                array_push(minor, {
+                    type: "PIECE_HP_MINOR",
+                    tag: tag,
+                    local: local_piece,
+                    host: host_piece
+                });
+            }
+        }
+    }
+    
+    ds_map_destroy(local_map);
+    ds_map_destroy(host_map);
+    
+    return {critical: critical, minor: minor};
+}

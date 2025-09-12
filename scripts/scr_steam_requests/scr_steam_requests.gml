@@ -30,3 +30,11 @@ function steam_bounce(Buffer) {
 	buffer_delete(buff);
 	return;
 }
+function send_packet_to_client(target_client_id, packet) {
+    var json = json_stringify(packet);
+    var buff = buffer_create(string_byte_length(json), buffer_fixed, 1);
+    buffer_write(buff, buffer_text, json);
+    steam_net_packet_send(target_client_id, buff);
+    buffer_delete(buff);
+	return;
+}

@@ -4,10 +4,13 @@ with obj_client_manager {
 	}
 }
 tick_timer = 0;
-tick_count = 0;
+tick_count = 1;
 tick_action_batches = ds_map_create();
+executed_actions_history = ds_map_create();
 batch_delay = 2;
 is_host = false;
+object_tag_list = [];
+tag_list_length = 16;
 
 default_game_rules();
 var datLeng = array_length(LOBBYDATA);

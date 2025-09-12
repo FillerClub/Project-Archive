@@ -9,9 +9,15 @@ with obj_generic_piece {
 	drawSpr = spr_grid_highlight_dotted,
 	onGrid = piece_on_grid,
 	zOff = 0;
-	if instance_exists(onGrid) {
-		zOff += onGrid.z;
-	}
+	var gridOff = piece_on_grid;
+	if is_string(gridOff) {
+		with obj_grid {
+			if tag == gridOff {
+				zOff += z;
+				break;
+			}
+		}
+	} else if instance_exists(gridOff) { zOff += gridOff.z; }
 	// Draw movement options
 	if execute != "move" && globalDebugMode && ai_controlled { debugOn = true; } else
 	if execute != "move" {

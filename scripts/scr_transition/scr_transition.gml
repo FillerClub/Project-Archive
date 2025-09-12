@@ -34,6 +34,7 @@ function start_loading(load_struct = global.load) {
 }
 
 function finish_loading(finish_run_protocol, room_going_to) {
+	global.game_state = RUNNING;
 	switch run {
 		case "Lvl":
 			if file_exists(SAVEFILE) {
@@ -64,7 +65,7 @@ function finish_loading(finish_run_protocol, room_going_to) {
 			room_goto(room_going_to);
 		break;
 	}	
-	
+
 }
 
 function finish_transition() {

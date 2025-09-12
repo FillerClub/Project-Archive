@@ -26,7 +26,7 @@ if global.game_state != PAUSED{
 			z: z
 			});
 			repeat_shot -= 1;
-			timer -= timer_end;
+			timer = 0;
 		}
 	}
 }

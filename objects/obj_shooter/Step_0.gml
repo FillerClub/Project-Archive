@@ -13,15 +13,21 @@ if global.game_state != PAUSED {
 			// Wait for animation
 			if timer >= timer_end +delay {
 				var zOff = z;	
-				if instance_exists(piece_on_grid) {
-					zOff += piece_on_grid.z;	
-				}
+				var gridOff = piece_on_grid;
+				if is_string(gridOff) {
+					with obj_grid {
+						if tag == gridOff {
+							zOff += z;
+							break;
+						}
+					}
+				} else if instance_exists(gridOff) { zOff += gridOff.z; }
 				instance_create_depth(x +sprite_width/2 +tm_dp(28,team,toggle) +random_range(-4,4),y +sprite_height/2 +9 +random_range(-4,4),depth -GRIDSPACE/2,obj_bullet_parent, {
 					team: team,	
 					x_vel: ((team == "friendly")?1:-1),
 					z: zOff,
 				});
-				timer -= timer_end;
+				timer = 0;
 				timer_end = random_percent(1,5);
 				shooting = false;
 			}

@@ -1,4 +1,4 @@
-if obj_client_manager.member_status != MEMBERSTATUS.HOST || obj_ready.ready {
+if !obj_client_manager.is_host || obj_ready.ready {
 	exit;	
 }
 var curX = obj_cursor.x,

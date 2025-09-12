@@ -6,7 +6,14 @@ if global.debug {
 		with obj_generic_piece {
 			var zOff = 0,
 			gridOff = piece_on_grid;
-			if instance_exists(gridOff) { zOff += gridOff.z; }
+			if is_string(gridOff) {
+				with obj_grid {
+					if tag == gridOff {
+						zOff += z;
+						break;
+					}
+				}	
+			} else if instance_exists(gridOff) { zOff += gridOff.z; }
 			if collision_rectangle(bbox_left,bbox_top -zOff,bbox_right,bbox_bottom -zOff,obj_cursor,false,true) {
 				clickedOn = id;
 			}
@@ -35,7 +42,14 @@ if input_check_pressed("action") && !instance_exists(obj_dummy) {
 		with obj_generic_piece {
 			var zOff = 0,
 			gridOff = piece_on_grid;
-			if instance_exists(gridOff) { zOff += gridOff.z; }
+			if is_string(gridOff) {
+				with obj_grid {
+					if tag == gridOff {
+						zOff += z;
+						break;
+					}
+				}
+			} else if instance_exists(gridOff) { zOff += gridOff.z; }
 			if collision_rectangle(bbox_left,bbox_top -zOff,bbox_right,bbox_bottom -zOff,obj_cursor,false,true) {
 				clickedOn = id;
 			}
@@ -58,7 +72,14 @@ if input_check_pressed("action") && !instance_exists(obj_dummy) {
 					with obj_generic_piece {
 						var zOff = 0,
 						gridOff = piece_on_grid;
-						if instance_exists(gridOff) { zOff += gridOff.z; }
+						if is_string(gridOff) {
+							with obj_grid {
+								if tag == gridOff {
+									zOff += z;
+									break;
+								}
+							}
+						} else if instance_exists(gridOff) { zOff += gridOff.z; }
 						if team == global.player_team && !collision_rectangle(bbox_left,bbox_top -zOff,bbox_right,bbox_bottom -zOff,obj_cursor,false,true) {
 							execute = "nothing";
 						}

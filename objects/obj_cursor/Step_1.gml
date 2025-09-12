@@ -83,7 +83,15 @@ var movingSomething = noone;
 // Scan obstacles
 with obj_obstacle {
     var zOff = z;
-    if instance_exists(piece_on_grid) zOff += piece_on_grid.z;
+	 var gridOff = piece_on_grid;
+	if is_string(gridOff) {
+		with obj_grid {
+			if tag == gridOff {
+				zOff += z;
+				break;
+			}
+		}
+	} else if instance_exists(gridOff) { zOff += gridOff.z; }
 
     if object_get_parent(object_index) == obj_generic_piece && execute == "move" && team == global.player_team {
         movingSomething = id;
@@ -114,7 +122,16 @@ if instance_exists(movingSomething) {
     var zOff = movingSomething.z,
 	invalid = false,
 	brk = false;
-    if instance_exists(movingSomething.piece_on_grid) zOff += movingSomething.piece_on_grid.z;
+	var gridRef = movingSomething.piece_on_grid;
+	if is_string(gridRef) {
+		with obj_grid {
+			if tag == gridRef {
+				gridRef = id;
+				break;
+			}
+		}
+	}
+    if instance_exists(gridRef) zOff += gridRef.z;
 
     if !collision_rectangle(movingSomething.bbox_left, movingSomething.bbox_top - zOff,
                              movingSomething.bbox_right, movingSomething.bbox_bottom - zOff,
@@ -125,9 +142,9 @@ if instance_exists(movingSomething) {
 
         with movingSomething {
             var gcX = x, gcY = y;
-            if instance_exists(piece_on_grid) {
-                gcX = grid_pos[0] * GRIDSPACE + piece_on_grid.bbox_left;
-                gcY = grid_pos[1] * GRIDSPACE + piece_on_grid.bbox_top;
+            if instance_exists(gridRef) {
+                gcX = grid_pos[0] * GRIDSPACE + gridRef.bbox_left;
+                gcY = grid_pos[1] * GRIDSPACE + gridRef.bbox_top;
             }
 
             var mouseOn = false, mouseOnCantAttack = false;

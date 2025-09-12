@@ -60,7 +60,7 @@ function menu_function(purpose = "Back",contextArg = context){
 					rm: rm_lobby,
 					load: [standalone_soundtracks]
 				}
-				start_transition(sq_circle_out,sq_circle_in,lD);				
+				start_transition(sq_circle_out,INSTANT,lD);				
 			} else {
 				create_system_message(["Steam must be initialized before playing multiplayer."],BOTTOM);	
 			}

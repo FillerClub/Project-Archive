@@ -6,9 +6,15 @@ if global.game_state != PAUSED {
 	if (timer >= timer_end) {
 		var scannedPiece = scan_for_enemy(true,100,true,infinity);
 		var zOff = z;
-		if instance_exists(piece_on_grid) {
-			zOff += piece_on_grid.z;	
-		}
+		var gridOff = piece_on_grid;
+		if is_string(gridOff) {
+			with obj_grid {
+				if tag == gridOff {
+					zOff += z;
+					break;
+				}
+			}
+		} else if instance_exists(gridOff) { zOff += gridOff.z; }
 		if instance_exists(scannedPiece) {
 			var distMod = sqrt(max(distance_to_object(scannedPiece),GRIDSPACE)/GRIDSPACE)*.1;
 			instance_create_depth(x +sprite_width/2 +random_range(-4,4),y +sprite_height/2 +random_range(-4,4),depth -gS/2,obj_bullet_parent, {
@@ -19,7 +25,7 @@ if global.game_state != PAUSED {
 			lob_height: random_percent(max(512*distMod,32),10),
 			});
 		}
-		timer -= timer_end;
+		timer = 0;
 		timer_end = random_percent(1.4,4);
 	}
 }

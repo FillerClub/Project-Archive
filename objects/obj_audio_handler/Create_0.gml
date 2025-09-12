@@ -8,6 +8,7 @@ soundeffect_bus = audio_bus_create();
 soundtrack_bus.effects[0] = reverbEf;
 soundtrack_emitter = audio_emitter_create();
 soundeffect_emitter = audio_emitter_create();
+msc_player = audio_create_sync_group(true);
 audio_emitter_bus(soundtrack_emitter,soundtrack_bus);
 audio_emitter_position(soundtrack_emitter,x,y,0);
 audio_emitter_falloff(soundtrack_emitter,room_width/2,room_width,.5)
