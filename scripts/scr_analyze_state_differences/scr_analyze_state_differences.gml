@@ -1,7 +1,34 @@
 function analyze_state_differences(local_state, host_state) {
     var critical_differences = [];
     var minor_differences = [];
+    var state_string = "=== LOCAL STATE ===\n";
     
+    state_string += "Resources: F=" + string(local_state.resources.friendly_turns) + 
+                   " E=" + string(local_state.resources.enemy_turns) + "\n";
+    
+    state_string += "Obstacles (" + string(array_length(local_state.pieces)) + "):\n";
+    for (var i = 0; i < min(5, array_length(local_state.pieces)); i++) {
+        var piece = local_state.pieces[i];
+        state_string += "  " +string(piece.tag) + ": HP=" + string(piece.hp) + "\n";
+    }
+    
+    state_string += "Bullets: " + string(array_length(local_state.bullets)) + "\n";
+    state_string += "Heroes: " + string(array_length(local_state.heroes)) + "\n\n";
+    var host_state_string = "=== HOST STATE ===\n";
+    
+    state_string += "Resources: F=" + string(host_state.resources.friendly_turns) + 
+                   " E=" + string(host_state.resources.enemy_turns) + "\n";
+    
+    state_string += "Obstacles (" + string(array_length(host_state.pieces)) + "):\n";
+    for (var i = 0; i < min(5, array_length(host_state.pieces)); i++) {
+        var piece = host_state.pieces[i];
+        state_string += "  " + string(piece.tag) + ": HP=" + string(piece.hp) + "\n";
+    }
+    
+    state_string += "Bullets: " + string(array_length(host_state.bullets)) + "\n";
+    state_string += "Heroes: " + string(array_length(host_state.heroes)) + "\n";
+    
+    show_debug_message(state_string);
     // Resource differences (critical if off by more than 1)
     var friendly_diff = abs(local_state.resources.friendly_turns - host_state.resources.friendly_turns);
     var enemy_diff = abs(local_state.resources.enemy_turns - host_state.resources.enemy_turns);

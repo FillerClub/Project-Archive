@@ -11,12 +11,14 @@ function handle_periodic_sync() {
         needs_send = true;
         //audio_play_sound(snd_timer_upgrade, 0, 0);
     } else */
+	/*
 	if (tick_count % 180 == 0) { // Every 3 seconds
         sync_packet = {Message: SEND.PERIODIC_SYNC, tick: tick_count};
         sync_packet.detailed_state = capture_detailed_state();
         needs_send = true;
         //audio_play_sound(snd_shield_up, 0, 0);
-    } else if (tick_count % 30 == 0) { // Every half second
+    } else */
+	if (tick_count % 30 == 0) { // Every half second
         sync_packet = {
             Message: SEND.PERIODIC_SYNC,
             tick: tick_count,

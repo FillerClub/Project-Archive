@@ -22,7 +22,7 @@ var xFlip = (1 - toggle * 2) * tM,
     yScale = (1 + ai_timer / (TIMETOTAKE * 2)),
     tick = invincible_tick,
     zOff = zBase + z;
-var drawDebug = instance_exists(obj_debugger) && obj_debugger.debug_overlay && is_predicted;
+var drawDebug = instance_exists(obj_debugger) && is_predicted;
 if drawDebug {
 	// Draw prediction indicator
 	draw_set_alpha(0.5);
@@ -60,3 +60,4 @@ if drawDebug {
 }
 // Restore previous GPU state
 gpu_pop_state();
+event_suppress = false;

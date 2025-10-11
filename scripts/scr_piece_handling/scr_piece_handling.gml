@@ -88,7 +88,7 @@ if input_check_pressed("action") && !instance_exists(obj_dummy) {
 					switch clickedOn.identity {
 						case "accelerator":
 							var checkNoExcess = ((clickedOn.team == "friendly")? (global.friendly_turns < global.max_turns):(global.enemy_turns < global.max_turns));
-							if clickedOn.resource_timer >= clickedOn.time_to_produce && checkNoExcess {
+							if clickedOn.timer >= clickedOn.timer_end && checkNoExcess {
 								ignoreClick = true;
 							}
 						default:

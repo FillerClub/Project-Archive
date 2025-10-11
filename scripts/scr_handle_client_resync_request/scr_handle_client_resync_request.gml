@@ -1,29 +1,36 @@
 function handle_client_resync_request(request) {
     var client_id = request.client_id;
-    
-    show_debug_message("Client " + string(client_id) + " requested resync at tick " + string(tick_count));
-    
-    // Create comprehensive resync package
-    var resync_response = {
-        Message: SEND.FULL_RESYNC,
-        tick: tick_count,
-        full_state: create_save_state(),
-        state_hash: calculate_state_hash(),
-        recent_actions: get_recent_executed_actions(20) // Last 20 ticks of actions
+	var severity = request.resync_severity;
+	var resync_response = {
+        Message: SEND.PERIODIC_SYNC        
     };
+	if severity <= 0 {
+		show_debug_message("Client " + string(client_id) + " requested resync at tick " + string(tick_count));
+		resync_response.detailed_state = capture_detailed_state();
+	} else {
+		show_debug_message("Client " + string(client_id) + " requested full resync at tick " + string(tick_count));	
+		resync_response.full_state = create_save_state();
+		var timeOffset = 0;
+		with obj_online_battle_handler {
+			timeOffset = game_clock_start;
+		}
+		resync_response.timestamp = get_timer() -timeOffset;
+	}
+    // Create comprehensive resync package
 	send_packet_to_client(client_id, resync_response);
     // Send directly to requesting client only
-
-    /*
     // Log the resync for debugging
     if (instance_exists(obj_debugger)) {
         with (obj_debugger) {
-            log_debug("Sent full resync to client " + string(client_id), c_orange);
+            if severity <= 0 {
+				log_debug("Sent resync to client " + string(client_id), c_green);
+			} else {
+				log_debug("Sent full resync to client " + string(client_id), c_aqua);
+			}
+			
             desync_count++;
         }
-    }
-	*/
-	
+    }	
 }
 function get_recent_executed_actions(tick_count_back) {
     // Return actions from recent ticks so client can understand what led to current state

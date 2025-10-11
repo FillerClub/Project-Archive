@@ -8,7 +8,7 @@ if timer >= spd {
 	gS = GRIDSPACE;
 	audio_stop_sound(snd_shock);
 	audio_play_sound(snd_shock,0,0);
-	timer = 0;
+	timer -= spd;
 	x += tm*gS;
 	if !position_meeting(x,y,obj_grid) {
 		instance_destroy();	

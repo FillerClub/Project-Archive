@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_log_debug_state",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_log_debug_state",
+  "parent":{
+    "name":"_Debug",
+    "path":"folders/Scripts/_Debug.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

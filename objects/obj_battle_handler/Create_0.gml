@@ -3,7 +3,7 @@ enum AI {
 	GRID = 1,
 	COORD = 2
 }
-
+game_clock_start = get_timer();
 timer = 0;
 alert_timer = 0;
 timer_phase = 0;
@@ -17,15 +17,21 @@ lane_threat = [];
 lane_score = [];
 ai_seed = random(100);
 
+var gameSpd = game_get_speed(gamespeed_fps)/global.level_speed;
+
+dash_part = part_type_create();
+part_type_sprite(dash_part, spr_dash, true, false, false);
+
+part_type_life(dash_part, gameSpd*3, gameSpd*3);
+part_type_scale(dash_part, .25, .25);
+part_type_size(dash_part,1,1,.03,0);
+part_type_speed(dash_part,.9,.9,-0.01,0);
+part_type_alpha2(dash_part,1,0);
+
 bullet_part = part_type_create();
 part_type_shape(bullet_part, pt_shape_pixel);
-part_type_size(bullet_part, 1, 1, 0, 0);
-part_type_scale(bullet_part, 2, 2);
-part_type_colour3(bullet_part, #FFFFFF, #FFFFFF, #FFFFFF);
-part_type_alpha3(bullet_part,1, .5, 0);
-part_type_speed(bullet_part, 0, 0, 0, 0);
-part_type_direction(bullet_part, 0, 0, 0, 0);
-part_type_gravity(bullet_part, 0, 0);
-part_type_orientation(bullet_part, 0, 0, 0, 0, 1);
-part_type_blend(bullet_part, false);
-//part_type_life(bullet_part,10*delta_time*DELTA_TO_SECONDS,10*delta_time*DELTA_TO_SECONDS);
+part_type_scale(bullet_part, 3, 3);
+part_type_size(bullet_part,1,1,-.05,0);
+//part_type_alpha2(bullet_part,1,0);
+part_type_life(bullet_part, gameSpd*.05, gameSpd*.05);
+part_type_blend(bullet_part, true);

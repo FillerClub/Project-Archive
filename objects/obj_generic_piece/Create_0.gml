@@ -37,6 +37,7 @@ prediction_confidence = 1.0;
 
 if default_animation != -1 {
 	animation = layer_sequence_create("Instances",x +sprite_width/2,y +sprite_height/2,default_animation);
+	anim_scale = data[$ "anim_scale"];
 	sprite_index = spr_phantom_body;
 	mask_index = spr_phantom_body;
 } else {

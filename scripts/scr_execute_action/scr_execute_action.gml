@@ -6,6 +6,7 @@ function execute_action(action,is_online){
 			type = action.type,
 			varObj = noone,
 			debugOn = global.debug,
+			timeDiff = ((get_timer() -game_clock_start) -action.timestamp)/1000000,
 			varCost = 0;
 			if !debugOn {
 				with obj_piece_slot {
@@ -25,10 +26,19 @@ function execute_action(action,is_online){
 					varCost = power_database(action.identity,POWERDATA.COST);
 				break;
 			}
-			if instance_exists(action.piece_on_grid) {
-				sX = action.piece_on_grid.bbox_left +action.grid_pos[0]*GRIDSPACE;
-				sY = action.piece_on_grid.bbox_top +action.grid_pos[1]*GRIDSPACE;
+			var gridRef = action.piece_on_grid;
+			if is_string(gridRef) {
+				with obj_grid {
+					if gridRef == tag {
+						gridRef = id;
+						break;
+					}
+				}
 			}
+			if !instance_exists(gridRef) { break; }
+			sX = gridRef.bbox_left +action.grid_pos[0]*GRIDSPACE;
+			sY = gridRef.bbox_top +action.grid_pos[1]*GRIDSPACE;
+
 			if !debugOn {
 				if action.team == "friendly" { global.friendly_turns -= varCost; }
 				if action.team == "enemy" { global.enemy_turns -= varCost; }	
@@ -44,6 +54,11 @@ function execute_action(action,is_online){
 				if is_online {
 					tag = action.tag;	
 				}
+				if variable_instance_exists(self,"uses_timer") {
+					if uses_timer {
+						timer += timeDiff;	
+					}
+				}
 			}
 		break;
 		case "Move":
@@ -54,10 +69,20 @@ function execute_action(action,is_online){
 			}
 			with varObj {
 				if tag == action.tag {
+					var gridRef = action.piece_on_grid;
+					if is_string(gridRef) {
+						with obj_grid {
+							if gridRef == tag {
+								gridRef = id;
+								break;
+							}
+						}
+					}
+					if !instance_exists(gridRef) { break; }
 					grid_pos = action.grid_pos;
-					piece_on_grid = action.piece_on_grid;
-					var tarX = grid_pos[0]*GRIDSPACE +piece_on_grid.bbox_left,
-					tarY = grid_pos[1]*GRIDSPACE +piece_on_grid.bbox_top;
+					piece_on_grid = gridRef;
+					var tarX = grid_pos[0]*GRIDSPACE +gridRef.bbox_left,
+					tarY = grid_pos[1]*GRIDSPACE +gridRef.bbox_top;
 					if position_meeting(tarX +GRIDSPACE/2,tarY +GRIDSPACE/2,obj_obstacle) {
 						var collide = instance_position(tarX +GRIDSPACE/2,tarY +GRIDSPACE/2,obj_obstacle);
 						hurt(collide.hp,attack_power,DAMAGE.PHYSICAL,collide);
@@ -85,6 +110,17 @@ function execute_action(action,is_online){
 						if team == "friendly" { global.friendly_turns -= cost; }
 						if team == "enemy" { global.enemy_turns -= cost; }
 						move_cooldown_timer = move_cooldown;
+					}
+					// Create dash particle
+					var dashPart = -1;
+					with obj_battle_handler {
+						dashPart = dash_part;
+					}
+					if dashPart != -1 {
+						var angleSet = point_direction(x,y,tarX,tarY) ;
+						part_type_orientation(dashPart,angleSet +90,angleSet +90,0,0,0);
+						part_type_direction(dashPart,angleSet +180,angleSet +180,0,0);
+						part_particles_create(global.part_sys,x +sprite_width/2,y +sprite_height/2,dashPart,1);
 					}
 					x = tarX;
 					y = tarY;

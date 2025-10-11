@@ -3,10 +3,14 @@ function force_artificial_desync() {
     
     // Randomly modify local state to create desync
     with (obj_generic_piece) {
-        if (random(100) < 30) { // 30% chance per piece
-            hp += random_range(-5, 5);
-            x += random_range(-16, 16);
-            y += random_range(-16, 16);
+		if random(100) < 5 {
+			instance_destroy();	
+		}        
+		if random(100) <= 30 { // 30% chance per piece
+            hurt(hp,random(5),DAMAGE.NORMAL,self);
+			heal(hp,hp_max,random(5),true);
+            grid_pos[0] += irandom_range(-16, 16);
+            grid_pos[1] += irandom_range(-16, 16);
             break;
         }
     }

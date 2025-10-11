@@ -19,12 +19,17 @@ function effect_process() {
 	effects_timer += timerTickRate;
 	if !skip_timer && uses_timer { 
 		// Base timer is affected by speed and slow
-		timer += timerTickRate*effectModifier;
+		var finalTickRate = effects_change_timer?timerTickRate*effectModifier:timerTickRate;
+		timer += finalTickRate;
+		if timer >= timer_end {
+			event_perform(ev_other,ev_user2);
+		}
 	}
 	// Animation speed 
 	if layer_sequence_exists("Instances",animation) {
 		var anim = layer_sequence_get_instance(animation);
-		anim.speedScale = levelSpd*effectModifier;	
+		var finalAnimSpd = effects_change_timer?levelSpd*effectModifier:levelSpd;
+		anim.speedScale = finalAnimSpd;	
 	}
 	blink_timer += timerTickRate;
 	if blink_timer >= blink_end {

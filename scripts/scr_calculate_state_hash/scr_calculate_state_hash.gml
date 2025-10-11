@@ -3,8 +3,7 @@ function calculate_state_hash() {
     
     // Critical game state
     state_string += string(global.friendly_turns) + "|";
-    state_string += string(global.enemy_turns) + "|";
-    state_string += string(tick_count) + "|";
+    state_string += string(global.enemy_turns)
     
     // Pieces - sorted for consistency
     var pieces_list = ds_list_create();
@@ -20,6 +19,7 @@ function calculate_state_hash() {
     }
     ds_list_destroy(pieces_list);
     
+	/*
     // Bullets - sorted for consistency
     var bullets_list = ds_list_create();
     with (obj_bullet_parent) {
@@ -32,7 +32,7 @@ function calculate_state_hash() {
         state_string += ds_list_find_value(bullets_list, i) + "|";
     }
     ds_list_destroy(bullets_list);
-    
+    */
     // Heroes
     var heroes_list = ds_list_create();
     with (obj_generic_hero) {

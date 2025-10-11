@@ -20,7 +20,10 @@ if is_string(gridRef) {
 	}
 }
 var z = instance_exists(gridRef) ? gridRef.z : 0;
-
+if input_check_released("cancel") || input_mouse_check_released(mb_right) {
+	instance_destroy();
+	exit;
+}
 if input_check_released("action") && instance_exists(gridRef) { 
 	dragging = false; 
 	placed = true; 

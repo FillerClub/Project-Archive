@@ -9,7 +9,7 @@
 #macro MULTIPLAYERMENU ["SERVER MODE","Connect to Server","Back"]
 #macro SERVERMODECONFIRM ["YES SERVER MODE","No"]
 #macro MULTIPLAYERSETTINGSMENU ["Set Name","Back"]
-#macro SETTINGSMENU ["Multiplayer Settings","Audio","Display","Cursor","Data","Debug","Back"]
+#macro SETTINGSMENU ["Audio","Display","Cursor","Data","Debug","Back"]
 #macro DEBUGMENU ["Debug Mode","Unlock Everything","Debug Room 1","Debug Room 2","Back"]
 #macro HUDSETTINGSMENU ["Tooltips","Healthbars","Back"]
 #macro AUDIOSETTINGSMENU ["Master","SFX","Music","Back"]

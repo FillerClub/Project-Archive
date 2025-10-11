@@ -1,7 +1,7 @@
 function process_requests(requests, is_online = false) {
 	var len = array_length(requests);
 	if is_online && instance_exists(obj_client_manager) {
-		read_requests(obj_client_manager.requests,is_online);
+		read_requests(obj_client_manager.requests, true);
 		if verify_hash != -1 {
 			with obj_client_manager {
 				detect_desync(other.verify_hash.host_hash,other.verify_hash.hash_tick);
@@ -17,7 +17,7 @@ function process_requests(requests, is_online = false) {
 		var action = array_shift(requests);
 		action.prediction_id = generate_prediction_id();
         store_prediction(action,save_state);
-        execute_action(action, is_online);
+        execute_action(action, true);
 		steam_relay_data(action);
 	} else {
 		if len <= 0 {

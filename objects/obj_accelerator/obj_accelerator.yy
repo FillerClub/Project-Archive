@@ -2,14 +2,17 @@
   "$GMObject":"",
   "%Name":"obj_accelerator",
   "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":11,"eventType":7,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":12,"eventType":7,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
   "name":"obj_accelerator",
   "overriddenProperties":[
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_generic_piece","path":"objects/obj_generic_piece/obj_generic_piece.yy",},"propertyId":{"name":"identity","path":"objects/obj_generic_piece/obj_generic_piece.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"accelerator",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_generic_piece","path":"objects/obj_generic_piece/obj_generic_piece.yy",},"propertyId":{"name":"uses_timer","path":"objects/obj_generic_piece/obj_generic_piece.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"True",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_generic_piece","path":"objects/obj_generic_piece/obj_generic_piece.yy",},"propertyId":{"name":"effects_change_timer","path":"objects/obj_generic_piece/obj_generic_piece.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"False",},
   ],
   "parent":{
     "name":"Pieces",
@@ -34,8 +37,6 @@
   "physicsStartAwake":true,
   "properties":[
     {"$GMObjectProperty":"v1","%Name":"seconds_per_rotation","filters":[],"listItems":[],"multiselect":false,"name":"seconds_per_rotation","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"96","varType":0,},
-    {"$GMObjectProperty":"v1","%Name":"resource_timer","filters":[],"listItems":[],"multiselect":false,"name":"resource_timer","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
-    {"$GMObjectProperty":"v1","%Name":"time_to_produce","filters":[],"listItems":[],"multiselect":false,"name":"time_to_produce","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"animation_change","filters":[],"listItems":[],"multiselect":false,"name":"animation_change","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
   ],
   "resourceType":"GMObject",

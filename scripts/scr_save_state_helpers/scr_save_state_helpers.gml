@@ -29,13 +29,16 @@ function create_save_state(buffer = -1) {
     for (var objType = 0, objCount = array_length(saveObjects); objType < objCount; objType++) {
         with saveObjects[objType] {
             var instanceData = {
-                id: id,
                 object_index: object_index,
+				depth: depth,
                 x: x,
                 y: y,
-                depth: depth
             };
-
+			if variable_instance_exists(self,"tag") {
+				instanceData.tag = tag;	
+			} else {
+				instanceData.tag = id;	
+			}
             // Save specified variables
             for (var varIndex = 0, varCount = array_length(saveVars); varIndex < varCount; varIndex++) {
                 var varName = saveVars[varIndex];
@@ -95,11 +98,29 @@ function load_save_state(buffer, saveStateTime = -1) {
     for (var i = 0, len = array_length(stateData.objects); i < len; i++) {
         var savedInstance = stateData.objects[i];
         
-        if !struct_exists(savedInstance, "id") continue;
+        if !struct_exists(savedInstance, "tag") continue;
         
-        var instanceId = savedInstance.id;
-        
-        if struct_exists(existingInstances, string(instanceId)) {
+        var instanceTag = savedInstance.tag,
+		found = false;
+		if is_string(instanceTag) {
+			with stateData.objects[i].object_index {
+				if tag == instanceTag {
+					found = true;
+					var instanceId = id;
+					break;
+				}
+			}				
+		} else {
+			with stateData.objects[i].object_index {
+				if id == instanceTag {
+					found = true;
+					var instanceId = id;
+					break;
+				}	
+			}							
+		}
+		
+        if found && struct_exists(existingInstances, string(instanceTag)) {
             // Update existing instance
             update_instance_from_data(instanceId, savedInstance, saveVars, saveIgnoreVars, saveStateTime);
             struct_set(instancesToKeep, string(instanceId), true);
@@ -109,7 +130,6 @@ function load_save_state(buffer, saveStateTime = -1) {
             struct_set(instancesToKeep, string(keepID), true);
         }
     }
-    
     // Destroy instances that weren't in the save data
     destroy_unlisted_instances(saveObjects, instancesToKeep);
 }
@@ -134,7 +154,6 @@ function update_instance_from_data(instanceId, savedData, saveVars, ignoreVars, 
             
             // Skip ignored variables
             if array_contains(ignoreVars, varName) continue;
-            
             if struct_exists(savedData, varName) {
 				var valueSet = struct_get(savedData, varName);
 				if saveStateTime > 0 && is_int64(valueSet) {
@@ -171,46 +190,47 @@ function create_instance_from_data(savedData, saveVars, ignoreVars, saveStateTim
        !struct_exists(savedData, "depth") {
         return noone;
     }
-    var currentTime = get_timer();
-    with instance_create_depth(savedData.x, savedData.y, savedData.depth, savedData.object_index) {
+	var timeOffset = 0;
+	with obj_online_battle_handler {
+		timeOffset = game_clock_start;
+	}
+    var currentTime = get_timer() -timeOffset,
+	instanceVariables = {};
+	// Set saved variables
+    for (var i = 0, len = array_length(saveVars); i < len; i++) {
+        var varName = saveVars[i];
+        // Skip ignored variables
+        if array_contains(ignoreVars, varName) continue;     
+        if struct_exists(savedData, varName) {
+			var valueSet = struct_get(savedData, varName);
+			if saveStateTime > 0 && is_int64(valueSet) {
+				var isTimeValue = false;
+				var timeValues = TIMESENSITIVEVARIABLES;
+				for (var t = 0; t < array_length(timeValues); t++) {
+					if timeValues[t] == varName {
+						isTimeValue = true;
+						break;
+					}			
+				}
+				if isTimeValue {
+					switch varName {
+						case "timer":
+							valueSet += (currentTime -saveStateTime)/1000000;
+						break;
+						default:
+							valueSet -= (currentTime -saveStateTime)/1000000;
+						break;
+					}
+				}
+			}
+            variable_struct_set(instanceVariables, varName, valueSet);
+        }
+    }
+    with instance_create_depth(savedData.x, savedData.y, savedData.depth, savedData.object_index,instanceVariables) {
         // Stop any placement sounds
         if variable_instance_exists(self, "place_sound") {
             audio_stop_sound(place_sound);
         }
-        
-        // Set saved variables
-        for (var i = 0, len = array_length(saveVars); i < len; i++) {
-            var varName = saveVars[i];
-            
-            // Skip ignored variables
-            if array_contains(ignoreVars, varName) continue;
-            
-            if struct_exists(savedData, varName) {
-				var valueSet = struct_get(savedData, varName);
-				if saveStateTime > 0 && is_int64(valueSet) {
-					var isTimeValue = false;
-					var timeValues = TIMESENSITIVEVARIABLES;
-					for (var t = 0; t < array_length(timeValues); t++) {
-						if timeValues[t] == varName {
-							isTimeValue = true;
-							break;
-						}			
-					}
-					if isTimeValue {
-						switch varName {
-							case "timer":
-								valueSet += (currentTime -saveStateTime)/1000000;
-							break;
-							default:
-								valueSet -= (currentTime -saveStateTime)/1000000;
-							break;
-						}
-					}
-				}				
-                variable_instance_set(id, varName, valueSet);
-            }
-        }
-        
         return id;
     }
 }

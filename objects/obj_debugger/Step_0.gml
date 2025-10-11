@@ -1,16 +1,28 @@
 if !global.debug {
 	exit;	
 }
-if keyboard_check_pressed(ord("3")) {
-	online_menu = !online_menu;
+if keyboard_check_pressed(vk_f2) {
+	menu = -1;	
 }
-if keyboard_check_pressed(ord("2")) {
-	game_menu = !game_menu;
-}
-if keyboard_check_pressed(ord("1")) {
-	show_all = !show_all;
-	game_menu = show_all;
-	online_menu = show_all;
+// Submenus
+switch menu {
+	case -1:
+		if keyboard_check_pressed(ord("1")) {
+			menu = DEBUG.GAME;	
+		}
+		if keyboard_check_pressed(ord("2")) {
+			menu = DEBUG.ONLINE;	
+		}
+	break;
+	case DEBUG.ONLINE:
+	case DEBUG.ONLINESTATESCOMPARE:
+		if keyboard_check_pressed(ord("1")) {
+			menu = DEBUG.ONLINE;	
+		}
+		if keyboard_check_pressed(ord("2")) {
+			menu = DEBUG.ONLINESTATESCOMPARE;	
+		}		
+	break;
 }
 // Force desync
 if (keyboard_check_pressed(vk_f3)) {

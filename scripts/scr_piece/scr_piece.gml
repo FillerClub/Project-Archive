@@ -13,7 +13,7 @@ if layer_sequence_exists("Instances",animation) {
 	if starting_sequence_pos != -1 {
 		new_animation = asset_get_index(starting_sequence);
 	}
-	layer_sequence_xscale(animation,tm_dp(-1,team,toggle));
+	layer_sequence_xscale(animation,tm_dp(anim_scale,team,toggle));
 	layer_sequence_x(animation,x +sprite_width/2);
 	layer_sequence_y(animation,y +sprite_height/2);
 	if layer_sequence_is_finished(animation) {

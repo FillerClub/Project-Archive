@@ -1,5 +1,6 @@
-debug_overlay = false;
 debug_log = [];
+prediction_log = [];
+states_log = [];
 max_log_entries = 100;
 
 // Network simulation
@@ -13,6 +14,7 @@ total_predictions = 0;
 correct_predictions = 0;
 rollback_count = 0;
 desync_count = 0;
+verbose = false;
 
 // State comparison
 last_local_hash = "";
@@ -26,6 +28,4 @@ catch_average_fps = fps_real;
 display_fps = fps_real;
 iterations = 0;
 
-show_all = false;
-game_menu = false;
-online_menu = false;
+menu = -1;

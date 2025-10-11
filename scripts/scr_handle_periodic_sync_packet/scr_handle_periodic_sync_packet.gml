@@ -7,10 +7,12 @@ function handle_periodic_sync_packet(packet) {
     // Check for detailed state
     if (variable_struct_exists(packet, "detailed_state")) {
         handle_detailed_state_check(packet.detailed_state);
+		log_debug("State Sync Request Read", c_yellow);
     }
     
     // Check for full state sync
     if (variable_struct_exists(packet, "full_state")) {
         handle_full_state_sync(packet);
+		log_debug("Full State Sync Request Read", c_red);
     }
 }

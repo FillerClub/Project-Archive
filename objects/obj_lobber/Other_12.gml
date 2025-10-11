@@ -1,0 +1,24 @@
+var gS = GRIDSPACE;
+var scannedPiece = scan_for_enemy(true,100,true,infinity);
+var zOff = z;
+var gridOff = piece_on_grid;
+if is_string(gridOff) {
+	with obj_grid {
+		if tag == gridOff {
+			zOff += z;
+			break;
+		}
+	}
+} else if instance_exists(gridOff) { zOff += gridOff.z; }
+if instance_exists(scannedPiece) {
+	var distMod = sqrt(max(distance_to_object(scannedPiece),GRIDSPACE)/GRIDSPACE)*.1;
+	instance_create_depth(x +sprite_width/2 +random_range(-4,4),y +sprite_height/2 +random_range(-4,4),depth -gS/2,obj_bullet_parent, {
+	team: team,	
+	x_vel: ((team == "friendly")?2.2:-2.2)*distMod,
+	target: scannedPiece,
+	z: zOff,
+	lob_height: random_percent(max(512*distMod,32),10),
+	});
+}
+timer -= timer_end;
+timer_end = random_percent(1.4,4);

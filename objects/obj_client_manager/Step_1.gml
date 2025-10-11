@@ -97,7 +97,6 @@ while (steam_net_packet_receive()) {
 						}
 						steam_bounce(sendList);
 					}
-					
 				break;
 				case SEND.INSERTTAG:
 					object_tag_list = array_concat(object_tag_list,msg.tags);

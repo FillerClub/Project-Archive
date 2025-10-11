@@ -130,7 +130,9 @@ function verify_spawn_still_valid(action) {
 			}
 		}
 	}
-	
+	if !instance_exists(gridRef) {
+		return false;	
+	}
     var target_x = gridRef.bbox_left + action.grid_pos[0] * GRIDSPACE;
     var target_y = gridRef.bbox_top + action.grid_pos[1] * GRIDSPACE;
     var meeting = position_meeting(target_x + GRIDSPACE/2, target_y + GRIDSPACE/2, obj_obstacle)
@@ -152,6 +154,9 @@ function is_action_attack(action) {
 				gridRef = id;
 			}
 		}
+	}
+	if !instance_exists(gridRef) {
+		return false;
 	}
     // Check if target position is occupied by enemy piece
     var target_x = gridRef.bbox_left + action.grid_pos[0] * GRIDSPACE;
@@ -238,7 +243,9 @@ function resolve_conflicts(actions) {
         } else {
             // Multiple actions want same position - resolve conflict
             var winner = resolve_position_conflict_improved(competing_actions);
+			
             if (winner != noone && check_resource_availability(winner, resource_tracker)) {
+				log_debug("RESOLVE: Kept " + action.action + " ID:" + string(action.prediction_id), c_lime);
                 array_push(resolved_actions, winner);
                 resource_tracker = update_resource_tracker(winner, resource_tracker);
             }
@@ -501,13 +508,16 @@ function resolve_position_conflict(new_action, position_map) {
 
 
 function deduplicate_actions(actions) {
-    var piece_action_map = ds_map_create(); // [piece_tag] -> latest_action
+	var piece_action_map = ds_map_create(); // [piece_tag] -> latest_action
     var spawn_position_map = ds_map_create(); // [position_key + team] -> latest_spawn
     var final_actions = [];
     
     // Process actions in order, keeping only the LAST action per piece
     for (var i = 0; i < array_length(actions); i++) {
         var action = actions[i];
+		var action_key = "";
+        var should_keep = true;
+        var reason = "";
         
         switch (action.action) {
             case "Move":
@@ -518,19 +528,33 @@ function deduplicate_actions(actions) {
                 
                 // Check if this is a no-op move
                 if (action.action == "Move" && is_noop_move(action)) {
-                    continue; // Skip no-op moves
+					should_keep = false;
+                    reason = "no-op move";
+				} else if (ds_map_exists(piece_action_map, piece_key)) {
+                    should_keep = false;
+                    reason = "duplicate " + action.action;
+                } else {
+                    ds_map_set(piece_action_map, piece_key, action);
                 }
-                
-                ds_map_set(piece_action_map, piece_key, action);
-                break;
+            break;
                 
             case "Spawn":
                 // Only allow ONE spawn per position per team per tick
                 var spawn_key = string(action.piece_on_grid) + "," + 
                               string(action.grid_pos[0]) + "," + 
                               string(action.grid_pos[1]) + "_" + action.team;
-                ds_map_set(spawn_position_map, spawn_key, action);
-                break;
+                if (ds_map_exists(spawn_position_map, spawn_key)) {
+                    should_keep = false;
+                    reason = "duplicate spawn position";
+                } else {
+					ds_map_set(spawn_position_map, spawn_key, action);
+                }
+             break;
+        }
+		if (should_keep) {
+            log_debug("DEDUP: Kept " + action.action + " ID:" + string(action.prediction_id), c_lime);
+        } else {
+            log_debug("DEDUP: Rejected " + action.action + " ID:" + string(action.prediction_id) + " (" + reason + ")", c_red);
         }
     }
     

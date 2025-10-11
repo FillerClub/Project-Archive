@@ -21,7 +21,8 @@ function handle_prediction_results(packet) {
                 array_push(rollback_states, {
                     state: prediction_data.state,
                     correct_action: auth_action,
-                    prediction_id: prediction_id
+                    prediction_id: prediction_id,
+					timestamp: prediction_data.timestamp
                 });
                 rollback_needed = true;
             } else {

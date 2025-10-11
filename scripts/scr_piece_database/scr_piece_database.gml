@@ -31,14 +31,14 @@ DESCRIPTION = 16,			// String
 
 // Object types
 //#macro 0 0
-function make_piece(_name = "debug",_obj = obj_debug_piece,_spr = spr_generic_piece,_slotSpr = spr_generic_slot, _anim = -1,
+function make_piece(_name = "debug",_obj = obj_debug_piece,_spr = spr_generic_piece,_slotSpr = spr_generic_slot, _anim = -1, _anim_scale = -1,
 	_placeCost = 2,_slotCD = 10,_moveCD = 10,_moveCost = 0,_hp = {base:10},_atk = 10,_moves = 
 	[[[0,1],[0,-1]],				// first array ONLY_MOVE  
 	[["-1",1],["-1",0],["-1",-1]],	// second array ONLY_ATTACK // Numbers in strings are affectd by team & toggling variables
 	[["1",1],["1",0],["1",-1]]],	// third array BOTH						
 	_placeGrid = SAME, _placePiece = PLACEABLENONE, _class = DEFENSECLASS, _type = 0, _brief = "Not available", _desc = "Not available") constructor {
 		
-    name = _name;				object = _obj;				sprite = _spr;				slot_sprite = _slotSpr;		idle_animation = _anim;
+    name = _name;				object = _obj;				sprite = _spr;				slot_sprite = _slotSpr;		idle_animation = _anim;	anim_scale = _anim_scale;
     place_cost = _placeCost;	slot_cooldown = _slotCD;	move_cooldown = _moveCD;	move_cost = _moveCost;
     hp = _hp;					attack_power = _atk;		moves = _moves;
     grid_placement_behavior = _placeGrid;					piece_placement_behavior = _placePiece;
@@ -199,9 +199,9 @@ function piece_database(name, trait = -1) {
         case "bishop":
             p.name = "Bishop";						p.object = obj_bishop;
             p.sprite = spr_bishop;					p.slot_sprite = spr_bishop_slot;
-            p.place_cost = 6;						p.move_cost = 0;
+            p.place_cost = 9;						p.move_cost = 0;
             p.slot_cooldown = 10;					p.move_cooldown = 9.5;
-            p.hp = {base:7.5,shield:2.5};			p.attack_power = 25;
+            p.hp = {base:10,armor:5,shield:5};		p.attack_power = 25;
             p.moves = [undefined, undefined, [[1, 1]]];
             p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
             p.class = CONTROLCLASS;					p.type = 0;
@@ -328,7 +328,7 @@ function piece_database(name, trait = -1) {
 		break;
 		// Crawlers
 		case "crawler":
-            p.name = "Crawler";						p.object = obj_crawler;
+            p.name = "Crawler";						p.object = obj_crawler;		p.idle_animation = sq_crawler_idle;		p.anim_scale = 1;
             p.sprite = spr_crawler;					p.slot_sprite = spr_crawler_slot;
             p.place_cost = 1;						p.move_cost = 0;
             p.slot_cooldown = 9;					p.move_cooldown = 4;

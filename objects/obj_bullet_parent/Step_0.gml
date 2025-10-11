@@ -36,10 +36,13 @@ var stepX = (finalX - x) / trailCover;
 var stepY = (finalY - y) / trailCover;
 var trailX = x;
 var trailY = y;
-
+var lastPixelX = undefined;
+var lastPixelY = undefined;
 // Trail loop
 for (var trail = 0; trail < trailCover; trail++) {
-    bullet_lobbing(moving_z, x_target, y_target, z_target, x_init, y_init, z_init, lob_height, use_y_target);
+	if moving_z {
+		bullet_lobbing(x_target, y_target, z_target, x_init, y_init, z_init, lob_height, use_y_target);	
+	}
     // Collision checks
     var hitGRID = collision_point(trailX, trailY, obj_grid, false, true),
     hitOBSTACLE = collision_point(trailX, trailY, obj_obstacle, false, true);
@@ -62,6 +65,22 @@ for (var trail = 0; trail < trailCover; trail++) {
             exit;
         }
     }
+	// Check if we've moved to a new pixel
+    var currentPixelX = round(trailX);
+    var currentPixelY = round(trailY);
+	
+	if currentPixelX != lastPixelX || currentPixelY != lastPixelY {
+		// Create particle in new pixel
+		var bulletPart = -1;
+		with obj_battle_handler {
+			bulletPart = bullet_part;
+		}
+		if bulletPart != -1 {
+			part_particles_create(global.part_sys,currentPixelX,currentPixelY,bulletPart,1);
+		}
+		lastPixelX = currentPixelX;
+		lastPixelY = currentPixelY;		
+	}
     // Move to next trail point
     trailX += stepX;
     trailY += stepY;

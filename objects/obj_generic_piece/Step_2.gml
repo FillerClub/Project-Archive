@@ -29,8 +29,10 @@ with obj_piece_move_highlighter {
 	var ref = other;
 	// Collect shadow data instead of drawing directly	
 	add_shadow_data(ref, shadowSize, zBase);
-	// Collect effect data instead of drawing directly  
-	add_effect_data(ref.x, ref.y, sPD, sLW, zOff);
+	if ref.effects_change_timer {
+		// Collect effect data instead of drawing directly  
+		add_effect_data(ref.x, ref.y, sPD, sLW, zOff);
+	}
 	// Collect timer data instead of drawing directly
 	if ref.move_cooldown_timer > 0 {
 		var timer_x = ref.x + ref.sprite_width/2 - origXoffset;
