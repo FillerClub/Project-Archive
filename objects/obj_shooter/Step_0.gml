@@ -8,6 +8,15 @@ if global.game_state != PAUSED {
 			// Play shooting animation
 			if !shooting {
 				new_animation = sq_shooter_shoot;
+				// Determine where to exit for idle animation
+				var head = layer_sequence_get_headpos(animation);
+				if head > 20 && head < 43 {
+					default_anim_position = 45;
+				} else {
+					default_anim_position = 12;
+				}
+				interpolation_speed = 1/10;
+				starting_sequence_pos = 0;
 				shooting = true;
 			}
 		}

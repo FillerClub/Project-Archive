@@ -124,6 +124,9 @@ function execute_action(action,is_online){
 					}
 					x = tarX;
 					y = tarY;
+					if ds_exists(interpolation_data,ds_type_map) {
+						ds_map_clear(interpolation_data);
+					}
 					audio_stop_sound(snd_move);
 					audio_play_sound(snd_move,0,0);
 					// Activate move event

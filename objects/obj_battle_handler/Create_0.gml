@@ -21,7 +21,6 @@ var gameSpd = game_get_speed(gamespeed_fps)/global.level_speed;
 
 dash_part = part_type_create();
 part_type_sprite(dash_part, spr_dash, true, false, false);
-
 part_type_life(dash_part, gameSpd*3, gameSpd*3);
 part_type_scale(dash_part, .25, .25);
 part_type_size(dash_part,1,1,.03,0);

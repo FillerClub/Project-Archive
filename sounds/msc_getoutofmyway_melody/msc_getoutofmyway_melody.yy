@@ -21,5 +21,5 @@
   "sampleRate":48000,
   "soundFile":"msc_getoutofmyway_melody.ogg",
   "type":1,
-  "volume":0.65,
+  "volume":0.55,
 }

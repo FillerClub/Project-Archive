@@ -4,7 +4,9 @@
   "eventList":[],
   "managed":true,
   "name":"obj_sq_shooter_dongle_end",
-  "overriddenProperties":[],
+  "overriddenProperties":[
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_sequence_asset","path":"objects/obj_sequence_asset/obj_sequence_asset.yy",},"propertyId":{"name":"interpolate_image_angle","path":"objects/obj_sequence_asset/obj_sequence_asset.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"False",},
+  ],
   "parent":{
     "name":"Shooter",
     "path":"folders/Sequences/Piece/Shooter.yy",

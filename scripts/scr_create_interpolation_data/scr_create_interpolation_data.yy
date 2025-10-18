@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_create_interpolation_data",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_create_interpolation_data",
+  "parent":{
+    "name":"Piece",
+    "path":"folders/Scripts/Piece.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

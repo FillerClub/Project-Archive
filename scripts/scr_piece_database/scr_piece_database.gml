@@ -367,11 +367,11 @@ function piece_database(name, trait = -1) {
             returnPiece = p;			
 		break;
 		case "tank_crawler":
-            p.name = "Tanky Crawler";				p.object = obj_crawler;
+            p.name = "Tanky Crawler";				p.object = obj_tank_crawler;		p.idle_animation = sq_crawler_idle;		p.anim_scale = 1;
             p.sprite = spr_tank_crawler;			p.slot_sprite = spr_tank_crawler_slot;
             p.place_cost = 3;						p.move_cost = 0;
             p.slot_cooldown = 20;					p.move_cooldown = 4;
-            p.hp = {base:10,armor:5};			p.attack_power = 10;
+            p.hp = {base:10,armor:5};				p.attack_power = 10;
             p.moves = [undefined,[["1", 0]]];
             p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
             p.class = OFFENSECLASS;					p.type = 0;
@@ -380,11 +380,11 @@ function piece_database(name, trait = -1) {
             returnPiece = p;				
 		break;
 		case "super_tank_crawler":
-            p.name = "Very Tanky Crawler";			p.object = obj_crawler;
+            p.name = "Very Tanky Crawler";			p.object = obj_tank_crawler;		p.idle_animation = sq_crawler_idle;		p.anim_scale = 1;
             p.sprite = spr_super_tank_crawler;		p.slot_sprite = spr_super_tank_crawler_slot;
             p.place_cost = 5;						p.move_cost = 0;
             p.slot_cooldown = 25;					p.move_cooldown = 4.5;
-            p.hp = {base:15,armor:5};				p.attack_power = 20;
+            p.hp = {base:10,armor:10};				p.attack_power = 20;
             p.moves = [undefined,[["1", 0]]];
             p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
             p.class = OFFENSECLASS;					p.type = 0;

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_find_sequence_object",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_find_sequence_object",
+  "parent":{
+    "name":"Piece",
+    "path":"folders/Scripts/Piece.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

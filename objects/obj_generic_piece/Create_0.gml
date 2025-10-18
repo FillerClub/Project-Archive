@@ -30,15 +30,21 @@ blink_timer = 0;
 timer = 0;
 eye_scale_fact = 1;
 default_animation = data[$ "idle_animation"];
+default_anim_position = 0;
+default_interpolation_speed = 1/10;
 animation = -1;
 new_animation = -1;
 is_predicted = false;
 prediction_confidence = 1.0;
+interpolation_data = ds_map_create();
+interpolation_lerp = 1;
+interpolation_speed = 1/10;
 
 if default_animation != -1 {
 	animation = layer_sequence_create("Instances",x +sprite_width/2,y +sprite_height/2,default_animation);
+	layer_sequence_headpos(animation,default_anim_position);
 	anim_scale = data[$ "anim_scale"];
-	sprite_index = spr_phantom_body;
+	sprite_index = data[$ "sprite"];
 	mask_index = spr_phantom_body;
 } else {
 	sprite_index = data[$ "sprite"];

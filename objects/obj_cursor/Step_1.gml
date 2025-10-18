@@ -82,16 +82,18 @@ var movingSomething = noone;
 
 // Scan obstacles
 with obj_obstacle {
-    var zOff = z;
-	 var gridOff = piece_on_grid;
-	if is_string(gridOff) {
-		with obj_grid {
-			if tag == gridOff {
-				zOff += z;
-				break;
+	if variable_instance_exists(self,"piece_on_grid") {
+		var zOff = z;
+		var gridOff = piece_on_grid;
+		if is_string(gridOff) {
+			with obj_grid {
+				if tag == gridOff {
+					zOff += z;
+					break;
+				}
 			}
-		}
-	} else if instance_exists(gridOff) { zOff += gridOff.z; }
+		} else if instance_exists(gridOff) { zOff += gridOff.z; } 
+	} else { continue; } 
 
     if object_get_parent(object_index) == obj_generic_piece && execute == "move" && team == global.player_team {
         movingSomething = id;

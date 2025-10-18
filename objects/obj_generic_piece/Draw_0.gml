@@ -41,23 +41,33 @@ if layer_sequence_exists("Instances", animation) {
         tracks = array_length(animTracks);
     
     for (var t = 0; t < tracks; t++) {
-        piece_draw_components(animTracks[t], zOff, abs(xScale), yScale, col, tick);
+        piece_draw_components(animTracks[t], zOff, abs(xScale), yScale, col, tick, interpolation_data, interpolation_lerp);
     }    
 } else {
-	var offsetVar = clamp(xFlip,-1,0);
-    var draw_x = x -sprite_xoffset*xFlip -sprite_width*offsetVar;
-    var draw_y = y -sprite_yoffset -zOff;
-    
+	var offsetVar = clamp(xFlip,-1,0),
+    draw_x = x -sprite_xoffset*xFlip -sprite_width*offsetVar,
+    draw_y = y -sprite_yoffset -zOff;
+	/*
+	var offsetVar = clamp(xFlip, -1, 0),
+	bbox_width = bbox_right -bbox_left,
+	bbox_xoff = x -bbox_left,
+	bbox_yoff = y -bbox_top,
+
+	draw_x = x -bbox_xoff *xFlip -bbox_width*offsetVar,
+	draw_y = y -bbox_yoff -zOff;
+    */
     draw_sprite_general(sprite_index, image_index, 
                        0, 0, sprite_width, sprite_height,
                        draw_x, draw_y, 
                        xScale, yScale, 0, 
                        col, col, col, col, tick);
 }
+/*
 if drawDebug {
 	draw_set_color(confidence_color);
 	draw_text(x - 16, y - 16, string(round(prediction_confidence * 100)) + "%");
 }
+*/
 // Restore previous GPU state
 gpu_pop_state();
 event_suppress = false;

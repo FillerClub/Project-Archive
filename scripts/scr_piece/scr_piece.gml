@@ -10,15 +10,16 @@ var anim = -1;
 // By default return to idle animations when done playing misc animations
 if layer_sequence_exists("Instances",animation) {
 	anim = layer_sequence_get_instance(animation);
+	if layer_sequence_is_finished(animation) {
+		new_animation = default_animation;
+		interpolation_speed = default_interpolation_speed;
+	}
 	if starting_sequence_pos != -1 {
 		new_animation = asset_get_index(starting_sequence);
 	}
 	layer_sequence_xscale(animation,tm_dp(anim_scale,team,toggle));
 	layer_sequence_x(animation,x +sprite_width/2);
 	layer_sequence_y(animation,y +sprite_height/2);
-	if layer_sequence_is_finished(animation) {
-		new_animation = default_animation;
-	}
 }
 if global.game_state == PAUSED && !ignore_pause {
 	if anim != -1 {
@@ -26,6 +27,8 @@ if global.game_state == PAUSED && !ignore_pause {
 	}
 	return false;
 } 
+interpolation_lerp = clamp(interpolation_lerp +delta_time*DELTA_TO_SECONDS*global.level_speed/interpolation_speed,0,1);
+
 var gridRef = piece_on_grid;
 if is_string(gridRef) {
 	with obj_grid {

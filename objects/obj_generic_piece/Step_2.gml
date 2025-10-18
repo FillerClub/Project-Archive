@@ -1,4 +1,4 @@
-/// @desc Push effects for another object to draw
+/// @desc Push information for drawing
 var tM = (team == "enemy") ? -1 : 1,
     col = team_colours(team),
     sPD = effects_array[EFFECT.SPEED],
@@ -21,8 +21,8 @@ var xFlip = (1 - toggle * 2) * tM,
     tick = invincible_tick,
     zOff = zBase + z;
 
-var origXoffset = sprite_xoffset,
-    origYoffset = sprite_yoffset,
+var origXoffset = x -bbox_left,
+    origYoffset = y -bbox_top,
     shadowSize = 1 / (max(0, log2(z / 64 + 0.5)) + 1);
 
 with obj_piece_move_highlighter {
@@ -35,8 +35,8 @@ with obj_piece_move_highlighter {
 	}
 	// Collect timer data instead of drawing directly
 	if ref.move_cooldown_timer > 0 {
-		var timer_x = ref.x + ref.sprite_width/2 - origXoffset;
-		var timer_y = ref.y + ref.sprite_height/2 - origYoffset - zBase;
+		var timer_x = ref.x +(ref.bbox_left -ref.bbox_right)/2 - origXoffset +GRIDSPACE;
+		var timer_y = ref.y +(ref.bbox_bottom -ref.bbox_top)/2 - origYoffset - zBase;
 		add_timer_data(timer_x, timer_y, ref.move_cooldown_timer/ref.move_cooldown, ref.timer_color);	
 	}
 }

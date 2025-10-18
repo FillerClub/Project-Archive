@@ -22,15 +22,17 @@ function draw_piece_hp(subtract_health = 0){
 		scale = 20/totalHPMax;
 	}
 	var zOff = z;
-	var gridOff = piece_on_grid;
-	if is_string(gridOff) {
-		with obj_grid {
-			if tag == gridOff {
-				zOff += z;
-				break;
+	if variable_instance_exists(self,"piece_on_grid") {
+		var gridOff = piece_on_grid;
+		if is_string(gridOff) {
+			with obj_grid {
+				if tag == gridOff {
+					zOff += z;
+					break;
+				}
 			}
-		}
-	} else if instance_exists(gridOff) { zOff += gridOff.z; }
+		} else if instance_exists(gridOff) { zOff += gridOff.z; }
+	}
 	var
 	spriteReference = spr_health_bit_empty,
 	wid = sprite_get_width(spriteReference),
@@ -39,8 +41,7 @@ function draw_piece_hp(subtract_health = 0){
 	centerX = (x +GRIDSPACE/2),
 	centerY = (y +GRIDSPACE -zOff),
 	startX = centerX -totalWid/2,
-	col = c_white,
-	arrayLengthIDFK = array_length(other.piece_attacking_array);
+	col = c_white;
 	
 	var newHPMAX = variable_clone(hp_max);
 	// Draw total health

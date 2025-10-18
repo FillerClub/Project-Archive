@@ -37,9 +37,10 @@
   "properties":[
     {"$GMObjectProperty":"v1","%Name":"hp_init","filters":[],"listItems":[],"multiselect":false,"name":"hp_init","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"10","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"identity","filters":[],"listItems":[],"multiselect":false,"name":"identity","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"hero_wall","varType":2,},
-    {"$GMObjectProperty":"v1","%Name":"invincible","filters":[],"listItems":[],"multiselect":false,"name":"invincible","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"last_damaged","filters":[],"listItems":[],"multiselect":false,"name":"last_damaged","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"infinity","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"execute","filters":[],"listItems":[],"multiselect":false,"name":"execute","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"","varType":2,},
+    {"$GMObjectProperty":"v1","%Name":"grid_pos","filters":[],"listItems":[],"multiselect":false,"name":"grid_pos","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"[-1,-1]","varType":4,},
+    {"$GMObjectProperty":"v1","%Name":"piece_on_grid","filters":[],"listItems":[],"multiselect":false,"name":"piece_on_grid","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"","varType":5,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":1,
   "conversionMode":0,
-  "duration":133.06932,
+  "duration":16.171247,
   "name":"msc_getoutofmyway_percs",
   "parent":{
     "name":"Get Out of My Way",

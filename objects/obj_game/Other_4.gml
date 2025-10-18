@@ -15,6 +15,8 @@ switch room {
 	case rm_level_conveyor:
 	case rm_level_normal:
 	case rm_level_split:
+	case rm_level_heights:
+	case rm_heights_2:
 		enable_pausing = true;
 	break;
 	

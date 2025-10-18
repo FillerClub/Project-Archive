@@ -46,8 +46,8 @@
   },
   "origin":0,
   "parent":{
-    "name":"gameframe",
-    "path":"folders/Sprites/gameframe.yy",
+    "name":"Gameframe",
+    "path":"folders/Sprites/Gameframe.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

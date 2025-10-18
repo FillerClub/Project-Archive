@@ -38,29 +38,27 @@ if is_string(piece_on_grid) {
 
 
 with obj_obstacle {
-	var targetZ = 0;
-	if is_string(piece_on_grid) {
-		with obj_grid {
-			if tag == other.piece_on_grid {
-				targetZ += z;
-				break;
+	if variable_instance_exists(self,"piece_on_grid") {
+		var targetZ = 0;
+		if is_string(piece_on_grid) {
+			with obj_grid {
+				if tag == other.piece_on_grid {
+					targetZ += z;
+					break;
+				}
 			}
-		}
-	} else {
-		targetZ += (instance_exists(piece_on_grid) ? piece_on_grid.z : 0);	
-	}
+		} else { targetZ += (instance_exists(piece_on_grid) ? piece_on_grid.z : 0);	}
+	} else { continue; }
+	
     // Collision check
-    if point_in_rectangle(cursorX, cursorY, 
-                         bbox_left, bbox_top - targetZ, 
-                         bbox_right, bbox_bottom - targetZ) {
+    if point_in_rectangle(cursorX, cursorY, bbox_left, bbox_top - targetZ, bbox_right, bbox_bottom - targetZ) {
         if mode == ONLY_MOVE {
 			exit;	
 		}
 		// Skip self and same team
 		if id == other.id || team == other.team {
 			clickedOnSelf = true;
-		} else if invincible != true && 
-				total_health(hp) > 0 {
+		} else if invincible != true && total_health(hp) > 0 {
 			piececlick[clickIndex] = id;		
 			clickIndex++;
 		}
