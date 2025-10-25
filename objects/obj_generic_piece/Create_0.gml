@@ -44,12 +44,9 @@ if default_animation != -1 {
 	animation = layer_sequence_create("Instances",x +sprite_width/2,y +sprite_height/2,default_animation);
 	layer_sequence_headpos(animation,default_anim_position);
 	anim_scale = data[$ "anim_scale"];
-	sprite_index = data[$ "sprite"];
-	mask_index = spr_phantom_body;
-} else {
-	sprite_index = data[$ "sprite"];
-	mask_index = spr_phantom_body;
-}
+} 
+sprite_index = data[$ "sprite"];
+mask_index = spr_phantom_body;
 
 move_cooldown_timer = 0;
 move_cooldown = data[$ "move_cooldown"];

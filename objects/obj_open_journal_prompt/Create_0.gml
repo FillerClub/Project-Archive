@@ -1,0 +1,2 @@
+highlight = false;
+clicked = false;

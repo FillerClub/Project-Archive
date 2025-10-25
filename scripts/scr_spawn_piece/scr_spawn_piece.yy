@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scr_spawn_piece",
   "parent":{
-    "name":"(2) Actions",
-    "path":"folders/Scripts/Online/(2) Actions.yy",
+    "name":"Base",
+    "path":"folders/Scripts/Online/Base.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

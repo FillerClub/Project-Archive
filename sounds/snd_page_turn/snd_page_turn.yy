@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"snd_page_turn",
+  "audioGroupId":{
+    "name":"sound_effects",
+    "path":"audiogroups/sound_effects",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":0.75893426,
+  "name":"snd_page_turn",
+  "parent":{
+    "name":"Journal",
+    "path":"folders/Sounds/Journal.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":48000,
+  "soundFile":"snd_page_turn.ogg",
+  "type":1,
+  "volume":1.0,
+}

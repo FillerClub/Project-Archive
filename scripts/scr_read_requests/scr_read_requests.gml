@@ -3,14 +3,9 @@ function read_requests(ar,is_online = false) {
 	if leng <= 0 {
 		exit;	
 	}
-	var verified = ar; 
-	if is_online {
-		var deduplicated = deduplicate_actions(ar);
-		var resolved = resolve_conflicts(deduplicated);
-		leng = array_length(resolved);
-		verified = sort_actions_by_execution_priority(resolved);
-		
+	for (var i = 0; i < leng; i++) {
+		var verified = array_shift(ar);
+		execute_action(verified, is_online);
 	}
-	execute_actions_with_dependencies(verified, is_online);
 	array_resize(ar,0);
 }

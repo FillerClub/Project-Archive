@@ -39,6 +39,7 @@
     {"name":"inst_6C04B855","path":"rooms/rm_match_menu/rm_match_menu.yy",},
     {"name":"inst_6A33AB6C","path":"rooms/rm_match_menu/rm_match_menu.yy",},
     {"name":"inst_3FBA462D","path":"rooms/rm_match_menu/rm_match_menu.yy",},
+    {"name":"inst_6C16A8E0","path":"rooms/rm_match_menu/rm_match_menu.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -65,6 +66,7 @@
         {"$GMRInstance":"v2","%Name":"inst_3FBA462D","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_3FBA462D","objectId":{"name":"obj_ready_indicator","path":"objects/obj_ready_indicator/obj_ready_indicator.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_ready_indicator","path":"objects/obj_ready_indicator/obj_ready_indicator.yy",},"propertyId":{"name":"player","path":"objects/obj_ready_indicator/obj_ready_indicator.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"2",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":0.5,"scaleY":0.5,"x":688.0,"y":677.0,},
+        {"$GMRInstance":"v2","%Name":"inst_6C16A8E0","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_6C16A8E0","objectId":{"name":"obj_back_to_lobby","path":"objects/obj_back_to_lobby/obj_back_to_lobby.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1184.0,"y":448.0,},
       ],"layers":[
         {"$GMRInstanceLayer":"","%Name":"AboveBoard","depth":-1500,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[],"layers":[],"name":"AboveBoard","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
       ],"name":"GUI","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":true,"visible":true,},

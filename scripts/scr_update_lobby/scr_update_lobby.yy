@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scr_update_lobby",
   "parent":{
-    "name":"(3) Host Processing",
-    "path":"folders/Scripts/Online/(3) Host Processing.yy",
+    "name":"Misc",
+    "path":"folders/Scripts/Online/Misc.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

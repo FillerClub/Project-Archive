@@ -27,6 +27,7 @@ switch room {
 	break;
 	
 	case rm_journal:
+		/*
 		var cont = JOURNAL;
 		if typeof(journal_starting_entry) == "string" {
 			journal_piece_create(journal_starting_entry);
@@ -46,6 +47,7 @@ switch room {
 		}
 		array_copy(journalMenu,discoveredArrayLength,ONPIECEJOURNAL,0,array_length(ONPIECEJOURNAL));
 		create_menu(journalMenu,cont,992,138,32,20, 10,fnt_phone,fa_left,fa_middle,true);
+		*/
 		enable_pausing = false;
 	break;
 	

@@ -31,14 +31,15 @@ DESCRIPTION = 16,			// String
 
 // Object types
 //#macro 0 0
-function make_piece(_name = "debug",_obj = obj_debug_piece,_spr = spr_generic_piece,_slotSpr = spr_generic_slot, _anim = -1, _anim_scale = -1,
+function make_piece(_name = "debug",_obj = obj_debug_piece,_spr = spr_generic_piece,_slotSpr = spr_generic_slot, _journalSpr = spr_journal_entry_photo,_anim = -1, _anim_scale = -1,
 	_placeCost = 2,_slotCD = 10,_moveCD = 10,_moveCost = 0,_hp = {base:10},_atk = 10,_moves = 
 	[[[0,1],[0,-1]],				// first array ONLY_MOVE  
 	[["-1",1],["-1",0],["-1",-1]],	// second array ONLY_ATTACK // Numbers in strings are affectd by team & toggling variables
 	[["1",1],["1",0],["1",-1]]],	// third array BOTH						
 	_placeGrid = SAME, _placePiece = PLACEABLENONE, _class = DEFENSECLASS, _type = 0, _brief = "Not available", _desc = "Not available") constructor {
 		
-    name = _name;				object = _obj;				sprite = _spr;				slot_sprite = _slotSpr;		idle_animation = _anim;	anim_scale = _anim_scale;
+    name = _name;				object = _obj;				sprite = _spr;				slot_sprite = _slotSpr;		journal_sprite = _journalSpr;
+	idle_animation = _anim;	anim_scale = _anim_scale;
     place_cost = _placeCost;	slot_cooldown = _slotCD;	move_cooldown = _moveCD;	move_cost = _moveCost;
     hp = _hp;					attack_power = _atk;		moves = _moves;
     grid_placement_behavior = _placeGrid;					piece_placement_behavior = _placePiece;
@@ -52,12 +53,25 @@ function piece_database(name, trait = -1) {
 	switch name {
 		// Shooters
 		case "shooter":
-			p.name = "Shootah";						p.object = obj_shooter;	
+			p.name = "Cananon";						p.object = obj_shooter;		p.journal_sprite = spr_shooter_journal;
 			p.sprite = spr_shootah;					p.slot_sprite = spr_shooter_slot;	p.idle_animation = sq_shooter_idle;
 			p.place_cost = 4;						p.move_cost = 0;
 			p.slot_cooldown = 6;					p.move_cooldown = 9;	
 			p.hp = {base:10};						p.attack_power = 5;		
-			p.moves = [/* ONLY_MOVE */[[0, 1],[0, -1]], /* ONLY_ATTACK */[["1", 0]]];
+			p.moves = [/* ONLY_MOVE */[], /* ONLY_ATTACK */[],[["1", 0],[0, 1],[0, -1]]];
+			p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
+			p.class = DEFENSECLASS;					p.type = 0;				
+			p.short_description = "Shoots at enemy pieces and the enemy base.";
+			p.full_description = "TBA";
+			returnPiece = p;
+		break;
+		case "small_shooter":
+			p.name = "Cananonet";					p.object = obj_small_shooter;	
+			p.sprite = spr_shootah;					p.slot_sprite = spr_shooter_slot;	p.idle_animation = sq_shooter_idle;
+			p.place_cost = 1;						p.move_cost = 0;
+			p.slot_cooldown = 5;					p.move_cooldown = 8;	
+			p.hp = {base:5};						p.attack_power = 0;		
+			p.moves = [/* ONLY_MOVE */[[0, 1],[0, -1],["1", 0]]];
 			p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
 			p.class = DEFENSECLASS;					p.type = 0;				
 			p.short_description = "Shoots at enemy pieces and the enemy base.";

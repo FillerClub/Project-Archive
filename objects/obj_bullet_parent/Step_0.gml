@@ -16,7 +16,7 @@ var trailCover = clamp(ceil(totalDist), 1, 32);
 // Target setup
 if (instance_exists(target)) {
     z_target = target.z;
-    if (object_get_parent(target.object_index) == obj_generic_piece) {
+    if object_is_ancestor(target.object_index,obj_generic_piece) {
 		if is_string(target.piece_on_grid) {
 			with obj_grid {
 				if tag == target.piece_on_grid {
@@ -38,6 +38,7 @@ var trailX = x;
 var trailY = y;
 var lastPixelX = undefined;
 var lastPixelY = undefined;
+var lastPixelZ = undefined;
 // Trail loop
 for (var trail = 0; trail < trailCover; trail++) {
 	if moving_z {
@@ -68,18 +69,20 @@ for (var trail = 0; trail < trailCover; trail++) {
 	// Check if we've moved to a new pixel
     var currentPixelX = round(trailX);
     var currentPixelY = round(trailY);
+    var currentPixelZ = round(z);
 	
-	if currentPixelX != lastPixelX || currentPixelY != lastPixelY {
+	if currentPixelX != lastPixelX || currentPixelY != lastPixelY || currentPixelZ != lastPixelZ {
 		// Create particle in new pixel
 		var bulletPart = -1;
 		with obj_battle_handler {
 			bulletPart = bullet_part;
 		}
 		if bulletPart != -1 {
-			part_particles_create(global.part_sys,currentPixelX,currentPixelY,bulletPart,1);
+			part_particles_create(global.part_sys,currentPixelX,currentPixelY -z,bulletPart,1);
 		}
 		lastPixelX = currentPixelX;
 		lastPixelY = currentPixelY;		
+		lastPixelZ = currentPixelZ;
 	}
     // Move to next trail point
     trailX += stepX;

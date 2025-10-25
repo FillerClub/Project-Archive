@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scr_execute_action",
   "parent":{
-    "name":"Important",
-    "path":"folders/Scripts/Important.yy",
+    "name":"Base",
+    "path":"folders/Scripts/Online/Base.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -7,6 +7,7 @@ with obj_generic_piece {
 	gY = obj_cursor.y,
 	colS = c_white,
 	drawSpr = spr_grid_highlight_dotted,
+	drawMoveSpr = spr_grid_highlight,
 	onGrid = piece_on_grid,
 	zOff = 0;
 	var gridOff = piece_on_grid;
@@ -27,6 +28,7 @@ with obj_generic_piece {
 	// Draw own square
 	if debugOn {
 		drawSpr = spr_grid_highlight; 
+		drawMoveSpr = spr_grid_highlight_dotted;
 	}
 	
 	if position_meeting(gX,gY +zOff,self) && !debugOn {
@@ -45,13 +47,13 @@ with obj_generic_piece {
 		if valid_moves[list] != undefined && valid_moves[list] != 0 {
 			switch list {
 				case ONLY_MOVE:
-					highlight_draw(display_mode,valid_moves[ONLY_MOVE],c_aqua,globalDebugMode,PLACEABLEANY,PLACEABLENONE,false,false,debugOn);
+					highlight_draw(display_mode,valid_moves[ONLY_MOVE],c_aqua,globalDebugMode,PLACEABLEANY,PLACEABLENONE,false,false,drawMoveSpr);
 				break;
 				case ONLY_ATTACK:
-					highlight_draw(display_mode,valid_moves[ONLY_ATTACK],c_red,globalDebugMode,PLACEABLENONE,DIFFERENT,false,false,debugOn)
+					highlight_draw(display_mode,valid_moves[ONLY_ATTACK],c_red,globalDebugMode,PLACEABLENONE,DIFFERENT,false,false,drawMoveSpr)
 				break;
 				case BOTH:
-					highlight_draw(display_mode,valid_moves[BOTH],c_white,globalDebugMode,PLACEABLEANY,DIFFERENT,false,false,debugOn)
+					highlight_draw(display_mode,valid_moves[BOTH],c_white,globalDebugMode,PLACEABLEANY,DIFFERENT,false,false,drawMoveSpr)
 				break;
 			}
 		}	

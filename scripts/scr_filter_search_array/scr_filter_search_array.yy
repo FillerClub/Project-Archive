@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_filter_search_array",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_filter_search_array",
+  "parent":{
+    "name":"Journal",
+    "path":"folders/Scripts/Journal.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

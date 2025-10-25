@@ -19,6 +19,7 @@ function initialize_variables(isFresh = false) {
 		global.opponent_loadout = ["Empty"];
 		global.save_state = "";
 		global.max_ai_moving_pieces = infinity;
+		global.verbose_debug = false;
 		enum HEALTHBARCONFIG {
 			HIDEALL = 0,
 			ONHIT = 1,

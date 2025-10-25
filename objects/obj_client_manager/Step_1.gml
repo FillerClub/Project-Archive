@@ -72,30 +72,7 @@ while (steam_net_packet_receive()) {
 				break;
 				case SEND.GAMEDATA:
 					if is_host {
-						batch_action_for_tick(msg);
-					}
-				break;
-				case SEND.PROCESSED_TICK:
-					handle_authoritative_actions(msg);
-				break;
-				case SEND.DETAILED_STATE_SYNC:
-				    handle_detailed_state_sync(msg);
-				break;
-				case SEND.PERIODIC_SYNC:
-					handle_periodic_sync_packet(msg);
-				break;
-				case SEND.REQUEST_RESYNC:
-					if is_host {
-				        handle_client_resync_request(msg);
-				    }
-				break;
-				case SEND.REQUESTTAG:
-					if is_host {
-						var sendList = {
-							Message: SEND.INSERTTAG,
-							tags: generate_tag_list(msg.amount)
-						}
-						steam_bounce(sendList);
+						buffer_action(msg)
 					}
 				break;
 				case SEND.INSERTTAG:
@@ -160,23 +137,27 @@ while (steam_net_packet_receive()) {
 	}	
 }
 
-if in_level {
-	var tagLength = array_length(object_tag_list);
-	if tagLength < tag_list_length && !requested_tag {
-		var tagRequest = {
-            Message: SEND.REQUESTTAG,
-            amount: tag_list_length -tagLength,
-        };
-		steam_relay_data(tagRequest);
-		requested_tag = true;
+if !in_level {
+	exit;	
+}
+
+var tagLength = array_length(object_tag_list);
+if tagLength < tag_list_length && !requested_tag {
+	var tagRequest = {
+	    Message: SEND.REQUESTTAG,
+	    amount: tag_list_length -tagLength,
+	};
+	steam_relay_data(tagRequest);
+	requested_tag = true;
+}
+// Tick Processing
+if is_host {
+	tick_timer += delta_time*DELTA_TO_SECONDS;	
+	if tick_timer >= 1/TICKRATE {
+	    tick_timer -= 1/TICKRATE;
+	    process_tick();
 	}
-	if is_host {
-		tick_timer += delta_time*DELTA_TO_SECONDS;	
-		if tick_timer >= 1/TICKLENGTH {
-			tick_timer -= 1/TICKLENGTH;
-			tick_count++;
-			process_completed_tick_batches();
-			handle_periodic_sync();
-		}	
-	}
+}
+with obj_battle_handler {
+	read_requests(other.requests, true);
 }

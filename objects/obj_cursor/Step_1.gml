@@ -7,6 +7,9 @@ minCoordy = camY +cursorMargin,
 maxX =  camX +room_width -cursorMargin,
 maxY = camY +room_height -cursorMargin,
 highLowKey = input_check("alternate_key"),
+cursorCheck = input_check("action"),
+cursorPressed = input_check_pressed("action"),
+cursorReleased = input_check_released("action"),
 compareZ = 0;
 on_grid = noone;
 if highLowKey {
@@ -14,6 +17,7 @@ if highLowKey {
 } else {
 	compareZ = -infinity	
 }
+
 // With grid
 with obj_grid {
 	if point_in_rectangle(other.x,other.y,bbox_left,bbox_top -z,bbox_right -1,bbox_bottom -z -1) {
@@ -198,8 +202,6 @@ if instance_exists(movingSomething) {
     }
 }
 
-
-
 // Cache dimensions
 if tooltip_string != "" {
     draw_set_font(fnt_bit);
@@ -207,3 +209,14 @@ if tooltip_string != "" {
     tooltip_height = string_height(tooltip_string);
     tooltip_flip   = (x <= (minCoordx +maxX)/2) ? 1 : -1;
 }
+
+collision_point_list(x,y,obj_clickable,false,true,clickables,true);
+// Loop through the list
+for (var i = 0; i < ds_list_size(clickables); i++) {
+    var inst = clickables[| i];  
+    inst.mouse_over = true;
+    inst.mouse_on = cursorCheck;
+    inst.mouse_released_on = cursorReleased;
+    inst.mouse_pressed_on = cursorPressed;
+}
+ds_list_clear(clickables);

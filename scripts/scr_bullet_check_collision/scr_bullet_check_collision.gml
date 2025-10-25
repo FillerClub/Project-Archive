@@ -7,12 +7,10 @@ with collision_point(x_col,y_col,obj_obstacle,false,true) {
 	}
 	if team != other.team && !invincible {
 		// Make sure collision is accurate to sprite's hitbox
-		var sprOriginX = sprite_get_xoffset(sprite_index),
-		sprOriginY = sprite_get_yoffset(sprite_index),
-		sprHitboxLeft = sprite_get_bbox_left(sprite_index) -sprOriginX +x,
-		sprHitboxTop = sprite_get_bbox_top(sprite_index) -sprOriginY +y,
-		sprHitboxRight = sprite_get_bbox_right(sprite_index) -sprOriginX +x,
-		sprHitboxBottom = sprite_get_bbox_bottom(sprite_index) -sprOriginY +y,
+		var sprHitboxLeft = sprite_get_bbox_left(sprite_index) +x,
+		sprHitboxTop = sprite_get_bbox_top(sprite_index) +y,
+		sprHitboxRight = sprite_get_bbox_right(sprite_index) +x,
+		sprHitboxBottom = sprite_get_bbox_bottom(sprite_index) +y,
 		spriteCollide = point_in_rectangle(x_col,y_col,sprHitboxLeft,sprHitboxTop,sprHitboxRight,sprHitboxBottom);
 		if spriteCollide {
 			destroy = true;

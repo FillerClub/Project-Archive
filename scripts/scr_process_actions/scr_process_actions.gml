@@ -1,13 +1,6 @@
 function process_requests(requests, is_online = false) {
 	var len = array_length(requests);
 	if is_online && instance_exists(obj_client_manager) {
-		read_requests(obj_client_manager.requests, true);
-		if verify_hash != -1 {
-			with obj_client_manager {
-				detect_desync(other.verify_hash.host_hash,other.verify_hash.hash_tick);
-			}
-			verify_hash = -1;	
-		}
 		// Process requests incoming from client
 		if len <= 0 {
 			exit;	
@@ -15,10 +8,10 @@ function process_requests(requests, is_online = false) {
 		// Send requests to host
 		// Make prediction immediately then send to host'
 		var action = array_shift(requests);
-		action.prediction_id = generate_prediction_id();
-        store_prediction(action,save_state);
-        execute_action(action, true);
 		steam_relay_data(action);
+		//action.prediction_id = generate_prediction_id();
+        //store_prediction(action,save_state);
+        //execute_action(action, true);
 	} else {
 		if len <= 0 {
 			exit;	

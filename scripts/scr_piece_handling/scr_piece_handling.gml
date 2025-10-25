@@ -61,7 +61,7 @@ if input_check_pressed("action") && !instance_exists(obj_dummy) {
 				if clickedOn.team == global.player_team {
 					var del = {
 						Message: SEND.GAMEDATA,
-						action: "Delete",
+						action_type: "Delete",
 						tag: clickedOn.tag,
 					}
 					array_push(requests,del);

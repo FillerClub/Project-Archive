@@ -1,12 +1,17 @@
 
-function seq_transition(type){
+function seq_transition(type) {
+	if type == INSTANT {
+		exit;	
+	}
 	if layer_exists("Transition") layer_destroy("Transition");
 	var Lay = layer_create(-9000,"Transition");
-	layer_sequence_create(Lay,0,0,type);
+	var camera = view_camera[0];
+	layer_sequence_create(Lay,camera_get_view_x(camera),camera_get_view_y(camera),type);
 }
 
 function start_transition(type_out,type_in,load_in_struct,interrupt = true) {
 	if global.game_state != TRANSITIONING {
+		load_in_struct.entrance_transition = type_in;
 		global.load = load_in_struct;
 		global.game_state = TRANSITIONING;
 		if type_out != INSTANT {
@@ -14,12 +19,13 @@ function start_transition(type_out,type_in,load_in_struct,interrupt = true) {
 		} else {
 			start_loading(load_in_struct);
 		}
-		
+		/*
 		if type_in != INSTANT {
 			layer_set_target_room(load_in_struct.rm);
 			seq_transition(type_in);
 			layer_reset_target_room();
-		}	
+		}
+		*/
 		return true;
 	} else {
 		return false;
@@ -35,6 +41,7 @@ function start_loading(load_struct = global.load) {
 
 function finish_loading(finish_run_protocol, room_going_to) {
 	global.game_state = RUNNING;
+	target_room = room_going_to;
 	switch run {
 		case "Lvl":
 			if file_exists(SAVEFILE) {

@@ -65,7 +65,7 @@ if hp <= 0 {
 			if packet_send = -1 {
 				var lose = {
 					Message: SEND.GAMEDATA,
-					action: "Lose",
+					action_type: "Lose",
 					team: team,
 				}
 				with obj_battle_handler {

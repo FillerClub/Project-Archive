@@ -3,12 +3,17 @@ with obj_client_manager {
 		instance_destroy();	
 	}
 }
+// Tick system
+//TICKRATE
+current_tick = 0;
+processing_delay = 2; 
 tick_timer = 0;
-tick_count = 1;
-tick_action_batches = ds_map_create();
-executed_actions_history = ds_map_create();
-batch_delay = 2;
+
+// Action buffering
+action_buffer = ds_map_create(); 
+
 is_host = false;
+status_change = false;
 object_tag_list = [];
 tag_list_length = 16;
 
@@ -18,6 +23,7 @@ inbuf = buffer_create(16, buffer_grow, 1);
 member_status = MEMBERSTATUS.SPECTATOR;
 ready_timer = 0;
 in_level = false;
+requests = [];
 for (var i = 0; i < datLeng; i++) {
 	lobby_data[i] = {type:"null", data: "null",update: true};
 }

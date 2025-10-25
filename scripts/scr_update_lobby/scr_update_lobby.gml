@@ -4,6 +4,17 @@
 // Main lobby update function
 function update_lobby() {
     is_host = steam_lobby_is_owner();
+	if status_change != is_host {
+		status_change = is_host;
+		if global.verbose_debug {
+			show_debug_message("=== STATUS CHANGE ===");
+			if is_host {
+				show_debug_message("You are playing as a host.");
+			} else {
+				show_debug_message("You are playing as a client.");
+			}
+		}
+	}
 	if (room == rm_loadout_zone_multiplayer || room == rm_lobby) {	
 	    in_level = false;
 	}

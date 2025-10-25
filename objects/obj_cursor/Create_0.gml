@@ -8,4 +8,5 @@ last_x = room_width/2;
 last_y = room_height/2;
 use_cursor = false;
 using_mk = true;
+clickables = ds_list_create();
 depth = 0;

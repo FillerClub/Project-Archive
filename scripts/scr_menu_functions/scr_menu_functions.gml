@@ -62,6 +62,7 @@ function menu_function(purpose = "Back",contextArg = context){
 				}
 				start_transition(sq_circle_out,INSTANT,lD);				
 			} else {
+				//create_system_message(["Currently being worked on."],BOTTOM);	
 				create_system_message(["Steam must be initialized before playing multiplayer."],BOTTOM);	
 			}
 		break;

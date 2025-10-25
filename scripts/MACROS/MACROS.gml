@@ -2,7 +2,7 @@
 #macro TIMETOTAKE 1.5
 #macro BLINKTIME .25
 #macro GRIDSPACE 64
-#macro EVERYTHING ["shooter","smoke_bomb","mortar","lobber","flyer","ball","splitter","double_shooter","short","accelerator","piercer","stick","shotgun","cross","bishop","wall","shield_gen","pawn","drum","bomber","super_stick","crawler","drooper","tank_crawler","jumper","super_tank_crawler","the_goliath","big_shooter","bomb"]
+#macro EVERYTHING ["shooter","small_shooter","smoke_bomb","mortar","lobber","flyer","ball","splitter","double_shooter","short","accelerator","piercer","stick","shotgun","cross","bishop","wall","shield_gen","pawn","drum","bomber","super_stick","crawler","drooper","tank_crawler","jumper","super_tank_crawler","the_goliath","big_shooter","bomb"]
 // TRANSITIONS
 #macro INSTANT -1
 // GAME STATES
@@ -15,24 +15,22 @@
 #macro D_DEBUG_IP "127.0.0.1"//"192.168.88.22"
 #macro D_CLIENT_PORT 9867
 #macro D_SERVER_PORT 9868
-#macro TICKLENGTH 60 // Per second
+#macro TICKRATE 30 // Per second
 enum SEND {
 	DISCONNECT,
 	CONNECT,
 	MATCHDATA,
 	PLAYERJOIN,
-	GAMEDATA,
-	TOGGLEJOIN,
 	READY,
 	REQUESTTAG,
 	INSERTTAG,
 	PING,
-	PROCESSED_TICK,
-	FULL_RESYNC,
-	REQUEST_RESYNC,
-	REQUEST_DETAILED_STATE,
-	DETAILED_STATE_SYNC,
-	PERIODIC_SYNC,
+	
+	GAMEDATA,			// Client → Host: Action request
+    TICK_RESULTS,       // Host → Clients: Processed actions
+    HASH_CHECK,         // Host → Clients: State hash for verification
+    REQUEST_FULL_RESYNC,// Client → Host: Need full state
+    FULL_RESYNC			// Host → Client: Client processes save state
 }
 enum DEBUG {
 	GAME,

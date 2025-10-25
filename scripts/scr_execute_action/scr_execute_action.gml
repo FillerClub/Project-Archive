@@ -1,12 +1,12 @@
 function execute_action(action,is_online){
-	switch action.action {
+	switch action.action_type {
 		case "Spawn":
 			var sX = x,
 			sY = y,
 			type = action.type,
 			varObj = noone,
 			debugOn = global.debug,
-			timeDiff = ((get_timer() -game_clock_start) -action.timestamp)/1000000,
+			timeDiff = ((get_timer() -game_clock_start -action.timestamp))/1000000,
 			varCost = 0;
 			if !debugOn {
 				with obj_piece_slot {

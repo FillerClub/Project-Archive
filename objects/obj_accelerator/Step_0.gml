@@ -19,7 +19,7 @@ if pointReady {
 	if input_check_pressed("action") && collision_rectangle(bbox_left,bbox_top -zOff,bbox_right,bbox_bottom -zOff,obj_cursor,false,false) && checkNoExcess && team == global.player_team {
 		var collect = {
 			Message: SEND.GAMEDATA,
-			action: "Interact",
+			action_type: "Interact",
 			tag: tag,
 		}
 		with obj_battle_handler {

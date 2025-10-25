@@ -5,7 +5,7 @@ function r_spawn_piece(_identity,_team,_index,_grid_pos,_on_grid,_type,_link) {
 	}	
 	var spawn = {
 		Message: SEND.GAMEDATA,
-		action: "Spawn",
+		action_type: "Spawn",
 		type: _type,
 		team: _team,
 		index: _index,

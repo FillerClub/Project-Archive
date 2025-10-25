@@ -1,2 +1,3 @@
 y_init = y;
-y += 672;
+arbitrary_limit = 672;
+y += arbitrary_limit;

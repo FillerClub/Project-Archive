@@ -6,7 +6,7 @@
 #macro PLACEABLENONE 3
 #macro DIFFERENT 1
 
-function grid_highlight_draw(valid_spots = [[0,0]], placeable_on_grid = PLACEABLEANY, placeable_on_piece = DIFFERENT, exclude_barriers = true, skip_grid_check = false, faux = false, show_lines = false){
+function grid_highlight_draw(valid_spots = [[0,0]], placeable_on_grid = PLACEABLEANY, placeable_on_piece = DIFFERENT, exclude_barriers = true, skip_grid_check = false, faux = spr_grid_highlight, show_lines = false, draw_color = c_white, ignore_color = false){
 // Grab amount of valid moves
 var ar_leng = array_length(valid_spots),
 onGrid = noone,
@@ -22,23 +22,27 @@ selectColor = c_white,
 checkPieceObject = object_index != obj_dummy,
 drawnSquareIsMeeting = noone,
 healthDrawIteration = 0;
-// Check if cursor is on a grid
-var zOff = z;
-if !is_string(piece_on_grid) { 
-	if instance_exists(piece_on_grid) {
-		zOff += piece_on_grid.z;		
-	}
-} else {
-	with obj_grid {
-		if tag == other.piece_on_grid {
-			zOff += z;
-			break;
+var zOff = 0
+if variable_instance_exists(self,"z") {
+	zOff = z;	
+}
+if variable_instance_exists(self,"piece_on_grid") {
+	if !is_string(piece_on_grid) { 
+		if instance_exists(piece_on_grid) {
+			zOff += piece_on_grid.z;		
+		}
+	} else {
+		with obj_grid {
+			if tag == other.piece_on_grid {
+				zOff += z;
+				break;
+			}
 		}
 	}
 }
 for (var moves = 0; moves < ar_leng; moves++) {
-	color = c_white;
-	selectColor = c_white;
+	color = draw_color;
+	selectColor = draw_color;
 	drawnSquareIsMeeting = noone;
 	precheckX = valid_spots[moves][0];
 	precheckY = valid_spots[moves][1];
@@ -138,9 +142,32 @@ for (var moves = 0; moves < ar_leng; moves++) {
 		}
 		
 		// Draw valid moves on grid
-		if !faux { var draw_spr = spr_grid_highlight;	
-		} else { var draw_spr = spr_grid_dotted; }
-		draw_sprite_ext(draw_spr,obj_piece_move_highlighter.image_index,
+		var draw_spr = faux;
+		if !sprite_exists(faux) {
+			if !faux { draw_spr = spr_grid_highlight;	
+			} else { draw_spr = spr_grid_dotted; }
+		}
+		var index = 0;
+		if instance_exists(obj_piece_move_highlighter) {
+			index = image_index;	
+		}
+		// Use image index instead
+		if ignore_color {
+			color = c_white;
+			switch draw_color {
+				case ONLY_MOVE:
+					index = 0;
+				break;
+				case ONLY_ATTACK:
+					index = 1;
+				break;
+				case BOTH:
+					index = 2;
+				break;
+			}
+		}
+		
+		draw_sprite_ext(draw_spr,index,
 		drawToX,
 		drawToY -onGrid.z,
 		1,1,0,color,1);		

@@ -70,4 +70,3 @@ if drawDebug {
 */
 // Restore previous GPU state
 gpu_pop_state();
-event_suppress = false;

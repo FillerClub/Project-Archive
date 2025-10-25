@@ -3,12 +3,6 @@ cursorInstance = obj_cursor,
 cursorOnGrid = cursorInstance.on_grid,
 loadOpponentSlots = [];
 
-cleanup_timer += delta_time *DELTA_TO_SECONDS;
-if (cleanup_timer >= 3) { 
-    cleanup_old_predictions();
-    cleanup_timer -= 3;
-}
-
 // Handle requests
 piece_handling();
 process_requests(requests,online);
