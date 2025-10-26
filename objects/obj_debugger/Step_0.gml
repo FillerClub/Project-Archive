@@ -1,12 +1,13 @@
+if keyboard_check_pressed(vk_f2) {
+	global.verbose_debug = !global.verbose_debug;	
+}
 if !global.debug {
 	exit;	
 }
 if keyboard_check_pressed(vk_numpad0) {
 	menu = -1;	
 }
-if keyboard_check_pressed(vk_f2) {
-	global.verbose_debug = !global.verbose_debug;	
-}
+
 
 // Submenus
 switch menu {

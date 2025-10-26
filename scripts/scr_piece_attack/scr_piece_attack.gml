@@ -24,16 +24,18 @@ if !instance_exists(cursorOnGrid) {
 var piececlick = [noone],
 clickIndex = 0,
 clickedOnSelf = false,
-selfZ = z;
-if is_string(piece_on_grid) {
+selfZ = z,
+selfGrid = piece_on_grid;
+if is_string(selfGrid) {
 	with obj_grid {
-		if tag == other.piece_on_grid {
+		if tag == selfGrid {
 			selfZ += z;
+			selfGrid = id;
 			break;
 		}
 	}
 } else {
-	selfZ += (instance_exists(piece_on_grid) ? piece_on_grid.z : 0);	
+	selfZ += (instance_exists(selfGrid) ? selfGrid.z : 0);	
 }
 
 
@@ -176,12 +178,11 @@ switch team {
         if canAfford global.enemy_turns -= cost;
         break;
 }
-
+// Error handling
 if !canAfford {
     audio_stop_sound(snd_critical_error);
     audio_play_sound(snd_critical_error, 0, 0);
     
-    // Simplified error handling
     if team == global.player_team {
         with obj_timer { scr_error(); }
         with obj_turn_operator { scr_error(); }
@@ -190,6 +191,6 @@ if !canAfford {
 }
 
 // Execute the move
-r_move_piece([finalX, finalY], moveToGrid, tag, bypass_cooldown);
+r_move_piece(tag, [finalX, finalY], moveToGrid.tag, grid_pos, selfGrid.tag, bypass_cooldown);
 return true;
 }

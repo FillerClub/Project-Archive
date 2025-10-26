@@ -74,6 +74,7 @@
     {"$GMObjectProperty":"v1","%Name":"anim_scale","filters":[],"listItems":[],"multiselect":false,"name":"anim_scale","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"1","varType":1,},
     {"$GMObjectProperty":"v1","%Name":"grid_pos","filters":[],"listItems":[],"multiselect":false,"name":"grid_pos","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"[-1,-1]","varType":4,},
     {"$GMObjectProperty":"v1","%Name":"piece_on_grid","filters":[],"listItems":[],"multiselect":false,"name":"piece_on_grid","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"","varType":5,},
+    {"$GMObjectProperty":"v1","%Name":"timer","filters":[],"listItems":[],"multiselect":false,"name":"timer","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

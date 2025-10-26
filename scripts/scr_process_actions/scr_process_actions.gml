@@ -5,13 +5,16 @@ function process_requests(requests, is_online = false) {
 		if len <= 0 {
 			exit;	
 		}
-		// Send requests to host
-		// Make prediction immediately then send to host'
+		// Send request to host
 		var action = array_shift(requests);
-		steam_relay_data(action);
-		//action.prediction_id = generate_prediction_id();
-        //store_prediction(action,save_state);
-        //execute_action(action, true);
+		if obj_client_manager.is_host {
+			with obj_client_manager {
+				buffer_action(action);
+			}
+		} else {
+			create_prediction(action);	
+		}
+			
 	} else {
 		if len <= 0 {
 			exit;	

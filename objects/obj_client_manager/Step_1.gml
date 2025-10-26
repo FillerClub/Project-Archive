@@ -1,11 +1,12 @@
 update_lobby();
 
-while (steam_net_packet_receive()) {
+while steam_net_packet_receive() {
 	var player1 = steam_lobby_get_data("Player1"),
     player2 = steam_lobby_get_data("Player2"),
     playerID = obj_preasync_handler.steam_id,
     player1Ready = steam_lobby_get_data("Player1Ready"),
-    player2Ready = steam_lobby_get_data("Player2Ready");
+    player2Ready = steam_lobby_get_data("Player2Ready"),
+	verbose = global.verbose_debug;
 	steam_net_packet_get_data(inbuf);
 	var SenderID = steam_net_packet_get_sender_id();
 	if (buffer_get_size(inbuf) > 0) {
@@ -72,7 +73,40 @@ while (steam_net_packet_receive()) {
 				break;
 				case SEND.GAMEDATA:
 					if is_host {
-						buffer_action(msg)
+						if verbose {
+					        show_debug_message("Received action from player: " +msg.action_type);
+					    }
+						buffer_action(msg);
+					} else {
+						if verbose {
+							show_debug_message("Received action unable to process: " +msg.action_type +" (How are you getting this?)");	
+						}
+					}
+				break;
+				case SEND.TICK_RESULTS:
+					if !is_host {
+					    if verbose {
+					        show_debug_message("Received " + string(array_length(msg.actions)) + " results from host");
+					    }
+						with obj_battle_handler {
+						    // Execute each action on client
+						    for (var i = 0; i < array_length(msg.actions); i++) {
+						        var action = msg.actions[i],
+								hadPrediction = false;
+								if variable_struct_exists(action,"prediction_id") {
+									var prediction_id = action.prediction_id;
+									hadPrediction = ds_map_exists(prediction_history, prediction_id);									
+								}
+
+								
+								if hadPrediction {
+						            verify_prediction(action);
+						        } else if action.result == "success" {
+									// This is opponent's action, execute it
+								    array_push(other.requests,action);
+								}
+							}					
+						}	
 					}
 				break;
 				case SEND.INSERTTAG:

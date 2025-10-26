@@ -27,7 +27,6 @@ last_damaged = infinity;
 poison_tick = 0;
 blink_end = random(5);
 blink_timer = 0;
-timer = 0;
 eye_scale_fact = 1;
 default_animation = data[$ "idle_animation"];
 default_anim_position = 0;

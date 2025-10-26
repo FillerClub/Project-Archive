@@ -13,7 +13,7 @@ function r_spawn_piece(_identity,_team,_index,_grid_pos,_on_grid,_type,_link) {
 		grid_pos: _grid_pos,
 		piece_on_grid: _on_grid,
 		link: _link,
-		timestamp: get_timer() -timeDiff,
+		time_stamp: get_timer() -timeDiff,
 		tag: generate_tag(4) // Generate a random tag to identity pieces for online play
 	}
 	with obj_battle_handler {

@@ -6,7 +6,7 @@ function execute_action(action,is_online){
 			type = action.type,
 			varObj = noone,
 			debugOn = global.debug,
-			timeDiff = ((get_timer() -game_clock_start -action.timestamp))/1000000,
+			timeDiff = ((get_timer() -game_clock_start -action.time_stamp))/1000000,
 			varCost = 0;
 			if !debugOn {
 				with obj_piece_slot {
@@ -54,7 +54,7 @@ function execute_action(action,is_online){
 				if is_online {
 					tag = action.tag;	
 				}
-				if variable_instance_exists(self,"uses_timer") {
+				if variable_instance_exists(self,"uses_timer") && variable_instance_exists(self,"timer") {
 					if uses_timer {
 						timer += timeDiff;	
 					}

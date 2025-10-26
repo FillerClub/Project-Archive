@@ -382,7 +382,7 @@ for (var finalScan = 1; finalScan < trackArrLeng; finalScan++) {
 	}
 	// Now commit to making the move
 	if commitMove {
-		r_move_piece(EnemyPos,EnemyOnGrid,PieceEnemy.tag);
+		r_move_piece(PieceEnemy.tag,EnemyPos,EnemyOnGrid);
 		/*
 		if PieceVictim != noone {
 			// Deal Damage/Destroy Victim Piece

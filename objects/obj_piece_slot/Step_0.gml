@@ -12,6 +12,8 @@ if time_source_get_state(error_time) == time_source_state_stopped {
 }
 if cooldown > 0 && paused != PAUSED {
 	cooldown -= delta_time*DELTA_TO_SECONDS*global.level_speed*speed_factor;
+} else if cooldown < 0 {
+	cooldown = 0;	
 }
 if paused == PAUSED || skip || global.mode == "delete" || team == global.opponent_team {
 	skip = false;

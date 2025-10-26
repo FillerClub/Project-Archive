@@ -26,7 +26,14 @@ if armor.destroyed {
 
 if instance_exists(track_armor_to) {
 	var gridOn = piece_on_grid;
-	if instance_exists(gridOn) {
+	if is_string(gridOn) {
+		with obj_grid {
+			if tag == gridOn {
+				gridOn = id;
+				break;
+			}
+		}
+	} else if instance_exists(gridOn) {
 		armor.z = gridOn.z +z;	
 	}
 	armor.x = track_armor_to.x;

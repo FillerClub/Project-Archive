@@ -6,7 +6,7 @@
   "name":"scr_player_has_resources",
   "parent":{
     "name":"Checks",
-    "path":"folders/Scripts/Online/Host Functions/Checks.yy",
+    "path":"folders/Scripts/Checks.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -3,6 +3,13 @@ cursorInstance = obj_cursor,
 cursorOnGrid = cursorInstance.on_grid,
 loadOpponentSlots = [];
 
+// Clean up stale predictions every second
+prediction_cleanup_timer += delta_time*DELTA_TO_SECONDS;
+if prediction_cleanup_timer >= 1 {
+    prediction_cleanup_timer = 0;
+    cleanup_stale_predictions();
+}
+
 // Handle requests
 piece_handling();
 process_requests(requests,online);

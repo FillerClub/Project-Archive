@@ -28,7 +28,7 @@ enum SEND {
 	
 	GAMEDATA,			// Client → Host: Action request
     TICK_RESULTS,       // Host → Clients: Processed actions
-    HASH_CHECK,         // Host → Clients: State hash for verification
+    HASH_CHECK,         // Host → Clients: State hash for verification/minor corrections
     REQUEST_FULL_RESYNC,// Client → Host: Need full state
     FULL_RESYNC			// Host → Client: Client processes save state
 }

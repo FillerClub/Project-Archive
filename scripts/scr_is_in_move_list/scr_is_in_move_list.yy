@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"scr_state_processing",
+  "%Name":"scr_is_in_move_list",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"scr_state_processing",
+  "name":"scr_is_in_move_list",
   "parent":{
-    "name":"_Debug",
-    "path":"folders/Scripts/_Debug.yy",
+    "name":"Checks",
+    "path":"folders/Scripts/Checks.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"chaos",
+  "%Name":"scr_position_occupied",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"chaos",
+  "name":"scr_position_occupied",
   "parent":{
-    "name":"_Debug",
-    "path":"folders/Scripts/_Debug.yy",
+    "name":"Checks",
+    "path":"folders/Scripts/Checks.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

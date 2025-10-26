@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_rollback_prediction",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_rollback_prediction",
+  "parent":{
+    "name":"Rollback",
+    "path":"folders/Scripts/Online/Rollback.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

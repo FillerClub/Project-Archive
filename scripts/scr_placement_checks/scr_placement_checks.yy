@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"scr_log_debug",
+  "%Name":"scr_placement_checks",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"scr_log_debug",
+  "name":"scr_placement_checks",
   "parent":{
-    "name":"_Debug",
-    "path":"folders/Scripts/_Debug.yy",
+    "name":"Checks",
+    "path":"folders/Scripts/Checks.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

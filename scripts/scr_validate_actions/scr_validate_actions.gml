@@ -20,14 +20,13 @@ function validate_action(action) {
 
 function validate_spawn(action) {   
     // Example checks - expand these
-    if !player_has_resources(action.team,action.identity) {
+	var identity = action.identity;
+    if !player_has_resources(action.team,identity) {
         return {valid: false, reason: "insufficient_resources"};
     }
-    /*
-    if is_position_occupied(action.action_data.position) {
-        return {valid: false, reason: "position_occupied"};
+    if !place_position_valid(identity,action.team,action.grid_pos,action.piece_on_grid,action.type) {
+        return {valid: false, reason: "invalid_spot"};
     }
-	*/
     return {valid: true};
 }
 
@@ -36,11 +35,10 @@ function validate_move(action) {
     if !instance_exists(piece) {
         return {valid: false, reason: "piece_not_found"};
     }
-    /*
-    if piece.team != get_team_from_player_id(player_id) {
-        return {valid: false, reason: "not_your_piece"};
-    }
-    */
+	var listTypeValid = is_in_move_list(piece,action.o_grid_pos,action.o_piece_on_grid,action.grid_pos,action.piece_on_grid);
+	if listTypeValid < 0 {
+		return {valid: false, reason: "invalid_move"};		
+	}
     return {valid: true};
 }
 
