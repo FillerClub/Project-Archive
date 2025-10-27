@@ -7,3 +7,4 @@ save_state = -1;
 prediction_id_counter = 0;
 prediction_history = ds_map_create();
 prediction_cleanup_timer = 0;
+old_demented_prediction = -1;

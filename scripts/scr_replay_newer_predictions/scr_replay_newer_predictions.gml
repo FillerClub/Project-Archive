@@ -5,7 +5,7 @@ function replay_newer_predictions(rollback_timestamp) {
     var pred_id = ds_map_find_first(prediction_history);
     while (pred_id != undefined) {
         var pred = prediction_history[? pred_id];
-        if pred.pre_state.time_stamp > rollback_timestamp {
+        if pred.time_stamp > rollback_timestamp {
             array_push(predictions_to_replay, pred.action);
         }
         pred_id = ds_map_find_next(prediction_history, pred_id);
@@ -22,7 +22,7 @@ function replay_newer_predictions(rollback_timestamp) {
             show_debug_message("Re-executing " + string(array_length(predictions_to_replay)) + " newer predictions");
         }
         for (var i = 0; i < array_length(predictions_to_replay); i++) {
-            array_push(other.requests,predictions_to_replay[i].action);
+            array_push(obj_client_manager.requests,predictions_to_replay[i]);
         }
     }
 }

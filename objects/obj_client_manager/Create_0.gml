@@ -6,11 +6,12 @@ with obj_client_manager {
 // Tick system
 //TICKRATE
 current_tick = 0;
-processing_delay = 2; 
+processing_delay = 1; 
 tick_timer = 0;
 
 // Action buffering
 action_buffer = ds_map_create(); 
+action_history = [];
 
 is_host = false;
 status_change = false;

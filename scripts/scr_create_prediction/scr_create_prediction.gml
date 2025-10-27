@@ -13,10 +13,14 @@ function create_prediction(action) {
     prediction_history[? pred_id] = {
         action: action,
         pre_state: pre_state,
+		time_stamp: pre_state.time_stamp,
+		verified: false,
     };
-    
     // Send to host with prediction ID
     action.prediction_id = pred_id;
+	if old_demented_prediction == -1 || pred_id < old_demented_prediction {
+		old_demented_prediction = pred_id;	
+	}
 	if !keyboard_check(vk_control) {
 		steam_relay_data(action);
 	}

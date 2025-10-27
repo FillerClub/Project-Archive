@@ -44,7 +44,7 @@ function create_save_state(buffer = -1) {
 			if variable_instance_exists(self,"tag") {
 				instanceData.tag = tag;	
 			} else {
-				instanceData.tag = id;	
+				continue;
 			}
             // Save specified variables
             for (var varIndex = 0, varCount = array_length(saveVars); varIndex < varCount; varIndex++) {

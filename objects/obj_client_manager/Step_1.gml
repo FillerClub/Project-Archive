@@ -98,12 +98,11 @@ while steam_net_packet_receive() {
 									hadPrediction = ds_map_exists(prediction_history, prediction_id);									
 								}
 
-								
 								if hadPrediction {
 						            verify_prediction(action);
 						        } else if action.result == "success" {
 									// This is opponent's action, execute it
-								    array_push(other.requests,action);
+								    array_push(obj_client_manager.requests,action);
 								}
 							}					
 						}	
@@ -193,5 +192,5 @@ if is_host {
 	}
 }
 with obj_battle_handler {
-	read_requests(other.requests, true);
+	read_requests(obj_client_manager.requests, true);
 }

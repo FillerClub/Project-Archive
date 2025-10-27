@@ -1,6 +1,6 @@
 function rollback_prediction(prediction, host_action) {
     var verbose = global.verbose_debug,
-	timeStamp = prediction.pre_state.time_stamp;
+	timeStamp = prediction.time_stamp;
 	if verbose {
         show_debug_message("Restoring state from before prediction");
     }
@@ -13,7 +13,7 @@ function rollback_prediction(prediction, host_action) {
         if verbose {
             show_debug_message("Applying host's corrected action");
         }
-        array_push(other.requests,host_action);
+        array_push(obj_client_manager.requests,host_action);
     }
     
     // Re-execute any newer predictions

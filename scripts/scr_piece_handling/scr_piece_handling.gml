@@ -62,6 +62,7 @@ if input_check_pressed("action") && !instance_exists(obj_dummy) {
 					var del = {
 						Message: SEND.GAMEDATA,
 						action_type: "Delete",
+						time_stamp: get_timer()- game_clock_start,
 						tag: clickedOn.tag,
 					}
 					array_push(requests,del);

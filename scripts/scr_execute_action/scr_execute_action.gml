@@ -43,7 +43,7 @@ function execute_action(action,is_online){
 				if action.team == "friendly" { global.friendly_turns -= varCost; }
 				if action.team == "enemy" { global.enemy_turns -= varCost; }	
 			}
-			with instance_create_layer(sX,sY,"Instances",varObj, {
+			var pieceCreate = instance_create_layer(sX,sY,"Instances",varObj, {
 				identity: action.identity,
 				team: action.team,
 				grid_pos: action.grid_pos,
@@ -51,12 +51,22 @@ function execute_action(action,is_online){
 				skip_move: true,
 				link: action.link,
 			}) {
-				if is_online {
-					tag = action.tag;	
+				if is_online && variable_instance_exists(pieceCreate,"tag") {
+					pieceCreate.tag = action.tag;	
 				}
-				if variable_instance_exists(self,"uses_timer") && variable_instance_exists(self,"timer") {
-					if uses_timer {
-						timer += timeDiff;	
+				var timerVars = TIMESENSITIVEVARIABLES;
+				for (var t = 0; t < array_length(timerVars); t++) {
+					var varString = string(timerVars[t]);
+					if variable_instance_exists(pieceCreate,varString) {
+						var variableGet = variable_instance_get(pieceCreate,varString);
+						switch varString {
+							case "timer":
+								variable_instance_set(pieceCreate,varString,variableGet +timeDiff);	
+							break;
+							default:
+								variable_instance_set(pieceCreate,varString,variableGet -timeDiff);	
+							break;
+						}
 					}
 				}
 			}

@@ -17,9 +17,14 @@ if pointReady {
 		}
 	} else if instance_exists(gridOff) { zOff += gridOff.z; }
 	if input_check_pressed("action") && collision_rectangle(bbox_left,bbox_top -zOff,bbox_right,bbox_bottom -zOff,obj_cursor,false,false) && checkNoExcess && team == global.player_team {
+		var timeStamp = 0;
+		with obj_battle_handler {
+			timeStamp = get_timer() -game_clock_start;	
+		}
 		var collect = {
 			Message: SEND.GAMEDATA,
 			action_type: "Interact",
+			time_stamp: timeStamp,
 			tag: tag,
 		}
 		with obj_battle_handler {

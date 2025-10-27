@@ -26,6 +26,7 @@ function process_tick_batch(tick_actions) {
         var action = resolved_actions[i];
         action.result = "success";
 		array_push(requests,action);
+		array_push(action_history,{action: action, time_stamp: action.time_stamp})
         array_push(results, action);
         if verbose {
             show_debug_message("  EXECUTED: " + action.action_type);
