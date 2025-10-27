@@ -164,7 +164,7 @@
     {"$GMFolder":"","%Name":"Don't Use","folderPath":"folders/Scripts/Piece/Effects/Don't Use.yy","name":"Don't Use","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Move","folderPath":"folders/Scripts/Piece/Move.yy","name":"Move","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Specific","folderPath":"folders/Scripts/Piece/Specific.yy","name":"Specific","resourceType":"GMFolder","resourceVersion":"2.0",},
-    {"$GMFolder":"","%Name":"Screen","folderPath":"folders/Scripts/Screen.yy","name":"Screen","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Screen","folderPath":"folders/Scripts/Piece/Screen.yy","name":"Screen","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Slot","folderPath":"folders/Scripts/Slot.yy","name":"Slot","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Text","folderPath":"folders/Scripts/Text.yy","name":"Text","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Sequences","folderPath":"folders/Sequences.yy","name":"Sequences","resourceType":"GMFolder","resourceVersion":"2.0",},

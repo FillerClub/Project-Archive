@@ -68,5 +68,6 @@ if drawDebug {
 	draw_text(x - 16, y - 16, string(round(prediction_confidence * 100)) + "%");
 }
 */
+//draw_text(x,y,string(piece_on_grid));
 // Restore previous GPU state
 gpu_pop_state();

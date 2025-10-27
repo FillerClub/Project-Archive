@@ -6,7 +6,7 @@
   "name":"scr_transition",
   "parent":{
     "name":"Screen",
-    "path":"folders/Scripts/Screen.yy",
+    "path":"folders/Scripts/Piece/Screen.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

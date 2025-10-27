@@ -90,7 +90,7 @@ function execute_action(action,is_online){
 					}
 					if !instance_exists(gridRef) { break; }
 					grid_pos = action.grid_pos;
-					piece_on_grid = gridRef;
+					piece_on_grid = action.piece_on_grid;
 					var tarX = grid_pos[0]*GRIDSPACE +gridRef.bbox_left,
 					tarY = grid_pos[1]*GRIDSPACE +gridRef.bbox_top;
 					if position_meeting(tarX +GRIDSPACE/2,tarY +GRIDSPACE/2,obj_obstacle) {
