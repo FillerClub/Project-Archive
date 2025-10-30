@@ -21,6 +21,7 @@ function load_slots(deploy_loadout = undefined,deploy_enemy_loadout = undefined)
 					identity: deploy_loadout[l],
 					index: l,
 					team: team,
+					tag: string_copy(team,1,1) +string(l),
 				});				
 			}
 		}
@@ -40,6 +41,7 @@ function load_slots(deploy_loadout = undefined,deploy_enemy_loadout = undefined)
 					identity: deploy_enemy_loadout[l],
 					index: l,
 					team: team,
+					tag: string_copy(team,1,1) +string(l),
 				});				
 			}
 		}

@@ -108,6 +108,25 @@ while steam_net_packet_receive() {
 						}	
 					}
 				break;
+				case SEND.HASH_CHECK:
+					if !is_host {
+						hash_check(msg)	
+					}
+				break;
+				case SEND.STATE_CHECK:
+					if !is_host {
+						handle_state_correction(msg);	
+					} else {
+						handle_correction_request(msg);	
+					}
+				break;
+				case SEND.FULL_RESYNC:
+					if !is_host {
+						handle_full_resync(msg);
+					} else {
+						handle_full_resync_request(msg);
+					}
+				break;
 				case SEND.INSERTTAG:
 					object_tag_list = array_concat(object_tag_list,msg.tags);
 				break;

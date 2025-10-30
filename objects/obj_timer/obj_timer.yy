@@ -45,6 +45,7 @@
     {"$GMObjectProperty":"v1","%Name":"draw_blue_green","filters":[],"listItems":[],"multiselect":false,"name":"draw_blue_green","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"1","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"draw_mute_red_green","filters":[],"listItems":[],"multiselect":false,"name":"draw_mute_red_green","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"timer_count_queue","filters":[],"listItems":[],"multiselect":false,"name":"timer_count_queue","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
+    {"$GMObjectProperty":"v1","%Name":"tag","filters":[],"listItems":[],"multiselect":false,"name":"tag","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"id","varType":4,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

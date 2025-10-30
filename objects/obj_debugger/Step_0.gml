@@ -1,3 +1,5 @@
+
+
 if keyboard_check_pressed(vk_f2) {
 	global.verbose_debug = !global.verbose_debug;	
 }

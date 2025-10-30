@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_calculate_state_hash",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_calculate_state_hash",
+  "parent":{
+    "name":"Hash",
+    "path":"folders/Scripts/Online/Rollback/Hash.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

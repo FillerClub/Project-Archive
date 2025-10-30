@@ -240,7 +240,7 @@ function piece_database(name, trait = -1) {
             p.name = "Drum";						p.object = obj_drum;
             p.sprite = spr_generic;					p.slot_sprite = spr_pawn_slot;
             p.place_cost = 2;						p.move_cost = 0;
-            p.slot_cooldown = 8;					p.move_cooldown = 9;
+            p.slot_cooldown = 8;					p.move_cooldown = 6;
             p.hp = {base:10};						p.attack_power = 15;
             p.moves = [[],[],/*BOTH*/[[1,0],[0,1],[-1,0],[0,-1]]];
             p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;

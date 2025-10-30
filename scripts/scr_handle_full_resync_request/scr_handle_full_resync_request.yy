@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_handle_full_resync_request",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_handle_full_resync_request",
+  "parent":{
+    "name":"Resyncing",
+    "path":"folders/Scripts/Online/Rollback/Resyncing.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

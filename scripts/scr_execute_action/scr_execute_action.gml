@@ -50,10 +50,8 @@ function execute_action(action,is_online){
 				piece_on_grid: action.piece_on_grid,
 				skip_move: true,
 				link: action.link,
+				tag: action.tag,
 			}) {
-				if is_online && variable_instance_exists(pieceCreate,"tag") {
-					pieceCreate.tag = action.tag;	
-				}
 				var timerVars = TIMESENSITIVEVARIABLES;
 				for (var t = 0; t < array_length(timerVars); t++) {
 					var varString = string(timerVars[t]);
@@ -74,7 +72,7 @@ function execute_action(action,is_online){
 		case "Move":
 			var varObj = obj_generic_piece,
 			teamCheck = "";
-			if !is_online {
+			if !is_string(action.tag) {
 				varObj = action.tag;
 			}
 			with varObj {
@@ -157,7 +155,7 @@ function execute_action(action,is_online){
 		break;
 		case "Interact":
 			var varObj = obj_generic_piece;
-			if !is_online {
+			if !is_string(action.tag) {
 				varObj = action.tag;
 			}
 			with varObj {
@@ -168,7 +166,7 @@ function execute_action(action,is_online){
 		break;
 		case "Delete":
 			var varObj = obj_generic_piece;
-			if !is_online {
+			if !is_string(action.tag) {
 				varObj = action.tag;
 			}
 			with varObj {

@@ -12,6 +12,7 @@ if !instance_exists(her) {
 info = power_database(heroString);
 sprite_index = info[POWERDATA.SLOTSPRITE];
 desc = info[POWERDATA.DESCRIPTION];
+tag = heroString;
 //passive powers
 switch her.identity {
 	default:

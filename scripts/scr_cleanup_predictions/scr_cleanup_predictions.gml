@@ -1,5 +1,5 @@
 function cleanup_stale_predictions() {
-    var timeout = 4000000;  // 9 seconds in microseconds
+    var timeout = 4000000;  // 1 million microseconds = 1 second
     var stale_ids = [];
 	var timeBase = get_timer() -game_clock_start;
     

@@ -12,3 +12,4 @@ cost = info[POWERDATA.COST];
 cooldown_length = info[POWERDATA.COST];
 sprite_slot = info[POWERDATA.SLOTSPRITE];
 desc = info[POWERDATA.DESCRIPTION];
+

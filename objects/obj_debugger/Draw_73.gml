@@ -16,6 +16,13 @@ draw_set_font(fnt_bit);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 
+if keyboard_check(vk_f3) {
+	with all {
+		if variable_instance_exists(self,"tag") {
+			draw_text(x,y,tag);		
+		}
+	}
+}
 var debugString = debugOn?"on":"off"
 if verboseOn { debugString += " - VERBOSE" }
 draw_text(x_sep, current_y, "DEBUG - " +debugString);
