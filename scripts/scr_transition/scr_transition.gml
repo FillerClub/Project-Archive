@@ -4,7 +4,7 @@ function seq_transition(type) {
 		exit;	
 	}
 	if layer_exists("Transition") layer_destroy("Transition");
-	var Lay = layer_create(-9000,"Transition");
+	var Lay = layer_create(-99999,"Transition");
 	var camera = view_camera[0];
 	layer_sequence_create(Lay,camera_get_view_x(camera),camera_get_view_y(camera),type);
 }

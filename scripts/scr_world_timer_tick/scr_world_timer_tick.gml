@@ -12,8 +12,8 @@ function world_timer_tick(reverse = false){
 			countFPiece++;
 		}
 	}
-	var timerAbsentAccel = (1 +((!enemyPiecePresent && phase >= 1))/1.5),
-	timerCatchupAccel = (1 +countFPiece/20),
+	var timerAbsentAccel = (1 +((!enemyPiecePresent && phase >= 1)*timer)/1.5),
+	timerCatchupAccel = (1 +(countFPiece)/20),
 	timerHeroProgression = (1 +hero_phase/8),
 	rev = 1;
 

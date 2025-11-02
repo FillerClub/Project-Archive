@@ -8,6 +8,9 @@ function force_desync() {
         case 0:
             // Modify piece HP
             with obj_obstacle {
+				if !variable_instance_exists(self,"hp") {
+					continue;	
+				}
                 var rand = irandom(5);
 				if rand < 2 {
 					hurt(hp,random_range(-10, 10));
@@ -36,6 +39,9 @@ function force_desync() {
         case 2:
             // Move a piece slightly
             with obj_obstacle {
+				if !variable_instance_exists(self,"grid_pos") {
+					continue;	
+				}
 				grid_pos[0] += irandom_range(-2, 2);
 				grid_pos[1] += irandom_range(-2, 2);
 				if verbose {

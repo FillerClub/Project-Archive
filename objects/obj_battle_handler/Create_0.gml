@@ -16,6 +16,7 @@ ai_mode = CLOSESTTOBASE;
 lane_threat = [];
 lane_score = [];
 ai_seed = random(100);
+debug_counter = 0;
 
 var gameSpd = game_get_speed(gamespeed_fps)/global.level_speed;
 

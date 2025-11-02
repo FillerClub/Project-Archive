@@ -1,5 +1,9 @@
 // Stupid idiot check
-if level[1] == 1 && phase < 6 && time_source_get_time_remaining(timer) > 0 {
+var timeRemaining = 0;
+if time_source_exists(timer) {
+	timeRemaining = time_source_get_time_remaining(timer);
+}
+if level[1] == 1 && phase < 6 && timeRemaining > 0 {
 	with obj_hero_wall {
 		if total_health(hp) <= 0 {
 			other.phase = 6;
@@ -119,19 +123,9 @@ switch level[1] {
 		enemy_spawn_sequence(5,["crawler"],4,2) 
 		//Expand grid, introduce movement, etc...
 		if pause_sequence(6,(!enemyPiecePresent || stupid_idiot_check),6/(1+stupid_idiot_check/2)) {
-			scale_grid(3,false);	
+			scale_grid(3,true);	
 			global.mode = "move";
 			random_time_add = random_range(0,1);
-			with obj_hero_wall {
-				instance_create_layer(x,y+GRIDSPACE,"Instances",obj_hero_wall,{
-					identity: identity,
-					team: team,
-				})	
-				instance_create_layer(x,y-GRIDSPACE,"Instances",obj_hero_wall,{
-					identity: identity,
-					team: team,
-				})	
-			}
 			tutorial_text_create("Tutorial1",2);
 		}
 		enemy_spawn_sequence(7,["crawler"],5,3,0,random_y); 
@@ -185,16 +179,15 @@ switch level[1] {
 		tutorial_text_create("Tutorial4",0);
 		enemy_spawn_sequence(1,["crawler"],INITIAL,1,0,randomCenterY);
 		enemy_spawn_sequence(2,["tank_crawler"],2,1,0,randomCenterY);
-		enemy_spawn_sequence(3,["crawler"],2,2,0,randomCenterY);
-		pause_sequence(4,true,12);
-		enemy_spawn_sequence(5,["crawler"],2.5,4,0,randomTipEdgeY);
-		pause_sequence(6,true,12);
-		enemy_spawn_sequence(7,["crawler","drooper"],2.5,8,0,random_y);
-		pause_sequence(8,true,12);
-		enemy_spawn_sequence(9,["crawler","tank_crawler"],2.5,8,0,random_y);
-		initiate_final_wave(10,!enemyPiecePresent);
-		enemy_spawn_sequence(11,["drooper","tank_crawler","crawler"],1.5,12,0,random_y);
-		drop_slot(12,"short",[1,5],!enemyPiecePresent);
+		pause_sequence(3,true,12);
+		enemy_spawn_sequence(4,["crawler"],2.5,4,0,randomTipEdgeY);
+		pause_sequence(5,true,12);
+		enemy_spawn_sequence(6,["crawler","drooper"],2.5,8,0,random_y);
+		pause_sequence(7,true,12);
+		enemy_spawn_sequence(8,["crawler","tank_crawler"],2.5,8,0,random_y);
+		initiate_final_wave(9,!enemyPiecePresent);
+		enemy_spawn_sequence(10,["drooper","tank_crawler","crawler"],1.5,12,0,random_y);
+		drop_slot(11,"short",[1,5],!enemyPiecePresent);
 	break;
 	case 5:
 		enemy_spawn_sequence(1,["crawler"],INITIAL,1,0,random_y);

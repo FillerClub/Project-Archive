@@ -29,7 +29,6 @@
     {"name":"inst_4E82654C","path":"rooms/rm_world_one/rm_world_one.yy",},
     {"name":"inst_468790E8","path":"rooms/rm_world_one/rm_world_one.yy",},
     {"name":"inst_3C4829D1","path":"rooms/rm_world_one/rm_world_one.yy",},
-    {"name":"inst_2298EB8","path":"rooms/rm_world_one/rm_world_one.yy",},
     {"name":"inst_5F8054F1","path":"rooms/rm_world_one/rm_world_one.yy",},
     {"name":"inst_6A58802E","path":"rooms/rm_world_one/rm_world_one.yy",},
     {"name":"inst_34CB92A3","path":"rooms/rm_world_one/rm_world_one.yy",},
@@ -38,8 +37,9 @@
     {"name":"inst_4869F573","path":"rooms/rm_world_one/rm_world_one.yy",},
     {"name":"inst_6252D5B9","path":"rooms/rm_world_one/rm_world_one.yy",},
     {"name":"inst_54C7439","path":"rooms/rm_world_one/rm_world_one.yy",},
-    {"name":"inst_7F2A297C","path":"rooms/rm_world_one/rm_world_one.yy",},
     {"name":"inst_11B9249F","path":"rooms/rm_world_one/rm_world_one.yy",},
+    {"name":"inst_2298EB8","path":"rooms/rm_world_one/rm_world_one.yy",},
+    {"name":"inst_7F2A297C","path":"rooms/rm_world_one/rm_world_one.yy",},
   ],
   "isDnd":false,
   "layers":[

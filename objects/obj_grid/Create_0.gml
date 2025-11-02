@@ -1,3 +1,4 @@
+oY = y;
 if (team != "friendly" && team != "enemy") || !generate_walls {
 	exit;	
 }
@@ -8,6 +9,6 @@ for (var g = 0; g <= floor((bbox_bottom -bbox_top -1)/GRIDSPACE); g++) {
 		team: team,
 		piece_on_grid: gridVar,
 		grid_pos: [(tM -bbox_left)/GRIDSPACE,g],
-		tag: string(other.tag) +"-" +string(g), 
+		tag: string(tag) +"-" +string(g), 
 	});
 }
