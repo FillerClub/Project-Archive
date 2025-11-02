@@ -29,8 +29,8 @@
   "physicsShapePoints":[],
   "physicsStartAwake":true,
   "properties":[
-    {"$GMObjectProperty":"v1","%Name":"piece_attacking_array","filters":[],"listItems":[],"multiselect":false,"name":"piece_attacking_array","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"[noone]","varType":4,},
-    {"$GMObjectProperty":"v1","%Name":"attack_power_array","filters":[],"listItems":[],"multiselect":false,"name":"attack_power_array","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"[noone]","varType":4,},
+    {"$GMObjectProperty":"v2","%Name":"piece_attacking_array","filters":[],"listItems":[],"multiselect":false,"name":"piece_attacking_array","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"[noone]","varType":4,},
+    {"$GMObjectProperty":"v2","%Name":"attack_power_array","filters":[],"listItems":[],"multiselect":false,"name":"attack_power_array","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"[noone]","varType":4,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

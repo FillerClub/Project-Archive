@@ -51,12 +51,24 @@ function draw_piece_hp(subtract_health = 0){
 		totalHealthCount = floor(totalHPMax/HEALTHCHUNK);
 		totalHealthPart = totalHPMax/HEALTHCHUNK -totalHealthCount;
 	}
+	if variable_struct_exists(newHPMAX,"rainbow") {
+		draw_bar(spr_rainbow_health_bit_empty,spr_rainbow_health_bit_empty_part,wid,hei,totalHealthCount,totalHealthPart,startX,centerY,scale);
+		totalHPMax -= newHPMAX.rainbow;
+		totalHealthCount = floor(totalHPMax/HEALTHCHUNK);
+		totalHealthPart = totalHPMax/HEALTHCHUNK -totalHealthCount;
+	}
 	if variable_struct_exists(newHPMAX,"shield") {
 		draw_bar(spr_shield_health_bit_empty,spr_shield_health_bit_empty_part,wid,hei,totalHealthCount,totalHealthPart,startX,centerY,scale);
 		totalHPMax -= newHPMAX.shield;
 		totalHealthCount = floor(totalHPMax/HEALTHCHUNK);
 		totalHealthPart = totalHPMax/HEALTHCHUNK -totalHealthCount;
 	}
+	if variable_struct_exists(newHPMAX,"gel") {
+		draw_bar(spr_gel_health_bit_empty,spr_gel_health_bit_empty_part,wid,hei,totalHealthCount,totalHealthPart,startX,centerY,scale);
+		totalHPMax -= newHPMAX.gel;
+		totalHealthCount = floor(totalHPMax/HEALTHCHUNK);
+		totalHealthPart = totalHPMax/HEALTHCHUNK -totalHealthCount;	
+	}	
 	if variable_struct_exists(newHPMAX,"armor") {
 		draw_bar(spr_armor_health_bit_empty,spr_armor_health_bit_empty_part,wid,hei,totalHealthCount,totalHealthPart,startX,centerY,scale);
 		totalHPMax -= newHPMAX.armor;
@@ -82,13 +94,24 @@ function draw_piece_hp(subtract_health = 0){
 		healthCount = floor(totalHP/HEALTHCHUNK);
 		healthPart = totalHP/HEALTHCHUNK -healthCount;
 	}
-
+	if variable_struct_exists(newHP,"rainbow") {
+		draw_bar(spr_rainbow_health_bit,spr_rainbow_health_bit_part,wid,hei,healthCount,healthPart,startX,centerY,scale);
+		totalHP -= newHP.rainbow;
+		healthCount = floor(totalHP/HEALTHCHUNK);
+		healthPart = totalHP/HEALTHCHUNK -healthCount;
+	}
 	if variable_struct_exists(newHP,"shield") {
 		draw_bar(spr_shield_health_bit,spr_shield_health_bit_part,wid,hei,healthCount,healthPart,startX,centerY,scale);
 		totalHP -= newHP.shield;
 		healthCount = floor(totalHP/HEALTHCHUNK);
 		healthPart = totalHP/HEALTHCHUNK -healthCount;
 	}
+	if variable_struct_exists(newHP,"gel") {
+		draw_bar(spr_gel_health_bit,spr_gel_health_bit_part,wid,hei,healthCount,healthPart,startX,centerY,scale);
+		totalHP -= newHP.gel;
+		healthCount = floor(totalHP/HEALTHCHUNK);
+		healthPart = totalHP/HEALTHCHUNK -healthCount;	
+	}	
 	if variable_struct_exists(newHP,"armor") {
 		draw_bar(spr_armor_health_bit,spr_armor_health_bit_part,wid,hei,healthCount,healthPart,startX,centerY,scale);
 		totalHP -= newHP.armor;

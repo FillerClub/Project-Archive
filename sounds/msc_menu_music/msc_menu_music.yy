@@ -1,15 +1,17 @@
 {
-  "$GMSound":"",
+  "$GMSound":"v2",
   "%Name":"msc_menu_music",
   "audioGroupId":{
     "name":"standalone_soundtracks",
     "path":"audiogroups/standalone_soundtracks",
   },
   "bitDepth":1,
-  "bitRate":224,
+  "channelFormat":1,
   "compression":0,
+  "compressionQuality":7,
   "conversionMode":0,
   "duration":166.152,
+  "exportDir":"",
   "name":"msc_menu_music",
   "parent":{
     "name":"PLACEHOLDER",
@@ -20,6 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":22050,
   "soundFile":"msc_menu_music.mp3",
-  "type":1,
   "volume":0.5,
 }

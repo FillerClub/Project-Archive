@@ -6,7 +6,7 @@ function cleanup_stale_predictions() {
     var pred_id = ds_map_find_first(prediction_history);
     while (pred_id != undefined) {
         var pred = prediction_history[? pred_id];
-		var timeElapsed = timeBase -pred.pre_state.time_stamp;
+		var timeElapsed = timeBase -pred.time_stamp;
         if !pred.verified && timeElapsed > timeout {
             array_push(stale_ids, pred_id);
             

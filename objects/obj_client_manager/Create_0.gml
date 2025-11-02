@@ -10,7 +10,7 @@ processing_delay = 1;
 tick_timer = 0;
 
 // Hash system
-hash_check_interval = 75;  // In ticks
+hash_check_interval = 35;  // In ticks
 hash_check_timer = 0;
 
 // Resync system

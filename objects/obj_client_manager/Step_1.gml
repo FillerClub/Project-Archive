@@ -1,6 +1,7 @@
 update_lobby();
 
 while steam_net_packet_receive() {
+	
 	var player1 = steam_lobby_get_data("Player1"),
     player2 = steam_lobby_get_data("Player2"),
     playerID = obj_preasync_handler.steam_id,

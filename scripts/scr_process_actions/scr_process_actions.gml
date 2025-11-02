@@ -13,8 +13,7 @@ function process_requests(requests, is_online = false) {
 			}
 		} else {
 			create_prediction(action);	
-		}
-			
+		}	
 	} else {
 		if len <= 0 {
 			exit;	

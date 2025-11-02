@@ -1,26 +1,10 @@
+simulate_lag = false;
+artificial_lag_ms = 0;
+packet_loss_percent = 0;
+
+packet_queue = ds_priority_create();
+
 debug_log = [];
-prediction_log = [];
-states_log = [];
-max_log_entries = 100;
-
-// Network simulation
-sim_lag = 0;           // Additional lag in ms
-sim_packet_loss = 0;   // 0-100% packet loss
-sim_jitter = 0;        // Random delay variation
-
-// Metrics tracking
-prediction_accuracy = 0;
-total_predictions = 0;
-correct_predictions = 0;
-rollback_count = 0;
-desync_count = 0;
-verbose = false;
-
-// State comparison
-last_local_hash = "";
-last_host_hash = "";
-hash_mismatches = 0;
-
 y_offset = 0;
 
 fps_catch_timer = 0;

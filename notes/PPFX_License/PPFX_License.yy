@@ -1,5 +1,5 @@
 {
-  "$GMNotes":"",
+  "$GMNotes":"v1",
   "%Name":"PPFX_License",
   "name":"PPFX_License",
   "parent":{

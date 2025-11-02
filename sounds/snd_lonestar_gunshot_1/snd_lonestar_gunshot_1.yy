@@ -1,15 +1,17 @@
 {
-  "$GMSound":"",
+  "$GMSound":"v2",
   "%Name":"snd_lonestar_gunshot_1",
   "audioGroupId":{
     "name":"sound_effects",
     "path":"audiogroups/sound_effects",
   },
   "bitDepth":1,
-  "bitRate":128,
+  "channelFormat":1,
   "compression":0,
+  "compressionQuality":4,
   "conversionMode":0,
   "duration":1.3928572,
+  "exportDir":"",
   "name":"snd_lonestar_gunshot_1",
   "parent":{
     "name":"Lonestar",
@@ -20,6 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":48000,
   "soundFile":"snd_lonestar_gunshot_1.ogg",
-  "type":1,
   "volume":0.45,
 }

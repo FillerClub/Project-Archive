@@ -1,15 +1,17 @@
 {
-  "$GMSound":"",
+  "$GMSound":"v2",
   "%Name":"snd_loss_of_want_back_there",
   "audioGroupId":{
     "name":"standalone_soundtracks",
     "path":"audiogroups/standalone_soundtracks",
   },
   "bitDepth":1,
-  "bitRate":512,
+  "channelFormat":1,
   "compression":0,
+  "compressionQuality":10,
   "conversionMode":0,
   "duration":320.064,
+  "exportDir":"",
   "name":"snd_loss_of_want_back_there",
   "parent":{
     "name":"PLACEHOLDER",
@@ -20,6 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":48000,
   "soundFile":"snd_loss_of_want_back_there.mp3",
-  "type":1,
   "volume":0.1,
 }

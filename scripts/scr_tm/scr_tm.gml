@@ -11,7 +11,7 @@ function tm_dp(value, team = "friendly", flip = false) {
 		break;
 		
 		default:
-			returnValue = undefined;
+			returnValue = value*flip;
 		break;
 	}
 	return returnValue;

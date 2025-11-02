@@ -1,15 +1,17 @@
 {
-  "$GMSound":"",
+  "$GMSound":"v2",
   "%Name":"msc_battle_bob",
   "audioGroupId":{
     "name":"standalone_soundtracks",
     "path":"audiogroups/standalone_soundtracks",
   },
   "bitDepth":1,
-  "bitRate":112,
+  "channelFormat":1,
   "compression":1,
+  "compressionQuality":3,
   "conversionMode":0,
   "duration":108.936165,
+  "exportDir":"",
   "name":"msc_battle_bob",
   "parent":{
     "name":"Battle Bob",
@@ -20,6 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":22050,
   "soundFile":"msc_battle_bob.ogg",
-  "type":1,
   "volume":0.4,
 }

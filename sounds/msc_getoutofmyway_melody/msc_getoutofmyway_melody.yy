@@ -1,15 +1,17 @@
 {
-  "$GMSound":"",
+  "$GMSound":"v2",
   "%Name":"msc_getoutofmyway_melody",
   "audioGroupId":{
     "name":"track2",
     "path":"audiogroups/track2",
   },
   "bitDepth":1,
-  "bitRate":128,
+  "channelFormat":1,
   "compression":1,
+  "compressionQuality":4,
   "conversionMode":0,
   "duration":133.06932,
+  "exportDir":"",
   "name":"msc_getoutofmyway_melody",
   "parent":{
     "name":"Get Out of My Way",
@@ -20,6 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":48000,
   "soundFile":"msc_getoutofmyway_melody.ogg",
-  "type":1,
   "volume":0.55,
 }

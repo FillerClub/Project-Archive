@@ -8,12 +8,14 @@ function total_health(hp_struct){
 
 function total_effective_health(hp_struct) {
     // Define mitigation behavior per HP type, also defines order
-    var types = ["over", "shield", "armor", "base"],
+    var types = ["over", "rainbow", "shield", "gel", "armor", "base"],
 	cum = 0,
 	mitigation = {
 		over: function(dmg,invert = false) { return dmg; },   						
-		shield: function(dmg,invert = false) { return invert?sqr(dmg):sqrt(dmg); }, 
-		armor: function(dmg, invert = false) { return invert?dmg*2:dmg/2; },		
+		rainbow: function(dmg,invert = false) { return dmg; },   						
+		shield: function(dmg,invert = false) { return invert?max(dmg,sqr(dmg)):min(dmg,sqrt(dmg)); }, 
+		gel: function(dmg,invert = false) { return invert?clamp(dmg +.9,dmg/.25,dmg/.8):(clamp(dmg -.9,dmg*.25,dmg*.8)); }, 
+		armor: function(dmg, invert = false) { return invert?dmg/.25:dmg*.25; },		
 		base: function(dmg, invert = false) { return dmg; }	      
 	}
     for (var i = 0; i < array_length(types); i++) {

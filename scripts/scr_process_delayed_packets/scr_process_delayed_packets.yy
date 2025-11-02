@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_process_delayed_packets",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_process_delayed_packets",
+  "parent":{
+    "name":"_Debug",
+    "path":"folders/Scripts/_Debug.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

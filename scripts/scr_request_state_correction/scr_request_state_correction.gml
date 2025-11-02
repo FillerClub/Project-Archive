@@ -1,5 +1,7 @@
 function request_state_correction() {
-    resync_attempt_count++
+    with obj_client_manager {
+		resync_attempt_count++
+	}
 	var packet = {
         Message: SEND.STATE_CHECK,
         player_id: obj_preasync_handler.steam_id

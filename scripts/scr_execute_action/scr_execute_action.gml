@@ -5,7 +5,7 @@ function execute_action(action,is_online){
 			sY = y,
 			type = action.type,
 			varObj = noone,
-			debugOn = global.debug,
+			debugOn = false,
 			timeDiff = ((get_timer() -game_clock_start -action.time_stamp))/1000000,
 			varCost = 0;
 			if !debugOn {
@@ -135,10 +135,10 @@ function execute_action(action,is_online){
 					if ds_exists(interpolation_data,ds_type_map) {
 						ds_map_clear(interpolation_data);
 					}
-					audio_stop_sound(snd_move);
-					audio_play_sound(snd_move,0,0);
 					// Activate move event
 					event_perform(ev_other,ev_user0);
+					audio_stop_sound(snd_move);
+					audio_play_sound(snd_move,0,0);
 				}
 			}
 			if teamCheck != "" {

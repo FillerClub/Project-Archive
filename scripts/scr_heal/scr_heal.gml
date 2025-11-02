@@ -1,11 +1,13 @@
 function heal(hp_struct,hp_struct_max,amount,increase_max_health = false) {
 	var raw_healing = abs(amount); 
     // Copied code from hurt function, defines order, probably not going to use to define healing behavior
-    var types = ["base","armor","shield","over"],
+    var types = ["base","armor","gel","shield","rainbow","over"],
 	filtering = {
 		base: function(hL,invert = false) { return hL; },	
 		armor: function(hL,invert = false) { return hL; },
+		gel: function(hL,invert = false) { return hL; },
 		shield: function(hL,invert = false) { return hL; },
+		rainbow: function(hL,invert = false) { return hL/2; },
 		over: function(hL,invert = false) { return 0; },	      
 	}
     for (var i = 0; i < array_length(types); i++) {
@@ -37,37 +39,60 @@ function heal(hp_struct,hp_struct_max,amount,increase_max_health = false) {
     }
 }
 
-function hurt(hp_struct,amount,type = DAMAGE.NORMAL,object = noone) {
+function hurt(hp_struct,amount,type = DAMAGE.NORMAL,object = self) {
 	var raw_damage = abs(amount),
 	damaged = false;
     // Define mitigation behavior per HP type, also defines order
-    var types = ["over", "shield", "armor", "base"],
+    var types = ["over", "rainbow", "shield", "gel", "armor", "base"],
 	mitigation = {
 		over: function(dmg,typ, invert = false) { return dmg; },   						
+		rainbow: function(dmg,typ, invert = false) { 
+			switch typ {
+				case DAMAGE.ENERGY:
+					return invert?max(dmg,sqr(dmg)):min(dmg,sqrt(dmg)); 		
+				
+				case DAMAGE.NORMAL:
+					if dmg < 10 { return invert?clamp(dmg +.9,dmg/.25,dmg/.8):(clamp(dmg -.9,dmg*.25,dmg*.8)) } else { return dmg };				
+				
+				case DAMAGE.PHYSICAL:
+					return invert?dmg/.25:dmg*.25;
+			}
+		}, 
 		shield: function(dmg,typ, invert = false) { 
 			switch typ {
-				default:
+				case DAMAGE.ENERGY:
 					return invert?max(dmg,sqr(dmg)):min(dmg,sqrt(dmg)); 
-				break;				
-				case DAMAGE.PHYSICAL:
+			
+				default:
 					return dmg;
-				break;
 
 			}
 		}, 
-		armor: function(dmg,typ,  invert = false) { 
+		gel: function(dmg,typ,  invert = false) { 
 			switch typ {
+				case DAMAGE.NORMAL:
+					return invert?clamp(dmg +.9,dmg/.25,dmg/.8):(clamp(dmg -.9,dmg*.25,dmg*.8));
+				
 				case DAMAGE.ENERGY:
-					return dmg; 
-				break;
-				default:
-					return invert?dmg/.75:dmg*.75; 
-				break;
+					return invert?dmg/.6:dmg*.6; 
+				
 				case DAMAGE.PHYSICAL:
-					return invert?dmg/.5:dmg*.5;
-				break;
+					return dmg; 
+
 			}			
 		},		
+		armor: function(dmg,typ,  invert = false) { 
+			switch typ {
+				case DAMAGE.PHYSICAL:
+					return invert?dmg/.25:dmg*.25;
+					
+				case DAMAGE.NORMAL:
+					return invert?dmg/.75:dmg*.75; 
+				
+				case DAMAGE.ENERGY:
+					return dmg; 				
+			}			
+		},	
 		base: function(dmg,typ,  invert = false) { 
 			return dmg; 
 		}		            
