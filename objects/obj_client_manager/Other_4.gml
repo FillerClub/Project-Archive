@@ -1,3 +1,3 @@
-if room == rm_lobby || room == rm_loadout_zone_multiplayer {
+if room == rm_lobby || room == rm_match_menu {
 	in_level = false;	
 }

@@ -10,8 +10,8 @@
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_generic_piece","path":"objects/obj_generic_piece/obj_generic_piece.yy",},"propertyId":{"name":"timer_end","path":"objects/obj_generic_piece/obj_generic_piece.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":".01",},
   ],
   "parent":{
-    "name":"Pieces",
-    "path":"folders/Objects/Piece Stuff/Pieces.yy",
+    "name":"Scrap",
+    "path":"folders/Objects/Piece Stuff/Pieces/Scrap.yy",
   },
   "parentObjectId":{
     "name":"obj_generic_piece",

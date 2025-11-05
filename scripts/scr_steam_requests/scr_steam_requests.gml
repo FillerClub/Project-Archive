@@ -88,9 +88,12 @@ function steam_bounce(Buffer) {
 	}
 	// Incase doesn't go through debugger	
 	var buff = buffer_create(string_byte_length(json), buffer_fixed, 1);
-	buffer_write(buff, buffer_text, json);
-	steam_net_packet_send(lobbyOwner,buff);
-	buffer_delete(buff);		
+	buffer_write(buff, buffer_text, json);		
+	for(var i = 0; i < steam_lobby_get_member_count(); i++) {
+		var MemberID = steam_lobby_get_member_id(i);
+		steam_net_packet_send(MemberID,buff);
+	}
+	buffer_delete(buff);	
 	return;
 }
 function send_packet_to_client(target_client_id, packet) {
@@ -126,7 +129,7 @@ function send_packet_to_client(target_client_id, packet) {
 	// Incase doesn't go through debugger	
 	var buff = buffer_create(string_byte_length(json), buffer_fixed, 1);
 	buffer_write(buff, buffer_text, json);
-	steam_net_packet_send(lobbyOwner,buff);
+	steam_net_packet_send(target_client_id,buff);
 	buffer_delete(buff);		
 	return;
 }
