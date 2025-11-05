@@ -1,7 +1,10 @@
 var gS = GRIDSPACE;
 
 if graphic_show != -1 {
-	var timeRemaining = time_source_get_time_remaining(graphic_timer);
+	var timeRemaining = 0;
+	if time_source_exists(graphic_timer) {
+	timeRemaining = time_source_get_time_remaining(graphic_timer);
+	}
 	if timeRemaining > 0 {
 		var 
 		graphicShow = 0,

@@ -15,7 +15,7 @@ function update_lobby() {
 			}
 		}
 	}
-	if (room == rm_loadout_zone_multiplayer || room == rm_lobby) {	
+	if (room == rm_match_menu || room == rm_lobby) {	
 	    in_level = false;
 	}
 	if steam_lobby_get_lobby_id() == 0 || room == rm_lobby {

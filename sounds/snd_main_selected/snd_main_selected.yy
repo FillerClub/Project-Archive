@@ -1,15 +1,17 @@
 {
-  "$GMSound":"",
+  "$GMSound":"v2",
   "%Name":"snd_main_selected",
   "audioGroupId":{
     "name":"sound_effects",
     "path":"audiogroups/sound_effects",
   },
   "bitDepth":1,
-  "bitRate":128,
+  "channelFormat":0,
   "compression":0,
+  "compressionQuality":4,
   "conversionMode":0,
   "duration":0.22770976,
+  "exportDir":"",
   "name":"snd_main_selected",
   "parent":{
     "name":"Sounds",
@@ -20,6 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":44100,
   "soundFile":"snd_main_selected.ogg",
-  "type":0,
   "volume":0.45,
 }

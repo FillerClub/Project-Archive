@@ -12,12 +12,14 @@ if !instance_exists(her) {
 info = power_database(heroString);
 sprite_index = info[POWERDATA.SLOTSPRITE];
 desc = info[POWERDATA.DESCRIPTION];
+tag = heroString;
 //passive powers
 switch her.identity {
 	default:
 		var obj = info[POWERDATA.OBJECT];
 		instance_create_layer((her.bbox_left +her.bbox_right)/2,her.bbox_top -20,"Instances",obj,{
-			team: team
+			team: team,
+			tag: heroString +"-object",
 		});
 	break;
 }

@@ -1,15 +1,17 @@
 {
-  "$GMSound":"",
+  "$GMSound":"v2",
   "%Name":"msc_getoutofmyway_bass",
   "audioGroupId":{
     "name":"track1",
     "path":"audiogroups/track1",
   },
   "bitDepth":1,
-  "bitRate":112,
+  "channelFormat":1,
   "compression":1,
+  "compressionQuality":3,
   "conversionMode":0,
   "duration":133.06932,
+  "exportDir":"",
   "name":"msc_getoutofmyway_bass",
   "parent":{
     "name":"Get Out of My Way",
@@ -20,6 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":22050,
   "soundFile":"msc_getoutofmyway_bass.ogg",
-  "type":1,
   "volume":0.5,
 }

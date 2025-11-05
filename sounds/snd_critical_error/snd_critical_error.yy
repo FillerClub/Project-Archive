@@ -1,15 +1,17 @@
 {
-  "$GMSound":"",
+  "$GMSound":"v2",
   "%Name":"snd_critical_error",
   "audioGroupId":{
     "name":"sound_effects",
     "path":"audiogroups/sound_effects",
   },
   "bitDepth":1,
-  "bitRate":512,
+  "channelFormat":1,
   "compression":0,
+  "compressionQuality":10,
   "conversionMode":0,
   "duration":0.23591837,
+  "exportDir":"",
   "name":"snd_critical_error",
   "parent":{
     "name":"Sounds",
@@ -20,6 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":48000,
   "soundFile":"snd_critical_error.ogg",
-  "type":1,
   "volume":0.55,
 }

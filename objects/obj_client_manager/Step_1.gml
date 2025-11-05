@@ -1,6 +1,7 @@
 update_lobby();
 
 while steam_net_packet_receive() {
+	
 	var player1 = steam_lobby_get_data("Player1"),
     player2 = steam_lobby_get_data("Player2"),
     playerID = obj_preasync_handler.steam_id,
@@ -108,17 +109,36 @@ while steam_net_packet_receive() {
 						}	
 					}
 				break;
+				case SEND.HASH_CHECK:
+					if !is_host {
+						hash_check(msg)	
+					}
+				break;
+				case SEND.STATE_CHECK:
+					if !is_host {
+						handle_state_correction(msg);	
+					} else {
+						handle_correction_request(msg);	
+					}
+				break;
+				case SEND.FULL_RESYNC:
+					if !is_host {
+						handle_full_resync(msg);
+					} else {
+						handle_full_resync_request(msg);
+					}
+				break;
 				case SEND.INSERTTAG:
 					object_tag_list = array_concat(object_tag_list,msg.tags);
 				break;
 				case SEND.READY:
 					var rGo = rm_level_normal;
-					switch obj_map_switch.map {
-						case 1: rGo = rm_level_normal; break;
-						case 2: rGo = rm_level_small; break;
-						case 3: rGo = rm_level_split; break;
-						case 4: rGo = rm_level_conveyor; break;
-						case 5: rGo = rm_level_heights; break;
+					switch global.map {
+						case MAP.NORMAL: rGo = rm_level_normal; break;
+						case MAP.SMALL: rGo = rm_level_small; break;
+						case MAP.SPLIT: rGo = rm_level_split; break;
+						case MAP.MOVE: rGo = rm_level_conveyor; break;
+						case MAP.HEIGHTS: rGo = rm_level_heights; break;
 					}
 					switch member_status {
 						case MEMBERSTATUS.PLAYER1:

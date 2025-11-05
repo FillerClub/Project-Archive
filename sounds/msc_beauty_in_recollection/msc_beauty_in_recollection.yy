@@ -1,15 +1,17 @@
 {
-  "$GMSound":"",
+  "$GMSound":"v2",
   "%Name":"msc_beauty_in_recollection",
   "audioGroupId":{
     "name":"standalone_soundtracks",
     "path":"audiogroups/standalone_soundtracks",
   },
   "bitDepth":1,
-  "bitRate":512,
+  "channelFormat":1,
   "compression":1,
+  "compressionQuality":10,
   "conversionMode":0,
   "duration":75.130455,
+  "exportDir":"",
   "name":"msc_beauty_in_recollection",
   "parent":{
     "name":"OST",
@@ -20,6 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":48000,
   "soundFile":"msc_beauty_in_recollection.ogg",
-  "type":1,
   "volume":1.0,
 }

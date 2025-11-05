@@ -19,7 +19,7 @@ if keyboard_check_pressed(vk_backspace) {
 			saveStateRead = json_parse(buffer_read(saveStateRead,buffer_string));
 			timeStamp = saveStateRead.time_stamp;
 		}
-        load_save_state(saveStateRead,timeStamp);
+        load_save_state(saveStateRead);
         create_system_message(["Game state loaded"],TOP,false);
     } catch (error) {
         create_system_message(["Load failed: " + string(error.message)],TOP,false);

@@ -10,15 +10,30 @@ if global.game_state != PAUSED {
 				new_animation = sq_shooter_shoot;
 				// Determine where to exit for idle animation
 				var head = layer_sequence_get_headpos(animation);
-				if head > 20 && head < 43 {
-					default_anim_position = 45;
+				if head > 0 && head < 39 {
+					default_anim_position = 39;
 				} else {
-					default_anim_position = 12;
+					default_anim_position = 0;
 				}
-				interpolation_speed = 1/10;
+				interpolation_speed = 1/25;
 				starting_sequence_pos = 0;
 				shooting = true;
 			}
 		}
 	}
 } 
+/*
+if keyboard_check_pressed(vk_up) {
+	if keyboard_check(vk_shift) {
+		end_debug++;
+	} else {
+		start_debug++;
+	}
+}
+if keyboard_check_pressed(vk_down) {
+	if keyboard_check(vk_shift) {
+		end_debug--;
+	} else {
+		start_debug--;
+	}	
+}

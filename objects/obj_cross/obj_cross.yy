@@ -32,7 +32,7 @@
   "physicsShapePoints":[],
   "physicsStartAwake":true,
   "properties":[
-    {"$GMObjectProperty":"v1","%Name":"seconds_per_rotation","filters":[],"listItems":[],"multiselect":false,"name":"seconds_per_rotation","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"96","varType":0,},
+    {"$GMObjectProperty":"v2","%Name":"seconds_per_rotation","filters":[],"listItems":[],"multiselect":false,"name":"seconds_per_rotation","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"96","varType":0,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

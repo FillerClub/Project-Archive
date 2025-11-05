@@ -1,12 +1,5 @@
 with obj_game {
-	var cont = JOURNAL;
-	if typeof(journal_starting_entry) == "string" {
-		journal_piece_create(journal_starting_entry);
-		journal_starting_entry = noone;
-		cont = POSTLEVELJOURNAL
-	}	
 	soundtrack_play(LOOKINGBACK);
-	global.mode = "move";
 	var 
 	journalMenu = [],
 	discoveredArray = global.discovered_pieces,
@@ -51,6 +44,19 @@ with obj_game {
 			full_description: pieceData.full_description,
 			keywords: keywordString,
 		}	
+	}
+	if typeof(journal_starting_entry) == "string" {
+		// Start at appropriate journal index 
+		for	(var j = 0; j < discoveredArrayLength; j++) {
+			if discoveredArray[j] == journal_starting_entry {
+				other.starting_index = j;
+				obj_journal.index = j +1;
+				journal_starting_entry = -1;
+				break;	
+			}
+		}	
+	} else {
+		instance_destroy(obj_continue_from_journal);	
 	}
 	other.list = listGenerate;
 	other.update = true;

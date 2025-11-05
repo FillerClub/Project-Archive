@@ -328,7 +328,7 @@ for (var finalScan = 1; finalScan < trackArrLeng; finalScan++) {
 							}
 							global.tutorial_progress = 1;
 							PieceVictim.ignore_pause = true;
-							PieceVictim.skip_timer = false;
+							PieceVictim.uses_timer = false;
 							PieceVictim.execute = "move";
 							tutorial_piece = PieceVictim;
 							global.mode = "move";

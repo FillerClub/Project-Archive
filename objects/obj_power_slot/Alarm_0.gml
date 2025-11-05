@@ -14,6 +14,7 @@ cooldown_length = info[POWERDATA.SLOTCOOLDOWN];
 sprite_slot = info[POWERDATA.SLOTSPRITE];
 desc = info[POWERDATA.DESCRIPTION];
 identity = heroString;
+tag = heroString;
 if index != 1 {
 	cooldown = cooldown_length;
 }

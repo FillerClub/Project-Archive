@@ -191,6 +191,14 @@ if !canAfford {
 }
 
 // Execute the move
-r_move_piece(tag, [finalX, finalY], moveToGrid.tag, grid_pos, selfGrid.tag, bypass_cooldown);
+try {
+	r_move_piece(tag, [finalX, finalY], moveToGrid.tag, grid_pos, selfGrid.tag, bypass_cooldown);
+} catch (_exception) {
+	show_debug_message(string(tag),string(moveToGrid),string(selfGrid));
+    show_debug_message(_exception.message);
+    show_debug_message(_exception.longMessage);
+    show_debug_message(_exception.script);
+    show_debug_message(_exception.stacktrace);	
+}
 return true;
 }

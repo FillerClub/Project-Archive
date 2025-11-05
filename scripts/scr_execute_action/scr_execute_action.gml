@@ -5,7 +5,7 @@ function execute_action(action,is_online){
 			sY = y,
 			type = action.type,
 			varObj = noone,
-			debugOn = global.debug,
+			debugOn = false,
 			timeDiff = ((get_timer() -game_clock_start -action.time_stamp))/1000000,
 			varCost = 0;
 			if !debugOn {
@@ -50,10 +50,8 @@ function execute_action(action,is_online){
 				piece_on_grid: action.piece_on_grid,
 				skip_move: true,
 				link: action.link,
+				tag: action.tag,
 			}) {
-				if is_online && variable_instance_exists(pieceCreate,"tag") {
-					pieceCreate.tag = action.tag;	
-				}
 				var timerVars = TIMESENSITIVEVARIABLES;
 				for (var t = 0; t < array_length(timerVars); t++) {
 					var varString = string(timerVars[t]);
@@ -73,8 +71,11 @@ function execute_action(action,is_online){
 		break;
 		case "Move":
 			var varObj = obj_generic_piece,
-			teamCheck = "";
-			if !is_online {
+			teamCheck = "",
+			blocked = false,
+			moveToPos = [-1,1],
+			moveToGrid = "noone";
+			if !is_string(action.tag) {
 				varObj = action.tag;
 			}
 			with varObj {
@@ -89,10 +90,10 @@ function execute_action(action,is_online){
 						}
 					}
 					if !instance_exists(gridRef) { break; }
-					grid_pos = action.grid_pos;
-					piece_on_grid = gridRef;
-					var tarX = grid_pos[0]*GRIDSPACE +gridRef.bbox_left,
-					tarY = grid_pos[1]*GRIDSPACE +gridRef.bbox_top;
+					moveToPos = action.grid_pos;
+					moveToGrid = action.piece_on_grid;
+					var tarX = moveToPos[0]*GRIDSPACE +gridRef.bbox_left,
+					tarY = moveToPos[1]*GRIDSPACE +gridRef.bbox_top;
 					if position_meeting(tarX +GRIDSPACE/2,tarY +GRIDSPACE/2,obj_obstacle) {
 						var collide = instance_position(tarX +GRIDSPACE/2,tarY +GRIDSPACE/2,obj_obstacle);
 						hurt(collide.hp,attack_power,DAMAGE.PHYSICAL,collide);
@@ -100,7 +101,9 @@ function execute_action(action,is_online){
 						switch collide.object_index {
 							// Never destroy a hero wall
 							case obj_hero_wall:
-								instance_destroy();			
+								if total_health(collide.hp) <= 0 {
+									instance_destroy();	
+								}
 							break;
 				
 							default:
@@ -109,8 +112,8 @@ function execute_action(action,is_online){
 									teamCheck = team;
 									instance_destroy(collide);
 								} else {
-									// Destroy the attacking piece if it's too weak
-									instance_destroy();	
+									// Block the attacking piece if it's too weak
+									blocked = true;
 								}
 							break;									
 						}
@@ -121,26 +124,30 @@ function execute_action(action,is_online){
 						if team == "enemy" { global.enemy_turns -= cost; }
 						move_cooldown_timer = move_cooldown;
 					}
-					// Create dash particle
-					var dashPart = -1;
-					with obj_battle_handler {
-						dashPart = dash_part;
+					if !blocked {
+						// Create dash particle
+						var dashPart = -1;
+						with obj_battle_handler {
+							dashPart = dash_part;
+						}
+						if dashPart != -1 {
+							var angleSet = point_direction(x,y,tarX,tarY) ;
+							part_type_orientation(dashPart,angleSet +90,angleSet +90,0,0,0);
+							part_type_direction(dashPart,angleSet +180,angleSet +180,0,0);
+							part_particles_create(global.part_sys,x +sprite_width/2,y +sprite_height/2,dashPart,1);
+						}
+						x = tarX;
+						y = tarY;
+						grid_pos = moveToPos;
+						piece_on_grid = moveToGrid;
+						if ds_exists(interpolation_data,ds_type_map) {
+							ds_map_clear(interpolation_data);
+						}
 					}
-					if dashPart != -1 {
-						var angleSet = point_direction(x,y,tarX,tarY) ;
-						part_type_orientation(dashPart,angleSet +90,angleSet +90,0,0,0);
-						part_type_direction(dashPart,angleSet +180,angleSet +180,0,0);
-						part_particles_create(global.part_sys,x +sprite_width/2,y +sprite_height/2,dashPart,1);
-					}
-					x = tarX;
-					y = tarY;
-					if ds_exists(interpolation_data,ds_type_map) {
-						ds_map_clear(interpolation_data);
-					}
-					audio_stop_sound(snd_move);
-					audio_play_sound(snd_move,0,0);
 					// Activate move event
 					event_perform(ev_other,ev_user0);
+					audio_stop_sound(snd_move);
+					audio_play_sound(snd_move,0,0);
 				}
 			}
 			if teamCheck != "" {
@@ -157,7 +164,7 @@ function execute_action(action,is_online){
 		break;
 		case "Interact":
 			var varObj = obj_generic_piece;
-			if !is_online {
+			if !is_string(action.tag) {
 				varObj = action.tag;
 			}
 			with varObj {
@@ -168,7 +175,7 @@ function execute_action(action,is_online){
 		break;
 		case "Delete":
 			var varObj = obj_generic_piece;
-			if !is_online {
+			if !is_string(action.tag) {
 				varObj = action.tag;
 			}
 			with varObj {

@@ -30,7 +30,7 @@
   "physicsShapePoints":[],
   "physicsStartAwake":true,
   "properties":[
-    {"$GMObjectProperty":"v1","%Name":"sprite","filters":[],"listItems":[],"multiselect":false,"name":"sprite","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resource":{"name":"spr_friendly_team","path":"sprites/spr_friendly_team/spr_friendly_team.yy",},"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"spr_friendly_team","varType":5,},
+    {"$GMObjectProperty":"v2","%Name":"sprite","filters":[],"listItems":[],"multiselect":false,"name":"sprite","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resource":{"name":"spr_friendly_team","path":"sprites/spr_friendly_team/spr_friendly_team.yy",},"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"spr_friendly_team","varType":5,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

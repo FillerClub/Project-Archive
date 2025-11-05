@@ -1,15 +1,17 @@
 {
-  "$GMSound":"",
+  "$GMSound":"v2",
   "%Name":"snd_critical_hit",
   "audioGroupId":{
     "name":"sound_effects",
     "path":"audiogroups/sound_effects",
   },
   "bitDepth":1,
-  "bitRate":256,
+  "channelFormat":1,
   "compression":0,
+  "compressionQuality":8,
   "conversionMode":0,
   "duration":3.5,
+  "exportDir":"",
   "name":"snd_critical_hit",
   "parent":{
     "name":"Sounds",
@@ -20,6 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":48000,
   "soundFile":"snd_critical_hit.ogg",
-  "type":1,
   "volume":0.5,
 }

@@ -1,15 +1,17 @@
 {
-  "$GMSound":"",
+  "$GMSound":"v2",
   "%Name":"snd_put_down",
   "audioGroupId":{
     "name":"sound_effects",
     "path":"audiogroups/sound_effects",
   },
   "bitDepth":0,
-  "bitRate":80,
+  "channelFormat":0,
   "compression":1,
+  "compressionQuality":1,
   "conversionMode":0,
   "duration":0.173609,
+  "exportDir":"",
   "name":"snd_put_down",
   "parent":{
     "name":"Sounds",
@@ -20,6 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":5512,
   "soundFile":"snd_put_down.ogg",
-  "type":0,
   "volume":1.0,
 }

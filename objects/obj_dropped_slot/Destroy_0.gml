@@ -9,10 +9,8 @@ isNewDiscovered = true,
 isNewLoadout = true,
 arUnlocked = global.unlocked_pieces,
 heroUnlocked = global.unlocked_heroes,
-arDiscovered = global.discovered_pieces,
 arLoadout = global.loadout,
 arLengthUnlocked = array_length(arUnlocked),
-arLengthDiscovered = array_length(arDiscovered),
 arLengthLoadout = array_length(arLoadout),
 heroLengthUnlocked = array_length(heroUnlocked);
 
@@ -38,8 +36,8 @@ for (var iii = 0; iii < arLengthLoadout; iii++) {
 if isNewUnlocked {
 	array_push(global.unlocked_pieces,identity);	
 }
-if isNewLoadout && arLengthLoadout <= global.max_slots {
-	array_push(global.loadout,identity);	
+if isNewLoadout && arLengthLoadout < global.max_slots {
+	//array_push(global.loadout,identity);	
 }
 if isHeroNewUnlocked && is_string(hero_unlock) {
 	array_push(global.unlocked_heroes,hero_unlock);

@@ -1,7 +1,7 @@
 function replay_newer_predictions(rollback_timestamp) {
     // Find all predictions that happened after the rolled-back one
     var predictions_to_replay = [];
-    
+
     var pred_id = ds_map_find_first(prediction_history);
     while (pred_id != undefined) {
         var pred = prediction_history[? pred_id];

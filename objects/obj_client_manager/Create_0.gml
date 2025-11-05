@@ -9,6 +9,15 @@ current_tick = 0;
 processing_delay = 1; 
 tick_timer = 0;
 
+// Hash system
+hash_check_interval = 35;  // In ticks
+hash_check_timer = 0;
+
+// Resync system
+resync_attempt_count = 0;
+max_state_correction_attempts = 2;
+max_total_resync_attempts = 4;
+
 // Action buffering
 action_buffer = ds_map_create(); 
 action_history = [];

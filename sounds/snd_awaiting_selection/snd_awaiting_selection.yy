@@ -1,15 +1,17 @@
 {
-  "$GMSound":"",
+  "$GMSound":"v2",
   "%Name":"snd_awaiting_selection",
   "audioGroupId":{
     "name":"sound_effects",
     "path":"audiogroups/sound_effects",
   },
   "bitDepth":1,
-  "bitRate":512,
+  "channelFormat":1,
   "compression":0,
+  "compressionQuality":10,
   "conversionMode":0,
   "duration":133.06932,
+  "exportDir":"",
   "name":"snd_awaiting_selection",
   "parent":{
     "name":"Sounds",
@@ -20,6 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":48000,
   "soundFile":"snd_awaiting_selection.ogg",
-  "type":1,
   "volume":1.0,
 }

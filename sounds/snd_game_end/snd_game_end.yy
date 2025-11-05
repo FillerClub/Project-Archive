@@ -1,15 +1,17 @@
 {
-  "$GMSound":"",
+  "$GMSound":"v2",
   "%Name":"snd_game_end",
   "audioGroupId":{
     "name":"standalone_soundtracks",
     "path":"audiogroups/standalone_soundtracks",
   },
   "bitDepth":1,
-  "bitRate":512,
+  "channelFormat":1,
   "compression":0,
+  "compressionQuality":10,
   "conversionMode":0,
   "duration":6.071429,
+  "exportDir":"",
   "name":"snd_game_end",
   "parent":{
     "name":"Sounds",
@@ -20,6 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":48000,
   "soundFile":"snd_game_end.ogg",
-  "type":1,
   "volume":0.35,
 }

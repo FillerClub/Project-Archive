@@ -1,3 +1,4 @@
+
 switch(async_load[?"event_type"]) {
 	case "lobby_created":
 		var client = obj_client_manager;

@@ -3,5 +3,5 @@ if input_check_pressed("pause") {
 }
 
 if keyboard_check_pressed(vk_control) {
-	create_system_message([string(asset_get_index(obj_grid))]);	
+//	create_system_message([string(asset_get_index(obj_grid))]);	
 }

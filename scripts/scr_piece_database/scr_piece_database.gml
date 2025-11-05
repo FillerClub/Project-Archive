@@ -240,8 +240,8 @@ function piece_database(name, trait = -1) {
             p.name = "Drum";						p.object = obj_drum;
             p.sprite = spr_generic;					p.slot_sprite = spr_pawn_slot;
             p.place_cost = 2;						p.move_cost = 0;
-            p.slot_cooldown = 8;					p.move_cooldown = 9;
-            p.hp = {base:10};						p.attack_power = 15;
+            p.slot_cooldown = 8;					p.move_cooldown = 6;
+            p.hp = {base:5,armor:5,gel:5,shield:5,rainbow:5,over:5};						p.attack_power = 15;
             p.moves = [[],[],/*BOTH*/[[1,0],[0,1],[-1,0],[0,-1]]];
             p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
             p.class = CONTROLCLASS;					p.type = 0;
@@ -253,11 +253,11 @@ function piece_database(name, trait = -1) {
             p.name = "Wall";						p.object = obj_wall;
             p.sprite = spr_wall;					p.slot_sprite = spr_wall_slot;
             p.place_cost = 2;						p.move_cost = 0;
-            p.slot_cooldown = 20;					p.move_cooldown = 32;
-            p.hp = {base:10, armor:10};				p.attack_power = 5;
+            p.slot_cooldown = 12;					p.move_cooldown = 32;
+            p.hp = {base:10, armor:5, gel: 5};				p.attack_power = 5;
             p.moves = [undefined];
             p.grid_placement_behavior = SAME;		p.piece_placement_behavior = PLACEABLENONE;
-            p.class = CONTROLCLASS;					p.type = 0;
+            p.class = DEFENSECLASS;					p.type = 0;
             p.short_description = "Static piece with a lot of health. Useful for stalling.";
             p.full_description = "TBA";
             returnPiece = p;

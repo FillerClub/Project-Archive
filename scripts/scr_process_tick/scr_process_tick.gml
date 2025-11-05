@@ -28,6 +28,13 @@ function process_tick() {
 		}
     }
     
+	// Hash checking
+    hash_check_timer++;
+    if hash_check_timer >= hash_check_interval {
+        hash_check_timer = 0;
+        send_hash_check();
+    }
+	
     // Clean up old ticks
     var cleanup_tick = processTick - 10;
     if ds_map_exists(action_buffer, cleanup_tick) {

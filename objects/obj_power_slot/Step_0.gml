@@ -10,13 +10,12 @@ her = noone;
 if time_source_get_state(error_time) == time_source_state_stopped {
 	draw_red_box = 0;
 }
+cooldown = max(cooldown,0);
 if global.game_state == PAUSED {
 	exit;	
 }
 if cooldown > 0 && !pause_cooldown {
-	cooldown -= delta_time*DELTA_TO_SECONDS*global.level_speed;
-} else if cooldown < 0 {
-	cooldown = 0;	
+	cooldown -= delta_time*DELTA_TO_SECONDS*global.level_speed*speed_factor;
 }
 if skip || global.mode == "delete" || global.player_team != team {
 	skip = false;

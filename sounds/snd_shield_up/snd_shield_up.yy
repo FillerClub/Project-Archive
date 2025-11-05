@@ -1,15 +1,17 @@
 {
-  "$GMSound":"",
+  "$GMSound":"v2",
   "%Name":"snd_shield_up",
   "audioGroupId":{
     "name":"sound_effects",
     "path":"audiogroups/sound_effects",
   },
   "bitDepth":1,
-  "bitRate":512,
+  "channelFormat":1,
   "compression":2,
+  "compressionQuality":10,
   "conversionMode":0,
   "duration":2.0260544,
+  "exportDir":"",
   "name":"snd_shield_up",
   "parent":{
     "name":"Sounds",
@@ -20,6 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":48000,
   "soundFile":"snd_shield_up.ogg",
-  "type":1,
   "volume":0.65,
 }

@@ -16,10 +16,9 @@ process_requests(requests,online);
 
 
 // Battle Timer Function
-if global.game_state != PAUSED {
-	timer += delta_time*DELTA_TO_SECONDS*global.level_speed;	
-	if alert_timer > 0 { alert_timer -= delta_time*DELTA_TO_SECONDS*global.level_speed; }
-}
+timer += delta_time*DELTA_TO_SECONDS*global.level_speed;	
+if alert_timer > 0 { alert_timer -= delta_time*DELTA_TO_SECONDS*global.level_speed; }
+
 if timer >= global.timeruplength || (global.debug && keyboard_check_pressed(vk_tab)) {
 	global.max_turns += global.turn_increment;
 	global.friendly_turns += global.turn_increment;

@@ -1,15 +1,17 @@
 {
-  "$GMSound":"",
+  "$GMSound":"v2",
   "%Name":"snd_buildup",
   "audioGroupId":{
     "name":"sound_effects",
     "path":"audiogroups/sound_effects",
   },
   "bitDepth":1,
-  "bitRate":512,
+  "channelFormat":0,
   "compression":0,
+  "compressionQuality":10,
   "conversionMode":0,
   "duration":7.2,
+  "exportDir":"",
   "name":"snd_buildup",
   "parent":{
     "name":"Sounds",
@@ -20,6 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":48000,
   "soundFile":"snd_buildup.ogg",
-  "type":0,
   "volume":0.55,
 }

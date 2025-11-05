@@ -42,7 +42,7 @@ function deal_with_level(level) {
 					with obj_generic_hero {
 						hp = 3;	
 					}
-					instance_create_layer(832,384,"Instances",obj_generic_piece, {
+					instance_create_layer(832,384,"Instances",obj_wall, {
 						identity: "barrel",	
 						place_sound: undefined,
 					});
@@ -63,10 +63,12 @@ function deal_with_level(level) {
 					var varStruct = {
 						identity: "short",
 						team: "friendly",
+						tag: generate_tag(2),
 						place_sound: noone
 					}			
 					soundtrackPlay = BATTLE;		
-					instance_create_layer(640,192,"Instances",obj_short_shooter,varStruct);																			
+					instance_create_layer(640,192,"Instances",obj_short_shooter,varStruct);
+					varStruct.tag = generate_tag(2);
 					instance_create_layer(640,576,"Instances",obj_short_shooter,varStruct);	
 					deployLoadout = ["short"];	
 				break;

@@ -9,17 +9,19 @@ if is_string(gridRef) {
 		}
 	}
 }
-if instance_exists(gridRef) && position_meeting(x,y,obj_grid) {
+if !instance_exists(gridRef) && position_meeting(x,y,obj_grid) {
 	gridRef = instance_position(x,y,obj_grid);
 }
-if grid_pos[0] == -1 && grid_pos[1] == -1 && gridRef != noone {
-	grid_pos[0] = floor((x -gridRef.bbox_left)/GRIDSPACE);
-	grid_pos[1] = floor((y -gridRef.bbox_top)/GRIDSPACE); 
-}
 if instance_exists(gridRef) {
+	if grid_pos[0] == -1 && grid_pos[1] == -1 && instance_exists(gridRef) {
+		grid_pos[0] = floor((x -gridRef.bbox_left)/GRIDSPACE);
+		grid_pos[1] = floor((y -gridRef.bbox_top)/GRIDSPACE); 
+	}
 	x = grid_pos[0]*GRIDSPACE +gridRef.bbox_left;
 	y = grid_pos[1]*GRIDSPACE +gridRef.bbox_top;
+	piece_on_grid = gridRef.tag;
 }
+
 data = piece_database(identity);
 hp = data[$ "hp"];
 hp_max = variable_clone(data[$ "hp"]);

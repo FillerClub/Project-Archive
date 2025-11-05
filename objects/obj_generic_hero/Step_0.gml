@@ -30,7 +30,7 @@ if hp <= 0 {
 			hp = global.barrier_criteria;
 			with obj_hero_wall {
 				if team == other.team && total_health(hp) <= 0 {
-					hp.base = 10;
+					heal(hp,hp_max,total_health(hp_max));
 					invincible = false;
 					if variable_instance_exists(self,"aegis_ability_done") {
 						aegis_ability_done = false;	
@@ -63,10 +63,15 @@ if hp <= 0 {
 		case rm_level_split:
 		case rm_level_heights:
 			if packet_send = -1 {
+				var timeStamp = 0;
+				with obj_battle_handler {
+					timeStamp = get_timer() -game_clock_start;	
+				}
 				var lose = {
 					Message: SEND.GAMEDATA,
 					action_type: "Lose",
 					team: team,
+					time_stamp: timeStamp,
 				}
 				with obj_battle_handler {
 					array_push(requests,lose);	

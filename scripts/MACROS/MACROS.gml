@@ -65,6 +65,20 @@ enum SEND {
     HASH_CHECK = 24,        // Host → Clients: State hash for verification/minor corrections
     REQUEST_FULL_RESYNC = 25,// Client → Host: Need full state
     FULL_RESYNC = 26		// Host → Client: Client processes save state
+	DISCONNECT,
+	CONNECT,
+	MATCHDATA,
+	PLAYERJOIN,
+	READY,
+	REQUESTTAG,
+	INSERTTAG,
+	PING,
+	
+	GAMEDATA,			// Client → Host: Action request
+    TICK_RESULTS,       // Host → Clients: Processed actions
+    HASH_CHECK,         // Host → Clients: State hash for verification
+	STATE_CHECK,	// Host → Client: Send state for minor corrections
+    FULL_RESYNC			// Host → Client: Client processes save state
 }
 enum DEBUG {
 	GAME,
@@ -74,6 +88,8 @@ enum DEBUG {
 
 #macro DATATYPES ["Status","Name","Hero","Loadout","MaxSlots","Bans","Barrier","TimeLength","MaxPieces","Map","Spawn","Move","Interact","Delete","Lose"]
 #macro LOBBYDATA ["Status","Name","Player1","Player1Hero","Player1Loadout","Player1Ready","Player2","Player2Hero","Player2Loadout","Player2Ready","MaxSlots","Bans","Barrier","TimeLength","MaxPieces","Map"]
+#macro SHORTSAVEOBJECTS [obj_piece_slot,obj_obstacle,obj_battle_handler,obj_timer,obj_generic_hero]
+#macro SHORTSAVEOBJECTVARIABLES ["tag","x","y","z","object_index","depth","timer","move_cooldown_timer","hp","piece_on_grid","grid_pos","cooldown","accel","resource_timer"]
 #macro SAVEOBJECTS [obj_obstacle,obj_piece_slot,obj_power_passive,obj_generic_hero,obj_generic_powerup,obj_grid,obj_bullet_parent,obj_battle_handler,obj_timer]
 #macro SAVEOBJECTVARIABLES ["tag","x","y","z","image_xscale","image_yscale","timer","move_cooldown_timer","hp","hp_max","piece_on_grid","grid_pos","cooldown","object_index","depth","team","effects_array","effects_timer","effects_management_array","invincible","dmg","x_vel","y_vel","y_spd_max","y_spd","starting_sequence_pos","starting_sequence","shooting","accel","resource_timer","identity"]
 #macro SAVEOBJECTIGNOREVARIABLES ["object_index"]

@@ -14,8 +14,8 @@
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_generic_piece","path":"objects/obj_generic_piece/obj_generic_piece.yy",},"propertyId":{"name":"uses_timer","path":"objects/obj_generic_piece/obj_generic_piece.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"True",},
   ],
   "parent":{
-    "name":"Pieces",
-    "path":"folders/Objects/Piece Stuff/Pieces.yy",
+    "name":"Scrap",
+    "path":"folders/Objects/Piece Stuff/Pieces/Scrap.yy",
   },
   "parentObjectId":{
     "name":"obj_generic_piece",
@@ -35,9 +35,9 @@
   "physicsShapePoints":[],
   "physicsStartAwake":true,
   "properties":[
-    {"$GMObjectProperty":"v1","%Name":"repeat_shot","filters":[],"listItems":[],"multiselect":false,"name":"repeat_shot","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
-    {"$GMObjectProperty":"v1","%Name":"damage","filters":[],"listItems":[],"multiselect":false,"name":"damage","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"1","varType":0,},
-    {"$GMObjectProperty":"v1","%Name":"repeat_shot_base","filters":[],"listItems":[],"multiselect":false,"name":"repeat_shot_base","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"3","varType":0,},
+    {"$GMObjectProperty":"v2","%Name":"repeat_shot","filters":[],"listItems":[],"multiselect":false,"name":"repeat_shot","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
+    {"$GMObjectProperty":"v2","%Name":"damage","filters":[],"listItems":[],"multiselect":false,"name":"damage","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"1","varType":0,},
+    {"$GMObjectProperty":"v2","%Name":"repeat_shot_base","filters":[],"listItems":[],"multiselect":false,"name":"repeat_shot_base","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"3","varType":0,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

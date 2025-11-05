@@ -15,7 +15,7 @@ if global.debug {
 				}	
 			} else if instance_exists(gridOff) { zOff += gridOff.z; }
 			if collision_rectangle(bbox_left,bbox_top -zOff,bbox_right,bbox_bottom -zOff,obj_cursor,false,true) {
-				clickedOn = id;
+				clickedOn = self;
 			}
 		}
 		with instance_position(obj_cursor.x,obj_cursor.y,obj_piece_slot) {
@@ -51,7 +51,7 @@ if input_check_pressed("action") && !instance_exists(obj_dummy) {
 				}
 			} else if instance_exists(gridOff) { zOff += gridOff.z; }
 			if collision_rectangle(bbox_left,bbox_top -zOff,bbox_right,bbox_bottom -zOff,obj_cursor,false,true) {
-				clickedOn = id;
+				clickedOn = self;
 			}
 		}		
 	}

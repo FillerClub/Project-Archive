@@ -14,7 +14,7 @@ function validate_action(action) {
             return validate_interaction(action);
         
         default:
-            return {valid: false, reason: "unknown_action_type"};
+            return {valid: true, reason: "unknown_action_type"};
     }
 }
 

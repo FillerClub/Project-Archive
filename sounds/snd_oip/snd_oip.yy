@@ -1,15 +1,17 @@
 {
-  "$GMSound":"",
+  "$GMSound":"v2",
   "%Name":"snd_oip",
   "audioGroupId":{
     "name":"sound_effects",
     "path":"audiogroups/sound_effects",
   },
   "bitDepth":1,
-  "bitRate":512,
+  "channelFormat":0,
   "compression":0,
+  "compressionQuality":10,
   "conversionMode":0,
   "duration":0.542536,
+  "exportDir":"",
   "name":"snd_oip",
   "parent":{
     "name":"Sounds",
@@ -20,6 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":48000,
   "soundFile":"snd_oip.ogg",
-  "type":0,
   "volume":0.5,
 }

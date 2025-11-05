@@ -23,47 +23,12 @@ function create_save_state(buffer = -1) {
     var saveVars = SAVEOBJECTVARIABLES;
     var saveGlobals = SAVEGLOBALS;
     
-    // Save global variables
-    for (var i = 0, len = array_length(saveGlobals); i < len; i++) {
-        var globalName = saveGlobals[i];
-        if variable_global_exists(globalName) {
-            struct_set(saveData.globals, globalName, variable_global_get(globalName));
-        }
-    }
-    
+	// Save global variables
+    saveData.globals = capture_globals(saveGlobals);
+	
     // Save object instances
-    var objIndex = 0;
-    for (var objType = 0, objCount = array_length(saveObjects); objType < objCount; objType++) {
-        with saveObjects[objType] {
-            var instanceData = {
-                object_index: object_index,
-				depth: depth,
-                x: x,
-                y: y,
-            };
-			if variable_instance_exists(self,"tag") {
-				instanceData.tag = tag;	
-			} else {
-				continue;
-			}
-            // Save specified variables
-            for (var varIndex = 0, varCount = array_length(saveVars); varIndex < varCount; varIndex++) {
-                var varName = saveVars[varIndex];
-                if variable_instance_exists(id, varName) {
-                    struct_set(instanceData, varName, variable_instance_get(id, varName));
-                }
-            }
-			if variable_instance_exists(self,"animation") {
-	            if layer_sequence_exists("Instances",animation) { 
-					var anim = layer_sequence_get_instance(animation);
-					instanceData.starting_sequence = anim.sequence.name;
-					instanceData.starting_sequence_pos = anim.headPosition; 	
-				}
-			}
-            saveData.objects[objIndex] = instanceData;
-            objIndex++;
-        }
-    }
+	saveData.objects = capture_object_data(saveObjects,saveVars);
+
 	if buffer_exists(buffer) {
 		buffer_write(buffer,buffer_string,json_stringify(saveData));
 	}
@@ -72,7 +37,9 @@ function create_save_state(buffer = -1) {
 
 // HELPER FUNCTION: Load save data
 function load_save_state(buffer, saveStateTime = -1) {
-	var stateData = buffer;
+	var stateData = buffer,
+	newInstances = [],
+	newInstanceCount = 0;
 	// Handle cases when we want to load from a provided buffer
 	if buffer_exists(buffer) {
 		show_debug_message("Loading save state from buffer");
@@ -89,14 +56,8 @@ function load_save_state(buffer, saveStateTime = -1) {
     var saveIgnoreVars = SAVEOBJECTIGNOREVARIABLES;
     var saveGlobals = SAVEGLOBALS;
     
-    // Restore global variables
-    var globalNames = struct_get_names(stateData.globals);
-    for (var i = 0, len = array_length(globalNames); i < len; i++) {
-        var globalName = globalNames[i];
-        if array_contains(saveGlobals, globalName) {
-            variable_global_set(globalName, struct_get(stateData.globals, globalName));
-        }
-    }
+	load_globals(stateData.globals,saveGlobals);
+
     // Create lookup map for existing instances
     var existingInstances = create_instance_lookup(saveObjects);
     
@@ -134,11 +95,26 @@ function load_save_state(buffer, saveStateTime = -1) {
         } else {
             // Create new instance
             var keepID = create_instance_from_data(savedInstance, saveVars, saveIgnoreVars, saveStateTime);
+			array_push(newInstances,savedInstance.object_index);
+			newInstanceCount++;
             struct_set(instancesToKeep, string(keepID), true);
         }
     }
     // Destroy instances that weren't in the save data
     destroy_unlisted_instances(saveObjects, instancesToKeep);
+	show_debug_message(newInstanceCount);
+	show_debug_message(newInstances);
+}
+
+function load_globals(globals_data,global_variables) {
+	// Restore global variables
+	var globalNames = struct_get_names(globals_data);
+	for (var i = 0, len = array_length(globalNames); i < len; i++) {
+	    var globalName = globalNames[i];
+	    if array_contains(global_variables, globalName) {
+	        variable_global_set(globalName, struct_get(globals_data, globalName));
+	    }
+	}		
 }
 
 // HELPER FUNCTION: Create lookup map of existing instances
@@ -146,7 +122,11 @@ function create_instance_lookup(saveObjects) {
     var lookup = {};
     for (var objType = 0, objCount = array_length(saveObjects); objType < objCount; objType++) {
         with saveObjects[objType] {
-            struct_set(lookup, string(id), true);
+			if variable_instance_exists(self,"tag") {
+				struct_set(lookup, string(tag), true);
+			} else {
+				struct_set(lookup, string(id), true);	
+			}
         }
     }
     return lookup;

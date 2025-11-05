@@ -23,14 +23,17 @@ function handle_tutorials(tutorialProgress) {
 				
 			var requestAmt = array_length(requests);
 			for (var r = 0; r < requestAmt; r++) {
-				if requests[r].action != "Move" {
+				if requests[r].action_type != "Move" {
+					if requests[r].action_type == "Delete" {
+						array_delete(requests,r,1);
+					}
 					continue;
 				}
-				if requests[r].tag == tutorial_piece.id {
+				if requests[r].tag == tutorial_piece.tag {
 					executed = true;
 					with tutorial_piece {
 						ignore_pause = false;
-						skip_timer = false;	
+						uses_timer = true;	
 					}
 				}
 			}

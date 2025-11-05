@@ -6,7 +6,7 @@
   "name":"scr_get_screen_size_up",
   "parent":{
     "name":"Screen",
-    "path":"folders/Scripts/Screen.yy",
+    "path":"folders/Scripts/Misc/Screen.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -18,7 +18,7 @@ for (var i = 0; i < ar_leng; ++i)	{
 	if position_meeting(xM,yM,obj_generic_piece) {
 		with instance_position(xM,yM,obj_generic_piece) {
 			if team != other.team && !invincible {
-				hp -= 1;
+				hurt(hp,1,DAMAGE.NORMAL,self);
 			}
 		}
 	} 		

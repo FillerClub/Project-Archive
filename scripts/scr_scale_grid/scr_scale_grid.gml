@@ -1,27 +1,43 @@
-function scale_grid(scale_factor,create_walls = true){
-	var shiftAmt = 0,
-	oY = 0,
-	yDiff = 0;
-	if scale_factor > 1 {
-		var shiftAmt = -1;
-	} else if scale_factor < 1 {
-		var shiftAmt = 1;
-	} else {
-		exit;	
-	}
-	instance_destroy(obj_hero_wall);
-	with obj_grid {
-		var midCenter = (bbox_top +bbox_bottom)/2;
-		oY = y;
-		image_yscale = image_yscale*scale_factor;
-		do {
-			y += shiftAmt;
-		} until round((bbox_top +bbox_bottom)/2) == round(midCenter);
-		yDiff = oY -y;
-		event_perform(ev_create,0);
-	}
-	with obj_marker {
-		image_yscale = image_yscale*scale_factor;
-		y += yDiff;
+function scale_grid(scale_factor, create_walls = true) {
+    // Early exit if no scaling needed
+    if (scale_factor == 1) exit;
+    
+    // Destroy walls if needed
+    if create_walls {
+        instance_destroy(obj_hero_wall);
+    }
+    
+    var y_diff = 0;
+    // Reposition units to midpoint
+
+    // Scale grid objects
+    with obj_grid {
+        // Calculate center before scaling
+        var center_y = (bbox_top + bbox_bottom) / 2;
+        
+        // Apply scale
+        image_yscale = round(image_yscale*scale_factor);
+        
+        // Calculate new center after scaling and adjust position
+        var new_center_y = (bbox_top + bbox_bottom) / 2;
+        y += (center_y - new_center_y);
+		// Store the difference for markers
+        y_diff = oY - y;	
+        // Trigger create event
+		if create_walls {
+			event_perform(ev_create, 0);
+		}
+	
+    }
+    
+    // Scale and reposition markers
+    with (obj_marker) {
+        image_yscale *= scale_factor;
+        y += y_diff;
+    }
+	with obj_obstacle {
+		if object_index != obj_hero_wall && variable_instance_exists(self,"grid_pos") {
+			grid_pos[1] += round(y_diff/GRIDSPACE);
+		}
 	}
 }

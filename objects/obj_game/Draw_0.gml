@@ -1,5 +1,7 @@
+/*
 draw_set_font(fnt_tiny);
-
+draw_text(room_width/2,room_height/2,string(global.unlocked_pieces));
+draw_text(room_width/2,room_height/2 +128,string(global.loadout));
 //draw_text_scribble(room_width/2,room_height/2,string(lane_threat))	
 //draw_text_scribble(room_width/2,room_height/2 +128,string(lane_score))	
 

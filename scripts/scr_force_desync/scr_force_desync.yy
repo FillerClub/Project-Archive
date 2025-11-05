@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_force_desync",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_force_desync",
+  "parent":{
+    "name":"_Debug",
+    "path":"folders/Scripts/_Debug.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
