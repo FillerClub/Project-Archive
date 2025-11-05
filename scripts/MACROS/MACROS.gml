@@ -16,55 +16,7 @@
 #macro D_CLIENT_PORT 9867
 #macro D_SERVER_PORT 9868
 #macro TICKRATE 30 // Per second
-
-// Phase timing constants (developer-controlled)
-#macro PHASE_TIME_BANS_PER_ROUND 20      // 20 seconds per ban round
-#macro PHASE_TIME_LOADOUTS 60            // 60 seconds for loadout selection
-#macro PHASE_TIME_TRANSITION 3           // 3 seconds transition countdown
-#macro READY_GRACE_PERIOD 1.5            // 1.5 seconds to unready after clicking
-
 enum SEND {
-	DISCONNECT = 0,
-	CONNECT = 1,
-	MATCHDATA = 2,
-	PLAYERJOIN = 3,
-	READY = 4,
-	REQUESTTAG = 5,
-	INSERTTAG = 6,
-	PING = 7,
-
-	// Lobby management
-	PLAYER_JOIN = 8,
-	PLAYER_LEAVE = 9,
-	ROSTER_UPDATE = 10,
-	JOIN_QUEUE = 11,
-	LEAVE_QUEUE = 12,
-	LOBBY_STATE = 13,
-
-	// Settings
-	SETTINGS_UPDATE = 14,
-
-	// Phase management
-	PHASE_CHANGE = 15,
-	READY_TOGGLE = 16,
-
-	// Ban phase
-	BAN_COMMIT = 17,
-	BAN_REVEAL = 18,
-	BAN_NEXT_ROUND = 19,
-
-	// Chat
-	CHAT_MESSAGE = 20,
-
-	// Game flow
-	GAME_END = 21,
-
-	// In-game
-	GAMEDATA = 22,			// Client → Host: Action request
-    TICK_RESULTS = 23,      // Host → Clients: Processed actions
-    HASH_CHECK = 24,        // Host → Clients: State hash for verification/minor corrections
-    REQUEST_FULL_RESYNC = 25,// Client → Host: Need full state
-    FULL_RESYNC = 26		// Host → Client: Client processes save state
 	DISCONNECT,
 	CONNECT,
 	MATCHDATA,
@@ -132,27 +84,9 @@ enum ONLINESTATUS {
 	SPECTATING = 4,
 }
 enum MEMBERSTATUS {
-	SPECTATOR = -1,
-	PLAYER1 = 0,
+	SPECTATOR = -1,	
+	PLAYER1 = 0,	
 	PLAYER2 = 1,
-}
-enum PLAYER_SLOT {
-	PLAYER_1 = 0,
-	PLAYER_2 = 1,
-	SPECTATOR = 2
-}
-enum LOBBY_PHASE {
-	SETUP = 0,          // Waiting for players, hero selection, map settings
-	BANS = 1,           // Simultaneous blind ban phase
-	LOADOUTS = 2,       // Hidden loadout selection
-	TRANSITION = 3,     // Show loadouts, countdown to game
-	IN_GAME = 4         // Game is running
-}
-enum QUEUE_ROTATION {
-	PLAYERS_STAY = 0,   // No rotation
-	LOSERS_MOVE = 1,    // Loser goes to back of queue
-	WINNERS_MOVE = 2,   // Winner goes to back of queue
-	BOTH_MOVE = 3       // Both go to back, next 2 promoted
 }
 // Level
 #macro SLOTROW 9
